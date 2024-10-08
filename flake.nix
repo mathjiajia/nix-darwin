@@ -25,7 +25,7 @@
             # cmake
             fish
             cargo
-            # node
+            nodejs
             btop
             fastfetch
             fd
@@ -51,11 +51,30 @@
             neovide
             neovim
             emacs
+            # tectonic
             vscode
-            # zotero
             zed
             raycast
+            ollama
+            skimpdf
+            iina
+            loopwm
+            ice-bar
+            keka
+            inkscape
+            # github-desktop
+            kitty
+            # mathpix-snipping-tool
+            # follow
+            # microsoft-edge
+            # zotero
+            # sublime-merge
+            # sioyek
             # zoom-us
+            # maple-mono-NF
+            iosevka
+            lxgw-wenkai
+
           ];
 
           # Auto upgrade nix package and the daemon service.
