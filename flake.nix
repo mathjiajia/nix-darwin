@@ -54,6 +54,7 @@
             vscode
             # zotero
             zed
+            raycast
             # zoom-us
           ];
 
