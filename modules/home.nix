@@ -1,15 +1,10 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ ... }:
 {
 
   home.username = "jia";
   home.homeDirectory = "/Users/jia";
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "24.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -20,7 +15,6 @@
     mkdir -p ~/Developer
   '';
 
-  # yazi file manager
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -29,6 +23,10 @@
 
   programs = {
     btop.enable = true;
+    emacs.enable = true;
+    fastfetch.enable = true;
+    lazygit.enable = true;
+    ripgrep.enable = true;
   };
 
   xdg.enable = true;

@@ -13,7 +13,6 @@
     iina
     inkscape
     keka
-    kitty
     ollama
     loopwm
     # mathpix-snipping-tool
@@ -23,9 +22,7 @@
     # sublime-merge
     raycast
     # texliveFull
-    vscode
     # warp-terminal
-    # wezterm
     zed
     # zotero
     zoom-us
