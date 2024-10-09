@@ -6,7 +6,7 @@
   # # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     emacs
-    fish
+    # fish
     starship
     difftastic
     glow

@@ -53,7 +53,13 @@
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.jia = import ./home.nix;
+            home-manager.users.jia = {
+              imports = [
+                ./modules/home.nix
+                ./modules/shell.nix
+                ./modules/git
+              ];
+            };
           }
 
           nix-homebrew.darwinModules.nix-homebrew
