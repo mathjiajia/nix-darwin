@@ -3,21 +3,30 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
   outputs =
-    inputs@{
+    {
       self,
-      nix-darwin,
       nixpkgs,
+      home-manager,
+      nix-darwin,
+      nix-homebrew,
     }:
     let
       configuration =
-        { pkgs, ... }:
+        { pkgs, config, ... }:
         {
           nixpkgs.config.allowUnfree = true;
+
           # List packages installed in system profile. To search by name, run:
           # # $ nix-env -qaP | grep wget
           environment.systemPackages = with pkgs; [
@@ -36,7 +45,7 @@
             tree-sitter
             yazi
             zoxide
-            # swift-format
+            swift-format
             difftastic
             delta
             onefetch
@@ -63,19 +72,127 @@
             keka
             inkscape
             # github-desktop
+            # ghostty
             kitty
+            # warp-terminal
+            # wezterm
+            discord
+            texliveFull
             # mathpix-snipping-tool
             # follow
             # microsoft-edge
             # zotero
             # sublime-merge
             # sioyek
-            # zoom-us
+            zoom-us
+          ];
+
+          homebrew = {
+            enable = true;
+            brews = [ "mas" ];
+            casks = [
+              "mathpix-snipping-tool"
+              "publish-or-perish"
+              "zotero"
+              "chatgpt"
+              "microsoft-edge"
+              "dash"
+              "sublime-merge"
+              "launchbar"
+              "surge"
+              "hazeover"
+              "hookmark"
+              "qlmarkdown"
+              "syntax-highlight"
+              "istat-menus"
+              "adguard"
+              "downie"
+              "hazel"
+              "kekaexternalhelper"
+              "keyboardcleantool"
+              "keyboard-maestro"
+              "permute"
+              "prettyclean"
+              "soulver"
+              "sf-symbols"
+              "anythingllm"
+              "diffusionbee"
+              "codeedit"
+              "orbstack"
+              "openemu"
+
+              "adobe-acrobat-pro"
+              "adobe-creative-cloud"
+              "coherence-x"
+
+              "hhkb"
+              "font-codicon"
+              "font-jetbrains-mono-nerd-font"
+              "font-sf-mono"
+              "font-symbols-only-nerd-font"
+            ];
+            masApps = {
+              "GarageBand" = 682658836;
+              "iMovie" = 408981434;
+              "Playgrounds" = 1496833156;
+              "Keynote" = 409183694;
+              "Numbers" = 409203825;
+              "Pages" = 409201541;
+              "SnippetsLab" = 1006087419;
+              "VooV" = 1497685373;
+              "Friendly Streaming" = 553245401;
+              "Infuse" = 1136220934;
+              "VidHub" = 1659622164;
+              "Microsoft Excel" = 462058435;
+              "Microsoft PowerPoint" = 462062816;
+              "Microsoft Word" = 462054704;
+              "UPDF" = 1619925971;
+              "Dictionaries" = 1380563956;
+              "Due" = 524373870;
+              "Dropover" = 1355679052;
+              "FileFillet" = 6443969762;
+              "Things" = 904280696;
+              "Reeder" = 6475002485;
+              "MarkMark" = 6475077023;
+              "西窗烛" = 912139104;
+              "Telegram" = 747648890;
+              "WeChat" = 836500024;
+              "‎WhatsApp" = 310633997;
+              "Bear" = 1091189122;
+              "Craft" = 1487937127;
+              "Drafts" = 1435957248;
+              "Goodnotes" = 1444383602;
+              "Taio" = 1527036273;
+              "Ulysses" = 1225570693;
+              "Enchanted LLM" = 6474268307;
+              "OpenCat" = 6445999201;
+              "Xcode" = 497799835;
+              "Codye" = 1516894961;
+              "DevHub" = 6476452351;
+              "HorizonChase2" = 1534920947;
+              "Pro Snooker & Pool 2024" = 1586517737;
+              "Solitaire" = 1534193824;
+              "ScanScan" = 1249901692;
+              "TestFlight" = 899247664;
+              "Whisper Transcription" = 1668083311;
+              "Noto" = 1459055246;
+              "Plain Text Editor" = 1572202501;
+            };
+            onActivation.cleanup = "zap";
+          };
+
+          fonts.packages = with pkgs; [
             # maple-mono-NF
             iosevka
             lxgw-wenkai
-
+            smiley-sans
           ];
+
+          system.defaults = {
+            dock.autohide = true;
+            finder.FXPreferredViewStyle = "clmv";
+            loginwindow.GuestEnabled = false;
+          };
 
           # Auto upgrade nix package and the daemon service.
           services.nix-daemon.enable = true;
@@ -103,7 +220,25 @@
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#Jias-MacBook-Pro
       darwinConfigurations."Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        modules = [ configuration ];
+        modules = [
+          configuration
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              # Install Homebrew under the default prefix
+              enable = true;
+
+              # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+              enableRosetta = true;
+
+              # User owning the Homebrew prefix
+              user = "jia";
+
+              # Automatically migrate existing Homebrew installations
+              autoMigrate = true;
+            };
+          }
+        ];
       };
 
       # Expose the package set, including overlays, for convenience.
