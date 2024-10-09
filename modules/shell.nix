@@ -6,6 +6,7 @@
     ./fastfetch.nix
     ./fish.nix
     ./fzf.nix
+    ./ripgrep.nix
     ./starship.nix
     ./yazi.nix
   ];

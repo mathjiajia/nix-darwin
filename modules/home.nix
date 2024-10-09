@@ -13,9 +13,6 @@
     HOMEBREW_NO_ANALYTICS = 1;
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
   # ensures ~/Developer folder exists.
   # this folder is later assumed by other activations, specially on darwin.
   home.activation.developer = ''
@@ -28,10 +25,9 @@
   };
 
   programs = {
-    btop.enable = true;
     emacs.enable = true;
-    fastfetch.enable = true;
-    ripgrep.enable = true;
+    home-manager.enable = true;
+    vscode.enable = true;
   };
 
   xdg.enable = true;

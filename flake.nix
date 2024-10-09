@@ -48,10 +48,10 @@
                 ./modules/home.nix
                 ./modules/shell.nix
                 ./modules/git
+                # ./modules/kitty.nix
                 # ./modules/neovim
                 ./modules/neovide.nix
                 ./modules/pkgs.nix
-                # ./modules/kitty.nix
               ];
             };
           }
