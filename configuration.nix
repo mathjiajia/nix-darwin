@@ -5,21 +5,19 @@
   # List packages installed in system profile. To search by name, run:
   # # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    starship
-    tree
-    zoxide
-    swift-format
-    difftastic
-    onefetch
-    glow
-    poppler
-    unar
-    hugo
-    pandoc
-    nixfmt-rfc-style
-    neovide
-    neovim
     emacs
+    fish
+    starship
+    difftastic
+    glow
+    hugo
+    nixfmt-rfc-style
+    onefetch
+    pandoc
+    poppler
+    swift-format
+    unar
+    zoxide
     # tectonic
     vscode
     zed
@@ -59,7 +57,7 @@
       "dash"
       "sublime-merge"
       "launchbar"
-      # "surge"
+      "surge"
       "hazeover"
       "hookmark"
       "qlmarkdown"
@@ -88,6 +86,7 @@
       "hhkb"
       "font-codicon"
       "font-jetbrains-mono-nerd-font"
+      "font-iosevka"
       "font-sf-mono"
       "font-symbols-only-nerd-font"
     ];
@@ -143,7 +142,7 @@
 
   fonts.packages = with pkgs; [
     # maple-mono-NF
-    iosevka
+    # iosevka
     lxgw-wenkai
     smiley-sans
   ];
