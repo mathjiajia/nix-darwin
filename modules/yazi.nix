@@ -83,14 +83,6 @@
         {
           on = [
             "g"
-            "f"
-          ];
-          run = "cd ~/.config/fish";
-          desc = "Go to the fish config directory";
-        }
-        {
-          on = [
-            "g"
             "m"
           ];
           run = "cd ~/Documents/Projects/moduli2";
@@ -118,14 +110,6 @@
             "v"
           ];
           run = "cd ~/.config/vimtex";
-          desc = "Go to the yazi config directory";
-        }
-        {
-          on = [
-            "g"
-            "y"
-          ];
-          run = "cd ~/.config/yazi";
           desc = "Go to the yazi config directory";
         }
         {

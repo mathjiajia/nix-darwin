@@ -147,10 +147,11 @@
     smiley-sans
   ];
 
-  # system.defaults = {
-  #   dock.autohide = true;
-  #   loginwindow.GuestEnabled = false;
-  # };
+  system.defaults = {
+    dock.autohide = true;
+    finder.FXPreferredViewStyle = "Nlsv";
+    loginwindow.GuestEnabled = false;
+  };
 
   users.users.jia.home = "/Users/jia";
   # Auto upgrade nix package and the daemon service.
