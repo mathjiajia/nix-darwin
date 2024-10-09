@@ -1,5 +1,5 @@
 {
-  description = "Example Darwin system flake";
+  description = "Jia's Darwin system flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -12,16 +12,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
-    homebrew-core = {
-      url = "github:homebrew/homebrew-core";
-      flake = false;
-    };
-    homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
-      flake = false;
-    };
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
@@ -35,8 +27,6 @@
       nixpkgs,
       home-manager,
       nix-homebrew,
-      homebrew-core,
-      homebrew-cask,
       homebrew-bundle,
       ...
     }:
@@ -80,8 +70,6 @@
 
               # Optional: Declarative tap management
               taps = {
-                "homebrew/homebrew-core" = homebrew-core;
-                "homebrew/homebrew-cask" = homebrew-cask;
                 "homebrew/homebrew-bundle" = homebrew-bundle;
               };
 

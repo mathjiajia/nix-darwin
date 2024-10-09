@@ -18,7 +18,7 @@
       rebase = {
         autoSquash = true;
       };
-          github.user = "mathjiajia";
+      github.user = "mathjiajia";
     };
     aliases = {
       a = "add";
@@ -31,4 +31,16 @@
     };
     ignores = lib.splitString "\n" (builtins.readFile ./gitignore_global);
   };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui = {
+        sidePanelWidth = 0.25;
+        nerdFontsVersion = "3";
+      };
+      git.paging.externalDiffCommand = "difft --color=always --display=inline";
+    };
+  };
+
 }

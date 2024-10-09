@@ -2,6 +2,7 @@
 {
   imports = [
     ./bat
+    ./btop.nix
     ./fastfetch.nix
     ./fish.nix
     ./fzf.nix

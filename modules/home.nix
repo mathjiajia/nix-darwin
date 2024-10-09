@@ -6,6 +6,13 @@
 
   home.stateVersion = "24.05";
 
+  home.sessionVariables = {
+    VISUAL = "nvim";
+    MANPAGER = "nvim +Man!";
+    DFT_PARSE_ERROR_LIMIT = 999;
+    HOMEBREW_NO_ANALYTICS = 1;
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -17,7 +24,6 @@
 
   programs.neovim = {
     enable = true;
-    vimAlias = true;
     defaultEditor = true;
   };
 
@@ -25,7 +31,6 @@
     btop.enable = true;
     emacs.enable = true;
     fastfetch.enable = true;
-    lazygit.enable = true;
     ripgrep.enable = true;
   };
 
