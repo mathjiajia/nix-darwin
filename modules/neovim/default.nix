@@ -26,18 +26,28 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
+      # coding
+
+      # dap
+
+      # editor
+      gitsigns-nvim
+
+      # lang
+
+      # lsp
+
       # ui
       nvim-notify
       dressing-nvim
-
-      # basics
+      nvim-highlight-colors
       indent-blankline-nvim
-      gitsigns-nvim
+
+      # util
 
       # ai
       nui-nvim
 
-      # coding
       nvim-lspconfig
       conform-nvim
       nvim-cmp
@@ -50,29 +60,30 @@ in
       luasnip
       cmp_luasnip
       nvim-surround
+
+      # treesitter
       (pkgs.vimPlugins.nvim-treesitter.withPlugins (
         plugins: with plugins; [
           bash
+          bibtex
+          c
+          comment
           diff
           fish
-          git_config
-          git_rebase
-          gitattributes
-          gitcommit
-          gitignore
-          html
-          json
+          latex
           lua
+          luadoc
+          luap
           markdown
           markdown_inline
-          nix
+          matlab
           python
           query
           regex
+          swift
           toml
           vim
           vimdoc
-          yaml
         ]
       ))
     ];

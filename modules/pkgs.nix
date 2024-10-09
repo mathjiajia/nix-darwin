@@ -1,19 +1,16 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    nodejs
-    onefetch
-    ripgrep
-    unrar
     cargo
-    tree-sitter
-
-    ripgrep
-    tree
-
     fastfetch
     lazygit
     neovide
+    nodejs
+    onefetch
     python3
+    ripgrep
+    tree
+    tree-sitter
+    unrar
   ];
 }

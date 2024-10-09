@@ -2,9 +2,10 @@
 {
   imports = [
     ./bat
-    ./fish
+    ./fish.nix
     ./fzf.nix
     ./starship.nix
+    ./yazi.nix
   ];
 
   programs.zoxide = {

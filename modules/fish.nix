@@ -6,6 +6,16 @@
       set fish_greeting
       fish_add_path -p -m /run/current-system/sw/bin
     '';
+    shellInitLast = ''
+      function lf
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        yazi $argv --cwd-file="$tmp"
+        if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+          cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+      end
+    '';
     shellAbbrs = {
       mkdir = "mkdir -p";
 
@@ -32,5 +42,4 @@
     };
   };
 
-  xdg.configFile."fish/functions".source = ./functions;
 }
