@@ -42,11 +42,19 @@
       homebrew-bundle,
       ...
     }:
+    let
+      vars = {
+        username = "jia";
+        hostname = "Jias-MacBook-Pro";
+        system = "aarch64-darwin";
+        version = "24.11";
+      };
+    in
     {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#Jias-MacBook-Pro
       darwinConfigurations."Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
+        system = "${vars.system}";
         modules = [
           ./configuration.nix
 
@@ -55,7 +63,7 @@
             # `home-manager` config
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.db = import ./home.nix;
+            home-manager.users.${vars.username} = import ./home.nix;
           }
 
           nix-homebrew.darwinModules.nix-homebrew
@@ -71,7 +79,7 @@
                 "homebrew/homebrew-cask" = homebrew-cask;
                 "homebrew/homebrew-bundle" = homebrew-bundle;
               };
-              mutableTaps = false;
+              # mutableTaps = false;
             };
           }
         ];
