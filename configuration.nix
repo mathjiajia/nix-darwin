@@ -5,29 +5,14 @@
   # List packages installed in system profile. To search by name, run:
   # # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    bat
-    # cmake
-    fish
-    cargo
-    nodejs
-    btop
-    fastfetch
-    fd
-    fzf
-    ripgrep
     starship
     tree
-    tree-sitter
-    yazi
     zoxide
     swift-format
     difftastic
-    delta
     onefetch
-    lazygit
     glow
     poppler
-    python3
     unar
     hugo
     pandoc

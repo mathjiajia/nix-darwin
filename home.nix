@@ -1,12 +1,36 @@
 {
-  config,
   pkgs,
   lib,
   ...
 }:
-
 {
-  home.stateVersion = "24.05";
+
+  home.username = "jia";
+  home.homeDirectory = "/Users/jia";
+
+  home.stateVersion = "24.11";
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  home.packages = with pkgs; [
+    btop
+    bat
+    cargo
+    delta
+    fastfetch
+    fd
+    fish
+    fzf
+    lazygit
+    nodejs
+    python3
+    ripgrep
+    tree-sitter
+    yazi
+  ];
+
+  xdg.enable = true;
 
   programs.bat = {
     enable = true;
@@ -17,11 +41,11 @@
     };
   };
 
-  # xdg.configFile."bat/themes" = {
-  #   recursive = true;
-  #   source = ./home-modules/bat-themes;
-  #   onChange = "${lib.getExe pkgs.bat} cache --build";
-  # };
+  xdg.configFile."bat/themes" = {
+    recursive = true;
+    source = ./home-modules/bat-themes;
+    onChange = "${pkgs.bat} cache --build";
+  };
 
   programs.git = {
     enable = true;
