@@ -20,11 +20,10 @@
     skimpdf
     # sublime-merge
     raycast
-    # texliveFull
     # warp-terminal
     # zed
-    # zotero
     zoom-us
+    # zotero
   ];
 
   fonts.packages = with pkgs; [
