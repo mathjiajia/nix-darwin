@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 {
   programs.git = {
     enable = true;
@@ -6,18 +6,28 @@
     userName = "Jia Jia";
     userEmail = "mathjiajia@outlook.com";
     extraConfig = {
-      core = {
-        editor = "nvim";
+      core.editor = "nvim";
+      delta.navigate = true;
+      diff = {
+        tool = "difftastic";
+        colorMoved = "default";
       };
-      pull = {
-        rebase = true;
+      difftool = {
+        difftastic.cmd = "difft $LOCAL $REMOTE";
+        prompt = false;
       };
-      push = {
-        autoSetupRemote = true;
+      merge = {
+        conflictstyle = "diff3";
+        tool = "vimdiff";
       };
-      rebase = {
-        autoSquash = true;
+      mergetool = {
+        keepBackup = false;
+        vimdiff.cmd = "nvim -d $LOCAL $MERGED $REMOTE -c 'windo set foldcolumn=0 signcolumn=no wrap | wincmd h'";
       };
+      pager.difftool = true;
+      pull.rebase = true;
+      push.autoSetupRemote = true;
+      rebase.autoSquash = true;
       github.user = "mathjiajia";
     };
     aliases = {
