@@ -25,7 +25,7 @@
       hostname.ssh_symbol = " ";
       c.symbol = " ";
       lua = {
-        lua_binary = "luajit";
+        # lua_binary = "luajit";
         symbol = " ";
       };
       nix_shell.symbol = " ";
