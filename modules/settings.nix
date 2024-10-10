@@ -11,9 +11,9 @@
 
     # file viewer settings
     finder = {
-      AppleShowAllExtensions = true;
-      FXEnableExtensionChangeWarning = true;
-      _FXShowPosixPathInTitle = true;
+      # AppleShowAllExtensions = true;
+      # FXEnableExtensionChangeWarning = true;
+      _FXShowPosixPathInTitle = false;
     };
 
     # trackpad settings

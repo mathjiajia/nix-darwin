@@ -17,7 +17,7 @@
       wsl = false;
 
       font = {
-        normal = [ "Iosevka Nerd Font" ];
+        normal = [ "Iosevka Term" ];
         size = 24;
       };
     };

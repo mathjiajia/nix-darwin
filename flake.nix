@@ -21,24 +21,24 @@
   };
 
   outputs =
-    inputs@{
+    {
       self,
       nix-darwin,
-      nixpkgs,
       home-manager,
       nix-homebrew,
       homebrew-bundle,
       ...
     }:
     {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#Jias-MacBook-Pro
+      # macOS configurations.
       darwinConfigurations."Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
+          # Nix Modules.
           ./configuration.nix
+          # System configuration.
           ./modules/settings.nix
-
+          # Home Manager configuration.
           home-manager.darwinModules.home-manager
           {
             # `home-manager` config
@@ -60,23 +60,12 @@
           nix-homebrew.darwinModules.nix-homebrew
           {
             nix-homebrew = {
-              # Install Homebrew under the default prefix
               enable = true;
-
-              # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
               enableRosetta = true;
-
-              # User owning the Homebrew prefix
               user = "jia";
-
-              # Optional: Declarative tap management
               taps = {
                 "homebrew/homebrew-bundle" = homebrew-bundle;
               };
-
-              # Optional: Enable fully-declarative tap management
-              #
-              # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
               mutableTaps = false;
             };
           }
