@@ -37,7 +37,7 @@
           # Nix Modules.
           ./configuration.nix
           # System configuration.
-          ./modules/settings.nix
+          ./system/settings.nix
           # Home Manager configuration.
           home-manager.darwinModules.home-manager
           {
@@ -47,11 +47,6 @@
             home-manager.users.jia = {
               imports = [
                 ./modules/home.nix
-                ./modules/shell.nix
-                ./modules/git
-                # ./modules/kitty.nix
-                # ./modules/neovim
-                ./modules/neovide.nix
                 ./modules/pkgs.nix
               ];
             };

@@ -6,10 +6,10 @@
       enableFishIntegration = true;
     };
     settings = {
-      font = {
-        name = "Maple Mono NF CN";
-        size = 20;
-      };
+      # font = {
+      #   name = "Maple Mono NF CN";
+      #   size = 20;
+      # };
       update_check_interval = 0;
       themeFile = "bamboo";
     };

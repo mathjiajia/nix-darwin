@@ -9,7 +9,6 @@
     nodejs
     onefetch
     python3
-    pandoc
     poppler
     swift-format
     # tectonic

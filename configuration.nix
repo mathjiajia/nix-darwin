@@ -17,7 +17,6 @@
     loopwm
     # mathpix-snipping-tool
     # microsoft-edge
-    # sioyek
     skimpdf
     # sublime-merge
     raycast
@@ -28,6 +27,13 @@
     zoom-us
   ];
 
+  fonts.packages = with pkgs; [
+    # maple-mono-NF
+    # iosevka
+    lxgw-wenkai
+    smiley-sans
+  ];
+
   homebrew = {
     enable = true;
     onActivation = {
@@ -36,8 +42,6 @@
       cleanup = "zap";
     };
   };
-
-  homebrew.brews = [ "mas" ];
 
   homebrew.casks = [
     "adguard"
@@ -128,13 +132,6 @@
     "Xcode" = 497799835;
     "西窗烛" = 912139104;
   };
-
-  fonts.packages = with pkgs; [
-    # maple-mono-NF
-    # iosevka
-    lxgw-wenkai
-    smiley-sans
-  ];
 
   users.users.jia.home = "/Users/jia";
   # Auto upgrade nix package and the daemon service.

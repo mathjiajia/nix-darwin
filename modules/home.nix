@@ -4,7 +4,7 @@
   home.username = "jia";
   home.homeDirectory = "/Users/jia";
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   home.sessionVariables = {
     VISUAL = "nvim";
@@ -13,22 +13,46 @@
     HOMEBREW_NO_ANALYTICS = 1;
   };
 
-  # ensures ~/Developer folder exists.
-  # this folder is later assumed by other activations, specially on darwin.
-  home.activation.developer = ''
-    mkdir -p ~/Developer
-  '';
+  xdg.enable = true;
+
+  programs = {
+    emacs.enable = true;
+    home-manager.enable = true;
+    pandoc.enable = true;
+    sioyek.enable = false;
+    texlive.enable = false;
+    vscode.enable = true;
+    wezterm.enable = false;
+  };
+
+  programs.btop = {
+    enable = true;
+    settings = {
+      theme_background = false;
+      vim_keys = true;
+    };
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   programs.neovim = {
     enable = true;
     defaultEditor = true;
   };
 
-  programs = {
-    emacs.enable = true;
-    home-manager.enable = true;
-    vscode.enable = true;
-  };
-
-  xdg.enable = true;
+  imports = [
+    ./bat
+    ./git
+    ./fastfetch.nix
+    ./fish.nix
+    ./fzf.nix
+    ./kitty.nix
+    ./neovide.nix
+    ./ripgrep.nix
+    ./starship.nix
+    ./yazi.nix
+  ];
 }
