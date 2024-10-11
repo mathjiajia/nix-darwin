@@ -4,7 +4,8 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
-      fish_add_path -p -m /run/current-system/sw/bin
+      fish_add_path --path --move /run/current-system/sw/bin
+      fish_add_path --append /Applications/Ghostty.app/Contents/MacOS
     '';
     functions = {
       lf = ''

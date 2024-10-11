@@ -37,7 +37,7 @@
           # Nix Modules.
           ./configuration.nix
           # System configuration.
-          ./system/settings.nix
+          # ./system/settings.nix
           # Home Manager configuration.
           home-manager.darwinModules.home-manager
           {

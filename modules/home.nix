@@ -19,7 +19,6 @@
     emacs.enable = true;
     home-manager.enable = true;
     pandoc.enable = true;
-    sioyek.enable = false;
     texlive.enable = false;
     vscode.enable = true;
     wezterm.enable = false;
@@ -52,6 +51,7 @@
     ./kitty.nix
     ./neovide.nix
     ./ripgrep.nix
+    ./sioyek.nix
     ./starship.nix
     ./yazi.nix
   ];
