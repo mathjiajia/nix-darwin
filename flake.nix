@@ -18,6 +18,8 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
@@ -27,8 +29,9 @@
       home-manager,
       nix-homebrew,
       homebrew-bundle,
+      neovim-nightly-overlay,
       ...
-    }:
+    }@inputs:
     {
       # macOS configurations.
       darwinConfigurations."Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
@@ -49,6 +52,9 @@
                 ./modules/home.nix
                 ./modules/pkgs.nix
               ];
+            };
+            home-manager.extraSpecialArgs = {
+              inherit (inputs) nixpkgs neovim-nightly-overlay;
             };
           }
 
