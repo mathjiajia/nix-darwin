@@ -121,6 +121,7 @@
     "Telegram" = 747648890;
     "TestFlight" = 899247664;
     "Things" = 904280696;
+    "uBlacklist for Safari" = 1547912640;
     "Ulysses" = 1225570693;
     "UPDF" = 1619925971;
     "VidHub" = 1659622164;
