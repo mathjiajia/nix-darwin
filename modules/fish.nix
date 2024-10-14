@@ -5,7 +5,10 @@
     interactiveShellInit = ''
       set fish_greeting
       fish_add_path --path --move /run/current-system/sw/bin
-      fish_add_path --append /Applications/Ghostty.app/Contents/MacOS
+      fish_add_path --append $GHOSTTY_BIN_DIR
+      if set -q GHOSTTY_RESOURCES_DIR
+        source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
+      end
     '';
     functions = {
       lf = ''
@@ -32,11 +35,11 @@
 
       # Nvim
       nv = "nvim";
-      nf = "'nvim (fzf)'";
+      nf = "nvim (fzf)";
       nl = "vimtex";
 
       # Delete Apple System Logs
-      dasl = "'sudo rm -rf /private/var/log/asl/*.asl'";
+      dasl = "sudo rm -rf /private/var/log/asl/*.asl";
     };
     shellAliases = {
       vimtex = "NVIM_APPNAME=vimtex nvim";

@@ -49,6 +49,7 @@
     ./bat
     ./git
     ./fastfetch.nix
+    ./fd.nix
     ./fish.nix
     ./fzf.nix
     ./kitty.nix

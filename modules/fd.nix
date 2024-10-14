@@ -35,6 +35,7 @@
       "Library/"
       "Movies/"
       "Music/"
+      "OrbStack/"
       "Pictures/"
       "Public/"
       "Zotero/"
@@ -52,10 +53,10 @@
       "chat-mlx/"
 
       # website
-      "mysite/public/"
-      "mysite/static/"
-      "mysite/resources/"
-      "mysite/themes/"
+      "MySite/public/"
+      "MySite/static/"
+      "MySite/resources/"
+      "MySite/themes/"
 
       # raycast
       ".config/raycast/extensions/"
