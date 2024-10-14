@@ -21,7 +21,7 @@
     # sublime-merge
     raycast
     # warp-terminal
-    # zed
+    zed-editor
     zoom-us
     # zotero
   ];
@@ -43,7 +43,7 @@
   };
 
   homebrew.casks = [
-    "adguard"
+    # "adguard"
     "adobe-acrobat-pro"
     "adobe-creative-cloud"
     "anythingllm"
@@ -80,7 +80,7 @@
     "sublime-merge"
     "surge"
     "syntax-highlight"
-    "zed"
+    # "zed"
     "zotero"
   ];
 
