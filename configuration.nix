@@ -21,7 +21,7 @@
     # sublime-merge
     raycast
     # warp-terminal
-    zed-editor
+    # zed-editor
     zoom-us
     # zotero
   ];
@@ -80,7 +80,7 @@
     "sublime-merge"
     "surge"
     "syntax-highlight"
-    # "zed"
+    "zed"
     "zotero"
   ];
 
