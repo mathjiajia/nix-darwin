@@ -11,6 +11,6 @@
       update_check_interval = 0;
       macos_option_as_alt = "left";
     };
-    themeFile = "tokyo_night_night";
+    themeFile = "VSCode_Dark";
   };
 }

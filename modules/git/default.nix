@@ -9,7 +9,7 @@
       core.editor = "nvim";
       delta.navigate = true;
       diff = {
-        external = "difft";
+        # external = "difft";
         tool = "difftastic";
         colorMoved = "default";
       };

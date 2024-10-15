@@ -32,14 +32,6 @@
     };
   };
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    package = neovim-nightly-overlay.packages.${pkgs.system}.default;
-  };
-
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
@@ -48,6 +40,7 @@
   imports = [
     ./bat
     ./git
+    ./neovim
     ./fastfetch.nix
     ./fd.nix
     ./fish.nix
