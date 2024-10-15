@@ -40,13 +40,13 @@
   imports = [
     ./bat
     ./git
-    ./neovim
     ./fastfetch.nix
     ./fd.nix
     ./fish.nix
     ./fzf.nix
     ./kitty.nix
     ./neovide.nix
+    ./neovim.nix
     ./ripgrep.nix
     ./sioyek.nix
     ./starship.nix
