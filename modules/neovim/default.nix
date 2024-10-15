@@ -97,6 +97,7 @@
           require("nvim-dap-virtual-text").setup()
         '';
       }
+      nvim-nio
 
       # editor
       {
