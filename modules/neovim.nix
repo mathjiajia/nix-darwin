@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   neovim-nightly-overlay,
   ...
 }:
@@ -59,47 +58,93 @@ in
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    vimAlias = true;
-    vimdiffAlias = true;
+    withPython3 = false;
+    withRuby = false;
     package = neovim-nightly-overlay.packages.${pkgs.system}.default;
     plugins = with pkgs.vimPlugins; [
       lz-n
 
       # coding
-      luasnip
-      nvim-cmp
+      {
+        plugin = luasnip;
+        optional = true;
+      }
+      {
+        plugin = nvim-cmp;
+        optional = true;
+      }
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp
       cmp-path
       cmp-rg
       cmp_luasnip
-      mysnippets
+      {
+        plugin = mysnippets;
+        optional = true;
+      }
+      {
+        plugin = copilot-lua;
+        optional = true;
+      }
       copilot-cmp
-      copilot-lua
-      ultimate-autopair-nvim
-      nvim-surround
+      {
+        plugin = ultimate-autopair-nvim;
+        optional = true;
+      }
+      {
+        plugin = nvim-surround;
+        optional = true;
+      }
 
       # dap
-      nvim-dap
-      nvim-dap-ui
       nvim-dap-virtual-text
       nvim-nio
+      {
+        plugin = nvim-dap;
+        optional = true;
+      }
+      {
+        plugin = nvim-dap-ui;
+        optional = true;
+      }
 
       # editor
-      oil-nvim
-      grug-far-nvim
-      fzf-lua
+      {
+        plugin = oil-nvim;
+        optional = true;
+      }
+      {
+        plugin = grug-far-nvim;
+        optional = true;
+      }
+      fzf-lua;
       flash-nvim
       gitsigns-nvim
       quicker-nvim
-      aerial-nvim
+      {
+        plugin = quicker-nvim;
+        optional = true;
+      }
+      {
+        plugin = aerial-nvim;
+        optional = true;
+      }
 
       # lang
       latex-nvim
-      markview-nvim
-      lazydev-nvim
-      luvit-meta
+      {
+        plugin = markview-nvim;
+        optional = true;
+      }
+      {
+        plugin = lazydev-nvim;
+        optional = true;
+      }
+      {
+        plugin = luvit-meta;
+        optional = true;
+      }
 
       # lsp
       nvim-lspconfig
@@ -109,7 +154,10 @@ in
       nvim-lint
 
       # ui
-      bamboo-nvim
+      {
+        plugin = bamboo-nvim;
+        optional = true;
+      }
       nvim-notify
       dressing-nvim
       nvim-highlight-colors
@@ -119,16 +167,28 @@ in
       indent-blankline-nvim
       noice-nvim
       dashboard-nvim
-      zen-mode-nvim
+      {
+        plugin = zen-mode-nvim;
+        optional = true;
+      }
       twilight-nvim
       rainbow-delimiters-nvim
       mini-icons
 
       # util
-      toggleterm-nvim
-      resession-nvim
+      {
+        plugin = toggleterm-nvim;
+        optional = true;
+      }
+      {
+        plugin = resession-nvim;
+        optional = true;
+      }
       nui-nvim
-      code_runner-nvim
+      {
+        plugin = code_runner-nvim;
+        optional = true;
+      }
 
       nvim-treesitter-pairs
       {
@@ -140,11 +200,18 @@ in
             comment
             diff
             fish
+            gitattributes
+            gitcommit
+            gitignore
+            git_rebase
             html
+            json
+            jsonc
             latex
             lua
             luadoc
             luap
+            nix
             markdown
             markdown_inline
             matlab
@@ -155,6 +222,7 @@ in
             toml
             vim
             vimdoc
+            yaml
           ]
         );
       }
