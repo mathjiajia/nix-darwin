@@ -79,10 +79,7 @@ in
       cmp-path
       cmp-rg
       cmp_luasnip
-      {
-        plugin = mysnippets;
-        optional = true;
-      }
+      mysnippets
       {
         plugin = copilot-lua;
         optional = true;
@@ -98,8 +95,6 @@ in
       }
 
       # dap
-      nvim-dap-virtual-text
-      nvim-nio
       {
         plugin = nvim-dap;
         optional = true;
@@ -108,6 +103,8 @@ in
         plugin = nvim-dap-ui;
         optional = true;
       }
+      nvim-dap-virtual-text
+      nvim-nio
 
       # editor
       {
@@ -118,10 +115,12 @@ in
         plugin = grug-far-nvim;
         optional = true;
       }
-      fzf-lua;
+      {
+        plugin = fzf-lua;
+        optional = true;
+      }
       flash-nvim
       gitsigns-nvim
-      quicker-nvim
       {
         plugin = quicker-nvim;
         optional = true;
@@ -141,17 +140,20 @@ in
         plugin = lazydev-nvim;
         optional = true;
       }
-      {
-        plugin = luvit-meta;
-        optional = true;
-      }
+      # {
+      #   plugin = luvit-meta;
+      #   optional = true;
+      # }
 
       # lsp
       nvim-lspconfig
       mason-nvim
-      mason-tool-installer-nvim
+      # mason-tool-installer-nvim
       conform-nvim
-      nvim-lint
+      {
+        plugin = nvim-lint;
+        optional = true;
+      }
 
       # ui
       {
@@ -185,10 +187,7 @@ in
         optional = true;
       }
       nui-nvim
-      {
-        plugin = code_runner-nvim;
-        optional = true;
-      }
+      code_runner-nvim
 
       nvim-treesitter-pairs
       {
