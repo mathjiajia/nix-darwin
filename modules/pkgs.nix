@@ -12,6 +12,7 @@
     python3
     python312Packages.debugpy
     python312Packages.ipython
+    # python312Packages.pip
     poppler
     # swift-format
     # tectonic
@@ -23,21 +24,20 @@
     lua-language-server
     matlab-language-server
     nil
+    taplo
     texlab
-    # dap
-    # linter
+
     commitlint
     markdownlint-cli2
     shellcheck
-    # formatter
+
     bibtex-tidy
     black
     prettierd
     shfmt
     stylua
-    # others
+
     libclang
     lldb_19
-    # tectonic
   ];
 }

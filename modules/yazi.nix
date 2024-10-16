@@ -10,7 +10,6 @@
 {
   programs.yazi = {
     enable = true;
-    shellWrapperName = "lf";
     settings = {
       manager = {
         ratio = [
@@ -18,7 +17,7 @@
           2
           3
         ];
-        sort_by = "alphabetical";
+        sort_by = "natural";
         sort_sensitive = true;
         sort_reverse = false;
         sort_dir_first = true;

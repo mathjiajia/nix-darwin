@@ -24,10 +24,7 @@
       git_branch.symbol = " ";
       hostname.ssh_symbol = " ";
       c.symbol = " ";
-      lua = {
-        # lua_binary = "luajit";
-        symbol = " ";
-      };
+      lua.symbol = " ";
       nix_shell.symbol = " ";
       python.symbol = " ";
       swift.symbol = " ";

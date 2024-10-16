@@ -19,8 +19,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "latex.nvim";
-      rev = "397969a09511b38c995b9a1335051e394f6bb5f3";
-      sha256 = "PvAfStyPqaR5PKnMuq4mFXV0t3x+QWye9TcYreVtNdU=";
+      rev = "6c0c7af22fbecb7bdc7f2a7a59e8c0a219a74d86";
+      sha256 = "XRGq/EfSU00cSpdEWOLgdWige8b9YqvqbpVefs/+FFA=";
     };
   };
 
@@ -185,6 +185,7 @@ in
       }
       nui-nvim
       # code_runner-nvim
+      sniprun
       overseer-nvim
 
       nvim-treesitter-pairs
