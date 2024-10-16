@@ -127,7 +127,7 @@
     "VidHub" = 1659622164;
     "VooV" = 1497685373;
     "WeChat" = 836500024;
-    "‎WhatsApp" = 310633997;
+    "WhatsApp" = 310633997;
     "Whisper Transcription" = 1668083311;
     "Xcode" = 497799835;
     "西窗烛" = 912139104;

@@ -121,10 +121,7 @@ in
       }
       flash-nvim
       gitsigns-nvim
-      {
-        plugin = quicker-nvim;
-        optional = true;
-      }
+      quicker-nvim
       {
         plugin = aerial-nvim;
         optional = true;

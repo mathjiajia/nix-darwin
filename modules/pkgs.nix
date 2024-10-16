@@ -10,7 +10,7 @@
     onefetch
     python3
     poppler
-    swift-format
+    # swift-format
     # tectonic
     tree
     tree-sitter
