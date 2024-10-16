@@ -12,7 +12,9 @@
     ice-bar
     iina
     inkscape
+    # jujutsu
     keka
+    # lazyjj
     ollama
     loopwm
     # mathpix-snipping-tool
