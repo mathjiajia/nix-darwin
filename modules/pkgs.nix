@@ -10,7 +10,6 @@
     nodejs
     onefetch
     python3
-    python312Packages.debugpy
     python312Packages.ipython
     # python312Packages.pip
     poppler
@@ -38,6 +37,7 @@
     stylua
 
     libclang
+    # gdb
     lldb_19
   ];
 }
