@@ -53,5 +53,4 @@
       git.paging.externalDiffCommand = "difft --color=always --display=inline";
     };
   };
-
 }

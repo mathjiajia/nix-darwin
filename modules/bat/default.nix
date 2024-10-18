@@ -14,5 +14,4 @@
     source = ./bat-themes;
     onChange = "${pkgs.bat} cache --build";
   };
-
 }
