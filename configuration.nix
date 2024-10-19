@@ -29,9 +29,15 @@
 
   fonts.packages = with pkgs; [
     # maple-mono-NF
-    # iosevka
     lxgw-wenkai
     smiley-sans
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "IosevkaTerm"
+        "ProggyClean"
+        "NerdFontsSymbolsOnly"
+      ];
+    })
   ];
 
   homebrew = {
@@ -48,10 +54,6 @@
     "dash"
     "downie"
     "font-codicon"
-    "font-iosevka"
-    "font-jetbrains-mono-nerd-font"
-    "font-sf-mono"
-    "font-symbols-only-nerd-font"
     "hazel"
     "hazeover"
     "hookmark"
