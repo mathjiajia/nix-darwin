@@ -78,7 +78,43 @@
         ];
       };
 
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."Jias-MacBook-Pro".pkgs;
+      darwinConfigurations."Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          # Nix Modules.
+          ./configuration.nix
+          # System configuration.
+          # ./system/settings.nix
+          # Home Manager configuration.
+          home-manager.darwinModules.home-manager
+          {
+            # `home-manager` config
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.jia = {
+              imports = [
+                ./modules/home.nix
+                ./modules/pkgs.nix
+              ];
+            };
+            home-manager.extraSpecialArgs = {
+              inherit (inputs) nixpkgs neovim-nightly-overlay;
+            };
+          }
+
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+              user = "jia";
+              taps = {
+                "homebrew/homebrew-bundle" = homebrew-bundle;
+              };
+              mutableTaps = false;
+            };
+          }
+        ];
+      };
     };
 }

@@ -11,6 +11,7 @@
     hugo
     libclang
     luajit
+    luajitPackages.luarocks
     lua-language-server
     markdownlint-cli2
     matlab-language-server

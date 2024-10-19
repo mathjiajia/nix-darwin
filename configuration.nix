@@ -11,7 +11,7 @@
     # ghostty
     ice-bar
     iina
-    inkscape
+    inkscape-with-extensions
     # jujutsu
     keka
     # lazyjj
