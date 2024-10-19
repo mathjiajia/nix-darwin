@@ -44,6 +44,7 @@
         modules = [
           # Nix Modules.
           ./configuration.nix
+          ./extra.nix
           # System configuration.
           # ./system/settings.nix
           # Home Manager configuration.
