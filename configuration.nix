@@ -51,6 +51,10 @@
     };
   };
 
+  homebrew.brews = [
+    "swift-format"
+  ];
+
   homebrew.casks = [
     "chatgpt"
     "dash"
