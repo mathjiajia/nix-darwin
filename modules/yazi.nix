@@ -133,18 +133,7 @@
           run = "plugin smart-filter";
           desc = "Smart filter";
         }
-        {
-          on = "<C-d>";
-          run = "plugin diff";
-          desc = "Diff the selected with the hovered file";
-        }
 
-        # lazygit
-        {
-          on = "<A-g>";
-          run = "shell --block --confirm 'lazygit'";
-          desc = "Run lazygit";
-        }
       ];
       input.prepend_keymap = [
         {
