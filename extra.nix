@@ -13,6 +13,8 @@
     "coherence-x"
     "diffusionbee"
     "hhkb"
+    "openemu"
+    "orbstack"
   ];
 
   homebrew.masApps = {

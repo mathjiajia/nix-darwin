@@ -71,8 +71,6 @@
     "markedit"
     "mathpix-snipping-tool"
     "microsoft-edge"
-    "openemu"
-    "orbstack"
     "permute"
     "prettyclean"
     "publish-or-perish"
