@@ -68,7 +68,7 @@
     "keyboard-maestro"
     "keyboardcleantool"
     "launchbar"
-    "mark-text"
+    "markedit"
     "mathpix-snipping-tool"
     "microsoft-edge"
     "openemu"
