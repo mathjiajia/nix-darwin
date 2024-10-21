@@ -5,6 +5,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    aerospace
     # follow
     # github-desktop
     # ghostty
@@ -14,6 +15,7 @@
     # jujutsu
     keka
     # lazyjj
+    # marktext
     ollama
     loopwm
     # mathpix-snipping-tool
@@ -62,6 +64,7 @@
     "keyboard-maestro"
     "keyboardcleantool"
     "launchbar"
+    "mark-text"
     "mathpix-snipping-tool"
     "microsoft-edge"
     "openemu"

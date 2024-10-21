@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   system.defaults = {
 
@@ -14,6 +14,31 @@
       autohide = true;
       orientation = "bottom";
       tilesize = 48;
+
+      persistent-apps = [
+        "/System/Cryptexes/App/System/Applications/Safari.app"
+        "/System/Applications/Mail.app"
+        "/System/Applications/Calendar.app"
+        "/System/Applications/Notes.app"
+        "/Applications/Due.app"
+        "/Applications/Drafts.app"
+        "/Applications/UPDF.app"
+        "/Applications/sioyek.app"
+        "/Applications/Ghostty.app"
+        "${pkgs.vscode}/Applications/Visual Studio Code.app"
+        "/Applications/Zotero.app"
+        "/Applications/Publish or Perish.app"
+        "/Applications/WeChat.app"
+        "/System/Applications/TV.app"
+        "/Applications/Dictionaries.app"
+        "${pkgs.emacs}/Applications/Emacs.app"
+        "/Applications/LaunchBar.app"
+        "/Applications/Surge.app"
+        "/System/Applications/Music.app"
+        "/System/Applications/App Store.app"
+        "/System/Applications/System Settings.app"
+        "/System/Applications/iPhone Mirroring.app"
+      ];
     };
 
     finder = {
@@ -41,6 +66,30 @@
       # InitialKeyRepeat = 10;
       # delay between repeated keystrokes upon holding a key
       # KeyRepeat = 1;
+    };
+
+    SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+
+    CustomUserPreferences = {
+      "com.apple.mail" = {
+        DisableInlineAttachmentViewing = true;
+        AddLinkPreviews = 0;
+        SwipeAction = 1; # discard mail to archive
+        NewMessagesSoundName = "Funk";
+        NSFontSize = 14;
+        NSFixedPitchFont = "MapleMono-NF-CN-Regular";
+        NSFixedPitchFontSize = 15;
+      };
+
+      # "com.apple.controlcenter" = {
+      #   "NSStatusItem Visible Battery" = 0;
+      #   "NSStatusItem Visible BentoBox" = 1;
+      #   "NSStatusItem Visible Clock" = 1;
+      #   "NSStatusItem Visible FocusModes" = 1;
+      #   "NSStatusItem Visible NowPlaying" = 0;
+      #   "NSStatusItem Visible Sound" = 1;
+      #   "NSStatusItem Visible WiFi" = 1;
+      # };
     };
   };
 

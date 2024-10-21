@@ -4,7 +4,7 @@
     enable = true;
     shellIntegration.enableFishIntegration = true;
     font = {
-      name = "Iosevka Term";
+      name = "IosevkaTerm Nerd Font";
       size = 20;
     };
     settings = {
