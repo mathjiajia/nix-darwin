@@ -1,10 +1,6 @@
 {
   description = "Jia's Darwin system flake";
 
-  nixConfig =
-    {
-    };
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
@@ -25,21 +21,21 @@
     };
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    # nixvim = {
-    #   url = "github:nix-community/nixvim";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
-      nix-darwin,
       home-manager,
-      nix-homebrew,
-      # nixvim,
-      nixpkgs,
       homebrew-bundle,
       neovim-nightly-overlay,
+      nix-darwin,
+      nix-homebrew,
+      nixpkgs,
+      nixvim,
       ...
     }@inputs:
     let
@@ -48,11 +44,11 @@
       commonModules = [
         # Nix Modules.
         ./configuration.nix
+        ./darwin.nix
 
         # System configuration.
         # ./system/settings.nix
 
-        # nixvim.homeManagerModules.nixvim
         home-manager.darwinModules.home-manager
         {
           # `home-manager` config
@@ -60,8 +56,8 @@
           home-manager.useUserPackages = true;
           home-manager.users.jia = {
             imports = [
-              ./modules/home.nix
-              ./modules/pkgs.nix
+              ./modules
+              nixvim.homeManagerModules.nixvim
             ];
           };
           home-manager.extraSpecialArgs = {

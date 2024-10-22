@@ -1,27 +1,46 @@
 {
-  inputs,
   neovim-nightly-overlay,
   pkgs,
   ...
 }:
 {
 
-  home.username = "jia";
-  home.homeDirectory = "/Users/jia";
+  home = {
+    username = "jia";
+    homeDirectory = "/Users/jia";
+    stateVersion = "24.11";
 
-  home.stateVersion = "24.11";
+    sessionVariables = {
+      VISUAL = "nvim";
+      MANPAGER = "nvim +Man!";
+      DFT_PARSE_ERROR_LIMIT = 999;
+      HOMEBREW_NO_ANALYTICS = 1;
 
-  home.sessionVariables = {
-    VISUAL = "nvim";
-    MANPAGER = "nvim +Man!";
-    DFT_PARSE_ERROR_LIMIT = 999;
-    HOMEBREW_NO_ANALYTICS = 1;
+      # CARGO_HOME = "$XDG_DATA_HOME/cargo";
+      DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
+      GEM_HOME = "$XDG_DATA_HOME/gem";
+      GEM_SPEC_CACHE = "$XDG_CACHE_HOME/gem";
+      IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
+    };
 
-    # CARGO_HOME = "$XDG_DATA_HOME/cargo";
-    DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
-    GEM_HOME = "$XDG_DATA_HOME/gem";
-    GEM_SPEC_CACHE = "$XDG_CACHE_HOME/gem";
-    IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
+    packages = with pkgs; [
+      cargo
+      difftastic
+      glow
+      hugo
+      luajit
+      luajitPackages.luarocks
+      nixfmt-rfc-style
+      nodejs
+      onefetch
+      python3
+      python312Packages.ipython
+      poppler
+      # swift-format
+      tree
+      tree-sitter
+      unrar
+    ];
   };
 
   xdg.enable = true;
