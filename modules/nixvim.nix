@@ -177,7 +177,7 @@
   programs.nixvim.plugins.lsp = {
     enable = true;
     servers = {
-      lua-ls.enable = true;
+      lua_ls.enable = true;
       nixd.enable = true;
     };
   };

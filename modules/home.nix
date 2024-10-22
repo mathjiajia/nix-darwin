@@ -43,13 +43,13 @@
     };
   };
 
-  # programs.neovim = {
-  #   enable = true;
-  #   defaultEditor = true;
-  #   withPython3 = false;
-  #   withRuby = false;
-  #   package = neovim-nightly-overlay.packages.${pkgs.system}.default;
-  # };
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    withPython3 = false;
+    withRuby = false;
+    package = neovim-nightly-overlay.packages.${pkgs.system}.default;
+  };
 
   programs.zoxide = {
     enable = true;
@@ -65,7 +65,7 @@
     ./fzf.nix
     ./kitty.nix
     ./neovide.nix
-    ./nixvim.nix
+    # ./nixvim.nix
     ./ripgrep.nix
     ./sioyek.nix
     ./starship.nix

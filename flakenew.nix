@@ -24,11 +24,10 @@
       flake = false;
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
@@ -39,7 +38,7 @@
       nix-darwin,
       nix-homebrew,
       nixpkgs,
-      nixvim,
+      # nixvim,
       ...
     }@inputs:
     let
@@ -59,10 +58,8 @@
           inherit inputs;
         };
         modules = [
-          ./NixOS/home-config/home.nix
-
           home-manager.darwinModules.home-manager
-          nixvim.homeManagerModules.nixvim
+          # nixvim.homeManagerModules.nixvim
           nix-homebrew.darwinModules.nix-homebrew
           {
             nix-homebrew = {
@@ -90,9 +87,10 @@
           commonModules = [
             {
               nixpkgs.overlays = [
-                inputs.neovim-nightly-overlay.overlay
+                inputs.neovim-nightly-overlay.overlays.default
               ];
             }
+
             ./configuration.nix
             # ./system/settings.nix
             ./modules/home.nix
