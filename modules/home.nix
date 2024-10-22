@@ -1,4 +1,9 @@
-{ neovim-nightly-overlay, pkgs, ... }:
+{
+  inputs,
+  neovim-nightly-overlay,
+  pkgs,
+  ...
+}:
 {
 
   home.username = "jia";
