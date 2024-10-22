@@ -5,6 +5,11 @@
     hostPlatform = "aarch64-darwin";
   };
 
+  users.users.jia = {
+    home = "/Users/jia";
+    shell = pkgs.fish;
+  };
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;

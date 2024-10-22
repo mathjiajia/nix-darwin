@@ -1,4 +1,5 @@
 {
+  inputs,
   neovim-nightly-overlay,
   pkgs,
   ...

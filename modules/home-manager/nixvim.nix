@@ -1,7 +1,10 @@
-{ inputs, pkgs, ... }:
 {
-  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
-
+  inputs,
+  pkgs,
+  neovim-nightly-overlay,
+  ...
+}:
+{
   programs.nixvim.enable = true;
   programs.nixvim.package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   programs.nixvim.extraPackages = with pkgs; [

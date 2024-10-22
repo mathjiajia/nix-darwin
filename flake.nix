@@ -4,27 +4,19 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle";
-      flake = false;
-    };
+    homebrew-bundle.url = "github:homebrew/homebrew-bundle";
+    homebrew-bundle.flake = false;
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -40,28 +32,23 @@
     }@inputs:
     let
       system = "aarch64-darwin";
+      username = "jia";
 
       commonModules = [
-        # Nix Modules.
         ./configuration.nix
-        ./darwin.nix
-
-        # System configuration.
-        # ./system/settings.nix
-
+        ./modules/darwin
         home-manager.darwinModules.home-manager
         {
-          # `home-manager` config
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.jia = {
-            imports = [
-              ./modules
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = {
+              inherit (inputs) nixpkgs neovim-nightly-overlay;
+            };
+            users.${username}.imports = [
               nixvim.homeManagerModules.nixvim
+              ./modules/home-manager
             ];
-          };
-          home-manager.extraSpecialArgs = {
-            inherit (inputs) nixpkgs neovim-nightly-overlay;
           };
         }
 
@@ -71,9 +58,7 @@
             enable = true;
             enableRosetta = true;
             user = "jia";
-            taps = {
-              "homebrew/homebrew-bundle" = homebrew-bundle;
-            };
+            taps."homebrew/homebrew-bundle" = homebrew-bundle;
             mutableTaps = false;
           };
         }
@@ -85,7 +70,7 @@
         "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
           inherit system;
           modules = commonModules ++ [
-            ./extra.nix
+            ./modules/darwin/extra.nix
           ];
         };
 
