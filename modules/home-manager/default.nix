@@ -1,10 +1,21 @@
+{ pkgs, ... }:
 {
-  inputs,
-  neovim-nightly-overlay,
-  pkgs,
-  ...
-}:
-{
+  imports = [
+    ./settings/bat
+    ./settings/git
+
+    ./settings/fastfetch.nix
+    ./settings/fd.nix
+    ./settings/fish.nix
+    ./settings/fzf.nix
+    ./settings/kitty.nix
+    ./settings/neovide.nix
+    ./settings/nixvim.nix
+    ./settings/ripgrep.nix
+    ./settings/sioyek.nix
+    ./settings/starship.nix
+    ./settings/yazi.nix
+  ];
 
   home = {
     username = "jia";
@@ -29,17 +40,17 @@
       difftastic
       glow
       hugo
-      luajit
-      luajitPackages.luarocks
+      # luajit
+      # luajitPackages.luarocks
       nixfmt-rfc-style
-      nodejs
+      # nodejs
       onefetch
       python3
       python312Packages.ipython
       poppler
       # swift-format
       tree
-      tree-sitter
+      # tree-sitter
       unrar
     ];
   };
@@ -63,32 +74,17 @@
     };
   };
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    withPython3 = false;
-    withRuby = false;
-    package = neovim-nightly-overlay.packages.${pkgs.system}.default;
-  };
+  # programs.neovim = {
+  #   enable = true;
+  #   defaultEditor = true;
+  #   withPython3 = false;
+  #   withRuby = false;
+  #   package = neovim-nightly-overlay.packages.${pkgs.system}.default;
+  # };
 
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
   };
 
-  imports = [
-    ./bat
-    ./git
-    ./fastfetch.nix
-    ./fd.nix
-    ./fish.nix
-    ./fzf.nix
-    ./kitty.nix
-    ./neovide.nix
-    # ./nixvim.nix
-    ./ripgrep.nix
-    ./sioyek.nix
-    ./starship.nix
-    ./yazi.nix
-  ];
 }

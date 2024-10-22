@@ -1,8 +1,4 @@
-{
-  pkgs,
-  neovim-nightly-overlay,
-  ...
-}:
+{ neovim-nightly-overlay, pkgs, ... }:
 let
   mysnippets = pkgs.vimUtils.buildVimPlugin {
     name = "mySnippets";

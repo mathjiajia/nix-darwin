@@ -7,7 +7,7 @@
       frame = "full";
       idle = true;
       maximized = false;
-      neovim-bin = lib.getExe config.programs.neovim.finalPackage;
+      # neovim-bin = lib.getExe config.programs.neovim.finalPackage;
       no-multigrid = false;
       srgb = false;
       tabs = true;
