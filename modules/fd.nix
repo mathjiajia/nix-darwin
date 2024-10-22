@@ -32,6 +32,7 @@
 
       # folders
       "Applications/"
+      "Documents/PlaybackEventStreams/"
       "Library/"
       "Movies/"
       "Music/"
@@ -50,7 +51,6 @@
       ".swiftpm"
       ".zim"
       "Seafile/"
-      "chat-mlx/"
 
       # website
       "MySite/public/"
@@ -59,7 +59,7 @@
       "MySite/themes/"
 
       # raycast
-      ".config/raycast/extensions/"
+      "raycast/extensions/"
 
       # latex
       "*.otf"

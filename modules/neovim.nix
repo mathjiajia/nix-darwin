@@ -196,12 +196,17 @@ in
             bibtex
             c
             comment
+            commonlisp
+            csv
+            editorconfig
             diff
+            glsl
             fish
+            git_config
+            git_rebase
             gitattributes
             gitcommit
             gitignore
-            git_rebase
             html
             json
             jsonc
@@ -209,15 +214,19 @@ in
             lua
             luadoc
             luap
-            nix
             markdown
             markdown_inline
             matlab
+            nix
             python
+            r
+            requirements
             query
             regex
             swift
+            todotxt
             toml
+            typst
             vim
             vimdoc
             yaml

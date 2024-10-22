@@ -20,11 +20,11 @@
       flake = false;
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    # nixvim = {
-    #   url = "github:nix-community/nixvim";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs =
@@ -33,8 +33,9 @@
       nix-darwin,
       home-manager,
       nix-homebrew,
+      # nixvim,
       homebrew-bundle,
-      neovim-nightly-overlay,
+      # neovim-nightly-overlay,
       ...
     }@inputs:
     {
@@ -59,9 +60,9 @@
                 ./modules/pkgs.nix
               ];
             };
-            home-manager.extraSpecialArgs = {
-              inherit (inputs) nixpkgs neovim-nightly-overlay;
-            };
+            # home-manager.extraSpecialArgs = {
+            #   inherit (inputs) nixpkgs neovim-nightly-overlay;
+            # };
           }
 
           nix-homebrew.darwinModules.nix-homebrew

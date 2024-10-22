@@ -3,53 +3,26 @@
   programs.ripgrep = {
     enable = true;
     arguments = [
-      # Don't let ripgrep vomit really long lines to my terminal, and show a preview.
-      "--max-columns=150"
-      "--max-columns-preview"
+      # Filetypes
+      "--type-add=l:*.lua"
+      "--type-add=m:*.md"
+      "--type-add=p:*.py"
+      "--type-add=s:*.sh"
+      "--type-add=t:*.tex"
 
-      # automatic filtering
-      "--hidden"
+      # Exclude directories.
+      "--glob=!{System,Volumes,bin,cores,dev,etc,opt,private,sbin,tmp,usr,var,Shared}"
+      "--glob=!{.cache,.cpan,.git,.local,.Trash}"
+      "--glob=!{.docker,.gem,.npm,.ollama,.orbstack,.prettierd,.pretty-clean,.swiftpm,.vscode}"
+      "--glob=!{Applications,Library,/Users/jia/Library,Movies,Music,Pictures,public,Public,Zotero}"
+      "--glob=!{MySite/public,MySite/static,MySite/resources,MySite/themes}"
 
-      # Using glob patterns to include/exclude files or folders
-      "--glob=!.cache/"
-      "--glob=!.ccnet/"
-      "--glob=!.docker/"
-      "--glob=!.git/"
-      "--glob=!.local/"
-      "--glob=!.npm/"
-      "--glob=!.ollama/"
-      "--glob=!.orbstack/"
-      "--glob=!.prettierd/"
-      "--glob=!.pretty-clean/"
-      "--glob=!.repro/"
-      "--glob=!.swiftpm/"
-      "--glob=!.zim/"
-      "--glob=!.vscode/"
-      "--glob=!.Trash/"
-
-      "--glob=!Applications/"
-      "--glob=!chat-mlx/"
-      "--glob=!Library/"
-      "--glob=!Movies/"
-      "--glob=!Music/"
-      "--glob=!node_modules/"
-      "--glob=!Pictures/"
-      "--glob=!public/"
-      "--glob=!Public/"
-      "--glob=!Seafile/"
-      "--glob=!themes/"
-      "--glob=!Zotero/"
-
+      # Exclude file types.
       "--glob=!tags"
       "--glob=!viminfo"
 
-      # Set the colors
-      "--colors=match:fg:yellow"
-      "--colors=line:none"
-      "--colors=line:fg:magenta"
-      "--colors=path:fg:blue"
-      "--colors=path:style:bold"
-
+      # automatic filtering
+      "--hidden"
       # Because who cares about case!?
       "--smart-case"
     ];
