@@ -437,8 +437,44 @@
     };
   };
 
-  programs.nixvim.plugins.lz-n = {
+  programs.nixvim.plugins.lint = {
     enable = true;
+    lintersByFt = {
+      bash = [ "shellcheck" ];
+      fish = [ "fish" ];
+      gitcommit = [ "commitlint" ];
+      markdown = [ "markdownlint-cli2" ];
+      zsh = [ "shellcheck" ];
+    };
+  };
+
+  # programs.nixvim.plugins.lz-n = {
+  #   enable = true;
+  # };
+
+  programs.nixvim.plugins.lazy = {
+    enable = true;
+    plugins = [
+      # {
+      #   pkg = "nvchad/base46";
+      #   lazy = true;
+      #   build.__raw = ''
+      #     function()
+      #     	require("base46").load_all_highlights()
+      #     end'';
+      # }
+      # {
+      # 	"nvchad/ui",
+      # 	config = function()
+      # 		require("nvchad")
+      # 	end,
+      # }
+      # { "nvchad/volt"; lazy = true; }
+      # { "nvchad/menu", lazy = true }
+      # { "nvchad/minty", cmd = { "Shades", "Huefy" } }
+      # { "nvchad/timerly", cmd = "TimerlyToggle" }
+      # { "nvchad/showkeys", cmd = "ShowkeysToggle" }
+    ];
   };
 
   programs.nixvim.plugins.fzf-lua = {
@@ -477,7 +513,7 @@
       extensions.__raw = "{ ['ui-select'] = { require('telescope.themes').get_dropdown() } }";
     };
   };
-
+  programs.nixvim.plugins.rainbow-delimiters.enable = true;
   programs.nixvim.plugins.noice = {
     enable = true;
     lsp.override = {
@@ -509,34 +545,85 @@
   programs.nixvim.plugins.indent-blankline = {
     enable = true;
     settings = {
-      exclude = {
-        buftypes = [
-          "terminal"
-          "quickfix"
-        ];
-        filetypes = [
-          ""
-          "checkhealth"
-          "help"
-          "lspinfo"
-          "packer"
-          "TelescopePrompt"
-          "TelescopeResults"
-          "yaml"
-        ];
-      };
-      indent = {
-        char = "│";
-      };
-      scope = {
-        show_end = false;
-        show_exact_scope = true;
-        show_start = false;
-      };
+      exclude.filetypes = [
+        "conf"
+        "dashboard"
+        "markdown"
+      ];
+      scope.highlight = [
+        "RainbowRed"
+        "RainbowYellow"
+        "RainbowBlue"
+        "RainbowOrange"
+        "RainbowGreen"
+        "RainbowViolet"
+        "RainbowCyan"
+      ];
     };
+    luaConfig.pre = ''
+      local hooks = require("ibl.hooks")
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+    '';
+    luaConfig.post = ''
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+    '';
   };
-  programs.nixvim.plugins.oil.enable = true;
-  programs.nixvim.plugins.gitsigns.enable = true;
+  programs.nixvim.plugins.gitsigns = {
+    enable = true;
+    settings.on_attach = ''
+      function(bufnr)
+        local gitsigns = require("gitsigns")
+
+        local function map(mode, lhs, rhs, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, lhs, rhs, opts)
+        end
+
+        -- Navigation
+        map("n", "]c", function()
+          if vim.wo.diff then
+            vim.cmd.normal({ "]c", bang = true })
+          else
+            gitsigns.nav_hunk("next")
+          end
+        end)
+
+        map("n", "[c", function()
+          if vim.wo.diff then
+            vim.cmd.normal({ "[c", bang = true })
+          else
+            gitsigns.nav_hunk("prev")
+          end
+        end)
+
+        -- stylua: ignore start
+        map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Stage Hunk" })
+        map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "Reset Hunk" })
+        map("v", "<leader>hs", function() gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Stage Hunk" })
+        map("v", "<leader>hr", function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "Reset Hunk" })
+        map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Stage Buffer" })
+        map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Undo Stage Hunk" })
+        map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Reset Buffer" })
+        map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview Hunk" })
+        map("n", "<leader>hb", function() gitsigns.blame_line({ full = true }) end, { desc = "Blame Line" })
+        map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
+        map("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff This" })
+        map("n", "<leader>hD", function() gitsigns.diffthis("~") end, { desc = "Diff This (File)" })
+        map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Toggle Deleted" })
+
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+      end
+    '';
+  };
   programs.nixvim.plugins.treesitter = {
     enable = true;
     settings = {
@@ -588,11 +675,15 @@
     };
   };
 
-  programs.nixvim.plugins.luasnip.enable = true;
-  programs.nixvim.extraLuaPackages = ps: [
-    # Required by luasnip
-    ps.jsregexp
-  ];
+  programs.nixvim.plugins.luasnip = {
+    enable = true;
+    settings = {
+      update_events = "TextChanged,TextChangedI";
+      delete_check_events = "TextChanged";
+      enable_autosnippets = true;
+      store_selection_keys = "<Tab>";
+    };
+  };
 
   programs.nixvim.plugins.cmp = {
     enable = true;
@@ -611,10 +702,10 @@
     };
   };
 
-  programs.nixvim.plugins.diffview = {
-    enable = true;
-    enhancedDiffHl = true;
-  };
+  # programs.nixvim.plugins.diffview = {
+  #   enable = true;
+  #   enhancedDiffHl = true;
+  # };
 
   programs.nixvim.plugins.toggleterm = {
     enable = true;
@@ -622,7 +713,7 @@
       float_opts = {
         border = "rounded";
       };
-      open_mapping = "[[<C-Bslash]]";
+      open_mapping = "[[<C-Bslash>]]";
     };
     luaConfig.post = ''
       local Terminal = require("toggleterm.terminal").Terminal
@@ -654,6 +745,38 @@
     };
   };
 
+  programs.nixvim.plugins.sniprun = {
+    enable = true;
+    settings = {
+      display = [
+        "VirtualTextOk"
+        "VirtualTextErr"
+        "Terminal"
+      ];
+      selected_interpreters = [
+        "Generic"
+        "Lua_nvim"
+        "Python3_fifo"
+      ];
+      repl_enable = [
+        "Bash_original"
+        "Lua_nvim"
+        "Python3_fifo"
+        "R_original"
+      ];
+      interpreter_options = {
+        Generic = {
+          Swift_original = {
+            supported_filetypes = [ "swift" ];
+            extension = ".swift";
+            interpreter = "swift";
+            boilerplate_pre = "import Foundation";
+          };
+        };
+      };
+    };
+  };
+  programs.nixvim.plugins.nvim-surround.enable = true;
   programs.nixvim.plugins.flash.enable = true;
   programs.nixvim.plugins.markview.enable = true;
   programs.nixvim.plugins.twilight.enable = true;
