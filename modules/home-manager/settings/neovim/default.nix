@@ -39,7 +39,24 @@
   };
 
   programs.nixvim.clipboard.register = "unnamedplus";
-  programs.nixvim.colorschemes.nord.enable = true;
+  # programs.nixvim.colorschemes.nord.enable = true;
+
+  programs.nixvim.diagnostics = {
+    virtual_text = {
+      spacing = 4;
+      prefix = "●";
+    };
+    severity_sort = true;
+    signs.text.__raw = # lua
+      ''
+        {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.HINT] = " ",
+        }
+      '';
+  };
 
   imports = [
     ./performance.nix
@@ -51,13 +68,12 @@
     # ./lazy.nix
 
     ./conform.nix
-    # ./compiler.nix
+    ./compiler.nix
     ./completion.nix
-    # ./dap.nix
-    ./diagnostics.nix
+    ./dap.nix
     ./editor.nix
-    ./gitsigns.nix
     ./lang.nix
+    ./lint.nix
     ./lsp.nix
     ./treesitter.nix
     ./ui.nix

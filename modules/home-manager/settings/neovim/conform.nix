@@ -1,7 +1,16 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.nixvim.plugins.conform-nvim = {
     enable = true;
+    # because combinePlugins.enable = true, the collision of `doc` is
+    # unavoidable. this renames them.
+    package = pkgs.vimPlugins.conform-nvim.overrideAttrs (oldAttrs: {
+      postInstall =
+        (oldAttrs.postInstall or "")
+        + ''
+          mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md
+        '';
+    });
     settings = {
       formatters = {
         latexindent.prepend_args = [

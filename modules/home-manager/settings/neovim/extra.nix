@@ -15,8 +15,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "latex.nvim";
-      rev = "6c0c7af22fbecb7bdc7f2a7a59e8c0a219a74d86";
-      sha256 = "XRGq/EfSU00cSpdEWOLgdWige8b9YqvqbpVefs/+FFA=";
+      rev = "41d4d8e5b9cc6daca483577086947f3224383be3";
+      sha256 = "IG0uKocxYBbvaYtrVMW3Qmp5lBw3r9tu5PeJZv34Se0=";
     };
   };
 
@@ -43,6 +43,7 @@ in
 
 {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+    bamboo-nvim
     dropbar-nvim
     grug-far-nvim
     heirline-nvim
@@ -57,9 +58,12 @@ in
 
   programs.nixvim.extraConfigLua = # lua
     ''
+      require('bamboo').setup({ transparent = true })
+      require('bamboo').load()
       require('dropbar').setup()
       require('grug-far').setup({ headerMaxWidth = 80 })
       require('resession').setup()
+      require('ultimate-autopair').setup()
 
       require('quicker').setup({
         keys = {

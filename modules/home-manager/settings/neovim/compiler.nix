@@ -29,7 +29,7 @@
     };
 
     overseer = {
-      # enable = true;
+      enable = true;
       settings = {
         dap = false;
         strategy = "toggleterm";

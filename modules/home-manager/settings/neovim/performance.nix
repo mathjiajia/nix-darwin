@@ -15,8 +15,6 @@
         "/luasnippets"
       ];
       standalonePlugins = [
-        # "conform-nvim"
-        # "overseer-nvim"
         "nvim-treesitter"
       ];
     };
