@@ -3,6 +3,30 @@
   programs.nixvim = {
     plugins.dap = {
       enable = true;
+      # adapters = {
+      #   executables = {
+      #     cppdbg = {
+      #       id = "cppdbg";
+      #       command = "OpenDebugAD7";
+      #     };
+      #     lldb = {
+      #       id = "cppdbg";
+      #       command = "lldb-vscode";
+      #     };
+      #   };
+      #   servers = {
+      #     codelldb = {
+      #       port = ''''${port}'';
+      #       executable = {
+      #         command = "codelldb";
+      #         args = [
+      #           "--port"
+      #           ''''${port}''
+      #         ];
+      #       };
+      #     };
+      #   };
+      # };
       extensions = {
         dap-python.enable = true;
         dap-ui.enable = true;
