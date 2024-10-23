@@ -3,30 +3,49 @@
   programs.nixvim.plugins = {
     lz-n = {
       enable = true;
-    };
-
-    lazy = {
-      enable = true;
       plugins = [
-        # {
-        #   pkg = "nvchad/base46";
-        #   lazy = true;
-        #   build.__raw = ''
-        #     function()
-        #       require("base46").load_all_highlights()
-        #     end'';
-        # }
-        # {
-        #   "nvchad/ui",
-        #   config = function()
-        #     require("nvchad")
-        #   end,
-        # }
-        # { "nvchad/volt"; lazy = true; }
-        # { "nvchad/menu", lazy = true }
-        # { "nvchad/minty", cmd = { "Shades", "Huefy" } }
-        # { "nvchad/timerly", cmd = "TimerlyToggle" }
-        # { "nvchad/showkeys", cmd = "ShowkeysToggle" }
+        {
+          __unkeyed-1 = "luasnip";
+          event = [ "InsertEnter" ];
+        }
+        {
+          __unkeyed-1 = "copilot.lua";
+          cmd = [ "Copilot" ];
+        }
+        {
+          __unkeyed-1 = "neo-tree.nvim";
+          after = # lua
+            ''
+              function()
+                require("neo-tree").setup()
+              end
+            '';
+          keys = [
+            {
+              __unkeyed-1 = "<leader>fe";
+              __unkeyed-2 = "<CMD>Neotree toggle<CR>";
+              desc = "NeoTree toggle";
+            }
+          ];
+        }
+        {
+          __unkeyed-1 = "fzf-lua";
+          cmd = [
+            "FzfLua"
+          ];
+          # keys = [
+          #   {
+          #     __unkeyed-1 = "<leader>fa";
+          #     __unkeyed-2 = "<CMD>Telescope autocommands<CR>";
+          #     desc = "Telescope autocommands";
+          #   }
+          #   {
+          #     __unkeyed-1 = "<leader>fb";
+          #     __unkeyed-2 = "<CMD>Telescope buffers<CR>";
+          #     desc = "Telescope buffers";
+          #   }
+          # ];
+        }
       ];
     };
   };

@@ -1,11 +1,10 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs.nixvim.plugins.luasnip = {
     enable = true;
     fromLua = [
       {
         lazyLoad = true;
-        paths = "luasnippets";
       }
     ];
     settings = {

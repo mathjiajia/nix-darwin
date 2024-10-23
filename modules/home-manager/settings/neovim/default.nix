@@ -51,9 +51,9 @@
     # ./lazy.nix
 
     ./conform.nix
-    ./compiler.nix
+    # ./compiler.nix
     ./completion.nix
-    ./dap.nix
+    # ./dap.nix
     ./diagnostics.nix
     ./editor.nix
     ./gitsigns.nix

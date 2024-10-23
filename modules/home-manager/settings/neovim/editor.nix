@@ -57,11 +57,11 @@
       settings = {
         grep.RIPGREP_CONFIG_PATH.__raw = ''vim.env.RIPGREP_CONFIG_PATH'';
         defaults = {
-          file_icons = "mini";
           formatter = "path.dirname_first";
         };
       };
     };
+
     neo-tree = {
       enable = true;
       # open_files_do_not_replace_types = { "aerial"; "qf"; "terminal"; };
@@ -76,6 +76,33 @@
           hideByName = [ ".git" ];
         };
       };
+    };
+
+    toggleterm = {
+      enable = true;
+      settings = {
+        float_opts = {
+          border = "rounded";
+        };
+        open_mapping = "[[<C-Bslash>]]";
+      };
+      luaConfig.post = # lua
+        ''
+          local Terminal = require("toggleterm.terminal").Terminal
+          local float_opts = { width = vim.o.columns, height = vim.o.lines }
+
+          local btop = Terminal:new({ cmd = "btop", hidden = true, direction = "float", float_opts = float_opts })
+          local lazygit = Terminal:new({
+            cmd = "lazygit",
+            dir = "git_dir",
+            hidden = true,
+            direction = "float",
+            float_opts = float_opts,
+          })
+
+          vim.keymap.set({ "n", "t" }, "<leader>ti", function() btop:toggle() end)
+          vim.keymap.set({ "n", "t" }, "<leader>tg", function() lazygit:toggle() end)
+        '';
     };
 
     nvim-surround.enable = true;
