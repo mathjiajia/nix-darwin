@@ -25,11 +25,6 @@
     loaded_python_provider = 0; # Python 2
 
   };
-  programs.nixvim.clipboard = {
-    # Use system clipboard
-    register = "unnamedplus";
-  };
-
   programs.nixvim.opts = {
     # 1 important
 
@@ -174,42 +169,42 @@
       desc = "Last Position";
       group = "LastPlace";
       callback.__raw = ''
-                function(event)
-        					local exclude_bt = { "help", "nofile", "quickfix" }
-        					local exclude_ft = { "gitcommit" }
-        					local buf = event.buf
-        					if
-        						vim.list_contains(exclude_bt, vim.bo[buf].buftype)
-        						or vim.list_contains(exclude_ft, vim.bo[buf].filetype)
-        						or vim.api.nvim_win_get_cursor(0)[1] > 1
-        						or vim.b[buf].last_pos
-        					then
-        						return
-        					end
-        					vim.b[buf].last_pos = true
-        					local mark = vim.api.nvim_buf_get_mark(buf, '"')
-        					local lcount = vim.api.nvim_buf_line_count(buf)
-        					if mark[1] > 0 and mark[1] <= lcount then
-        						pcall(vim.api.nvim_win_set_cursor, 0, mark)
-        					end
-        				end
-        			'';
+        function(event)
+          local exclude_bt = { "help", "nofile", "quickfix" }
+          local exclude_ft = { "gitcommit" }
+          local buf = event.buf
+          if
+            vim.list_contains(exclude_bt, vim.bo[buf].buftype)
+            or vim.list_contains(exclude_ft, vim.bo[buf].filetype)
+            or vim.api.nvim_win_get_cursor(0)[1] > 1
+            or vim.b[buf].last_pos
+          then
+            return
+          end
+          vim.b[buf].last_pos = true
+          local mark = vim.api.nvim_buf_get_mark(buf, '"')
+          local lcount = vim.api.nvim_buf_line_count(buf)
+          if mark[1] > 0 and mark[1] <= lcount then
+            pcall(vim.api.nvim_win_set_cursor, 0, mark)
+          end
+        end
+      '';
     }
     {
       event = [ "FileType" ];
       desc = "Enable Treesitter";
       callback.__raw = ''
-                function(ev)
-        					if not pcall(vim.treesitter.start, ev.buf) then
-        						return
-        					end
+        function(ev)
+          if not pcall(vim.treesitter.start, ev.buf) then
+            return
+          end
 
-        					vim.opt_local.foldmethod = "expr"
-        					vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.opt_local.foldmethod = "expr"
+          vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
-        					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        				end
-        			'';
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      '';
     }
     {
       event = [ "BufReadPost" ];
@@ -222,8 +217,8 @@
       ];
       callback.__raw = ''
         function(ev)
-        	vim.fn.jobstart("open '" .. vim.fn.expand("%") .. "'", { detach = true })
-        	vim.api.nvim_buf_delete(ev.buf, {})
+          vim.fn.jobstart("open '" .. vim.fn.expand("%") .. "'", { detach = true })
+          vim.api.nvim_buf_delete(ev.buf, {})
         end
       '';
     }
@@ -231,12 +226,19 @@
       event = [ "BufWritePost" ];
       pattern = [ "*/spell/*.add" ];
       callback.__raw = ''
-        				function()
-                  vim.cmd.mkspell({ "%", bang = true, mods = { silent = true } })
-        				end
-        			'';
+        function()
+          vim.cmd.mkspell({ "%", bang = true, mods = { silent = true } })
+        end
+      '';
     }
   ];
+
+  programs.nixvim.clipboard = {
+    # Use system clipboard
+    register = "unnamedplus";
+  };
+
+  programs.nixvim.colorschemes.nord.enable = true;
 
   # TODO: make a keybind `<leader>a` that check if there is a code action available for the cursor position, and opens a panel to select a handler
   # if not then check if there is a mispell and suggest `z=`
@@ -277,9 +279,9 @@
         key = "<leader>bd";
         mode = [ "n" ];
         action.__raw = ''
-                    function()
-          						vim.api.nvim_buf_delete(0, {})
-          					end
+          function()
+            vim.api.nvim_buf_delete(0, {})
+          end
         '';
         options.desc = "Delete Buffer";
       }
@@ -287,10 +289,10 @@
         key = "<leader>bD";
         mode = [ "n" ];
         action.__raw = ''
-                    function()
-          						vim.api.nvim_buf_delete(0, { force = true })
-          					end
-          				'';
+          function()
+            vim.api.nvim_buf_delete(0, { force = true })
+          end
+        '';
         options.desc = "Delete Buffer (force)";
       }
     ];
@@ -300,20 +302,20 @@
     capabilities = "require('cmp_nvim_lsp').default_capabilities()";
     inlayHints = true;
     # onAttach = ''
-    # 	function(client, bufnr)
-    # 			local methods = vim.lsp.protocol.Methods
+    #   function(client, bufnr)
+    #       local methods = vim.lsp.protocol.Methods
     #
-    # 			if client.supports_method(methods.textDocument_documentHighlight) then
-    # 				vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    # 					buffer = bufnr,
-    # 					callback = vim.lsp.buf.document_highlight,
-    # 				})
-    # 				vim.api.nvim_create_autocmd("CursorMoved", {
-    # 					buffer = bufnr,
-    # 					callback = vim.lsp.buf.clear_references,
-    # 				})
-    # 			end
-    # 		end
+    #       if client.supports_method(methods.textDocument_documentHighlight) then
+    #         vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    #           buffer = bufnr,
+    #           callback = vim.lsp.buf.document_highlight,
+    #         })
+    #         vim.api.nvim_create_autocmd("CursorMoved", {
+    #           buffer = bufnr,
+    #           callback = vim.lsp.buf.clear_references,
+    #         })
+    #       end
+    #     end
     # '';
     keymaps.lspBuf = {
       gD = "declaration";
@@ -452,35 +454,35 @@
   #   enable = true;
   # };
 
-  programs.nixvim.plugins.lazy = {
-    enable = true;
-    plugins = [
-      # {
-      #   pkg = "nvchad/base46";
-      #   lazy = true;
-      #   build.__raw = ''
-      #     function()
-      #     	require("base46").load_all_highlights()
-      #     end'';
-      # }
-      # {
-      # 	"nvchad/ui",
-      # 	config = function()
-      # 		require("nvchad")
-      # 	end,
-      # }
-      # { "nvchad/volt"; lazy = true; }
-      # { "nvchad/menu", lazy = true }
-      # { "nvchad/minty", cmd = { "Shades", "Huefy" } }
-      # { "nvchad/timerly", cmd = "TimerlyToggle" }
-      # { "nvchad/showkeys", cmd = "ShowkeysToggle" }
-    ];
-  };
+  # programs.nixvim.plugins.lazy = {
+  #   enable = true;
+  #   plugins = [
+  #     # {
+  #     #   pkg = "nvchad/base46";
+  #     #   lazy = true;
+  #     #   build.__raw = ''
+  #     #     function()
+  #     #       require("base46").load_all_highlights()
+  #     #     end'';
+  #     # }
+  #     # {
+  #     #   "nvchad/ui",
+  #     #   config = function()
+  #     #     require("nvchad")
+  #     #   end,
+  #     # }
+  #     # { "nvchad/volt"; lazy = true; }
+  #     # { "nvchad/menu", lazy = true }
+  #     # { "nvchad/minty", cmd = { "Shades", "Huefy" } }
+  #     # { "nvchad/timerly", cmd = "TimerlyToggle" }
+  #     # { "nvchad/showkeys", cmd = "ShowkeysToggle" }
+  #   ];
+  # };
 
   programs.nixvim.plugins.fzf-lua = {
-    enable = false;
+    enable = true;
     settings = {
-      # grep.RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH;
+      grep.RIPGREP_CONFIG_PATH.__raw = ''vim.env.RIPGREP_CONFIG_PATH'';
       defaults = {
         file_icons = "mini";
         formatter = "path.dirname_first";
@@ -502,17 +504,18 @@
       };
     };
   };
-  programs.nixvim.plugins.telescope = {
-    enable = true;
-    extensions = {
-      fzf-native.enable = true;
-      ui-select.enable = true;
-    };
 
-    settings = {
-      extensions.__raw = "{ ['ui-select'] = { require('telescope.themes').get_dropdown() } }";
-    };
-  };
+  # programs.nixvim.plugins.telescope = {
+  #   enable = true;
+  #   extensions = {
+  #     fzf-native.enable = true;
+  #     ui-select.enable = true;
+  #   };
+  #
+  #   settings = {
+  #     extensions.__raw = "{ ['ui-select'] = { require('telescope.themes').get_dropdown() } }";
+  #   };
+  # };
   programs.nixvim.plugins.rainbow-delimiters.enable = true;
   programs.nixvim.plugins.noice = {
     enable = true;
@@ -688,18 +691,134 @@
   programs.nixvim.plugins.cmp = {
     enable = true;
     autoEnableSources = true;
-    settings.sources = [
-      { name = "nvim_lsp"; }
-      { name = "path"; }
-      { name = "buffer"; }
-    ];
-    settings.completion.completeopt = "menu,menuone,noinsert";
-    settings.mapping = {
-      "<C-n>" = "cmp.mapping.select_next_item()";
-      "<C-p>" = "cmp.mapping.select_prev_item()";
-      "<C-y>" = "cmp.mapping.confirm { select = true }";
-      "<C-Space>" = "cmp.mapping.complete {}";
+    cmdline = {
+      "/" = {
+        mapping = {
+          __raw = "cmp.mapping.preset.cmdline()";
+        };
+        sources = [
+          {
+            name = "buffer";
+          }
+        ];
+      };
+      "?" = {
+        mapping = {
+          __raw = "cmp.mapping.preset.cmdline()";
+        };
+        sources = [
+          {
+            name = "buffer";
+          }
+        ];
+      };
+      ":" = {
+        mapping = {
+          __raw = "cmp.mapping.preset.cmdline()";
+        };
+        sources = [
+          {
+            name = "async_path";
+          }
+          {
+            name = "cmdline";
+          }
+        ];
+      };
     };
+    settings = {
+      formatting = {
+        fields = [
+          "abbr"
+          "menu"
+          "kind"
+        ];
+        format = ''
+          function(entry, item)
+            local maxwidth = 30
+            local icon = require("mini.icons").get("lsp", item.kind)
+
+            if vim.fn.strchars(item.abbr) > maxwidth then
+              item.abbr = vim.fn.strcharpart(item.abbr, 0, maxwidth) .. "…"
+            end
+            item.menu = ({
+              buffer = "[Buffer]",
+              cmdline = "[Cmd]",
+              nvim_lsp = "[LSP]",
+              lazydev = "[Lazy]",
+              luasnip = "[Snip]",
+              neorg = "[Norg]",
+              async_path = "[Path]",
+              rg = "[RG]",
+            })[entry.source.name]
+            item.kind = icon .. " " .. item.kind
+            return item
+          end
+        '';
+      };
+      mapping = {
+        "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+        "<C-f>" = "cmp.mapping.scroll_docs(4)";
+        "<C-Space>" = "cmp.mapping.complete()";
+        "<C-y>" = "cmp.mapping.confirm({ select = true })";
+      };
+      matching.disallow_prefix_unmatching = true;
+      snippet.expand = ''
+        function(args)
+          require('luasnip').lsp_expand(args.body)
+        end
+      '';
+      sources = [
+        {
+          name = "lazydev";
+          group_index = 0;
+        }
+        {
+          name = "nvim_lsp";
+          group_index = 1;
+        }
+        {
+          name = "luasnip";
+          option.show_autosnippets = true;
+          group_index = 1;
+        }
+        {
+          name = "async_path";
+          group_index = 1;
+        }
+
+        {
+          name = "copilot";
+          max_item_count = 2;
+          group_index = 2;
+        }
+        {
+          name = "buffer";
+          group_index = 2;
+        }
+        # { name = "neorg"; }
+
+        {
+          name = "rg";
+          keyword_length = 2;
+          group_index = 3;
+        }
+      ];
+      window = {
+        completion = {
+          border = "rounded";
+          col_offset = -1;
+        };
+        documentation = {
+          border = "rounded";
+        };
+      };
+    };
+  };
+  programs.nixvim.plugins.copilot-lua = {
+    enable = true;
+    panel.enabled = false;
+    suggestion.enabled = false;
   };
 
   # programs.nixvim.plugins.diffview = {
@@ -721,11 +840,11 @@
 
       local btop = Terminal:new({ cmd = "btop", hidden = true, direction = "float", float_opts = float_opts })
       local lazygit = Terminal:new({
-      	cmd = "lazygit",
-      	dir = "git_dir",
-      	hidden = true,
-      	direction = "float",
-      	float_opts = float_opts,
+        cmd = "lazygit",
+        dir = "git_dir",
+        hidden = true,
+        direction = "float",
+        float_opts = float_opts,
       })
 
       vim.keymap.set({ "n", "t" }, "<leader>ti", function() btop:toggle() end)
@@ -799,10 +918,6 @@
   };
 
   programs.nixvim.plugins.notify.enable = true;
-  programs.nixvim.colorschemes.tokyonight = {
-    enable = true;
-    settings.style = "night";
-  };
 
   programs.nixvim.performance = {
     byteCompileLua = {
@@ -812,5 +927,10 @@
       nvimRuntime = true;
       plugins = true;
     };
+    # combinePlugins = {
+    #   enable = true;
+    #   pathsToLink = [ ];
+    #   standalonePlugins = [ ];
+    # };
   };
 }
