@@ -3,6 +3,7 @@
   imports = [
     ./settings/bat
     ./settings/git
+    ./settings/neovim
 
     ./settings/fastfetch.nix
     ./settings/fd.nix
@@ -10,7 +11,6 @@
     ./settings/fzf.nix
     ./settings/kitty.nix
     ./settings/neovide.nix
-    ./settings/nixvim.nix
     ./settings/ripgrep.nix
     ./settings/sioyek.nix
     ./settings/starship.nix

@@ -1,30 +1,42 @@
 { neovim-nightly-overlay, pkgs, ... }:
 {
-  programs.nixvim.enable = true;
-  programs.nixvim.package = neovim-nightly-overlay.packages.${pkgs.system}.default;
+  programs.nixvim = {
+    enable = true;
+    vimdiffAlias = true;
+    defaultEditor = true;
+    package = neovim-nightly-overlay.packages.${pkgs.system}.default;
+  };
+
   programs.nixvim.extraPackages = with pkgs; [
-    tree-sitter
-    nodejs # for copilot.lua
-    # libgit2 # c library to interact with git repositories, needed by fugit2.nvim plugin
     # lua51Packages.lua
     luajit
     luajitPackages.luarocks
+    nodejs
+    tree-sitter
   ];
-  programs.nixvim.vimdiffAlias = true;
-  programs.nixvim.defaultEditor = true;
+
   programs.nixvim.diagnostics = {
-    virtual_lines.only_current_line = true;
-    virtual_text = true;
+    virtual_text = {
+      spacing = 4;
+      prefix = "●";
+    };
+    severity_sort = true;
+    signs.text.__raw = ''
+      {
+        [vim.diagnostic.severity.ERROR] = " ",
+        [vim.diagnostic.severity.WARN] = " ",
+        [vim.diagnostic.severity.INFO] = " ",
+        [vim.diagnostic.severity.HINT] = " ",
+      }
+    '';
   };
+
   programs.nixvim.globals = {
-    # mapleader = " ";
-    # maplocalleader = " ";
-    # Disable useless providers
     loaded_ruby_provider = 0; # Ruby
     loaded_perl_provider = 0; # Perl
     loaded_python_provider = 0; # Python 2
-
   };
+
   programs.nixvim.opts = {
     # 1 important
 
@@ -685,6 +697,12 @@
       delete_check_events = "TextChanged";
       enable_autosnippets = true;
       store_selection_keys = "<Tab>";
+      ext_opts.__raw = ''
+        {
+          [require("luasnip.util.types").insertNode] = { active = { virt_text = { { "", "Boolean" } } } },
+          [require("luasnip.util.types").choiceNode] = { active = { virt_text = { { "󱥸", "Special" } } } },
+        }
+      '';
     };
   };
 

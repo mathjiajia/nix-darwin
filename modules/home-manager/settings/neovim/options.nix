@@ -1,0 +1,94 @@
+{ ... }:
+{
+  programs.nixvim.opts = {
+    # 1 important
+
+    # 2 moving around, seaching patterns
+    whichwrap = "b,s,[,]";
+    ignorecase = true;
+    smartcase = true;
+
+    # 3 tags
+
+    # 4 displaying text
+    smoothscroll = true;
+    scrolloff = 12;
+    linebreak = true;
+    breakindent = true;
+    showbreak = "> ";
+    fillchars = {
+      diff = "╱";
+      eob = " ";
+      fold = " ";
+    };
+    cmdheight = 0;
+    number = true;
+    relativenumber = true;
+
+    # 5 syntax, highlighting and spelling
+    colorcolumn = "120";
+    cursorline = true;
+    spelllang = "en_gb";
+
+    # 6 multiple windows
+    laststatus = 3;
+    splitbelow = true;
+    splitkeep = "screen";
+    splitright = true;
+
+    # 7 multiple tab pages
+
+    # 8 terminal
+
+    # 9 using the mouse
+
+    # 10 messages and info
+    shortmess = "ltToOCFWIc";
+    confirm = true;
+
+    # 11 selecting text
+
+    # 12 editing text
+    undofile = true;
+    formatoptions = "tcroqnlj";
+    pumheight = 10;
+
+    # 13 tabs and indenting
+    tabstop = 2;
+    shiftwidth = 2;
+    softtabstop = 2;
+
+    # 14 folding
+    foldmethod = "expr";
+    foldexpr = "v:lua.vim.treesitter.foldexpr()";
+    foldlevel = 99;
+    foldtext = "";
+
+    # 15 diff mode
+    diffopt = "internal,filler,closeoff,linematch:90";
+
+    # 16 mapping
+    timeoutlen = 500;
+
+    # 17 reading and writng files
+
+    # 18 the swap file
+    swapfile = false;
+    updatetime = 200;
+
+    # 19 command line editing
+
+    # 20 executing external commands
+
+    # 21 running make and jumping to errors (quickfix)
+
+    # 22 language specific
+
+    # 23 multi-byte characters
+
+    # 24 various
+    virtualedit = "block";
+    signcolumn = "yes";
+  };
+
+}
