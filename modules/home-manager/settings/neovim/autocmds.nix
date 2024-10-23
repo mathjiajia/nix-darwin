@@ -31,8 +31,7 @@
           "TermLeave"
         ];
         group = "CheckTime";
-        callback.__raw =
-          # lua
+        callback.__raw = # lua
           ''
             function()
               if vim.o.buftype ~= "nofile" then
@@ -57,8 +56,7 @@
         event = [ "BufReadPost" ];
         desc = "Last Position";
         group = "LastPlace";
-        callback.__raw =
-          # lua
+        callback.__raw = # lua
           ''
             function(event)
               local exclude_bt = { "help", "nofile", "quickfix" }
@@ -84,8 +82,7 @@
       # {
       #   event = [ "FileType" ];
       #   desc = "Enable Treesitter";
-      #   callback.__raw =
-      #     # lua
+      #   callback.__raw = # lua
       #     ''
       #       function(ev)
       #         if not pcall(vim.treesitter.start, ev.buf) then
@@ -108,8 +105,7 @@
           "*.pdf"
           "*.png"
         ];
-        callback.__raw =
-          # lua
+        callback.__raw = # lua
           ''
             function(ev)
               vim.fn.jobstart("open '" .. vim.fn.expand("%") .. "'", { detach = true })
@@ -120,8 +116,7 @@
       {
         event = [ "BufWritePost" ];
         pattern = [ "*/spell/*.add" ];
-        callback.__raw =
-          # lua
+        callback.__raw = # lua
           ''
             function()
               vim.cmd.mkspell({ "%", bang = true, mods = { silent = true } })

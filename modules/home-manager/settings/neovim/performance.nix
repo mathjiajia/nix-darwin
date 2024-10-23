@@ -14,7 +14,7 @@
       ];
       standalonePlugins = [
         "nvim-treesitter"
-        # "overseer-nvim"
+        "overseer-nvim"
       ];
     };
   };

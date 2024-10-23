@@ -2,8 +2,7 @@
 {
   programs.nixvim.plugins.gitsigns = {
     enable = true;
-    settings.on_attach =
-      # lua
+    settings.on_attach = # lua
       ''
         function(bufnr)
           local gitsigns = require("gitsigns")

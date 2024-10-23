@@ -54,8 +54,7 @@ in
     quicker-nvim
   ];
 
-  programs.nixvim.extraConfigLua =
-    # lua
+  programs.nixvim.extraConfigLua = # lua
     ''
       require('dropbar').setup()
       require('grug-far').setup({ headerMaxWidth = 80 })

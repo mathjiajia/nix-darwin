@@ -9,8 +9,7 @@
         };
         open_mapping = "[[<C-Bslash>]]";
       };
-      luaConfig.post =
-        # lua
+      luaConfig.post = # lua
         ''
           local Terminal = require("toggleterm.terminal").Terminal
           local float_opts = { width = vim.o.columns, height = vim.o.lines }
@@ -30,7 +29,7 @@
     };
 
     overseer = {
-      # enable = true;
+      enable = true;
       settings = {
         dap = false;
         strategy = "toggleterm";

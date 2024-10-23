@@ -13,8 +13,7 @@
       delete_check_events = "TextChanged";
       enable_autosnippets = true;
       store_selection_keys = "<Tab>";
-      ext_opts.__raw =
-        # lua
+      ext_opts.__raw = # lua
         ''
           {
             [require("luasnip.util.types").insertNode] = { active = { virt_text = { { "", "Boolean" } } } },
@@ -69,8 +68,7 @@
           "menu"
           "kind"
         ];
-        # format =
-        #   # lua
+        # format = # lua
         #   ''
         #     function(entry, item)
         #       local maxwidth = 30

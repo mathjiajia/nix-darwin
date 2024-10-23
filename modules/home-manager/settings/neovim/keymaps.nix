@@ -1,8 +1,5 @@
 { ... }:
 {
-  # TODO: make a keybind `<leader>a` that check if there is a code action available for the cursor position, and opens a panel to select a handler
-  # if not then check if there is a mispell and suggest `z=`
-  # if not then go to next code action or mispell, whichever is closest.
   programs.nixvim.keymaps = [
     {
       mode = [
@@ -27,8 +24,7 @@
     {
       key = "<leader>bd";
       mode = [ "n" ];
-      action.__raw =
-        # lua
+      action.__raw = # lua
         ''
           function()
             vim.api.nvim_buf_delete(0, {})
@@ -39,8 +35,7 @@
     {
       key = "<leader>bD";
       mode = [ "n" ];
-      action.__raw =
-        # lua
+      action.__raw = # lua
         ''
           function()
             vim.api.nvim_buf_delete(0, { force = true })

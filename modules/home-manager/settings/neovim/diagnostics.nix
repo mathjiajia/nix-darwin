@@ -6,8 +6,7 @@
       prefix = "●";
     };
     severity_sort = true;
-    signs.text.__raw =
-      # lua
+    signs.text.__raw = # lua
       ''
         {
           [vim.diagnostic.severity.ERROR] = " ",
