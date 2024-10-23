@@ -5,7 +5,7 @@
     fromLua = [
       {
         lazyLoad = true;
-        # paths = "luasnippets";
+        paths = "luasnippets";
       }
     ];
     settings = {
@@ -68,62 +68,67 @@
           "menu"
           "kind"
         ];
-        # format = # lua
-        #   ''
-        #     function(entry, item)
-        #       local maxwidth = 30
-        #       local icons = {
-        #         Text = "",
-        #         Method = "",
-        #         Function = "",
-        #         Constructor = "",
-        #         Field = "",
-        #         Variable = "",
-        #         Class = "",
-        #         Interface = "",
-        #         Module = "",
-        #         Property = "",
-        #         Unit = "",
-        #         Value = "",
-        #         Enum = "",
-        #         Keyword = "",
-        #         Snippet = "",
-        #         Color = "",
-        #         File = "",
-        #         Reference = "",
-        #         Folder = "",
-        #         EnumMember = "",
-        #         Constant = "",
-        #         Struct = "",
-        #         Event = "",
-        #         Operator = "",
-        #         TypeParameter = "",
-        #         Copilot = "",
-        #       }
-        #
-        #       if vim.fn.strchars(item.abbr) > maxwidth then
-        #         item.abbr = vim.fn.strcharpart(item.abbr, 0, maxwidth) .. "…"
-        #       end
-        #       item.menu = ({
-        #         buffer = "[Buffer]",
-        #         cmdline = "[Cmd]",
-        #         nvim_lsp = "[LSP]",
-        #         lazydev = "[Lazy]",
-        #         luasnip = "[Snip]",
-        #         neorg = "[Norg]",
-        #         async_path = "[Path]",
-        #         rg = "[RG]",
-        #       })[entry.source.name]
-        #       item.kind = icons[item.kind] " " .. item.kind
-        #       return item
-        #     end
-        #   '';
+        format = # lua
+          ''
+            function(entry, vim_item)
+              local maxwidth = 30
+              local icons = {
+                Text = "",
+                Method = "",
+                Function = "",
+                Constructor = "",
+                Field = "",
+                Variable = "",
+                Class = "",
+                Interface = "",
+                Module = "",
+                Property = "",
+                Unit = "",
+                Value = "",
+                Enum = "",
+                Keyword = "",
+                Snippet = "",
+                Color = "",
+                File = "",
+                Reference = "",
+                Folder = "",
+                EnumMember = "",
+                Constant = "",
+                Struct = "",
+                Event = "",
+                Operator = "",
+                TypeParameter = "",
+                Copilot = "",
+              }
+              
+              if vim.fn.strchars(vim_item.abbr) > maxwidth then
+                vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, maxwidth) .. "…"
+              end
+
+              vim_item.kind = icons[vim_item.kind]
+              vim_item.menu = ({
+                async_path = "[Path]",
+                buffer = "[Buf]",
+                cmdline = "[Cmd]",
+                copilot = "[GHC]",
+                nvim_lsp = "[LSP]",
+                luasnip = "[Snip]",
+                -- neorg = "[Norg]",
+                rg = "[RG]",
+              })[entry.source.name]
+              return vim_item
+            end
+          '';
       };
       mapping = {
-        "<C-b>" = "cmp.mapping.scroll_docs(-4)";
-        "<C-f>" = "cmp.mapping.scroll_docs(4)";
-        "<C-Space>" = "cmp.mapping.complete()";
-        "<C-y>" = "cmp.mapping.confirm({ select = true })";
+        __raw = ''
+          cmp.mapping.preset.insert({
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+          })
+        '';
       };
       matching.disallow_prefix_unmatching = true;
       snippet.expand =
@@ -135,38 +140,37 @@
         '';
       sources = [
         {
-          name = "lazydev";
-          group_index = 0;
-        }
-        {
           name = "nvim_lsp";
           group_index = 1;
         }
         {
           name = "luasnip";
-          option.show_autosnippets = true;
           group_index = 1;
+          option.show_autosnippets = true;
         }
         {
           name = "async_path";
           group_index = 1;
         }
-        {
-          name = "buffer";
-          group_index = 1;
-        }
 
         {
           name = "copilot";
+          group_index = 2;
           max_item_count = 2;
+        }
+        # {
+        #   name = "neorg";
+        #   group_index = 2;
+        # }
+        {
+          name = "buffer";
           group_index = 2;
         }
-        # { name = "neorg"; }
 
         {
           name = "rg";
-          keyword_length = 2;
           group_index = 3;
+          keyword_length = 2;
         }
       ];
       window = {
