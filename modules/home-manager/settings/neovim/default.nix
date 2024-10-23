@@ -38,10 +38,11 @@
     loaded_tarPlugin = 1;
     loaded_tutor_mode_plugin = 1;
     loaded_zipPlugin = 1;
+
+    base46_cache = "/Users/jia/.local/share/nvim/base46_cache/";
   };
 
   programs.nixvim.clipboard.register = "unnamedplus";
-  # programs.nixvim.colorschemes.nord.enable = true;
 
   imports = [
     ./performance.nix
@@ -57,16 +58,15 @@
     ./completion.nix
     ./dap.nix
     ./editor.nix
-    ./lang.nix
     ./lint.nix
     ./lsp.nix
     ./neo-tree.nix
     ./treesitter.nix
     ./ui.nix
 
-    ./extra.nix
+    ./extra-plugins.nix
 
-    ./after.nix
+    ./extra-files.nix
   ];
 
 }

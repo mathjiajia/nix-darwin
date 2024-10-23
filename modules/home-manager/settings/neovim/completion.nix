@@ -175,9 +175,7 @@
           border = "rounded";
           col_offset = -1;
         };
-        documentation = {
-          border = "rounded";
-        };
+        documentation.border = "rounded";
       };
     };
   };
@@ -193,13 +191,7 @@
       mode = [ "i" ];
       key = "<C-k>";
       action.__raw = # lua
-        ''
-          function()
-            if require("luasnip").expandable() then
-              require("luasnip").expand()
-            end
-          end
-        '';
+        "function() if require('luasnip').expandable() then require('luasnip').expand() end end";
       options.desc = "LuaSnip Expand";
     }
     {
@@ -209,13 +201,7 @@
       ];
       key = "<C-l>";
       action.__raw = # lua
-        ''
-          function()
-            if require("luasnip").locally_jumpable(1) then
-              require("luasnip").jump(1)
-            end
-          end
-        '';
+        "function() if require('luasnip').locally_jumpable(1) then require('luasnip').jump(1) end end";
       options.desc = "LuaSnip Forward Jump";
     }
     {
@@ -225,13 +211,7 @@
       ];
       key = "<C-j>";
       action.__raw = # lua
-        ''
-          function()
-            if require("luasnip").locally_jumpable(-1) then
-              require("luasnip").jump(-1)
-            end
-          end
-        '';
+        "function() if require('luasnip').locally_jumpable(-1) then require('luasnip').jump(-1) end end";
       options.desc = "LuaSnip Backward Jump";
     }
     {
@@ -241,13 +221,7 @@
       ];
       key = "<C-e>";
       action.__raw = # lua
-        ''
-          function()
-            if require("luasnip").choice_active() then
-              require("luasnip").change_choice(1)
-            end
-          end
-        '';
+        "function() if require('luasnip').choice_active() then require('luasnip').change_choice(1) end end";
       options.desc = "LuaSnip Next Choice";
     }
   ];

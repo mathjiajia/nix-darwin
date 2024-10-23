@@ -60,15 +60,13 @@
         };
         # ["<leader>sw"] = {
         #   action = "grep_visual";
-        #   mode = "v";
+        #   mode = [ "v" ];
         #   options.desc = "Search Visual Selection";
         # };
       };
       settings = {
-        grep.RIPGREP_CONFIG_PATH.__raw = ''vim.env.RIPGREP_CONFIG_PATH'';
-        defaults = {
-          formatter = "path.dirname_first";
-        };
+        grep.RIPGREP_CONFIG_PATH.__raw = "vim.env.RIPGREP_CONFIG_PATH";
+        defaults.formatter = "path.dirname_first";
       };
     };
 
@@ -85,7 +83,6 @@
               vim.keymap.set(mode, lhs, rhs, opts)
             end
 
-            -- Navigation
             map("n", "]c", function()
               if vim.wo.diff then
                 vim.cmd.normal({ "]c", bang = true })
@@ -115,7 +112,6 @@
             map("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff This" })
             map("n", "<leader>hD", function() gitsigns.diffthis("~") end, { desc = "Diff This (File)" })
             map("n", "<leader>td", gitsigns.toggle_deleted, { desc = "Toggle Deleted" })
-
             map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
           end
         '';
@@ -131,9 +127,7 @@
       ];
       key = "s";
       action.__raw = # lua
-        ''
-          function() require("flash").jump() end
-        '';
+        "function() require('flash').jump() end";
       options.desc = "Flash";
     }
     {
@@ -144,18 +138,14 @@
       ];
       key = "S";
       action.__raw = # lua
-        ''
-          function() require("flash").treesitter() end
-        '';
+        "function() require('flash').treesitter() end";
       options.desc = "Flash Treesitter";
     }
     {
       mode = [ "o" ];
       key = "r";
       action.__raw = # lua
-        ''
-          function() require("flash").remote() end
-        '';
+        "function() require('flash').remote() end";
       options.desc = "Remote Flash";
     }
     {
@@ -165,18 +155,14 @@
       ];
       key = "R";
       action.__raw = # lua
-        ''
-          function() require("flash").treesitter_search() end
-        '';
+        "function() require('flash').treesitter_search() end";
       options.desc = "Treesitter Search";
     }
     {
       mode = [ "c" ];
       key = "<c-s>";
       action.__raw = # lua
-        ''
-          function() require("flash").toggle() end
-        '';
+        "function() require('flash').toggle() end";
       options.desc = "Toggle Flash Search";
     }
 

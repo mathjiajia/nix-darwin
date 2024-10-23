@@ -39,12 +39,10 @@
       };
       matlab_ls = {
         enable = true;
-        settings = {
-          MATLAB = {
-            indexWorkspace = true;
-            installPath = "/Applications/MATLAB_R2024b.app";
-            telemetry = false;
-          };
+        settings.MATLAB = {
+          indexWorkspace = true;
+          installPath = "/Applications/MATLAB_R2024b.app";
+          telemetry = false;
         };
       };
       nil_ls.enable = true;
@@ -60,37 +58,35 @@
       taplo.enable = true;
       texlab = {
         enable = true;
-        settings = {
-          texlab = {
-            build = {
-              args = [
-                "-interaction=nonstopmode"
-                "-synctex=1"
-                "%f"
-              ];
-              forwardSearchAfter = false;
-              onSave = true;
-            };
-            forwardSearch = {
-              executable = "/Applications/sioyek.app/Contents/MacOS/sioyek";
-              args = [
-                "--reuse-window"
-                "--execute-command"
-                "turn_on_synctex"
-                "--inverse-search"
-                "texlab inverse-search --input %%1 --line %%2"
-                "--forward-search-file"
-                "%f"
-                "--forward-search-line"
-                "%l"
-                "%p"
-              ];
-            };
-            diagnostics.ignoredPatterns = [
-              "^Overfull"
-              "^Underfull"
+        settings.texlab = {
+          build = {
+            args = [
+              "-interaction=nonstopmode"
+              "-synctex=1"
+              "%f"
+            ];
+            forwardSearchAfter = false;
+            onSave = true;
+          };
+          forwardSearch = {
+            executable = "/Applications/sioyek.app/Contents/MacOS/sioyek";
+            args = [
+              "--reuse-window"
+              "--execute-command"
+              "turn_on_synctex"
+              "--inverse-search"
+              "texlab inverse-search --input %%1 --line %%2"
+              "--forward-search-file"
+              "%f"
+              "--forward-search-line"
+              "%l"
+              "%p"
             ];
           };
+          diagnostics.ignoredPatterns = [
+            "^Overfull"
+            "^Underfull"
+          ];
         };
       };
     };
