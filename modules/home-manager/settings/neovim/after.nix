@@ -26,9 +26,7 @@
       '';
 
     "after/ftplugin/man.lua".text = # lua
-      ''
-        vim.opt_local.buflisted = false
-      '';
+      "vim.opt_local.buflisted = false";
 
     "after/ftplugin/markdown.lua".text = # lua
       ''

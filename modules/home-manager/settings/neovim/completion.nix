@@ -99,11 +99,9 @@
                 TypeParameter = "",
                 Copilot = "",
               }
-              
               if vim.fn.strchars(vim_item.abbr) > maxwidth then
                 vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, maxwidth) .. "…"
               end
-
               vim_item.kind = icons[vim_item.kind]
               vim_item.menu = ({
                 async_path = "[Path]",
@@ -154,21 +152,21 @@
 
         {
           name = "copilot";
-          group_index = 2;
+          group_index = 1;
           max_item_count = 2;
         }
         # {
         #   name = "neorg";
-        #   group_index = 2;
+        #   group_index = 1;
         # }
         {
           name = "buffer";
-          group_index = 2;
+          group_index = 1;
         }
 
         {
           name = "rg";
-          group_index = 3;
+          group_index = 2;
           keyword_length = 2;
         }
       ];
@@ -183,9 +181,74 @@
       };
     };
   };
+
   programs.nixvim.plugins.copilot-lua = {
     enable = true;
     panel.enabled = false;
     suggestion.enabled = false;
   };
+
+  programs.nixvim.keymaps = [
+    {
+      mode = [ "i" ];
+      key = "<C-k>";
+      action.__raw = # lua
+        ''
+          function()
+            if require("luasnip").expandable() then
+              require("luasnip").expand()
+            end
+          end
+        '';
+      options.desc = "LuaSnip Expand";
+    }
+    {
+      mode = [
+        "i"
+        "s"
+      ];
+      key = "<C-l>";
+      action.__raw = # lua
+        ''
+          function()
+            if require("luasnip").locally_jumpable(1) then
+              require("luasnip").jump(1)
+            end
+          end
+        '';
+      options.desc = "LuaSnip Forward Jump";
+    }
+    {
+      mode = [
+        "i"
+        "s"
+      ];
+      key = "<C-j>";
+      action.__raw = # lua
+        ''
+          function()
+            if require("luasnip").locally_jumpable(-1) then
+              require("luasnip").jump(-1)
+            end
+          end
+        '';
+      options.desc = "LuaSnip Backward Jump";
+    }
+    {
+      mode = [
+        "i"
+        "s"
+      ];
+      key = "<C-e>";
+      action.__raw = # lua
+        ''
+          function()
+            if require("luasnip").choice_active() then
+              require("luasnip").change_choice(1)
+            end
+          end
+        '';
+      options.desc = "LuaSnip Next Choice";
+    }
+  ];
 }

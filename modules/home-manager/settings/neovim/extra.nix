@@ -20,16 +20,6 @@ let
     };
   };
 
-  quicker-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "quicker";
-    src = pkgs.fetchFromGitHub {
-      owner = "stevearc";
-      repo = "quicker.nvim";
-      rev = "183041a46d6c908eefb1c23ea02cce9c8f41256e";
-      sha256 = "vhDXkE33NkiCs8PUB2PIzljaL15V3Ac62FRgnEZs06M=";
-    };
-  };
-
   nvim-treesitter-pairs = pkgs.vimUtils.buildVimPlugin {
     name = "treesitter-pairs";
     src = pkgs.fetchFromGitHub {
@@ -49,11 +39,61 @@ in
     heirline-nvim
     resession-nvim
     ultimate-autopair-nvim
+    aerial-nvim
 
     latex-nvim
     mysnippets
     nvim-treesitter-pairs
-    quicker-nvim
+  ];
+
+  programs.nixvim.keymaps = [
+    {
+      mode = [
+        "n"
+        "v"
+      ];
+      key = "<leader>sr";
+      action.__raw = # lua
+        ''
+          function()
+            local grug = require("grug-far")
+            local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+            grug.open({ prefills = { filesFilter = ext and ext ~= "" and "*." .. ext or nil } })
+          end
+        '';
+      options.desc = "Search and Replace";
+    }
+
+    {
+      key = "<leader>cs";
+      action = "<Cmd>AerialToggle<CR>";
+      options.desc = "Aerial (Symbols)";
+    }
+
+    {
+      key = "<leader>ss";
+      action.__raw = # lua
+        ''
+          function() require("resession").save() end
+        '';
+      options.desc = "Save Session";
+    }
+    {
+      key = "<leader>sl";
+      action.__raw = # lua
+        ''
+          function() require("resession").load() end
+        '';
+      options.desc = "Load Session";
+    }
+    {
+      key = "<leader>sd";
+      action.__raw = # lua
+        ''
+          function() require("resession").delete() end
+        '';
+      options.desc = "Delete Session";
+    }
   ];
 
   programs.nixvim.extraConfigLua = # lua
@@ -65,12 +105,19 @@ in
       require('resession').setup()
       require('ultimate-autopair').setup()
 
-      require('quicker').setup({
-        keys = {
-          { '>', function() require('quicker').expand({ before = 2, after = 2, add_to_existing = true }) end, desc = 'Expand quickfix context' },
-          { '<', function() require('quicker').collapse() end, desc = 'Collapse quickfix context' },
-        }
+      require('aerial').setup({
+        backends = { "lsp", "treesitter", "markdown", "man" },
+        layout = { resize_to_content = false },
+        filter_kind = false,
+        show_guides = true,
       })
+
+      -- require('quicker').setup({
+      --   keys = {
+      --     { '>', function() require('quicker').expand({ before = 2, after = 2, add_to_existing = true }) end, desc = 'Expand quickfix context' },
+      --     { '<', function() require('quicker').collapse() end, desc = 'Collapse quickfix context' },
+      --   }
+      -- })
 
       local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")

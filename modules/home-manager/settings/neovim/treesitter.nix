@@ -2,8 +2,10 @@
 {
   programs.nixvim.plugins.treesitter = {
     enable = true;
+    grammarPackages =
+      [
+      ];
     settings = {
-      auto_install = false;
       ensure_installed = [
         "bash"
         "bibtex"
@@ -44,10 +46,8 @@
         "vimdoc"
         "yaml"
       ];
+      highlight.enable = true;
       indent.enable = true;
-      highlight = {
-        enable = true;
-      };
     };
   };
 }

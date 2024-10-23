@@ -2,10 +2,12 @@
 {
   programs.nixvim = {
     enable = true;
-    vimdiffAlias = true;
     defaultEditor = true;
     luaLoader.enable = true;
     package = neovim-nightly-overlay.packages.${pkgs.system}.default;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
   };
 
   programs.nixvim.extraPackages = with pkgs; [
@@ -22,9 +24,9 @@
   ];
 
   programs.nixvim.globals = {
-    loaded_ruby_provider = 0; # Ruby
-    loaded_perl_provider = 0; # Perl
-    loaded_python_provider = 0; # Python 2
+    loaded_perl_provider = 0;
+    loaded_python3_provider = 0;
+    loaded_ruby_provider = 0;
 
     loaded_gzip = 1;
     loaded_matchit = 1;
@@ -41,23 +43,6 @@
   programs.nixvim.clipboard.register = "unnamedplus";
   # programs.nixvim.colorschemes.nord.enable = true;
 
-  programs.nixvim.diagnostics = {
-    virtual_text = {
-      spacing = 4;
-      prefix = "●";
-    };
-    severity_sort = true;
-    signs.text.__raw = # lua
-      ''
-        {
-          [vim.diagnostic.severity.ERROR] = " ",
-          [vim.diagnostic.severity.WARN] = " ",
-          [vim.diagnostic.severity.INFO] = " ",
-          [vim.diagnostic.severity.HINT] = " ",
-        }
-      '';
-  };
-
   imports = [
     ./performance.nix
 
@@ -65,7 +50,7 @@
     ./keymaps.nix
     ./autocmds.nix
 
-    # ./lazy.nix
+    ./diagnostics.nix
 
     ./conform.nix
     ./compiler.nix
@@ -75,6 +60,7 @@
     ./lang.nix
     ./lint.nix
     ./lsp.nix
+    ./neo-tree.nix
     ./treesitter.nix
     ./ui.nix
 

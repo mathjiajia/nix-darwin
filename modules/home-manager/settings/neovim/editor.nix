@@ -3,6 +3,13 @@
   programs.nixvim.plugins = {
     flash.enable = true;
     nvim-surround.enable = true;
+    nvim-bqf = {
+      enable = true;
+      preview = {
+        winHeight = 5;
+        winVheight = 5;
+      };
+    };
 
     fzf-lua = {
       enable = true;
@@ -65,22 +72,6 @@
       };
     };
 
-    neo-tree = {
-      enable = true;
-      # open_files_do_not_replace_types = { "aerial"; "qf"; "terminal"; };
-      defaultComponentConfigs.indent.withExpanders = true;
-      filesystem = {
-        bindToCwd = false;
-        followCurrentFile.enabled = true;
-        useLibuvFileWatcher = true;
-        filteredItems = {
-          hideDotfiles = false;
-          hideGitignored = true;
-          hideByName = [ ".git" ];
-        };
-      };
-    };
-
     gitsigns = {
       enable = true;
       settings.on_attach = # lua
@@ -130,4 +121,64 @@
         '';
     };
   };
+
+  programs.nixvim.keymaps = [
+    {
+      mode = [
+        "n"
+        "x"
+        "o"
+      ];
+      key = "s";
+      action.__raw = # lua
+        ''
+          function() require("flash").jump() end
+        '';
+      options.desc = "Flash";
+    }
+    {
+      mode = [
+        "n"
+        "x"
+        "o"
+      ];
+      key = "S";
+      action.__raw = # lua
+        ''
+          function() require("flash").treesitter() end
+        '';
+      options.desc = "Flash Treesitter";
+    }
+    {
+      mode = [ "o" ];
+      key = "r";
+      action.__raw = # lua
+        ''
+          function() require("flash").remote() end
+        '';
+      options.desc = "Remote Flash";
+    }
+    {
+      mode = [
+        "x"
+        "o"
+      ];
+      key = "R";
+      action.__raw = # lua
+        ''
+          function() require("flash").treesitter_search() end
+        '';
+      options.desc = "Treesitter Search";
+    }
+    {
+      mode = [ "c" ];
+      key = "<c-s>";
+      action.__raw = # lua
+        ''
+          function() require("flash").toggle() end
+        '';
+      options.desc = "Toggle Flash Search";
+    }
+
+  ];
 }

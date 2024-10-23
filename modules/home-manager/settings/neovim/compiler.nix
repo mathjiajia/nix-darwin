@@ -73,4 +73,29 @@
       };
     };
   };
+
+  programs.nixvim.keymaps = [
+    {
+      key = "<leader>rf";
+      action = "<Cmd>OverseerRun RunFile<CR>";
+      options.silent = true;
+      options.desc = "Run File";
+    }
+    {
+      key = "<leader>rr";
+      action = "<Cmd>OverseerRun OpenREPL<CR>";
+      options.silent = true;
+      options.desc = "Open REPL";
+    }
+    {
+      mode = [
+        "n"
+        "v"
+      ];
+      key = "<leader>rs";
+      action = "<Plug>SnipRun";
+      options.silent = true;
+      options.desc = "Snip Run";
+    }
+  ];
 }

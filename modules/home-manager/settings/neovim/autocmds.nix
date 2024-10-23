@@ -44,13 +44,8 @@
         event = [ "TextYankPost" ];
         desc = "Highlight the Yanked Text";
         group = "HighlightYank";
-        callback.__raw =
-          # lua
-          ''
-            function()
-              vim.highlight.on_yank()
-            end
-          '';
+        callback.__raw = # lua
+          "function() vim.highlight.on_yank() end";
       }
       {
         event = [ "BufReadPost" ];
@@ -88,10 +83,10 @@
       #         if not pcall(vim.treesitter.start, ev.buf) then
       #           return
       #         end
-
+      #
       #         vim.opt_local.foldmethod = "expr"
       #         vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
+      #
       #         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       #       end
       #     '';
@@ -117,11 +112,7 @@
         event = [ "BufWritePost" ];
         pattern = [ "*/spell/*.add" ];
         callback.__raw = # lua
-          ''
-            function()
-              vim.cmd.mkspell({ "%", bang = true, mods = { silent = true } })
-            end
-          '';
+          "function() vim.cmd.mkspell({ '%', bang = true, mods = { silent = true } }) end";
       }
     ];
   };
