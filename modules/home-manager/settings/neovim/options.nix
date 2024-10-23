@@ -1,4 +1,3 @@
-{ ... }:
 {
   programs.nixvim.opts = {
     # 1 important

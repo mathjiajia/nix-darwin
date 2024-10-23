@@ -1,4 +1,3 @@
-{ ... }:
 {
   programs.nixvim.extraFiles = {
     "after/ftplugin/checkhealth.lua".text = # lua

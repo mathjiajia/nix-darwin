@@ -1,8 +1,8 @@
-{ ... }:
 {
   programs.nixvim.plugins.lsp = {
     enable = true;
-    capabilities = "require('cmp_nvim_lsp').default_capabilities()";
+    capabilities = # lua
+      "require('cmp_nvim_lsp').default_capabilities()";
     inlayHints = true;
     onAttach = # lua
       ''
