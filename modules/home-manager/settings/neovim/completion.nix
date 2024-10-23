@@ -1,18 +1,26 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.nixvim.plugins.luasnip = {
     enable = true;
+    fromLua = [
+      {
+        lazyLoad = true;
+        # paths = "luasnippets";
+      }
+    ];
     settings = {
       update_events = "TextChanged,TextChangedI";
       delete_check_events = "TextChanged";
       enable_autosnippets = true;
       store_selection_keys = "<Tab>";
-      ext_opts.__raw = ''
-        {
-          [require("luasnip.util.types").insertNode] = { active = { virt_text = { { "", "Boolean" } } } },
-          [require("luasnip.util.types").choiceNode] = { active = { virt_text = { { "󱥸", "Special" } } } },
-        }
-      '';
+      ext_opts.__raw =
+        # lua
+        ''
+          {
+            [require("luasnip.util.types").insertNode] = { active = { virt_text = { { "", "Boolean" } } } },
+            [require("luasnip.util.types").choiceNode] = { active = { virt_text = { { "󱥸", "Special" } } } },
+          }
+        '';
     };
   };
 
@@ -61,28 +69,57 @@
           "menu"
           "kind"
         ];
-        format = ''
-          function(entry, item)
-            local maxwidth = 30
-            local icon = require("mini.icons").get("lsp", item.kind)
-
-            if vim.fn.strchars(item.abbr) > maxwidth then
-              item.abbr = vim.fn.strcharpart(item.abbr, 0, maxwidth) .. "…"
-            end
-            item.menu = ({
-              buffer = "[Buffer]",
-              cmdline = "[Cmd]",
-              nvim_lsp = "[LSP]",
-              lazydev = "[Lazy]",
-              luasnip = "[Snip]",
-              neorg = "[Norg]",
-              async_path = "[Path]",
-              rg = "[RG]",
-            })[entry.source.name]
-            item.kind = icon .. " " .. item.kind
-            return item
-          end
-        '';
+        # format =
+        #   # lua
+        #   ''
+        #     function(entry, item)
+        #       local maxwidth = 30
+        #       local icons = {
+        #         Text = "",
+        #         Method = "",
+        #         Function = "",
+        #         Constructor = "",
+        #         Field = "",
+        #         Variable = "",
+        #         Class = "",
+        #         Interface = "",
+        #         Module = "",
+        #         Property = "",
+        #         Unit = "",
+        #         Value = "",
+        #         Enum = "",
+        #         Keyword = "",
+        #         Snippet = "",
+        #         Color = "",
+        #         File = "",
+        #         Reference = "",
+        #         Folder = "",
+        #         EnumMember = "",
+        #         Constant = "",
+        #         Struct = "",
+        #         Event = "",
+        #         Operator = "",
+        #         TypeParameter = "",
+        #         Copilot = "",
+        #       }
+        #
+        #       if vim.fn.strchars(item.abbr) > maxwidth then
+        #         item.abbr = vim.fn.strcharpart(item.abbr, 0, maxwidth) .. "…"
+        #       end
+        #       item.menu = ({
+        #         buffer = "[Buffer]",
+        #         cmdline = "[Cmd]",
+        #         nvim_lsp = "[LSP]",
+        #         lazydev = "[Lazy]",
+        #         luasnip = "[Snip]",
+        #         neorg = "[Norg]",
+        #         async_path = "[Path]",
+        #         rg = "[RG]",
+        #       })[entry.source.name]
+        #       item.kind = icons[item.kind] " " .. item.kind
+        #       return item
+        #     end
+        #   '';
       };
       mapping = {
         "<C-b>" = "cmp.mapping.scroll_docs(-4)";
@@ -91,11 +128,13 @@
         "<C-y>" = "cmp.mapping.confirm({ select = true })";
       };
       matching.disallow_prefix_unmatching = true;
-      snippet.expand = ''
-        function(args)
-          require('luasnip').lsp_expand(args.body)
-        end
-      '';
+      snippet.expand =
+        # lua
+        ''
+          function(args)
+            require('luasnip').lsp_expand(args.body)
+          end
+        '';
       sources = [
         {
           name = "lazydev";
@@ -114,14 +153,14 @@
           name = "async_path";
           group_index = 1;
         }
+        {
+          name = "buffer";
+          group_index = 1;
+        }
 
         {
           name = "copilot";
           max_item_count = 2;
-          group_index = 2;
-        }
-        {
-          name = "buffer";
           group_index = 2;
         }
         # { name = "neorg"; }

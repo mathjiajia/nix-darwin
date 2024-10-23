@@ -6,13 +6,15 @@
       prefix = "●";
     };
     severity_sort = true;
-    signs.text.__raw = ''
-      {
-        [vim.diagnostic.severity.ERROR] = " ",
-        [vim.diagnostic.severity.WARN] = " ",
-        [vim.diagnostic.severity.INFO] = " ",
-        [vim.diagnostic.severity.HINT] = " ",
-      }
-    '';
+    signs.text.__raw =
+      # lua
+      ''
+        {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.HINT] = " ",
+        }
+      '';
   };
 }

@@ -1,6 +1,7 @@
 { ... }:
 {
   programs.nixvim.plugins = {
+    dressing.enable = true;
     notify.enable = true;
     noice = {
       enable = true;
@@ -30,6 +31,69 @@
       ];
     };
 
+    dashboard = {
+      enable = true;
+      settings = {
+        config = {
+          footer = [
+            ""
+            "Neovim with Nix, Made with ❤️"
+          ];
+          header = [
+            "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
+            "████╗  ██║██║╚██╗██╔╝██║   ██║██║████╗ ████║"
+            "██╔██╗ ██║██║ ╚███╔╝ ██║   ██║██║██╔████╔██║"
+            "██║╚██╗██║██║ ██╔██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
+            "██║ ╚████║██║██╔╝ ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
+            "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
+            ""
+          ];
+          mru = {
+            cwd_only = true;
+          };
+          packages = {
+            enable = false;
+          };
+          project = {
+            action = "FzfLua files cwd=";
+          };
+          shortcut = [
+            {
+              action = "FzfLua files";
+              desc = "Find File";
+              group = "Directory";
+              icon = "  ";
+              key = "ff";
+            }
+            {
+              action = "FzfLua oldfiles";
+              desc = "Recent Files";
+              group = "Identifier";
+              icon = "  ";
+              key = "fo";
+            }
+            {
+              action = "FzfLua live_grep";
+              desc = "Live Grep";
+              group = "Float";
+              icon = "  ";
+              key = "sg";
+            }
+            {
+              action.__raw = "function(path) vim.api.nvim_input('<Cmd>qa<CR>') end";
+              desc = "Quit";
+              group = "String";
+              icon = "  ";
+              key = "q";
+            }
+          ];
+          # week_header = {
+          #   enable = true;
+          # };
+        };
+      };
+    };
+
     rainbow-delimiters.enable = true;
     indent-blankline = {
       enable = true;
@@ -49,21 +113,25 @@
           "RainbowCyan"
         ];
       };
-      luaConfig.pre = ''
-        local hooks = require("ibl.hooks")
-        hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-          vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-          vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-          vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-          vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-          vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-          vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-          vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-        end)
-      '';
-      luaConfig.post = ''
-        hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-      '';
+      luaConfig.pre =
+        # lua
+        ''
+          local hooks = require("ibl.hooks")
+          hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+            vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+            vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+            vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+            vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+            vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+            vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+            vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+          end)
+        '';
+      luaConfig.post =
+        # lua
+        ''
+          hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+        '';
     };
 
     twilight.enable = true;
@@ -74,8 +142,10 @@
       };
     };
 
+    web-devicons.enable = true;
+
     mini = {
-      enable = true;
+      # enable = true;
       mockDevIcons = true;
       modules.icons = {
         lsp = {
