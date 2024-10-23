@@ -150,11 +150,6 @@
           group_index = 1;
         }
 
-        {
-          name = "copilot";
-          group_index = 1;
-          max_item_count = 2;
-        }
         # {
         #   name = "neorg";
         #   group_index = 1;
@@ -164,6 +159,11 @@
           group_index = 1;
         }
 
+        {
+          name = "copilot";
+          group_index = 2;
+          max_item_count = 2;
+        }
         {
           name = "rg";
           group_index = 2;

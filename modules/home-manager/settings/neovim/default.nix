@@ -38,8 +38,6 @@
     loaded_tarPlugin = 1;
     loaded_tutor_mode_plugin = 1;
     loaded_zipPlugin = 1;
-
-    base46_cache = "/Users/jia/.local/share/nvim/base46_cache/";
   };
 
   programs.nixvim.clipboard.register = "unnamedplus";
@@ -65,6 +63,7 @@
     ./ui.nix
 
     ./extra-plugins.nix
+    # ./nvchad.nix
 
     ./extra-files.nix
   ];
