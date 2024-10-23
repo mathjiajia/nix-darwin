@@ -1,13 +1,10 @@
-{ pkgs, ... }:
+{ ... }:
 {
   programs.nixvim = {
     plugins.dap = {
       enable = true;
       extensions = {
-        # dap-python = {
-        #   enable = true;
-        #   package = pkgs.python312Packages.debugpy;
-        # };
+        dap-python.enable = true;
         dap-ui.enable = true;
         dap-virtual-text.enable = true;
       };
@@ -39,6 +36,15 @@
         };
       };
     };
+
+    extraConfigLua = # lua
+      ''
+        local dap, dapui = require('dap'), require('dapui')
+        dap.listeners.before.attach.dapui_config = function() dapui.open() end
+        dap.listeners.before.launch.dapui_config = function() dapui.open() end
+        dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+        dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
+      '';
 
     keymaps = [
       {
