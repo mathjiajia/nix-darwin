@@ -1,7 +1,4 @@
 {
-  programs.fish.interactiveShellInit = # fish
-    "fish_add_path /opt/homebrew/bin";
-
   homebrew = {
     enable = true;
     onActivation = {
