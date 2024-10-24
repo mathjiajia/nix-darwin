@@ -5,7 +5,7 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "mySnippets";
-      rev = "b953aef537cfe981ed30d687039d9a500076b6f5";
+      rev = "master";
       sha256 = "5mHU0QtdMBtoUGBvKiFfNEn5T8MSzPWLOqmll2kWrMU=";
     };
   };
@@ -15,7 +15,7 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "latex.nvim";
-      rev = "41d4d8e5b9cc6daca483577086947f3224383be3";
+      rev = "master";
       sha256 = "IG0uKocxYBbvaYtrVMW3Qmp5lBw3r9tu5PeJZv34Se0=";
     };
   };
@@ -25,7 +25,7 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "lewis6991";
       repo = "nvim-treesitter-pairs";
-      rev = "77423fac578ea8ec00552e75f9a1b1b6fb5ae695";
+      rev = "master";
       sha256 = "Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };

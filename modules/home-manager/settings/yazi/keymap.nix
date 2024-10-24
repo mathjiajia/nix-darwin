@@ -5,7 +5,7 @@
       {
         on = lib.strings.stringToCharacters "git";
         run = "shell --block --confirm 'lazygit'";
-        desc = "Open the selected files";
+        desc = "Open lazygit";
       }
       {
         on = "j";
@@ -37,42 +37,22 @@
 
       # Goto
       {
-        on = [
-          "g"
-          "m"
-        ];
+        on = lib.strings.stringToCharacters "gm";
         run = "cd ~/Documents/Projects/moduli2";
         desc = "Go to the current project dir";
       }
       {
-        on = [
-          "g"
-          "n"
-        ];
-        run = "cd ~/.config/nvim";
-        desc = "Go to the nvim config directory";
-      }
-      {
-        on = [
-          "g"
-          "t"
-        ];
+        on = lib.strings.stringToCharacters "gt";
         run = "cd ~/Documents/Talks";
         desc = "Go to the talks directory";
       }
       {
-        on = [
-          "g"
-          "v"
-        ];
+        on = lib.strings.stringToCharacters "gv";
         run = "cd ~/.config/vimtex";
         desc = "Go to the yazi config directory";
       }
       {
-        on = [
-          "g"
-          "x"
-        ];
+        on = lib.strings.stringToCharacters "gn";
         run = "cd ~/.config/nix-darwin";
         desc = "Go to the nix-darwin config directory";
       }
@@ -91,10 +71,7 @@
         desc = "Smart filter";
       }
       {
-        on = [
-          "c"
-          "m"
-        ];
+        on = lib.strings.stringToCharacters "cm";
         run = "plugin chmod";
         desc = "Chmod selected files";
       }
