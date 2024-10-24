@@ -1,26 +1,11 @@
 {
   programs.nixvim = {
-    autoGroups =
-      let
-        togroup =
-          strings:
-          builtins.listToAttrs (
-            map (s: {
-              name = s;
-              value = {
-                clear = true;
-              };
-            }) strings
-          );
-      in
-
-      togroup [
-        "CheckTime"
-        "HighlightYank"
-        "UserLspConfig"
-        "LastPlace"
-        "openFile"
-      ];
+    autoGroups = {
+      CheckTime = { };
+      HighlightYank = { };
+      LastPlace = { };
+      OpenFile = { };
+    };
 
     autoCmd = [
       {
@@ -84,7 +69,7 @@
       # }
       {
         event = [ "BufReadPost" ];
-        group = "openFile";
+        group = "OpenFile";
         pattern = [
           "*.jpeg"
           "*.jpg"
