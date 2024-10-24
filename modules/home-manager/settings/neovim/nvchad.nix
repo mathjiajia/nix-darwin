@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
 let
-  home = config.home.homeDirectory;
-
   nvchad-volt = pkgs.vimUtils.buildVimPlugin {
     name = "volt";
     src = pkgs.fetchFromGitHub {
@@ -49,7 +47,7 @@ let
   };
 in
 {
-  programs.nixvim.globals.base46_cache = "${home}/.local/share/nvim/base46_cache/";
+  programs.nixvim.globals.base46_cache = "${config.xdg.dataHome}/nvim/base46_cache/";
 
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     plenary-nvim

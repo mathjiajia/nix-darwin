@@ -4,6 +4,7 @@
     ./settings/bat
     ./settings/git
     ./settings/neovim
+    ./settings/yazi
 
     ./settings/fastfetch.nix
     ./settings/fd.nix
@@ -14,7 +15,6 @@
     ./settings/ripgrep.nix
     ./settings/sioyek.nix
     ./settings/starship.nix
-    ./settings/yazi.nix
 
     ./configs/aerospace.nix
     ./configs/ghostty.nix
@@ -41,9 +41,7 @@
     packages = with pkgs; [
       cargo
       difftastic
-      glow
       hugo
-      nixfmt-rfc-style
       onefetch
       python3
       python312Packages.ipython

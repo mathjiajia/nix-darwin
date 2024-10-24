@@ -12,12 +12,16 @@
 
   programs.nixvim.extraPackages = with pkgs; [
     luajit
-    luajitPackages.luarocks
     nodejs
     tree-sitter
 
+    commitlint
+    markdownlint-cli2
+    shellcheck
+
     bibtex-tidy
     black
+    nixfmt-rfc-style
     prettierd
     shfmt
     stylua
