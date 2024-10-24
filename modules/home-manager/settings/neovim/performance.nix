@@ -14,6 +14,9 @@
         "/copilot"
         "/luasnippets"
       ];
+      # standalonePlugins = [
+      #   "nvim-treesitter"
+      # ];
     };
   };
 }
