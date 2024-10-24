@@ -48,36 +48,40 @@
         # alt-a = 'focus parent'
 
         alt-1 = 'workspace 🍏'
+        # Z - zoom and voov
+        alt-2 = 'workspace 🎬'
+        alt-z = 'workspace 🎬'
         # W - work
-        alt-2 = 'workspace 🏫'
+        alt-3 = 'workspace 🏫'
         alt-w = 'workspace 🏫'
         # T - terminal
-        alt-3 = 'workspace 👻'
+        alt-4 = 'workspace 👻'
         alt-t = 'workspace 👻'
         # C - chat
-        alt-4 = 'workspace 💬'
+        alt-5 = 'workspace 💬'
         alt-c = 'workspace 💬'
         # F - finder
-        alt-5 = 'workspace 📁'
+        alt-6 = 'workspace 📁'
         alt-f = 'workspace 📁'
         # N - notes
-        alt-6 = 'workspace 📔'
+        alt-7 = 'workspace 📔'
         alt-n = 'workspace 📔'
         # B - browser
-        alt-7 = 'workspace 🔍'
+        alt-8 = 'workspace 🔍'
         alt-b = 'workspace 🔍'
         # D -  devtools
-        alt-8 = 'workspace 🧑‍💻'
+        alt-9 = 'workspace 🧑‍💻'
         alt-d = 'workspace 🧑‍💻'
 
         alt-shift-1 = 'move-node-to-workspace 🍏'
-        alt-shift-2 = 'move-node-to-workspace 🏫'
-        alt-shift-3 = 'move-node-to-workspace 👻'
-        alt-shift-4 = 'move-node-to-workspace 💬'
-        alt-shift-5 = 'move-node-to-workspace 📁'
-        alt-shift-6 = 'move-node-to-workspace 📔'
-        alt-shift-7 = 'move-node-to-workspace 🔍'
-        alt-shift-8 = 'move-node-to-workspace 🧑‍💻'
+        alt-shift-2 = 'move-node-to-workspace 🎬'
+        alt-shift-3 = 'move-node-to-workspace 🏫'
+        alt-shift-4 = 'move-node-to-workspace 👻'
+        alt-shift-5 = 'move-node-to-workspace 💬'
+        alt-shift-6 = 'move-node-to-workspace 📁'
+        alt-shift-7 = 'move-node-to-workspace 📔'
+        alt-shift-8 = 'move-node-to-workspace 🔍'
+        alt-shift-9 = 'move-node-to-workspace 🧑‍💻'
 
         alt-tab = 'workspace-back-and-forth'
         alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
@@ -97,6 +101,14 @@
         alt-shift-j = ['join-with down', 'mode main']
         alt-shift-k = ['join-with up', 'mode main']
         alt-shift-l = ['join-with right', 'mode main']
+
+        [[on-window-detected]]
+        if.app-id = 'us.zoom.xos'
+        run = 'move-node-to-workspace 🎬'
+
+        [[on-window-detected]]
+        if.app-id = 'com.tencent.tencentmeeting'
+        run = 'move-node-to-workspace 🎬'
 
         [[on-window-detected]]
         if.app-id = 'com.microsoft.Excel'

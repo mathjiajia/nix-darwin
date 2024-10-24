@@ -35,6 +35,7 @@
       "publish-or-perish"
       "qlmarkdown"
       "sf-symbols"
+      "sioyek"
       "soulver"
       "sublime-merge"
       "surge"
@@ -65,6 +66,7 @@
       "OpenCat" = 6445999201;
       "Pages" = 409201541;
       "Playgrounds" = 1496833156;
+      "Perplexity: Ask Anything" = 6714467650;
       "Reeder" = 6475002485;
       "SnippetsLab" = 1006087419;
       "Taio" = 1527036273;
