@@ -1,14 +1,10 @@
-{ pkgs, ... }:
 {
   imports = [
-    ./plugins
-    ./settings.nix
     ./keymap.nix
+    ./plugins.nix
+    ./settings.nix
   ];
 
-  home.packages = with pkgs; [
-    mdcat
-  ];
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;

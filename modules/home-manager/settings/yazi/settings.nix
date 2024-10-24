@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    glow
+    mdcat
+  ];
+
   programs.yazi.settings = {
     manager = {
       ratio = [
@@ -37,6 +42,10 @@
         }
       ];
       prepend_previewers = [
+        {
+          name = "*.md";
+          run = "glow";
+        }
         {
           name = "*.md";
           run = "mdcat";
