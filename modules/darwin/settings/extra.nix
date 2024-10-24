@@ -5,7 +5,6 @@
   ];
 
   homebrew.casks = [
-    # "adguard"
     "adobe-acrobat-pro"
     "adobe-creative-cloud"
     "anythingllm"
