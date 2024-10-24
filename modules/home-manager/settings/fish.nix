@@ -6,7 +6,6 @@
       ''
         set fish_greeting
         fish_add_path --path --move /run/current-system/sw/bin
-        fish_add_path /opt/homebrew/bin
         fish_add_path --append $GHOSTTY_BIN_DIR
         if set -q GHOSTTY_RESOURCES_DIR
           source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
