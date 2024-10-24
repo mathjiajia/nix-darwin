@@ -6,6 +6,7 @@
     ./settings/neovim
     ./settings/yazi
 
+    ./settings/btop.nix
     ./settings/fastfetch.nix
     ./settings/fd.nix
     ./settings/fish.nix
@@ -44,7 +45,6 @@
       hugo
       onefetch
       python3
-      python312Packages.ipython
       poppler
       # swift-format
       tree
@@ -52,36 +52,15 @@
     ];
   };
 
-  xdg.enable = true;
-
   programs = {
     emacs.enable = true;
-    home-manager.enable = true;
+    home-manager.enable = true; # manage itslef
     pandoc.enable = true;
     texlive.enable = false;
     vscode.enable = true;
     wezterm.enable = false;
+    zoxide.enable = true;
   };
 
-  programs.btop = {
-    enable = true;
-    settings = {
-      theme_background = false;
-      vim_keys = true;
-    };
-  };
-
-  # programs.neovim = {
-  #   enable = true;
-  #   defaultEditor = true;
-  #   withPython3 = false;
-  #   withRuby = false;
-  #   package = neovim-nightly-overlay.packages.${pkgs.system}.default;
-  # };
-
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
+  xdg.enable = true;
 }

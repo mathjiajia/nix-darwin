@@ -5,15 +5,13 @@
     defaultEditor = true;
     luaLoader.enable = true;
     package = neovim-nightly-overlay.packages.${pkgs.system}.default;
-    viAlias = true;
-    vimAlias = true;
     vimdiffAlias = true;
   };
 
   programs.nixvim.extraPackages = with pkgs; [
     luajit
-    nodejs
-    tree-sitter
+    nodejs # for copilot.lua
+    python312Packages.ipython # for sniprun
 
     commitlint
     markdownlint-cli2
