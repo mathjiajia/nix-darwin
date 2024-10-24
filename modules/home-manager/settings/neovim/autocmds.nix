@@ -31,13 +31,7 @@
         ];
         group = "CheckTime";
         callback.__raw = # lua
-          ''
-            function()
-              if vim.o.buftype ~= "nofile" then
-                vim.cmd.checktime()
-              end
-            end
-          '';
+          "function() if vim.o.buftype ~= 'nofile' then vim.cmd.checktime() end end";
       }
       {
         event = [ "TextYankPost" ];
@@ -82,10 +76,8 @@
       #         if not pcall(vim.treesitter.start, ev.buf) then
       #           return
       #         end
-      #
       #         vim.opt_local.foldmethod = "expr"
       #         vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      #
       #         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       #       end
       #     '';

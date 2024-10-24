@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.nixvim.plugins.lsp = {
     enable = true;
@@ -75,7 +76,7 @@
               "--execute-command"
               "turn_on_synctex"
               "--inverse-search"
-              "texlab inverse-search --input %%1 --line %%2"
+              "${pkgs.texlab}/bin/texlab inverse-search --input %%1 --line %%2"
               "--forward-search-file"
               "%f"
               "--forward-search-line"

@@ -1,3 +1,8 @@
+# { pkgs, ... }:
+# let
+#   fzf-plugin = "${pkgs.fzf}/share/vim-plugins/fzf/plugin";
+# in
+# vim.opt.rtp:append("${fzf-plugin}")
 {
   programs.nixvim.extraFiles = {
     "after/ftplugin/checkhealth.lua".text = # lua
