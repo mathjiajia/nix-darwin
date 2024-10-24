@@ -15,6 +15,9 @@
     ./settings/sioyek.nix
     ./settings/starship.nix
     ./settings/yazi.nix
+
+    ./configs/aerospace.nix
+    ./configs/ghostty.nix
   ];
 
   home = {
