@@ -64,7 +64,7 @@
         # };
       };
       settings = {
-        grep.RIPGREP_CONFIG_PATH.__raw = "vim.env.RIPGREP_CONFIG_PATH";
+        grep.RIPGREP_CONFIG_PATH = "~/.config/ripgrep/ripgreprc";
         defaults.formatter = "path.dirname_first";
       };
     };

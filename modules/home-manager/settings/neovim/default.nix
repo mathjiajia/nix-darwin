@@ -12,6 +12,7 @@
     luajit
     nodejs # for copilot.lua
     python312Packages.ipython # for sniprun
+    # tree-sitter
 
     commitlint
     markdownlint-cli2
