@@ -6,18 +6,18 @@ let
     rev = "master";
     sha256 = "NNfPwiY1J+s/b2rajEdAubGsGKfFCA5ALz7MNX8wyGM=";
   };
-  yaziGlow = pkgs.fetchFromGitHub {
-    owner = "Reledia";
-    repo = "glow.yazi";
-    rev = "master";
-    sha256 = "bqaFqjlQ/VgMdt2VVjEI8cIkA9THjOZDgNspNicxlbc=";
-  };
-  yaziMdcat = pkgs.fetchFromGitHub {
-    owner = "GrzegorzKozub";
-    repo = "mdcat.yazi";
-    rev = "master";
-    sha256 = "dZOOmkoyjTty1LWXobNVxicD0yrzRNzF3N0BiWz+a+E=";
-  };
+  # yaziGlow = pkgs.fetchFromGitHub {
+  #   owner = "Reledia";
+  #   repo = "glow.yazi";
+  #   rev = "master";
+  #   sha256 = "bqaFqjlQ/VgMdt2VVjEI8cIkA9THjOZDgNspNicxlbc=";
+  # };
+  # yaziMdcat = pkgs.fetchFromGitHub {
+  #   owner = "GrzegorzKozub";
+  #   repo = "mdcat.yazi";
+  #   rev = "master";
+  #   sha256 = "dZOOmkoyjTty1LWXobNVxicD0yrzRNzF3N0BiWz+a+E=";
+  # };
   arrowPlugin = pkgs.writeTextFile {
     name = "arrow.yazi";
     destination = "/init.lua";
@@ -71,9 +71,9 @@ in
     diff = "${yaziPlugins}/diff.yazi";
     full-border = "${yaziPlugins}/full-border.yazi";
     git = "${yaziPlugins}/git.yazi";
-    glow = yaziGlow;
+    # glow = yaziGlow;
     jump-to-char = "${yaziPlugins}/jump-to-char.yazi";
-    macat = yaziMdcat;
+    # macat = yaziMdcat;
     parent-arrow = parentArrowPlugin;
     smart-enter = smartEnterPlugin;
     smart-filter = "${yaziPlugins}/smart-filter.yazi";
