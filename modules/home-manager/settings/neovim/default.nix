@@ -11,8 +11,7 @@
   programs.nixvim.extraPackages = with pkgs; [
     luajit
     nodejs # for copilot.lua
-    python312Packages.ipython # for sniprun
-    # tree-sitter
+    python312Packages.ipython # for REPL (overseer)
 
     commitlint
     markdownlint-cli2

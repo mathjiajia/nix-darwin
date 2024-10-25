@@ -32,7 +32,6 @@
       DFT_PARSE_ERROR_LIMIT = 999;
       HOMEBREW_NO_ANALYTICS = 1;
 
-      # CARGO_HOME = "$XDG_DATA_HOME/cargo";
       DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
       GEM_HOME = "$XDG_DATA_HOME/gem";
       GEM_SPEC_CACHE = "$XDG_CACHE_HOME/gem";
@@ -40,12 +39,10 @@
     };
 
     packages = with pkgs; [
-      cargo
       difftastic
       hugo
       onefetch
       python3
-      poppler
       # swift-format
       tree
       unrar

@@ -1,9 +1,12 @@
 { config, pkgs, ... }:
 {
-  # home.packages = with pkgs; [
-  #   glow
-  #   mdcat
-  # ];
+  home.packages = with pkgs; [
+    ffmpegthumbnailer
+    # glow
+    imagemagick
+    # mdcat
+    poppler
+  ];
 
   programs.yazi.settings = {
     manager = {
