@@ -47,41 +47,41 @@
         # should be supported at all https://github.com/nikitabobko/AeroSpace/issues/5
         # alt-a = 'focus parent'
 
-        alt-1 = 'workspace 🍏'
-        # Z - zoom and voov
-        alt-2 = 'workspace 🎬'
-        alt-z = 'workspace 🎬'
-        # W - work
-        alt-3 = 'workspace 🏫'
-        alt-w = 'workspace 🏫'
-        # T - terminal
-        alt-4 = 'workspace 👻'
-        alt-t = 'workspace 👻'
-        # C - chat
-        alt-5 = 'workspace 💬'
-        alt-c = 'workspace 💬'
-        # F - finder
-        alt-6 = 'workspace 📁'
-        alt-f = 'workspace 📁'
-        # N - notes
-        alt-7 = 'workspace 📔'
-        alt-n = 'workspace 📔'
+        alt-1 = 'workspace 1'
         # B - browser
-        alt-8 = 'workspace 🔍'
-        alt-b = 'workspace 🔍'
+        alt-2 = 'workspace Safari'
+        alt-b = 'workspace Safari'
+        # C - chat
+        alt-3 = 'workspace Chat'
+        alt-c = 'workspace Chat'
         # D -  devtools
-        alt-9 = 'workspace 🧑‍💻'
-        alt-d = 'workspace 🧑‍💻'
+        alt-4 = 'workspace Dev'
+        alt-d = 'workspace Dev'
+        # F - finder
+        alt-5 = 'workspace Finder'
+        alt-f = 'workspace Finder'
+        # N - notes
+        alt-6 = 'workspace Notes'
+        alt-n = 'workspace Notes'
+        # T - terminal
+        alt-7 = 'workspace Term'
+        alt-t = 'workspace Term'
+        # W - work
+        alt-8 = 'workspace Work'
+        alt-w = 'workspace Work'
+        # Z - zoom and voov
+        alt-9 = 'workspace Video'
+        alt-z = 'workspace Video'
 
-        alt-shift-1 = 'move-node-to-workspace 🍏'
-        alt-shift-2 = 'move-node-to-workspace 🎬'
-        alt-shift-3 = 'move-node-to-workspace 🏫'
-        alt-shift-4 = 'move-node-to-workspace 👻'
-        alt-shift-5 = 'move-node-to-workspace 💬'
-        alt-shift-6 = 'move-node-to-workspace 📁'
-        alt-shift-7 = 'move-node-to-workspace 📔'
-        alt-shift-8 = 'move-node-to-workspace 🔍'
-        alt-shift-9 = 'move-node-to-workspace 🧑‍💻'
+        alt-shift-1 = 'move-node-to-workspace 1'
+        alt-shift-2 = 'move-node-to-workspace Safari'
+        alt-shift-3 = 'move-node-to-workspace Chat'
+        alt-shift-4 = 'move-node-to-workspace Dev'
+        alt-shift-5 = 'move-node-to-workspace Finder'
+        alt-shift-6 = 'move-node-to-workspace Notes'
+        alt-shift-7 = 'move-node-to-workspace Term'
+        alt-shift-8 = 'move-node-to-workspace Work'
+        alt-shift-9 = 'move-node-to-workspace Video'
 
         alt-tab = 'workspace-back-and-forth'
         alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
@@ -103,119 +103,120 @@
         alt-shift-l = ['join-with right', 'mode main']
 
         [[on-window-detected]]
-        if.app-id = 'us.zoom.xos'
-        run = 'move-node-to-workspace 🎬'
-
-        [[on-window-detected]]
-        if.app-id = 'com.tencent.tencentmeeting'
-        run = 'move-node-to-workspace 🎬'
-
-        [[on-window-detected]]
-        if.app-id = 'com.microsoft.Excel'
-        run = 'move-node-to-workspace 🏫'
-
-        [[on-window-detected]]
-        if.app-id = 'com.microsoft.Powerpoint'
-        run = 'move-node-to-workspace 🏫'
-
-        [[on-window-detected]]
-        if.app-id = 'com.microsoft.Word'
-        run = 'move-node-to-workspace 🏫'
-
-        [[on-window-detected]]
-        if.app-id = 'com.apple.iWork.Kenotes'
-        run = 'move-node-to-workspace 🏫'
-
-        [[on-window-detected]]
-        if.app-id = 'com.apple.iWork.Numbers'
-        run = 'move-node-to-workspace 🏫'
-
-        [[on-window-detected]]
-        if.app-id = 'com.apple.iWork.Pages'
-        run = 'move-node-to-workspace 🏫'
-        [[on-window-detected]]
-        if.app-id = 'net.kovidgoyal.kitty'
-        run = 'move-node-to-workspace 👻'
-
-        [[on-window-detected]]
-        if.app-id = 'com.mitchellh.ghostty'
-        run = 'move-node-to-workspace 👻'
-
-        [[on-window-detected]]
-        if.app-id = 'info.sioyek.sioyek'
-        run = 'move-node-to-workspace 👻'
-
-        [[on-window-detected]]
-        if.app-id = 'com.tdesktop.Telegram'
-        run = 'move-node-to-workspace 💬'
-
-        [[on-window-detected]]
-        if.app-id = 'com.tencent.xinWeChat'
-        run = 'move-node-to-workspace 💬'
-
-        [[on-window-detected]]
-        if.app-id = 'com.apple.mail'
-        run = 'move-node-to-workspace 💬'
-
-        [[on-window-detected]]
-        if.app-id = 'net.whatsapp.WhatsApp'
-        run = 'move-node-to-workspace 💬'
-
-        [[on-window-detected]]
-        if.app-id = 'com.hnc.Discord'
-        run = 'move-node-to-workspace 💬'
-
-        [[on-window-detected]]
-        if.app-id = 'com.apple.finder'
-        run = 'move-node-to-workspace 📁'
-
-        [[on-window-detected]]
-        if.app-id = 'com.apple.Notes'
-        run = 'move-node-to-workspace 📔'
-
-        [[on-window-detected]]
-        if.app-id = 'com.superace.updf.mac'
-        run = 'move-node-to-workspace 📔'
-
-        [[on-window-detected]]
-        if.app-id = 'org.zotero.zotero'
-        run = 'move-node-to-workspace 📔'
-
-        [[on-window-detected]]
         if.app-id = 'com.apple.Safari'
-        run = 'move-node-to-workspace 🔍'
+        run = 'move-node-to-workspace Safari'
 
         [[on-window-detected]]
         if.app-id = 'com.microsoft.edgemac'
-        run = 'move-node-to-workspace 🔍'
+        run = 'move-node-to-workspace Safari'
+
+        [[on-window-detected]]
+        if.app-id = 'com.tdesktop.Telegram'
+        run = 'move-node-to-workspace Chat'
+
+        [[on-window-detected]]
+        if.app-id = 'com.tencent.xinWeChat'
+        run = 'move-node-to-workspace Chat'
+
+        [[on-window-detected]]
+        if.app-id = 'com.apple.mail'
+        run = 'move-node-to-workspace Chat'
+
+        [[on-window-detected]]
+        if.app-id = 'net.whatsapp.WhatsApp'
+        run = 'move-node-to-workspace Chat'
+
+        [[on-window-detected]]
+        if.app-id = 'com.hnc.Discord'
+        run = 'move-node-to-workspace Chat'
 
         [[on-window-detected]]
         if.app-id = 'com.sublimemerge'
-        run = 'move-node-to-workspace 🧑‍💻'
+        run = 'move-node-to-workspace Dev'
 
         [[on-window-detected]]
         if.app-id = 'com.wangchujiang.DevHub'
-        run = 'move-node-to-workspace 🧑‍💻'
+        run = 'move-node-to-workspace Dev'
 
         [[on-window-detected]]
         if.app-id = 'dev.kdrag0n.MacVirt'
-        run = 'move-node-to-workspace 🧑‍💻'
+        run = 'move-node-to-workspace Dev'
 
         [[on-window-detected]]
         if.app-id = 'com.apple.dt.Xcode'
-        run = 'move-node-to-workspace 🧑‍💻'
+        run = 'move-node-to-workspace Dev'
 
         [[on-window-detected]]
         if.app-id = 'com.microsoft.VSCode'
-        run = 'move-node-to-workspace 🧑‍💻'
+        run = 'move-node-to-workspace Dev'
 
         [[on-window-detected]]
         if.app-id = 'dev.zed.Zed'
-        run = 'move-node-to-workspace 🧑‍💻'
+        run = 'move-node-to-workspace Dev'
 
         [[on-window-detected]]
         if.app-id = 'com.neovide.neovide'
-        run = 'move-node-to-workspace 🧑‍💻'
+        run = 'move-node-to-workspace Dev'
+
+        [[on-window-detected]]
+        if.app-id = 'com.apple.finder'
+        run = 'move-node-to-workspace Finder'
+
+        [[on-window-detected]]
+        if.app-id = 'com.apple.Notes'
+        run = 'move-node-to-workspace Notes'
+
+        [[on-window-detected]]
+        if.app-id = 'com.superace.updf.mac'
+        run = 'move-node-to-workspace Notes'
+
+        [[on-window-detected]]
+        if.app-id = 'org.zotero.zotero'
+        run = 'move-node-to-workspace Notes'
+
+        [[on-window-detected]]
+        if.app-id = 'net.kovidgoyal.kitty'
+        run = 'move-node-to-workspace Term'
+
+        [[on-window-detected]]
+        if.app-id = 'com.mitchellh.ghostty'
+        run = 'move-node-to-workspace Term'
+
+        [[on-window-detected]]
+        if.app-id = 'info.sioyek.sioyek'
+        run = 'move-node-to-workspace Term'
+
+        [[on-window-detected]]
+        if.app-id = 'com.microsoft.Excel'
+        run = 'move-node-to-workspace Work'
+
+        [[on-window-detected]]
+        if.app-id = 'com.microsoft.Powerpoint'
+        run = 'move-node-to-workspace Work'
+
+        [[on-window-detected]]
+        if.app-id = 'com.microsoft.Word'
+        run = 'move-node-to-workspace Work'
+
+        [[on-window-detected]]
+        if.app-id = 'com.apple.iWork.Kenotes'
+        run = 'move-node-to-workspace Work'
+
+        [[on-window-detected]]
+        if.app-id = 'com.apple.iWork.Numbers'
+        run = 'move-node-to-workspace Work'
+
+        [[on-window-detected]]
+        if.app-id = 'com.apple.iWork.Pages'
+        run = 'move-node-to-workspace Work'
+
+        [[on-window-detected]]
+        if.app-id = 'us.zoom.xos'
+        run = 'move-node-to-workspace Video'
+
+        [[on-window-detected]]
+        if.app-id = 'com.tencent.tencentmeeting'
+        run = 'move-node-to-workspace Video'
       '';
   };
 }

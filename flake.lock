@@ -347,22 +347,6 @@
         "type": "github"
       }
     },
-    "homebrew-bundle": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1729813700,
-        "narHash": "sha256-68IqsMMr9SeuKAvJnU4xh624DgzR5yIcrr1vrz/zto4=",
-        "owner": "homebrew",
-        "repo": "homebrew-bundle",
-        "rev": "bfd6d1882776f0a21cb0bf6ce30386e579581e2d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "homebrew",
-        "repo": "homebrew-bundle",
-        "type": "github"
-      }
-    },
     "ixx": {
       "inputs": {
         "flake-utils": [
@@ -557,11 +541,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1729755165,
-        "narHash": "sha256-6IpnOHWsaSSjT3yvqlrWfHW6HVCT+wOAlUpcooGJ+FQ=",
+        "lastModified": 1729788628,
+        "narHash": "sha256-3suayUinicnvE/4shMZwp9FHT5izUM8gMpdEO/NHBTo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "cabaf14d3e69c9921d7acedf5d7d60bb2b90be02",
+        "rev": "63487b2f26fa065cfeeaa47dddb08e2856ba53e8",
         "type": "github"
       },
       "original": {
@@ -625,7 +609,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "homebrew-bundle": "homebrew-bundle",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",

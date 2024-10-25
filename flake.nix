@@ -11,8 +11,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    homebrew-bundle.url = "github:homebrew/homebrew-bundle";
-    homebrew-bundle.flake = false;
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixvim.url = "github:nix-community/nixvim";
@@ -22,7 +20,6 @@
   outputs =
     {
       home-manager,
-      homebrew-bundle,
       neovim-nightly-overlay,
       nix-darwin,
       nix-homebrew,
@@ -58,8 +55,6 @@
             enable = true;
             enableRosetta = true;
             user = "${username}";
-            taps."homebrew/homebrew-bundle" = homebrew-bundle;
-            mutableTaps = false;
           };
         }
       ];
