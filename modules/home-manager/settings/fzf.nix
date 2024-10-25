@@ -2,7 +2,6 @@
 {
   programs.fzf = {
     enable = true;
-    enableFishIntegration = true;
     defaultCommand = "${pkgs.fd}/bin/fd --type f --strip-cwd-prefix --follow";
     defaultOptions = [
       "--cycle"
