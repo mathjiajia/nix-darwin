@@ -241,7 +241,7 @@ in
         hl = { fg = "blue", bold = true },
         on_click = {
           callback = function()
-            require("oil").toggle_float()
+            require('neo-tree.command').execute({ dir = vim.uv.cwd(), toggle = true })
           end,
           name = "heirline_workdir",
         },

@@ -43,6 +43,7 @@
   };
 
   programs.nixvim.clipboard.register = "unnamedplus";
+  # programs.nixvim.colorschemes.gruvbox.enable = true;
 
   imports = [
     ./performance.nix

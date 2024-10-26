@@ -5,11 +5,12 @@
     text = # ghostty
       ''
         theme = bamboo
-        # theme = OneHalfDark
+        # theme = GruvboxDarkHard
 
         # shader
-        # custom-shader = crt.glsl
         # custom-shader = bloom.glsl
+        # custom-shader = crt.glsl
+        # custom-shader = gradient.glsl
 
         # fonts
         font-size = 24
@@ -24,8 +25,8 @@
         # mouse-hide-while-typing = true
 
         # Window style
-        background-opacity = 0.95
-        background-blur-radius = 20
+        # background-opacity = 0.95
+        # background-blur-radius = 20
         # window-height = 40
         # window-width = 219
         # window-step-resize = true
@@ -35,8 +36,8 @@
 
         shell-integration = fish
 
-        quick-terminal-position = right
-        keybind = global:super+grave_accent=toggle_quick_terminal
+        # quick-terminal-position = right
+        # keybind = global:super+grave_accent=toggle_quick_terminal
 
         # Enable ALT so it works
         macos-option-as-alt = left
