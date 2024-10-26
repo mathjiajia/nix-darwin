@@ -48,30 +48,14 @@
         # alt-a = 'focus parent'
 
         alt-1 = 'workspace 1'
-        # B - browser
         alt-2 = 'workspace Safari'
-        alt-b = 'workspace Safari'
-        # C - chat
         alt-3 = 'workspace Chat'
-        alt-c = 'workspace Chat'
-        # D -  devtools
         alt-4 = 'workspace Dev'
-        alt-d = 'workspace Dev'
-        # F - finder
         alt-5 = 'workspace Finder'
-        alt-f = 'workspace Finder'
-        # N - notes
         alt-6 = 'workspace Notes'
-        alt-n = 'workspace Notes'
-        # T - terminal
         alt-7 = 'workspace Term'
-        alt-t = 'workspace Term'
-        # W - work
         alt-8 = 'workspace Work'
-        alt-w = 'workspace Work'
-        # Z - zoom and voov
         alt-9 = 'workspace Video'
-        alt-z = 'workspace Video'
 
         alt-shift-1 = 'move-node-to-workspace 1'
         alt-shift-2 = 'move-node-to-workspace Safari'
@@ -184,7 +168,13 @@
 
         [[on-window-detected]]
         if.app-id = 'info.sioyek.sioyek'
+        if.window-title-regex-substring = 'main.pdf'
         run = 'move-node-to-workspace Term'
+
+        [[on-window-detected]]
+        if.app-id = 'info.sioyek.sioyek'
+        if.window-title-regex-substring = '^(?!main\.pdf$).+'
+        run = 'move-node-to-workspace Notes'
 
         [[on-window-detected]]
         if.app-id = 'com.microsoft.Excel'

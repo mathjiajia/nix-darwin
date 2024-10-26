@@ -7,9 +7,7 @@
       cleanup = "zap";
     };
 
-    brews = [
-      "swift-format"
-    ];
+    brews = [ "swift-format" ];
 
     casks = [
       "chatgpt"

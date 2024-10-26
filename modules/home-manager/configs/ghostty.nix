@@ -37,7 +37,7 @@
         shell-integration = fish
 
         # quick-terminal-position = right
-        # keybind = global:super+grave_accent=toggle_quick_terminal
+        keybind = global:super+grave_accent=toggle_quick_terminal
 
         # Enable ALT so it works
         macos-option-as-alt = left

@@ -11,6 +11,7 @@
     "codeedit"
     "coherence-x"
     "diffusionbee"
+    "github"
     "hhkb"
     "openemu"
     "orbstack"

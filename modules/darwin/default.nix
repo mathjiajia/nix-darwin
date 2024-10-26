@@ -18,7 +18,6 @@
     # jujutsu
     keka
     # lazyjj
-    # marktext
     ollama
     loopwm
     # mathpix-snipping-tool
