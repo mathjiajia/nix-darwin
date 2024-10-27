@@ -88,7 +88,7 @@
         event = [ "BufWritePost" ];
         pattern = [ "*/spell/*.add" ];
         callback.__raw = # lua
-          "function() vim.cmd.mkspell({ '%', bang = true, mods = { silent = true } }) end";
+          ''function() vim.cmd.mkspell({ '%', bang = true, mods = { silent = true } }) end'';
       }
     ];
   };

@@ -73,19 +73,19 @@ in
     {
       key = "<leader>ss";
       action.__raw = # lua
-        "function() require('resession').save() end";
+        ''function() require('resession').save() end'';
       options.desc = "Save Session";
     }
     {
       key = "<leader>sl";
       action.__raw = # lua
-        "function() require('resession').load() end";
+        ''function() require('resession').load() end'';
       options.desc = "Load Session";
     }
     {
       key = "<leader>sd";
       action.__raw = # lua
-        "function() require('resession').delete() end";
+        ''function() require('resession').delete() end'';
       options.desc = "Delete Session";
     }
   ];

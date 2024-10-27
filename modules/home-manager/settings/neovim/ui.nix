@@ -153,7 +153,7 @@
     {
       key = "<leader>tn";
       action.__raw = # lua
-        "function() require('notify').dismiss({ silent = true, pending = true }) end";
+        ''function() require('notify').dismiss({ silent = true, pending = true }) end'';
       options.desc = "Delete All Notifications";
     }
 
@@ -165,7 +165,7 @@
       ];
       key = "<C-f>";
       action.__raw = # lua
-        "function() if not require('noice.lsp').scroll(4) then return '<C-f>' end end";
+        ''function() if not require('noice.lsp').scroll(4) then return '<C-f>' end end'';
       options.silent = true;
       options.expr = true;
     }
@@ -177,7 +177,7 @@
       ];
       key = "<C-b>";
       action.__raw = # lua
-        "function() if not require('noice.lsp').scroll(-4) then return '<C-b>' end end";
+        ''function() if not require('noice.lsp').scroll(-4) then return '<C-b>' end end'';
       options.silent = true;
       options.expr = true;
     }

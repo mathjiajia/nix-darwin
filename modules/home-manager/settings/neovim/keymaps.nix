@@ -24,14 +24,14 @@
       key = "<leader>bd";
       mode = [ "n" ];
       action.__raw = # lua
-        "function() vim.api.nvim_buf_delete(0, {}) end";
+        ''function() vim.api.nvim_buf_delete(0, {}) end'';
       options.desc = "Delete Buffer";
     }
     {
       key = "<leader>bD";
       mode = [ "n" ];
       action.__raw = # lua
-        "function() vim.api.nvim_buf_delete(0, { force = true }) end";
+        ''function() vim.api.nvim_buf_delete(0, { force = true }) end'';
       options.desc = "Delete Buffer (force)";
     }
   ];

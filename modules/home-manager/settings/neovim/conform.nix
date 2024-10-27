@@ -62,7 +62,7 @@
         ];
         key = "<leader>cF";
         action.__raw = # lua
-          "function() require('conform').format({ formatters = { 'injected' }, timeout_ms = 2000 }) end";
+          ''function() require('conform').format({ formatters = { 'injected' }, timeout_ms = 2000 }) end'';
         options.desc = "Format Injected Langs";
       }
     ];

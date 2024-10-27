@@ -14,14 +14,18 @@
           local float_opts = { width = vim.o.columns, height = vim.o.lines }
           local btop = Terminal:new({ cmd = "btop", hidden = true, direction = "float", float_opts = float_opts })
           local lazygit = Terminal:new({
-            cmd = "lazygit",
-            dir = "git_dir",
-            hidden = true,
-            direction = "float",
-            float_opts = float_opts,
+          	cmd = "lazygit",
+          	dir = "git_dir",
+          	hidden = true,
+          	direction = "float",
+          	float_opts = float_opts,
           })
-          vim.keymap.set({ "n", "t" }, "<leader>ti", function() btop:toggle() end, { desc = "Toggle Btop" })
-          vim.keymap.set({ "n", "t" }, "<leader>tg", function() lazygit:toggle() end, { desc = "Toggle Lazygit" })
+          vim.keymap.set({ "n", "t" }, "<leader>ti", function()
+          	btop:toggle()
+          end, { desc = "Toggle Btop" })
+          vim.keymap.set({ "n", "t" }, "<leader>tg", function()
+          	lazygit:toggle()
+          end, { desc = "Toggle Lazygit" })
         '';
     };
 

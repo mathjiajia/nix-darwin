@@ -21,14 +21,14 @@
       {
         key = "<leader>qq";
         action.__raw = # lua
-          "function() vim.diagnostic.setqflist() end";
+          ''function() vim.diagnostic.setqflist() end'';
         options.desc = "Set Quickfix";
       }
 
       {
         key = "<leader>ql";
         action.__raw = # lua
-          "function() vim.diagnostic.setloclist() end";
+          ''function() vim.diagnostic.setloclist() end'';
         options.desc = "Set Loclist";
       }
     ];

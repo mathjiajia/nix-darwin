@@ -27,7 +27,7 @@
     cmdline = {
       "/" = {
         mapping = {
-          __raw = "cmp.mapping.preset.cmdline()";
+          __raw = ''cmp.mapping.preset.cmdline()'';
         };
         sources = [
           {
@@ -37,7 +37,7 @@
       };
       "?" = {
         mapping = {
-          __raw = "cmp.mapping.preset.cmdline()";
+          __raw = ''cmp.mapping.preset.cmdline()'';
         };
         sources = [
           {
@@ -47,7 +47,7 @@
       };
       ":" = {
         mapping = {
-          __raw = "cmp.mapping.preset.cmdline()";
+          __raw = ''cmp.mapping.preset.cmdline()'';
         };
         sources = [
           {
@@ -116,19 +116,17 @@
             end
           '';
       };
-      mapping = {
-        __raw = ''
+      mapping.__raw = # lua
+        ''
           cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+          	["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          	["<C-f>"] = cmp.mapping.scroll_docs(4),
+          	["<C-Space>"] = cmp.mapping.complete(),
+          	["<C-y>"] = cmp.mapping.confirm({ select = true }),
           })
         '';
-      };
       matching.disallow_prefix_unmatching = true;
-      snippet.expand =
-        # lua
+      snippet.expand = # lua
         ''
           function(args)
             require('luasnip').lsp_expand(args.body)
@@ -190,7 +188,7 @@
       mode = [ "i" ];
       key = "<C-k>";
       action.__raw = # lua
-        "function() if require('luasnip').expandable() then require('luasnip').expand() end end";
+        ''function() if require('luasnip').expandable() then require('luasnip').expand() end end'';
       options.desc = "LuaSnip Expand";
     }
     {
@@ -200,7 +198,7 @@
       ];
       key = "<C-l>";
       action.__raw = # lua
-        "function() if require('luasnip').locally_jumpable(1) then require('luasnip').jump(1) end end";
+        ''function() if require('luasnip').locally_jumpable(1) then require('luasnip').jump(1) end end'';
       options.desc = "LuaSnip Forward Jump";
     }
     {
@@ -210,7 +208,7 @@
       ];
       key = "<C-j>";
       action.__raw = # lua
-        "function() if require('luasnip').locally_jumpable(-1) then require('luasnip').jump(-1) end end";
+        ''function() if require('luasnip').locally_jumpable(-1) then require('luasnip').jump(-1) end end'';
       options.desc = "LuaSnip Backward Jump";
     }
     {
@@ -220,7 +218,7 @@
       ];
       key = "<C-e>";
       action.__raw = # lua
-        "function() if require('luasnip').choice_active() then require('luasnip').change_choice(1) end end";
+        ''function() if require('luasnip').choice_active() then require('luasnip').change_choice(1) end end'';
       options.desc = "LuaSnip Next Choice";
     }
   ];
