@@ -34,11 +34,6 @@
       ];
     };
 
-    alpha = {
-      enable = false;
-      theme = "theta";
-    };
-
     dashboard = {
       enable = true;
       settings = {
@@ -142,7 +137,7 @@
     web-devicons.enable = true;
 
     mini = {
-      # enable = true;
+      enable = false;
       mockDevIcons = true;
       modules.icons = {
         lsp = {
