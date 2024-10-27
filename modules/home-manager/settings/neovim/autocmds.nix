@@ -15,21 +15,24 @@
           "TermLeave"
         ];
         group = "CheckTime";
-        callback.__raw = # lua
-          "function() if vim.o.buftype ~= 'nofile' then vim.cmd.checktime() end end";
+        callback.__raw =
+          # lua
+          ''function() if vim.o.buftype ~= "nofile" then vim.cmd.checktime() end end'';
       }
       {
         event = [ "TextYankPost" ];
         desc = "Highlight the Yanked Text";
         group = "HighlightYank";
-        callback.__raw = # lua
+        callback.__raw =
+          # lua
           "function() vim.highlight.on_yank() end";
       }
       {
         event = [ "BufReadPost" ];
         desc = "Last Position";
         group = "LastPlace";
-        callback.__raw = # lua
+        callback.__raw =
+          # lua
           ''
             function(event)
               local exclude_bt = { "help", "nofile", "quickfix" }
@@ -76,7 +79,8 @@
           "*.pdf"
           "*.png"
         ];
-        callback.__raw = # lua
+        callback.__raw =
+          # lua
           ''
             function(ev)
               vim.fn.jobstart("open '" .. vim.fn.expand("%") .. "'", { detach = true })
@@ -87,8 +91,9 @@
       {
         event = [ "BufWritePost" ];
         pattern = [ "*/spell/*.add" ];
-        callback.__raw = # lua
-          ''function() vim.cmd.mkspell({ '%', bang = true, mods = { silent = true } }) end'';
+        callback.__raw =
+          # lua
+          ''function() vim.cmd.mkspell({ "%", bang = true, mods = { silent = true } }) end'';
       }
     ];
   };

@@ -11,7 +11,8 @@
       delete_check_events = "TextChanged";
       enable_autosnippets = true;
       store_selection_keys = "<Tab>";
-      ext_opts.__raw = # lua
+      ext_opts.__raw =
+        # lua
         ''
           {
             [require("luasnip.util.types").insertNode] = { active = { virt_text = { { "", "Boolean" } } } },
@@ -66,7 +67,8 @@
           "menu"
           "kind"
         ];
-        format = # lua
+        format =
+          # lua
           ''
             function(entry, vim_item)
               local maxwidth = 30
@@ -116,7 +118,8 @@
             end
           '';
       };
-      mapping.__raw = # lua
+      mapping.__raw =
+        # lua
         ''
           cmp.mapping.preset.insert({
           	["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -126,10 +129,11 @@
           })
         '';
       matching.disallow_prefix_unmatching = true;
-      snippet.expand = # lua
+      snippet.expand =
+        # lua
         ''
           function(args)
-            require('luasnip').lsp_expand(args.body)
+            require("luasnip").lsp_expand(args.body)
           end
         '';
       sources = [
@@ -187,8 +191,9 @@
     {
       mode = [ "i" ];
       key = "<C-k>";
-      action.__raw = # lua
-        ''function() if require('luasnip').expandable() then require('luasnip').expand() end end'';
+      action.__raw =
+        # lua
+        ''function() if require("luasnip").expandable() then require("luasnip").expand() end end'';
       options.desc = "LuaSnip Expand";
     }
     {
@@ -197,8 +202,9 @@
         "s"
       ];
       key = "<C-l>";
-      action.__raw = # lua
-        ''function() if require('luasnip').locally_jumpable(1) then require('luasnip').jump(1) end end'';
+      action.__raw =
+        # lua
+        ''function() if require("luasnip").locally_jumpable(1) then require("luasnip").jump(1) end end'';
       options.desc = "LuaSnip Forward Jump";
     }
     {
@@ -207,8 +213,9 @@
         "s"
       ];
       key = "<C-j>";
-      action.__raw = # lua
-        ''function() if require('luasnip').locally_jumpable(-1) then require('luasnip').jump(-1) end end'';
+      action.__raw =
+        # lua
+        ''function() if require("luasnip").locally_jumpable(-1) then require("luasnip").jump(-1) end end'';
       options.desc = "LuaSnip Backward Jump";
     }
     {
@@ -217,8 +224,9 @@
         "s"
       ];
       key = "<C-e>";
-      action.__raw = # lua
-        ''function() if require('luasnip').choice_active() then require('luasnip').change_choice(1) end end'';
+      action.__raw =
+        # lua
+        ''function() if require("luasnip").choice_active() then require("luasnip").change_choice(1) end end'';
       options.desc = "LuaSnip Next Choice";
     }
   ];

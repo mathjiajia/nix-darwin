@@ -60,7 +60,8 @@
       };
     };
 
-    extraConfigLua = # lua
+    extraConfigLua =
+      # lua
       ''
         local dap, dapui = require("dap"), require("dapui")
         dap.listeners.before.attach.dapui_config = function()
@@ -80,56 +81,65 @@
     keymaps = [
       {
         key = "<leader>db";
-        action.__raw = # lua
-          ''function() require('dap').toggle_breakpoint() end'';
+        action.__raw =
+          # lua
+          ''function() require("dap").toggle_breakpoint() end'';
         options.desc = "Toggle Breakpoint";
       }
       {
         key = "<leader>dB";
-        action.__raw = # lua
-          ''function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end'';
+        action.__raw =
+          # lua
+          ''function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end'';
         options.desc = "Breakpoint Condition";
       }
       {
         key = "<leader>dc";
-        action.__raw = # lua
-          ''function() require('dap').continue() end'';
+        action.__raw =
+          # lua
+          ''function() require("dap").continue() end'';
         options.desc = "Continue";
       }
       {
         key = "<leader>dg";
-        action.__raw = # lua
-          ''function() require('dap').goto_() end'';
+        action.__raw =
+          # lua
+          ''function() require("dap").goto_() end'';
         options.desc = "Go to Line (No Execute)";
       }
       {
         key = "<leader>di";
-        action.__raw = # lua
-          ''function() require('dap').step_into() end'';
+        action.__raw =
+          # lua
+          ''function() require("dap").step_into() end'';
         options.desc = "Step Into";
       }
       {
         key = "<leader>dl";
-        action.__raw = # lua
-          ''function() require('dap').run_last() end'';
+        action.__raw =
+          # lua
+          ''function() require("dap").run_last() end'';
         options.desc = "Run Last";
       }
       {
         key = "<leader>do";
-        action.__raw = # lua
-          ''function() require('dap').step_out() end'';
+        action.__raw =
+          # lua
+          ''function() require("dap").step_out() end'';
         options.desc = "Step Out";
       }
       {
         key = "<leader>dO";
-        action.__raw = # lua
-          ''function() require('dap').step_over() end'';
+        action.__raw =
+          # lua
+          ''function() require("dap").step_over() end'';
         options.desc = "Step Over";
       }
       {
         key = "<leader>dr";
-        action.__raw = # lua
-          ''function() require('dap').repl.toggle() end'';
+        action.__raw =
+          # lua
+          ''function() require("dap").repl.toggle() end'';
         options.desc = "Toggle REPL";
       }
       {
@@ -138,14 +148,16 @@
           "v"
         ];
         key = "<leader>dw";
-        action.__raw = # lua
-          ''function() require('dap.ui.widgets').hover() end'';
+        action.__raw =
+          # lua
+          ''function() require("dap.ui.widgets").hover() end'';
         options.desc = "Widgets";
       }
       {
         key = "<leader>du";
-        action.__raw = # lua
-          ''function() require('dapui').toggle() end'';
+        action.__raw =
+          # lua
+          ''function() require("dapui").toggle() end'';
         options.desc = "Dap UI";
       }
       {
@@ -154,11 +166,11 @@
           "v"
         ];
         key = "<leader>de";
-        action.__raw = # lua
-          ''function() require('dapui').eval() end'';
+        action.__raw =
+          # lua
+          ''function() require("dapui").eval() end'';
         options.desc = "Eval";
       }
-
     ];
   };
 }

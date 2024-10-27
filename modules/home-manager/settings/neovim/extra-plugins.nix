@@ -30,7 +30,6 @@ let
     };
   };
 in
-
 {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     bamboo-nvim
@@ -53,7 +52,8 @@ in
         "v"
       ];
       key = "<leader>sr";
-      action.__raw = # lua
+      action.__raw =
+        # lua
         ''
           function()
             local grug = require("grug-far")
@@ -72,25 +72,29 @@ in
 
     {
       key = "<leader>ss";
-      action.__raw = # lua
+      action.__raw =
+        # lua
         ''function() require('resession').save() end'';
       options.desc = "Save Session";
     }
     {
       key = "<leader>sl";
-      action.__raw = # lua
+      action.__raw =
+        # lua
         ''function() require('resession').load() end'';
       options.desc = "Load Session";
     }
     {
       key = "<leader>sd";
-      action.__raw = # lua
+      action.__raw =
+        # lua
         ''function() require('resession').delete() end'';
       options.desc = "Delete Session";
     }
   ];
 
-  programs.nixvim.extraConfigLua = # lua
+  programs.nixvim.extraConfigLua =
+    # lua
     ''
       require("bamboo").setup({ transparent = true })
       require("bamboo").load()
@@ -260,12 +264,6 @@ in
       		end,
       		hl = { bold = true },
       	},
-      	-- {
-      	-- 	condition = function(self)
-      	-- 		return self.has_changes
-      	-- 	end,
-      	-- 	provider = " (",
-      	-- },
       	{
       		provider = function(self)
       			local count = self.status_dict.added or 0
