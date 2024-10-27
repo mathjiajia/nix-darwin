@@ -1,4 +1,3 @@
-{ config, lib, ... }:
 {
   programs.neovide = {
     enable = true;
@@ -7,7 +6,6 @@
       frame = "full";
       idle = true;
       maximized = false;
-      # neovim-bin = lib.getExe config.programs.neovim.finalPackage;
       no-multigrid = false;
       srgb = false;
       tabs = true;
@@ -17,7 +15,7 @@
       wsl = false;
 
       font = {
-        normal = [ "Iosevka Term" ];
+        normal = [ "IosevkaTerm Nerd Font" ];
         size = 24;
       };
     };

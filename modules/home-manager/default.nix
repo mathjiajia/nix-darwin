@@ -7,6 +7,7 @@
     ./settings/yazi
 
     ./settings/btop.nix
+    ./settings/emacs.nix
     ./settings/fastfetch.nix
     ./settings/fd.nix
     ./settings/fish.nix
@@ -50,12 +51,10 @@
   };
 
   programs = {
-    emacs.enable = true;
     home-manager.enable = true; # manage itslef
     pandoc.enable = true;
     texlive.enable = false;
     vscode.enable = true;
-    wezterm.enable = false;
     zoxide.enable = true;
   };
 

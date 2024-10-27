@@ -142,11 +142,19 @@
 
         [[on-window-detected]]
         if.app-id = 'com.apple.finder'
-        run = [ 'layout floating', 'move-node-to-workspace Finder' ]
+        run = ['layout floating', 'move-node-to-workspace Finder']
 
         [[on-window-detected]]
         if.app-id = 'com.apple.Notes'
-        run = [ 'layout floating', 'move-node-to-workspace Notes' ]
+        run = ['layout floating', 'move-node-to-workspace Notes']
+
+        [[on-window-detected]]
+        if.app-id = 'com.agiletortoise.Drafts-OSX'
+        run = 'move-node-to-workspace Notes'
+
+        [[on-window-detected]]
+        if.app-id = 'net.sourceforge.skim-app.skim'
+        run = 'move-node-to-workspace Notes'
 
         [[on-window-detected]]
         if.app-id = 'com.superace.updf.mac'

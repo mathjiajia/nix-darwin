@@ -64,66 +64,70 @@ in
     "lua/chadrc.lua".text = # lua
       ''
         vim.keymap.set("n", "<RightMouse>", function()
-          vim.cmd.exec('"normal! \\<RightMouse>"')
-          local options = vim.bo.ft == "NvimTree" and "nvimtree" or "gitsigns"
-          require("menu").open(options, { mouse = true })
+        	vim.cmd.exec('"normal! \\<RightMouse>"')
+        	local options = vim.bo.ft == "NvimTree" and "nvimtree" or "gitsigns"
+        	require("menu").open(options, { mouse = true })
         end, { desc = "Menu" })
-        vim.keymap.set("n", "<C-t>", function() require("menu").open("default") end, { desc = "Menu" })
-        vim.keymap.set("n", "<leader>tm", function() require("nvchad.themes").open() end, { desc = "Themes Picker" })
+        vim.keymap.set("n", "<C-t>", function()
+        	require("menu").open("default")
+        end, { desc = "Menu" })
+        vim.keymap.set("n", "<leader>tm", function()
+        	require("nvchad.themes").open()
+        end, { desc = "Themes Picker" })
 
         local options = {
-          base46 = {
-            theme = "nord",
-            transparency = false,
-            theme_toggle = { "nord", "nord" },
-            integrations = {
-              "codeactionmenu",
-              "dap",
-              "markview",
-              "notify",
-              "nvshades",
-              "rainbowdelimiters",
-              "semantic_tokens",
-            },
-            hl_add = {
-              DashboardHeader = { fg = "yellow" },
-              DashboardFooter = { fg = "dark_purple", italic = true },
-              DashboardProjectTitle = { fg = "nord_blue" },
-              DashboardProjectIcon = { fg = "sun" },
-              DashboardMruTitle = { fg = "teal" },
-              DashboardFiles = { italic = true },
-              DashboardShortCutIcon = { fg = "vibrant_green" },
-            },
-          },
-          ui = { statusline = { order = { "mode", "file", "git", "%=", "diagnostics", "lsp", "cwd", "cursor" } } },
-          nvdash = {
-            header = {
-              [[                                                                       ]],
-              [[                                                                     ]],
-              [[       ████ ██████           █████      ██                     ]],
-              [[      ███████████             █████                             ]],
-              [[      █████████ ███████████████████ ███   ███████████   ]],
-              [[     █████████  ███    █████████████ █████ ██████████████   ]],
-              [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
-              [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
-              [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
-              [[                                                                       ]],
-              [[                                                                       ]],
-            },
-            buttons = {
-              { txt = "  Find File", keys = "ff", cmd = "FzfLua files" },
-              { txt = "  Recent Files", keys = "fo", cmd = "FzfLua oldfiles" },
-              { txt = "  Live Grep", keys = "sg", cmd = "FzfLua live_grep" },
-              { txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
-              { txt = "  Cheatsheet", keys = "ch", cmd = "NvCheatsheet" },
-            },
-          },
-          term = {
-            winopts = { number = false, relativenumber = false },
-            float = { width = 1, height = 1, border = "rounded" },
-          },
-          lsp = { signature = true },
-          cheatsheet = { excluded_groups = { ":help", "autopairs", "Opens" } },
+        	base46 = {
+        		theme = "nord",
+        		transparency = false,
+        		theme_toggle = { "nord", "nord" },
+        		integrations = {
+        			"codeactionmenu",
+        			"dap",
+        			"markview",
+        			"notify",
+        			"nvshades",
+        			"rainbowdelimiters",
+        			"semantic_tokens",
+        		},
+        		hl_add = {
+        			DashboardHeader = { fg = "yellow" },
+        			DashboardFooter = { fg = "dark_purple", italic = true },
+        			DashboardProjectTitle = { fg = "nord_blue" },
+        			DashboardProjectIcon = { fg = "sun" },
+        			DashboardMruTitle = { fg = "teal" },
+        			DashboardFiles = { italic = true },
+        			DashboardShortCutIcon = { fg = "vibrant_green" },
+        		},
+        	},
+        	ui = { statusline = { order = { "mode", "file", "git", "%=", "diagnostics", "lsp", "cwd", "cursor" } } },
+        	nvdash = {
+        		header = {
+        			[[                                                                       ]],
+        			[[                                                                     ]],
+        			[[       ████ ██████           █████      ██                     ]],
+        			[[      ███████████             █████                             ]],
+        			[[      █████████ ███████████████████ ███   ███████████   ]],
+        			[[     █████████  ███    █████████████ █████ ██████████████   ]],
+        			[[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+        			[[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+        			[[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+        			[[                                                                       ]],
+        			[[                                                                       ]],
+        		},
+        		buttons = {
+        			{ txt = "  Find File", keys = "ff", cmd = "FzfLua files" },
+        			{ txt = "  Recent Files", keys = "fo", cmd = "FzfLua oldfiles" },
+        			{ txt = "  Live Grep", keys = "sg", cmd = "FzfLua live_grep" },
+        			{ txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
+        			{ txt = "  Cheatsheet", keys = "ch", cmd = "NvCheatsheet" },
+        		},
+        	},
+        	term = {
+        		winopts = { number = false, relativenumber = false },
+        		float = { width = 1, height = 1, border = "rounded" },
+        	},
+        	lsp = { signature = true },
+        	cheatsheet = { excluded_groups = { ":help", "autopairs", "Opens" } },
         }
         return options
       '';
