@@ -71,7 +71,8 @@
 
     gitsigns = {
       enable = true;
-      settings.on_attach = # lua
+      settings.on_attach =
+        # lua
         ''
           function(bufnr)
             local gitsigns = require("gitsigns")
@@ -125,7 +126,8 @@
         "o"
       ];
       key = "s";
-      action.__raw = # lua
+      action.__raw =
+        # lua
         ''function() require("flash").jump() end'';
       options.desc = "Flash";
     }
@@ -136,14 +138,16 @@
         "o"
       ];
       key = "S";
-      action.__raw = # lua
+      action.__raw =
+        # lua
         ''function() require("flash").treesitter() end'';
       options.desc = "Flash Treesitter";
     }
     {
       mode = [ "o" ];
       key = "r";
-      action.__raw = # lua
+      action.__raw =
+        # lua
         ''function() require("flash").remote() end'';
       options.desc = "Remote Flash";
     }
@@ -153,14 +157,16 @@
         "o"
       ];
       key = "R";
-      action.__raw = # lua
+      action.__raw =
+        # lua
         ''function() require("flash").treesitter_search() end'';
       options.desc = "Treesitter Search";
     }
     {
       mode = [ "c" ];
       key = "<c-s>";
-      action.__raw = # lua
+      action.__raw =
+        # lua
         ''function() require("flash").toggle() end'';
       options.desc = "Toggle Flash Search";
     }

@@ -61,7 +61,8 @@ in
   ];
 
   programs.nixvim.extraFiles = {
-    "lua/chadrc.lua".text = # lua
+    "lua/chadrc.lua".text =
+      # lua
       ''
         vim.keymap.set("n", "<RightMouse>", function()
         	vim.cmd.exec('"normal! \\<RightMouse>"')

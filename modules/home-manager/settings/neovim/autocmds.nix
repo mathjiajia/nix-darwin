@@ -58,7 +58,8 @@
       # {
       #   event = [ "FileType" ];
       #   desc = "Enable Treesitter";
-      #   callback.__raw = # lua
+      #   callback.__raw =
+      #     # lua
       #     ''
       #       function(ev)
       #         if not pcall(vim.treesitter.start, ev.buf) then

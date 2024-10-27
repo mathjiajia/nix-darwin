@@ -2,10 +2,12 @@
 {
   programs.nixvim.plugins.lsp = {
     enable = true;
-    capabilities = # lua
+    capabilities =
+      # lua
       ''require("cmp_nvim_lsp").default_capabilities()'';
     inlayHints = true;
-    onAttach = # lua
+    onAttach =
+      # lua
       ''
         local methods = vim.lsp.protocol.Methods
         if client.supports_method(methods.textDocument_documentHighlight) then
