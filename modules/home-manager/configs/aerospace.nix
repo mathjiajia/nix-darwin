@@ -15,9 +15,7 @@
         outer.right = 10
 
         [mode.main.binding]
-        alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
-
-        cmd-shift-comma = 'reload-config'
+        # cmd-shift-comma = 'reload-config'
 
         # See: https://nikitabobko.github.io/AeroSpace/commands#layout
         alt-slash = 'layout tiles horizontal vertical'
@@ -144,11 +142,11 @@
 
         [[on-window-detected]]
         if.app-id = 'com.apple.finder'
-        run = 'move-node-to-workspace Finder'
+        run = [ 'layout floating', 'move-node-to-workspace Finder' ]
 
         [[on-window-detected]]
         if.app-id = 'com.apple.Notes'
-        run = 'move-node-to-workspace Notes'
+        run = [ 'layout floating', 'move-node-to-workspace Notes' ]
 
         [[on-window-detected]]
         if.app-id = 'com.superace.updf.mac'
@@ -161,6 +159,11 @@
         [[on-window-detected]]
         if.app-id = 'net.kovidgoyal.kitty'
         run = 'move-node-to-workspace Term'
+
+        [[on-window-detected]]
+        if.app-id = 'com.mitchellh.ghostty'
+        if.window-title-regex-substring = 'Updating Ghostty'
+        run = 'layout floating'
 
         [[on-window-detected]]
         if.app-id = 'com.mitchellh.ghostty'
@@ -207,6 +210,18 @@
         [[on-window-detected]]
         if.app-id = 'com.tencent.tencentmeeting'
         run = 'move-node-to-workspace Video'
+
+        [[on-window-detected]]
+        if.app-id = 'com.nssurge.surge-mac'
+        run = 'layout floating'
+
+        [[on-window-detected]]
+        if.app-id = 'com.openai.chat'
+        run = 'layout floating'
+
+        [[on-window-detected]]
+        if.app-id = 'com.apple.AppStore'
+        run = 'layout floating'
       '';
   };
 }
