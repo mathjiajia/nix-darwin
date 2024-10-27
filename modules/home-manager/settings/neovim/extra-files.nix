@@ -5,7 +5,8 @@
 # vim.opt.rtp:append("${fzf-plugin}")
 {
   programs.nixvim.extraFiles = {
-    "after/ftplugin/checkhealth.lua".text = # lua
+    "after/ftplugin/checkhealth.lua".text =
+      # lua
       ''
         vim.opt_local.buflisted = false
         vim.keymap.set("n", "q", function()
@@ -13,7 +14,8 @@
         end, { buffer = 0, silent = true })
       '';
 
-    "after/ftplugin/grug-far.lua".text = # lua
+    "after/ftplugin/grug-far.lua".text =
+      # lua
       ''
         vim.opt_local.buflisted = false
         vim.keymap.set("n", "q", function()
@@ -21,7 +23,8 @@
         end, { buffer = 0, silent = true })
       '';
 
-    "after/ftplugin/help.lua".text = # lua
+    "after/ftplugin/help.lua".text =
+      # lua
       ''
         vim.opt_local.buflisted = false
         vim.keymap.set("n", "q", function()
@@ -29,24 +32,28 @@
         end, { buffer = 0, silent = true })
       '';
 
-    "after/ftplugin/man.lua".text = # lua
+    "after/ftplugin/man.lua".text =
+      # lua
       "vim.opt_local.buflisted = false";
 
-    "after/ftplugin/markdown.lua".text = # lua
+    "after/ftplugin/markdown.lua".text =
+      # lua
       ''
         vim.opt_local.conceallevel = 2
         vim.opt_local.spell = true
         vim.keymap.set("i", "<C-h>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Crect Last Spelling" })
       '';
 
-    "after/ftplugin/norg.lua".text = # lua
+    "after/ftplugin/norg.lua".text =
+      # lua
       ''
         vim.opt_local.conceallevel = 2
         vim.opt_local.spell = true
         vim.keymap.set("i", "<C-h>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Crect Last Spelling" })
       '';
 
-    "after/ftplugin/qf.lua".text = # lua
+    "after/ftplugin/qf.lua".text =
+      # lua
       ''
         vim.opt_local.buflisted = false
         vim.keymap.set("n", "q", function()
@@ -54,14 +61,16 @@
         end, { buffer = 0, silent = true })
       '';
 
-    "after/ftplugin/tex.lua".text = # lua
+    "after/ftplugin/tex.lua".text =
+      # lua
       ''
         vim.opt_local.conceallevel = 2
         vim.opt_local.spell = true
         vim.keymap.set("i", "<C-h>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Crect Last Spelling" })
       '';
 
-    "lua/overseer/template/user/builder.lua".text = # lua
+    "lua/overseer/template/user/builder.lua".text =
+      # lua
       ''
         local builders = {
         	c = {
@@ -116,7 +125,8 @@
         }
       '';
 
-    "lua/overseer/template/user/runner.lua".text = # lua
+    "lua/overseer/template/user/runner.lua".text =
+      # lua
       ''
         local filerunners = {
         	sh = { name = "Shell", cmd = "sh", repl = "sh" },

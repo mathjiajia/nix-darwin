@@ -152,8 +152,9 @@
   programs.nixvim.keymaps = [
     {
       key = "<leader>tn";
-      action.__raw = # lua
-        ''function() require('notify').dismiss({ silent = true, pending = true }) end'';
+      action.__raw =
+        # lua
+        ''function() require("notify").dismiss({ silent = true, pending = true }) end'';
       options.desc = "Delete All Notifications";
     }
 
@@ -164,8 +165,9 @@
         "s"
       ];
       key = "<C-f>";
-      action.__raw = # lua
-        ''function() if not require('noice.lsp').scroll(4) then return '<C-f>' end end'';
+      action.__raw =
+        # lua
+        ''function() if not require("noice.lsp").scroll(4) then return "<C-f>" end end'';
       options.silent = true;
       options.expr = true;
     }
@@ -176,8 +178,9 @@
         "s"
       ];
       key = "<C-b>";
-      action.__raw = # lua
-        ''function() if not require('noice.lsp').scroll(-4) then return '<C-b>' end end'';
+      action.__raw =
+        # lua
+        ''function() if not require("noice.lsp").scroll(-4) then return "<C-b>" end end'';
       options.silent = true;
       options.expr = true;
     }
