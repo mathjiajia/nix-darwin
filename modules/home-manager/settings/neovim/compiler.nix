@@ -3,9 +3,7 @@
     toggleterm = {
       enable = true;
       settings = {
-        float_opts = {
-          border = "rounded";
-        };
+        float_opts.border = "rounded";
         open_mapping = "[[<C-Bslash>]]";
       };
       luaConfig.post =
@@ -62,15 +60,11 @@
           "Python3_fifo"
           "R_original"
         ];
-        interpreter_options = {
-          Generic = {
-            Swift_original = {
-              supported_filetypes = [ "swift" ];
-              extension = ".swift";
-              interpreter = "swift";
-              boilerplate_pre = "import Foundation";
-            };
-          };
+        interpreter_options.Generic.Swift_original = {
+          supported_filetypes = [ "swift" ];
+          extension = ".swift";
+          interpreter = "swift";
+          boilerplate_pre = "import Foundation";
         };
       };
     };

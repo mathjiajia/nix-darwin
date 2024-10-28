@@ -94,23 +94,23 @@
 
         [[on-window-detected]]
         if.app-id = 'com.tdesktop.Telegram'
-        run = 'move-node-to-workspace Chat'
+        run = ['layout floating', 'move-node-to-workspace Chat']
 
         [[on-window-detected]]
         if.app-id = 'com.tencent.xinWeChat'
-        run = 'move-node-to-workspace Chat'
+        run = ['layout floating', 'move-node-to-workspace Chat']
 
         [[on-window-detected]]
         if.app-id = 'com.apple.mail'
-        run = 'move-node-to-workspace Chat'
+        run = ['layout floating', 'move-node-to-workspace Chat']
 
         [[on-window-detected]]
         if.app-id = 'net.whatsapp.WhatsApp'
-        run = 'move-node-to-workspace Chat'
+        run = ['layout floating', 'move-node-to-workspace Chat']
 
         [[on-window-detected]]
         if.app-id = 'com.hnc.Discord'
-        run = 'move-node-to-workspace Chat'
+        run = ['layout floating', 'move-node-to-workspace Chat']
 
         [[on-window-detected]]
         if.app-id = 'com.sublimemerge'
@@ -150,7 +150,7 @@
 
         [[on-window-detected]]
         if.app-id = 'com.agiletortoise.Drafts-OSX'
-        run = 'move-node-to-workspace Notes'
+        run = ['layout floating', 'move-node-to-workspace Notes']
 
         [[on-window-detected]]
         if.app-id = 'net.sourceforge.skim-app.skim'
@@ -229,6 +229,14 @@
 
         [[on-window-detected]]
         if.app-id = 'com.apple.AppStore'
+        run = 'layout floating'
+
+        [[on-window-detected]]
+        if.app-id = 'com.noodlesoft.Hazel'
+        run = 'layout floating'
+
+        [[on-window-detected]]
+        if.app-id = 'ai.riffo.riffo'
         run = 'layout floating'
       '';
   };

@@ -4,7 +4,7 @@
     target = ".config/ghostty/config";
     text = # ghostty
       ''
-        theme = bamboo
+        # theme = bamboo
         # theme = GruvboxDarkHard
         # custom-shader = ./shaders/bloom.glsl
 

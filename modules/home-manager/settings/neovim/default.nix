@@ -43,7 +43,19 @@
   };
 
   programs.nixvim.clipboard.register = "unnamedplus";
-  # programs.nixvim.colorschemes.gruvbox.enable = true;
+  programs.nixvim.colorschemes.nord = {
+    enable = false;
+    settings = {
+      bold = false;
+      borders = true;
+      contrast = true;
+      cursorline_transparent = true;
+      disable_background = false;
+      enable_sidebar_background = true;
+      italic = true;
+      uniform_diff_background = true;
+    };
+  };
 
   imports = [
     ./performance.nix

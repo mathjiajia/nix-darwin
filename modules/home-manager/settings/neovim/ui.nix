@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.nixvim.plugins = {
     markview.enable = true;
@@ -40,7 +41,7 @@
         config = {
           footer = [
             ""
-            "Neovim with Nix, Made with ❤️"
+            "Powered by nixvim!"
           ];
           header = [
             ""
@@ -89,6 +90,73 @@
             }
           ];
         };
+      };
+    };
+
+    bufferline = {
+      enable = false;
+      settings = {
+        options = {
+          always_show_bufferline = false;
+          diagnostics = "nvim_lsp";
+          offsets = [
+            {
+              filetype = "aerial";
+              highlight = "Directory";
+              text = "Aerial";
+              text_align = "left";
+            }
+            {
+              filetype = "neo-tree";
+              highlight = "Directory";
+              text = "File Explorer";
+              text_align = "left";
+            }
+          ];
+        };
+      };
+    };
+
+    lualine = {
+      enable = false;
+      package = pkgs.vimPlugins.lualine-nvim.overrideAttrs (oldAttrs: {
+        postInstall =
+          (oldAttrs.postInstall or "")
+          + ''
+            mv $out/lua/lualine/themes/nord.lua $out/lua/lualine/themes/nord-builtin.lua
+          '';
+      });
+      settings = {
+        options = {
+          disabled_filetypes.statusline = [
+            "dap-repl"
+            "dashboard"
+          ];
+          globalstatus = true;
+        };
+        sections = {
+          lualine_a = [ "mode" ];
+          lualine_b = [
+            "branch"
+            "diff"
+          ];
+          lualine_c = [ "filename" ];
+          lualine_x = [
+            "diagnostics"
+            "filetype"
+          ];
+          lualine_y = [ "progress" ];
+          lualine_z = [ "location" ];
+        };
+        extensions = [
+          "aerial"
+          "man"
+          "nvim-dap-ui"
+          "neo-tree"
+          "overseer"
+          "quickfix"
+          "toggleterm"
+        ];
       };
     };
 
