@@ -231,6 +231,10 @@
         if.app-id = 'com.apple.AppStore'
         run = 'layout floating'
 
+        [on-window-detected]
+        if.app-id = "com.apple.Passwords"
+        run = "layout floating"
+
         [[on-window-detected]]
         if.app-id = 'com.noodlesoft.Hazel'
         run = 'layout floating'
