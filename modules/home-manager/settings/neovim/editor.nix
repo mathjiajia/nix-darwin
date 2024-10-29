@@ -116,6 +116,10 @@
           end
         '';
     };
+
+    diffview = {
+      enable = true;
+    };
   };
 
   programs.nixvim.keymaps = [

@@ -35,6 +35,7 @@
           "nix"
           "python"
           "r"
+          "regex"
           "requirements"
           "query"
           "regex"
