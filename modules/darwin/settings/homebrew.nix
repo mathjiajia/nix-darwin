@@ -3,8 +3,8 @@
     enable = true;
     onActivation = {
       autoUpdate = true;
-      upgrade = true;
       cleanup = "zap";
+      upgrade = true;
     };
 
     brews = [ "swift-format" ];

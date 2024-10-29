@@ -98,7 +98,7 @@
                 Event = "",
                 Operator = "",
                 TypeParameter = "",
-                Copilot = "",
+                Copilot = "",
               }
               if vim.fn.strchars(vim_item.abbr) > maxwidth then
                 vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, maxwidth) .. "…"
