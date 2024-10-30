@@ -5,8 +5,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "NvChad";
       repo = "volt";
-      rev = "229b4f1bc865c866227dd0e2ecda11ab6ec2c8cc";
-      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      rev = "master";
+      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
   nvchad-menu = pkgs.vimUtils.buildVimPlugin {
@@ -14,8 +14,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "NvChad";
       repo = "menu";
-      rev = "ee85b2e394fde354bd24e35ff7a688d10c9212fa";
-      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      rev = "master";
+      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
   nvchad-minty = pkgs.vimUtils.buildVimPlugin {
@@ -23,8 +23,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "NvChad";
       repo = "minty";
-      rev = "157e91c04cce2f01643519338d6b854275a77547";
-      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      rev = "master";
+      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
   nvchad-timerly = pkgs.vimUtils.buildVimPlugin {
@@ -32,8 +32,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "NvChad";
       repo = "timerly";
-      rev = "37f865e003ceb0e729a9e4cbe2f048e00ab503fe";
-      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      rev = "master";
+      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
   nvchad-showkeys = pkgs.vimUtils.buildVimPlugin {
@@ -41,8 +41,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "NvChad";
       repo = "showkeys";
-      rev = "4bc7420882983272829fd1df31b4d9b1a6dd3eae";
-      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      rev = "master";
+      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
 in

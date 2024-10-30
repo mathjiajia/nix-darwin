@@ -119,49 +119,6 @@
       };
     };
 
-    lualine = {
-      enable = true;
-      package = pkgs.vimPlugins.lualine-nvim.overrideAttrs (oldAttrs: {
-        postInstall =
-          (oldAttrs.postInstall or "")
-          + ''
-            mv $out/lua/lualine/themes/nord.lua $out/lua/lualine/themes/nord-builtin.lua
-          '';
-      });
-      settings = {
-        options = {
-          disabled_filetypes.statusline = [
-            "dap-repl"
-            "dashboard"
-          ];
-          globalstatus = true;
-        };
-        sections = {
-          lualine_a = [ "mode" ];
-          lualine_b = [
-            "branch"
-            "diff"
-          ];
-          lualine_c = [ "filename" ];
-          lualine_x = [
-            "diagnostics"
-            "filetype"
-          ];
-          lualine_y = [ "progress" ];
-          lualine_z = [ "location" ];
-        };
-        extensions = [
-          "aerial"
-          "man"
-          "nvim-dap-ui"
-          "neo-tree"
-          "overseer"
-          "quickfix"
-          "toggleterm"
-        ];
-      };
-    };
-
     rainbow-delimiters.enable = true;
     indent-blankline = {
       enable = true;
@@ -206,10 +163,16 @@
       settings.plugins.gitsigns.enabled = false;
     };
 
-    web-devicons.enable = true;
-
     mini = {
-      enable = false;
+      enable = true;
+      package = pkgs.vimPlugins.mini-nvim.overrideAttrs (oldAttrs: {
+        postInstall =
+          (oldAttrs.postInstall or "")
+          # bash
+          + ''
+            rm -rf $out/doc/
+          '';
+      });
       mockDevIcons = true;
       modules.icons = {
         lsp = {

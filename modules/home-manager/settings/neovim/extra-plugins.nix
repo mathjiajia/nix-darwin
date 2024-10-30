@@ -6,7 +6,7 @@ let
       owner = "mathjiajia";
       repo = "mySnippets";
       rev = "master";
-      sha256 = "5mHU0QtdMBtoUGBvKiFfNEn5T8MSzPWLOqmll2kWrMU=";
+      hash = "sha256-5mHU0QtdMBtoUGBvKiFfNEn5T8MSzPWLOqmll2kWrMU=";
     };
   };
 
@@ -16,7 +16,17 @@ let
       owner = "mathjiajia";
       repo = "latex.nvim";
       rev = "master";
-      sha256 = "IG0uKocxYBbvaYtrVMW3Qmp5lBw3r9tu5PeJZv34Se0=";
+      hash = "sha256-IG0uKocxYBbvaYtrVMW3Qmp5lBw3r9tu5PeJZv34Se0=";
+    };
+  };
+
+  slimline-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "slimline";
+    src = pkgs.fetchFromGitHub {
+      owner = "sschleemilch";
+      repo = "slimline.nvim";
+      rev = "master";
+      hash = "sha256-xVQWt1M9+gXvCTjQkQY6RQj9E/NYQorse7cFPcsMajw=";
     };
   };
 
@@ -26,22 +36,23 @@ let
       owner = "lewis6991";
       repo = "nvim-treesitter-pairs";
       rev = "master";
-      sha256 = "Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
+      hash = "sha256-Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
 in
 {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+    aerial-nvim
     bamboo-nvim
     dropbar-nvim
     grug-far-nvim
     resession-nvim
     ultimate-autopair-nvim
-    aerial-nvim
 
     latex-nvim
     mysnippets
     nvim-treesitter-pairs
+    slimline-nvim
   ];
 
   programs.nixvim.keymaps = [
@@ -100,6 +111,7 @@ in
       	term_colors = false,
       })
       require("bamboo").load()
+      require("slimline").setup({ verbose_mode = true, style = "fg" })
       require("dropbar").setup()
       require("grug-far").setup({ headerMaxWidth = 80 })
       require("resession").setup()

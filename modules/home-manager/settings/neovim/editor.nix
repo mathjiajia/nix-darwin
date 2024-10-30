@@ -65,7 +65,10 @@
       };
       settings = {
         grep.RIPGREP_CONFIG_PATH = "~/.config/ripgrep/ripgreprc";
-        defaults.formatter = "path.dirname_first";
+        defaults = {
+          file_icons = "mini";
+          formatter = "path.dirname_first";
+        };
       };
     };
 

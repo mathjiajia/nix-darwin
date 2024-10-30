@@ -15,6 +15,7 @@
     ice-bar
     iina
     inkscape-with-extensions
+    jankyborders
     # jujutsu
     keka
     # lazyjj

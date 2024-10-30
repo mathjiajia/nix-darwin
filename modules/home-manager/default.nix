@@ -9,7 +9,6 @@
     ./settings/btop.nix
     ./settings/emacs.nix
     ./settings/fastfetch.nix
-    ./settings/fd.nix
     ./settings/fish.nix
     ./settings/fzf.nix
     ./settings/kitty.nix
@@ -19,6 +18,7 @@
     ./settings/starship.nix
 
     ./configs/aerospace.nix
+    ./configs/fd.nix
     ./configs/ghostty.nix
   ];
 
@@ -52,6 +52,7 @@
 
   programs = {
     home-manager.enable = true; # manage itslef
+    fd.enable = true;
     pandoc.enable = true;
     texlive.enable = false;
     vscode.enable = true;

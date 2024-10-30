@@ -4,19 +4,19 @@ let
     owner = "yazi-rs";
     repo = "plugins";
     rev = "master";
-    sha256 = "NNfPwiY1J+s/b2rajEdAubGsGKfFCA5ALz7MNX8wyGM=";
+    hash = "sha256-NNfPwiY1J+s/b2rajEdAubGsGKfFCA5ALz7MNX8wyGM=";
   };
   # yaziGlow = pkgs.fetchFromGitHub {
   #   owner = "Reledia";
   #   repo = "glow.yazi";
   #   rev = "master";
-  #   sha256 = "bqaFqjlQ/VgMdt2VVjEI8cIkA9THjOZDgNspNicxlbc=";
+  #   hash = "sha256-bqaFqjlQ/VgMdt2VVjEI8cIkA9THjOZDgNspNicxlbc=";
   # };
   # yaziMdcat = pkgs.fetchFromGitHub {
   #   owner = "GrzegorzKozub";
   #   repo = "mdcat.yazi";
   #   rev = "master";
-  #   sha256 = "dZOOmkoyjTty1LWXobNVxicD0yrzRNzF3N0BiWz+a+E=";
+  #   hash = "sha256-dZOOmkoyjTty1LWXobNVxicD0yrzRNzF3N0BiWz+a+E=";
   # };
   arrowPlugin = pkgs.writeTextFile {
     name = "arrow.yazi";

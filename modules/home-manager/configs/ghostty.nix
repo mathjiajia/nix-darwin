@@ -1,4 +1,3 @@
-{ ... }:
 {
   home.file.ghostty = {
     target = ".config/ghostty/config";
@@ -23,6 +22,8 @@
 
         keybind = global:super+grave_accent=toggle_quick_terminal
 
+        # macos-titlebar-style = hidden
+        mouse-hide-while-typing = true
         macos-option-as-alt = left
 
         auto-update = check
