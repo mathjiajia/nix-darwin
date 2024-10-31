@@ -12,6 +12,7 @@
     "coherence-x"
     "diffusionbee"
     "github"
+    "github-copilot-for-xcode"
     "hhkb"
     "openemu"
     "orbstack"
