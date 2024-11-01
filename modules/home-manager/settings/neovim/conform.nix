@@ -28,6 +28,7 @@
           ];
         };
         formatters_by_ft = {
+          "_" = [ "trim_whitespace" ];
           bib = [ "bibtex-tidy" ];
           c = [ "clang-format" ];
           css = [ "prettierd" ];

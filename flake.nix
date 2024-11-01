@@ -19,6 +19,7 @@
 
   outputs =
     {
+      self,
       home-manager,
       neovim-nightly-overlay,
       nix-darwin,
