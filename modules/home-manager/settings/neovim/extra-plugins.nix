@@ -107,7 +107,7 @@ in
     # lua
     ''
       require("bamboo").setup({
-      	transparent = true,
+      	transparent = not vim.g.neovide,
       	term_colors = false,
       })
       require("bamboo").load()
