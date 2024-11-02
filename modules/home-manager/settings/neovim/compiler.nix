@@ -31,7 +31,6 @@
     overseer = {
       enable = true;
       settings = {
-        dap = false;
         strategy = "toggleterm";
         templates = [
           "builtin"
@@ -83,6 +82,7 @@
       options.silent = true;
       options.desc = "Open REPL";
     }
+
     {
       mode = [
         "n"

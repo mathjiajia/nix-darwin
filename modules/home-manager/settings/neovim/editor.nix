@@ -120,9 +120,7 @@
         '';
     };
 
-    diffview = {
-      enable = true;
-    };
+    diffview.enable = false;
   };
 
   programs.nixvim.keymaps = [
