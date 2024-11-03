@@ -1,13 +1,12 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    discord
-  ];
+  environment.systemPackages = with pkgs; [ discord ];
 
   homebrew.casks = [
     "adobe-acrobat-pro"
     "adobe-creative-cloud"
     "anythingllm"
+    "claude"
     "codeedit"
     "coherence-x"
     "diffusionbee"

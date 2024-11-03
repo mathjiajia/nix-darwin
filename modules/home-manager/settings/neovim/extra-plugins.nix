@@ -46,6 +46,7 @@ in
     bamboo-nvim
     dropbar-nvim
     grug-far-nvim
+    nvim-highlight-colors
     resession-nvim
     ultimate-autopair-nvim
 
@@ -54,6 +55,29 @@ in
     nvim-treesitter-pairs
     slimline-nvim
   ];
+
+  programs.nixvim.extraConfigLua =
+    # lua
+    ''
+      require("bamboo").setup({
+      	transparent = not vim.g.neovide,
+      	term_colors = false,
+      })
+      require("bamboo").load()
+      require("slimline").setup({ verbose_mode = true, style = "fg" })
+      require("dropbar").setup()
+      require("grug-far").setup({ headerMaxWidth = 80 })
+      require("nvim-highlight-colors").setup()
+      require("resession").setup()
+      require("ultimate-autopair").setup()
+
+      require("aerial").setup({
+      	backends = { "lsp", "treesitter", "markdown", "man" },
+      	layout = { resize_to_content = false },
+      	filter_kind = false,
+      	show_guides = true,
+      })
+    '';
 
   programs.nixvim.keymaps = [
     {
@@ -102,26 +126,4 @@ in
       options.desc = "Delete Session";
     }
   ];
-
-  programs.nixvim.extraConfigLua =
-    # lua
-    ''
-      require("bamboo").setup({
-      	transparent = not vim.g.neovide,
-      	term_colors = false,
-      })
-      require("bamboo").load()
-      require("slimline").setup({ verbose_mode = true, style = "fg" })
-      require("dropbar").setup()
-      require("grug-far").setup({ headerMaxWidth = 80 })
-      require("resession").setup()
-      require("ultimate-autopair").setup()
-
-      require("aerial").setup({
-      	backends = { "lsp", "treesitter", "markdown", "man" },
-      	layout = { resize_to_content = false },
-      	filter_kind = false,
-      	show_guides = true,
-      })
-    '';
 }

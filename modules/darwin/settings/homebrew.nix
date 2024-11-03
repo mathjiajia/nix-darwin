@@ -14,7 +14,6 @@
       "dash"
       "downie"
       "follow"
-      # "font-codicon"
       "hazel"
       "hazeover"
       "hookmark"

@@ -173,6 +173,11 @@
 
         [[on-window-detected]]
         if.app-id = 'com.mitchellh.ghostty'
+        if.window-title-regex-substring = 'Software Update'
+        run = 'layout floating'
+
+        [[on-window-detected]]
+        if.app-id = 'com.mitchellh.ghostty'
         if.window-title-regex-substring = 'Updating Ghostty'
         run = 'layout floating'
 
