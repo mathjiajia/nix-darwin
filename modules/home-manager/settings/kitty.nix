@@ -3,7 +3,7 @@
     enable = true;
     shellIntegration.enableFishIntegration = true;
     font = {
-      name = "IosevkaTerm Nerd Font";
+      name = "IosevkaTerm Nerd Font Mono";
       size = 20;
     };
     settings = {

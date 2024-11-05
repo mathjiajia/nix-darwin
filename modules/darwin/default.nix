@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
   imports = [
-    # ./settings/system.nix
     ./settings/homebrew.nix
-    ./settings/homebrew-extra.nix
+    ./settings/mas.nix
+    ./settings/system.nix
   ];
 
   # List packages installed in system profile. To search by name, run:
