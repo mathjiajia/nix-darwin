@@ -16,7 +16,7 @@ let
       owner = "mathjiajia";
       repo = "latex.nvim";
       rev = "master";
-      hash = "sha256-IG0uKocxYBbvaYtrVMW3Qmp5lBw3r9tu5PeJZv34Se0=";
+      hash = "sha256-9RwMlelpXxZS054cE5OVP/PHOnP0I9GLfBqgVESi4xU=";
     };
   };
 
