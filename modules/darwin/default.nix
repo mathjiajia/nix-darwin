@@ -3,7 +3,9 @@
   imports = [
     ./settings/homebrew.nix
     ./settings/mas.nix
-    ./settings/system.nix
+    # ./settings/system.nix
+
+    # ./services/aerospace.nix
   ];
 
   # List packages installed in system profile. To search by name, run:
@@ -33,7 +35,7 @@
     # zotero
   ];
 
-  environment.shells = [ pkgs.fish ];
+  # environment.shells = [ pkgs.fish ];
 
   fonts.packages = with pkgs; [
     # maple-mono-NF
