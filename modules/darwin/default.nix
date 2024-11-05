@@ -3,7 +3,7 @@
   imports = [
     # ./settings/system.nix
     ./settings/homebrew.nix
-    # ./settings/mas.nix
+    ./settings/homebrew-extra.nix
   ];
 
   # List packages installed in system profile. To search by name, run:
