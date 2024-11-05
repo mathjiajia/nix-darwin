@@ -6,7 +6,7 @@
         start-at-login = true
 
         after-startup-command = [
-          "exec-and-forget /run/current-system/sw/bin/borders active_color=0xff39BAE6 inactive_color=0xff494d64 width=5.0",
+          "exec-and-forget /run/current-system/sw/bin/borders active_color=0xff39BAE6 inactive_color=0xff494d64 width=5.0 blacklist='iPhone Mirroring'",
         ]
 
         [gaps]
@@ -249,6 +249,14 @@
 
         [[on-window-detected]]
         if.app-id = 'ai.riffo.riffo'
+        run = 'layout floating'
+
+        [[on-window-detected]]
+        if.app-id = 'com.jordanbaird.Ice'
+        run = 'layout floating'
+
+        [[on-window-detected]]
+        if.app-id = 'Rime.Squirrel-Designer'
         run = 'layout floating'
       '';
   };
