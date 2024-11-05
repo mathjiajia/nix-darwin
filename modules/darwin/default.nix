@@ -33,7 +33,7 @@
     # zotero
   ];
 
-  # environment.shells = [ pkgs.fish ];
+  environment.shells = [ pkgs.fish ];
 
   fonts.packages = with pkgs; [
     # maple-mono-NF

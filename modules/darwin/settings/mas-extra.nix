@@ -1,22 +1,4 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ discord ];
-
-  homebrew.casks = [
-    "adobe-acrobat-pro"
-    "adobe-creative-cloud"
-    "anythingllm"
-    "claude"
-    "codeedit"
-    "coherence-x"
-    "diffusionbee"
-    "github"
-    "github-copilot-for-xcode"
-    "hhkb"
-    "openemu"
-    "orbstack"
-  ];
-
   homebrew.masApps = {
     "Codye" = 1516894961;
     "DevHub" = 6476452351;
