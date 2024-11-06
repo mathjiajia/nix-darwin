@@ -39,6 +39,12 @@
       IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
     };
 
+    sessionPath = [
+      "/opt/homebrew/bin"
+      "/System/Cryptexes/App/usr/bin"
+      "/Library/TeX/texbin"
+    ];
+
     packages = with pkgs; [
       difftastic
       hugo
