@@ -3,8 +3,9 @@
     enable = true;
     extraConfig = # lisp
       ''
-        (add-to-list 'default-frame-alist
-          '(font . "Maple Mono NF CN-28"))
+        (set-frame-font "Maple Mono NF CN-16:Regular")
+        (add-to-list 'default-frame-alist '(font . "Maple Mono NF CN-24:Regular"))
+        (set-face-attribute 'default t :font "Maple Mono NF CN-16:Regular")
       '';
   };
 }

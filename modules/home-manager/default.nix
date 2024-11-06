@@ -11,8 +11,6 @@
     ./settings/fastfetch.nix
     ./settings/fish.nix
     ./settings/fzf.nix
-    ./settings/kitty.nix
-    ./settings/neovide.nix
     ./settings/ripgrep.nix
     ./settings/sioyek.nix
     ./settings/starship.nix
@@ -41,7 +39,7 @@
 
     sessionPath = [
       "/opt/homebrew/bin"
-      "/System/Cryptexes/App/usr/bin"
+      # "/System/Cryptexes/App/usr/bin"
       "/Library/TeX/texbin"
     ];
 

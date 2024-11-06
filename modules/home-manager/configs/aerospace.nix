@@ -5,10 +5,6 @@
       ''
         start-at-login = true
 
-        after-startup-command = [
-          "exec-and-forget /run/current-system/sw/bin/borders active_color=0xff39BAE6 inactive_color=0xff494d64 width=5.0 blacklist='iPhone Mirroring'",
-        ]
-
         [gaps]
         inner.horizontal = 10
         inner.vertical = 10

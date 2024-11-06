@@ -6,6 +6,7 @@
     # ./settings/system.nix
 
     # ./services/aerospace.nix
+    ./services/jankyborders.nix
   ];
 
   # List packages installed in system profile. To search by name, run:
@@ -18,7 +19,7 @@
     ice-bar
     iina
     inkscape-with-extensions
-    jankyborders
+    # jankyborders
     # jujutsu
     keka
     # lazyjj
@@ -35,7 +36,7 @@
     # zotero
   ];
 
-  # environment.shells = [ pkgs.fish ];
+  environment.shells = [ pkgs.fish ];
 
   fonts.packages = with pkgs; [
     # maple-mono-NF
