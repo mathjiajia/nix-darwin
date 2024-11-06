@@ -11,6 +11,7 @@
     ./settings/fastfetch.nix
     ./settings/fish.nix
     ./settings/fzf.nix
+    ./settings/texlive.nix
     ./settings/ripgrep.nix
     ./settings/sioyek.nix
     ./settings/starship.nix
@@ -37,11 +38,7 @@
       IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
     };
 
-    sessionPath = [
-      "/opt/homebrew/bin"
-      # "/System/Cryptexes/App/usr/bin"
-      "/Library/TeX/texbin"
-    ];
+    sessionPath = [ "/opt/homebrew/bin" ];
 
     packages = with pkgs; [
       difftastic
@@ -58,7 +55,6 @@
     home-manager.enable = true; # manage itslef
     fd.enable = true;
     pandoc.enable = true;
-    texlive.enable = false;
     vscode.enable = true;
     zoxide.enable = true;
   };

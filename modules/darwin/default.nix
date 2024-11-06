@@ -26,9 +26,9 @@
     loopwm
     # mathpix-snipping-tool
     # microsoft-edge
+    raycast
     skimpdf
     # sublime-merge
-    raycast
     # warp-terminal
     # zed-editor
     zoom-us

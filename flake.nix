@@ -82,5 +82,8 @@
           modules = commonModules;
         };
       };
+
+      # Expose the package set, including overlays, for convenience.
+      darwinPackages = self.darwinConfigurations."Jias-MacBook-Pro".pkgs;
     };
 }
