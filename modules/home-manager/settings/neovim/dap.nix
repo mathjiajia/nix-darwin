@@ -1,31 +1,44 @@
-{
+{pkgs, ...}: {
   programs.nixvim = {
     plugins.dap = {
       enable = true;
-      # adapters = {
-      #   executables = {
-      #     cppdbg = {
-      #       id = "cppdbg";
-      #       command = "OpenDebugAD7";
-      #     };
-      #     lldb = {
-      #       id = "cppdbg";
-      #       command = "lldb-vscode";
-      #     };
-      #   };
-      #   servers = {
-      #     codelldb = {
-      #       port = ''''${port}'';
-      #       executable = {
-      #         command = "codelldb";
-      #         args = [
-      #           "--port"
-      #           ''''${port}''
-      #         ];
-      #       };
-      #     };
-      #   };
-      # };
+      adapters = {
+        # executables = {
+        #   cppdbg = {
+        #     id = "cppdbg";
+        #     command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
+        #   };
+        # };
+        servers = {
+          cppdbg = {
+            port = "\${port}";
+            executable = {
+              command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+              args = ["--port" "\${port}"];
+            };
+          };
+        };
+      };
+      configurations = rec {
+        cpp = [
+          {
+            name = "Launch";
+            type = "cppdbg";
+            request = "launch";
+            program.__raw =
+              #lua
+              ''
+                function()
+                	return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                end
+              '';
+            cwd = "\${workspaceFolder}";
+            stopAtEntry = false;
+          }
+        ];
+
+        c = cpp;
+      };
       extensions = {
         dap-python.enable = true;
         dap-ui.enable = true;

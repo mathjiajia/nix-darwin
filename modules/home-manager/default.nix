@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   imports = [
-    ./settings/bat
     ./settings/git
     ./settings/neovim
     ./settings/yazi
 
+    ./settings/bat.nix
     ./settings/btop.nix
     ./settings/emacs.nix
     ./settings/fastfetch.nix

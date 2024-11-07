@@ -16,6 +16,9 @@
     nodejs # for copilot.lua
     python312Packages.ipython # for REPL (overseer)
 
+    vscode-extensions.vadimcn.vscode-lldb
+    # vscode-extensions.ms-vscode.cpptools
+
     commitlint
     markdownlint-cli2
     shellcheck
@@ -58,6 +61,33 @@
       enable_sidebar_background = true;
       italic = true;
       uniform_diff_background = true;
+    };
+  };
+
+  programs.nixvim.colorschemes.kanagawa = {
+    enable = true;
+    settings = {
+      colors = {theme = {all = {ui = {bg_gutter = "none";};};};};
+      compile = true;
+      dimInactive = false;
+      overrides =
+        #lua
+        ''
+          function(colors)
+            return {
+              RainbowDelimiterRed = { fg = colors.palette.waveRed },
+              RainbowDelimiterYellow = { fg = colors.palette.carpYellow },
+              RainbowDelimiterBlue = { fg = colors.palette.dragonBlue },
+              RainbowDelimiterOrange = { fg = colors.palette.surimiOrange },
+              RainbowDelimiterGreen = { fg = colors.palette.springGreen },
+              RainbowDelimiterViolet = { fg = colors.palette.oniViolet },
+              RainbowDelimiterCyan = { fg = colors.palette.waveAqua1 },
+            }
+          end
+        '';
+      terminalColors = false;
+      transparent = false;
+      undercurl = true;
     };
   };
 

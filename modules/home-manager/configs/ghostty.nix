@@ -4,8 +4,8 @@
     text =
       # ghostty
       ''
-        theme = bamboo
-        # theme = GruvboxDarkHard
+        # theme = bamboo
+        theme = kanagawabones
         # custom-shader = ./shaders/bloom.glsl
 
         # fonts

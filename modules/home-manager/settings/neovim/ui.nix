@@ -2,7 +2,7 @@
   programs.nixvim.plugins = {
     markview.enable = true;
     dressing.enable = true;
-    notify.enable = true;
+    # notify.enable = true;
     noice = {
       enable = true;
       settings = {

@@ -19,16 +19,6 @@
     };
   };
 
-  slimline-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "slimline";
-    src = pkgs.fetchFromGitHub {
-      owner = "sschleemilch";
-      repo = "slimline.nvim";
-      rev = "master";
-      hash = "sha256-xVQWt1M9+gXvCTjQkQY6RQj9E/NYQorse7cFPcsMajw=";
-    };
-  };
-
   nvim-treesitter-pairs = pkgs.vimUtils.buildVimPlugin {
     name = "treesitter-pairs";
     src = pkgs.fetchFromGitHub {
@@ -38,10 +28,19 @@
       hash = "sha256-Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
+
+  slimline-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "slimline";
+    src = pkgs.fetchFromGitHub {
+      owner = "sschleemilch";
+      repo = "slimline.nvim";
+      rev = "master";
+      hash = "sha256-xVQWt1M9+gXvCTjQkQY6RQj9E/NYQorse7cFPcsMajw=";
+    };
+  };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     aerial-nvim
-    bamboo-nvim
     dropbar-nvim
     grug-far-nvim
     nvim-highlight-colors
@@ -57,14 +56,11 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      require("bamboo").setup({
-      	transparent = not vim.g.neovide,
-      	term_colors = false,
-      })
-      require("bamboo").load()
       require("slimline").setup({
       	spaces = { components = "", left = "", right = "" },
       	sep = { hide = { first = true, last = true }, left = "", right = "" },
+      	hl = { primary = "Special" },
+      	icons = { diagnostics = { ERROR = " ", WARN = " ", HINT = " ", INFO = " " } },
       })
       require("dropbar").setup()
       require("grug-far").setup({ headerMaxWidth = 80 })
