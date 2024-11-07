@@ -62,7 +62,10 @@ in {
       	term_colors = false,
       })
       require("bamboo").load()
-      require("slimline").setup({ verbose_mode = true, style = "fg" })
+      require("slimline").setup({
+      	spaces = { components = "", left = "", right = "" },
+      	sep = { hide = { first = true, last = true }, left = "", right = "" },
+      })
       require("dropbar").setup()
       require("grug-far").setup({ headerMaxWidth = 80 })
       require("nvim-highlight-colors").setup()
@@ -79,7 +82,7 @@ in {
 
   programs.nixvim.keymaps = [
     {
-      mode = [ "n" "v"];
+      mode = ["n" "v"];
       key = "<leader>sr";
       action.__raw =
         # lua
@@ -103,21 +106,33 @@ in {
       key = "<leader>ss";
       action.__raw =
         # lua
-        ''function() require("resession").save() end'';
+        ''
+          function()
+          	require("resession").save()
+          end
+        '';
       options.desc = "Save Session";
     }
     {
       key = "<leader>sl";
       action.__raw =
         # lua
-        ''function() require("resession").load() end'';
+        ''
+          function()
+          	require("resession").load()
+          end
+        '';
       options.desc = "Load Session";
     }
     {
       key = "<leader>sd";
       action.__raw =
         # lua
-        ''function() require("resession").delete() end'';
+        ''
+          function()
+          	require("resession").delete()
+          end
+        '';
       options.desc = "Delete Session";
     }
   ];

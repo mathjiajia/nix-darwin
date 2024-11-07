@@ -81,65 +81,65 @@
     keymaps = [
       {
         key = "<leader>db";
-        action.__raw =
-          # lua
-          ''function() require("dap").toggle_breakpoint() end'';
+        action = "<Cmd>DapToggleBreakpoint<CR>";
         options.desc = "Toggle Breakpoint";
       }
       {
         key = "<leader>dB";
         action.__raw =
           # lua
-          ''function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end'';
+          ''
+            function()
+            	require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+            end
+          '';
         options.desc = "Breakpoint Condition";
       }
       {
         key = "<leader>dc";
-        action.__raw =
-          # lua
-          ''function() require("dap").continue() end'';
+        action = "<Cmd>DapContinue<CR>";
         options.desc = "Continue";
       }
       {
         key = "<leader>dg";
         action.__raw =
           # lua
-          ''function() require("dap").goto_() end'';
+          ''
+            function()
+            	require("dap").goto_()
+            	end
+          '';
         options.desc = "Go to Line (No Execute)";
       }
       {
         key = "<leader>di";
-        action.__raw =
-          # lua
-          ''function() require("dap").step_into() end'';
+        action = "<Cmd>DapStepInto<CR>";
         options.desc = "Step Into";
       }
       {
         key = "<leader>dl";
         action.__raw =
           # lua
-          ''function() require("dap").run_last() end'';
+          ''
+            function()
+            	require("dap").run_last()
+            end
+          '';
         options.desc = "Run Last";
       }
       {
         key = "<leader>do";
-        action.__raw =
-          # lua
-          ''function() require("dap").step_out() end'';
+        action = "<Cmd>DapStepOut<CR>";
         options.desc = "Step Out";
       }
       {
         key = "<leader>dO";
-        action.__raw =
-          # lua
-          ''function() require("dap").step_over() end'';
+        action = "<Cmd>DapStepOver<CR>";
         options.desc = "Step Over";
       }
       {
         key = "<leader>dr";
-        action.__raw =
-          # lua
-          ''function() require("dap").repl.toggle() end'';
+        action = "<Cmd>DapToggleRepl<CR>";
         options.desc = "Toggle REPL";
       }
       {
@@ -147,14 +147,22 @@
         key = "<leader>dw";
         action.__raw =
           # lua
-          ''function() require("dap.ui.widgets").hover() end'';
+          ''
+            function()
+            	require("dap.ui.widgets").hover()
+            end
+          '';
         options.desc = "Widgets";
       }
       {
         key = "<leader>du";
         action.__raw =
           # lua
-          ''function() require("dapui").toggle() end'';
+          ''
+            function()
+            	require("dapui").toggle()
+            end
+          '';
         options.desc = "Dap UI";
       }
       {
@@ -162,7 +170,11 @@
         key = "<leader>de";
         action.__raw =
           # lua
-          ''function() require("dapui").eval() end'';
+          ''
+            function()
+            	require("dapui").eval()
+            end
+          '';
         options.desc = "Eval";
       }
     ];

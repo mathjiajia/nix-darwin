@@ -13,7 +13,11 @@
         group = "CheckTime";
         callback.__raw =
           # lua
-          ''function() if vim.o.buftype ~= "nofile" then vim.cmd.checktime() end end'';
+          ''
+            function()
+            	if vim.o.buftype ~= "nofile" then vim.cmd.checktime() end
+            end
+          '';
       }
       {
         event = ["TextYankPost"];
@@ -21,7 +25,11 @@
         group = "HighlightYank";
         callback.__raw =
           # lua
-          "function() vim.highlight.on_yank() end";
+          ''
+            function()
+            	vim.highlight.on_yank()
+            end
+          '';
       }
       {
         event = ["BufReadPost"];
@@ -85,7 +93,11 @@
         pattern = ["*/spell/*.add"];
         callback.__raw =
           # lua
-          ''function() vim.cmd.mkspell({ "%", bang = true, mods = { silent = true } }) end'';
+          ''
+            function()
+              vim.cmd.mkspell({ "%", bang = true, mods = { silent = true } })
+            end
+          '';
       }
     ];
   };

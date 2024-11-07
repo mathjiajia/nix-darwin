@@ -19,7 +19,11 @@
       mode = ["n"];
       action.__raw =
         # lua
-        ''function() vim.api.nvim_buf_delete(0, {}) end'';
+        ''
+          function()
+          	vim.api.nvim_buf_delete(0, {})
+          end
+        '';
       options.desc = "Delete Buffer";
     }
     {
@@ -27,7 +31,11 @@
       mode = ["n"];
       action.__raw =
         # lua
-        ''function() vim.api.nvim_buf_delete(0, { force = true }) end'';
+        ''
+          function()
+          	vim.api.nvim_buf_delete(0, { force = true })
+          end
+        '';
       options.desc = "Delete Buffer (force)";
     }
   ];

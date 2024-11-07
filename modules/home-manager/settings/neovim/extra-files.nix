@@ -170,9 +170,7 @@
         				return {
         					cmd = ft.repl,
         					name = ft.name .. " REPL " .. ft.num,
-        					components = {
-        						"default",
-        					},
+        					components = { "default" },
         				}
         			end,
         			priority = 5,
