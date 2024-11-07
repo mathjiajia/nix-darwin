@@ -71,9 +71,7 @@
         inherit system;
         modules =
           commonModules
-          ++ [
-            ./modules/darwin/extra.nix
-          ];
+          ++ [./modules/darwin/extra.nix];
       };
 
       "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {

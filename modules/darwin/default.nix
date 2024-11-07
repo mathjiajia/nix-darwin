@@ -34,18 +34,14 @@
     # zotero
   ];
 
-  environment.shells = [pkgs.fish];
+  environment.shells = with pkgs; [fish];
 
   fonts.packages = with pkgs; [
     # maple-mono-NF
     lxgw-wenkai
     smiley-sans
     (pkgs.nerdfonts.override {
-      fonts = [
-        "IosevkaTerm"
-        "ProggyClean"
-        "NerdFontsSymbolsOnly"
-      ];
+      fonts = [ "IosevkaTerm" "NerdFontsSymbolsOnly" ];
     })
   ];
 }

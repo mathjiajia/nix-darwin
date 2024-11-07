@@ -79,10 +79,7 @@ in {
 
   programs.nixvim.keymaps = [
     {
-      mode = [
-        "n"
-        "v"
-      ];
+      mode = [ "n" "v"];
       key = "<leader>sr";
       action.__raw =
         # lua

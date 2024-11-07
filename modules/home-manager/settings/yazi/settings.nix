@@ -13,11 +13,7 @@
 
   programs.yazi.settings = {
     manager = {
-      ratio = [
-        1
-        2
-        3
-      ];
+      ratio = [1 2 3];
       sort_by = "natural";
       sort_sensitive = true;
       sort_reverse = false;

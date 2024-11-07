@@ -55,39 +55,15 @@
       };
 
       mode.service.binding = {
-        esc = [
-          "reload-config"
-          "mode main"
-        ];
-        r = [
-          "flatten-workspace-tree"
-          "mode main"
-        ];
-        f = [
-          "layout floating tiling"
-          "mode main"
-        ];
-        backspace = [
-          "close-all-windows-but-current"
-          "mode main"
-        ];
+        esc = ["reload-config" "mode main"];
+        r = ["flatten-workspace-tree" "mode main"];
+        f = ["layout floating tiling" "mode main"];
+        backspace = ["close-all-windows-but-current" "mode main"];
 
-        alt-shift-h = [
-          "join-with left"
-          "mode main"
-        ];
-        alt-shift-j = [
-          "join-with down"
-          "mode main"
-        ];
-        alt-shift-k = [
-          "join-with up"
-          "mode main"
-        ];
-        alt-shift-l = [
-          "join-with right"
-          "mode main"
-        ];
+        alt-shift-h = ["join-with left" "mode main"];
+        alt-shift-j = ["join-with down" "mode main"];
+        alt-shift-k = ["join-with up" "mode main"];
+        alt-shift-l = ["join-with right" "mode main"];
 
         on-window-detected = {
         };

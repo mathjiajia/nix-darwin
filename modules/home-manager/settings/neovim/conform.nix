@@ -13,11 +13,7 @@
       });
       settings = {
         formatters = {
-          latexindent.prepend_args = [
-            "-c"
-            "./.aux"
-            "-m"
-          ];
+          latexindent.prepend_args = ["-c" "./.aux" "-m"];
           bibtex-tidy.prepend_args = [
             "--curly"
             "--tab"
@@ -56,10 +52,7 @@
 
     keymaps = [
       {
-        mode = [
-          "n"
-          "v"
-        ];
+        mode = ["n" "v"];
         key = "<leader>cF";
         action.__raw =
           # lua

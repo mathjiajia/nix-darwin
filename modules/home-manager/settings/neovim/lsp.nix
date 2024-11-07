@@ -51,22 +51,14 @@
       sourcekit = {
         enable = true;
         package = null;
-        filetypes = [
-          "swift"
-          "objc"
-          "objcpp"
-        ];
+        filetypes = ["swift" "objc" "objcpp"];
       };
       taplo.enable = true;
       texlab = {
         enable = true;
         settings.texlab = {
           build = {
-            args = [
-              "-interaction=nonstopmode"
-              "-synctex=1"
-              "%f"
-            ];
+            args = ["-interaction=nonstopmode" "-synctex=1" "%f"];
             forwardSearchAfter = false;
             onSave = true;
           };

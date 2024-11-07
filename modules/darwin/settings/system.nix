@@ -1,4 +1,6 @@
 {
+  security.pam.enableSudoTouchIdAuth = true;
+
   system.defaults = {
     # firewall settings
     alf = {

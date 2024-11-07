@@ -29,15 +29,12 @@
       VISUAL = "nvim";
       MANPAGER = "nvim +Man!";
       DFT_PARSE_ERROR_LIMIT = 999;
-      HOMEBREW_NO_ANALYTICS = 1;
 
       DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
       GEM_HOME = "$XDG_DATA_HOME/gem";
       GEM_SPEC_CACHE = "$XDG_CACHE_HOME/gem";
       IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
     };
-
-    sessionPath = ["/opt/homebrew/bin"];
 
     packages = with pkgs; [
       difftastic

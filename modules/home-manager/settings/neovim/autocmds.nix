@@ -9,11 +9,7 @@
 
     autoCmd = [
       {
-        event = [
-          "FocusGained"
-          "TermClose"
-          "TermLeave"
-        ];
+        event = ["FocusGained" "TermClose" "TermLeave"];
         group = "CheckTime";
         callback.__raw =
           # lua
@@ -74,12 +70,7 @@
       {
         event = ["BufReadPost"];
         group = "OpenFile";
-        pattern = [
-          "*.jpeg"
-          "*.jpg"
-          "*.pdf"
-          "*.png"
-        ];
+        pattern = ["*.jpeg" "*.jpg" "*.pdf" "*.png"];
         callback.__raw =
           # lua
           ''

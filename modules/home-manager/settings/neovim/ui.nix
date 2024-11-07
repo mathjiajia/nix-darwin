@@ -122,11 +122,7 @@
     indent-blankline = {
       enable = true;
       settings = {
-        exclude.filetypes = [
-          "conf"
-          "dashboard"
-          "markdown"
-        ];
+        exclude.filetypes = ["conf" "dashboard" "markdown"];
         scope.highlight = [
           "RainbowRed"
           "RainbowYellow"
@@ -193,11 +189,7 @@
     }
 
     {
-      mode = [
-        "n"
-        "i"
-        "s"
-      ];
+      mode = ["n" "i" "s"];
       key = "<C-f>";
       action.__raw =
         # lua
@@ -206,11 +198,7 @@
       options.expr = true;
     }
     {
-      mode = [
-        "n"
-        "i"
-        "s"
-      ];
+      mode = ["n" "i" "s"];
       key = "<C-b>";
       action.__raw =
         # lua

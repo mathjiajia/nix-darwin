@@ -26,43 +26,27 @@
         mapping = {
           __raw = ''cmp.mapping.preset.cmdline()'';
         };
-        sources = [
-          {
-            name = "buffer";
-          }
-        ];
+        sources = [{name = "buffer";}];
       };
       "?" = {
         mapping = {
           __raw = ''cmp.mapping.preset.cmdline()'';
         };
-        sources = [
-          {
-            name = "buffer";
-          }
-        ];
+        sources = [{name = "buffer";}];
       };
       ":" = {
         mapping = {
           __raw = ''cmp.mapping.preset.cmdline()'';
         };
         sources = [
-          {
-            name = "async_path";
-          }
-          {
-            name = "cmdline";
-          }
+          {name = "async_path";}
+          {name = "cmdline";}
         ];
       };
     };
     settings = {
       formatting = {
-        fields = [
-          "abbr"
-          "menu"
-          "kind"
-        ];
+        fields = ["abbr" "menu" "kind"];
         format =
           # lua
           ''
@@ -191,10 +175,7 @@
       options.desc = "LuaSnip Expand";
     }
     {
-      mode = [
-        "i"
-        "s"
-      ];
+      mode = ["i" "s"];
       key = "<C-l>";
       action.__raw =
         # lua
@@ -202,10 +183,7 @@
       options.desc = "LuaSnip Forward Jump";
     }
     {
-      mode = [
-        "i"
-        "s"
-      ];
+      mode = ["i" "s"];
       key = "<C-j>";
       action.__raw =
         # lua
@@ -213,10 +191,7 @@
       options.desc = "LuaSnip Backward Jump";
     }
     {
-      mode = [
-        "i"
-        "s"
-      ];
+      mode = ["i" "s"];
       key = "<C-e>";
       action.__raw =
         # lua

@@ -1,6 +1,6 @@
 {
   programs.sioyek = {
-    enable = false;
+    # enable = true;
     config = {
       use_system_theme = "1";
       use_custom_color_as_dark_system_theme = "1";
@@ -26,10 +26,8 @@
       synctex_highlight_color = "#f08080";
     };
     bindings = {
-      toggle_two_page_mode = "<A-t>";
-      toggle_custom_color = "<C-r>";
       prev_state = "<C-o>";
-      synctex_under_cursor = "<A-f>";
+      synctex_under_cursor = "<C-j>";
 
       # scrolling
       screen_down = "<C-d>";

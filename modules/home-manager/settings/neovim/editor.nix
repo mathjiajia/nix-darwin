@@ -125,11 +125,7 @@
 
   programs.nixvim.keymaps = [
     {
-      mode = [
-        "n"
-        "x"
-        "o"
-      ];
+      mode = ["n" "x" "o"];
       key = "s";
       action.__raw =
         # lua
@@ -137,11 +133,7 @@
       options.desc = "Flash";
     }
     {
-      mode = [
-        "n"
-        "x"
-        "o"
-      ];
+      mode = ["n" "x" "o"];
       key = "S";
       action.__raw =
         # lua
@@ -157,10 +149,7 @@
       options.desc = "Remote Flash";
     }
     {
-      mode = [
-        "x"
-        "o"
-      ];
+      mode = ["x" "o"];
       key = "R";
       action.__raw =
         # lua

@@ -143,10 +143,7 @@
         options.desc = "Toggle REPL";
       }
       {
-        mode = [
-          "n"
-          "v"
-        ];
+        mode = ["n" "v"];
         key = "<leader>dw";
         action.__raw =
           # lua
@@ -161,10 +158,7 @@
         options.desc = "Dap UI";
       }
       {
-        mode = [
-          "n"
-          "v"
-        ];
+        mode = ["n" "v"];
         key = "<leader>de";
         action.__raw =
           # lua
