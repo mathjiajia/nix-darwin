@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   nixpkgs = {
     config.allowUnfree = true;
     hostPlatform = "aarch64-darwin";

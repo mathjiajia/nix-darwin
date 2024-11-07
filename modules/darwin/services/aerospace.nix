@@ -90,7 +90,6 @@
         ];
 
         on-window-detected = {
-
         };
       };
     };

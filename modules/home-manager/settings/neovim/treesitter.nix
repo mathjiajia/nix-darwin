@@ -2,9 +2,8 @@
   programs.nixvim.plugins = {
     treesitter = {
       enable = true;
-      grammarPackages =
-        [
-        ];
+      grammarPackages = [
+      ];
       settings = {
         ensure_installed = [
           "bash"

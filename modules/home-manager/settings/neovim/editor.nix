@@ -149,7 +149,7 @@
       options.desc = "Flash Treesitter";
     }
     {
-      mode = [ "o" ];
+      mode = ["o"];
       key = "r";
       action.__raw =
         # lua
@@ -168,13 +168,12 @@
       options.desc = "Treesitter Search";
     }
     {
-      mode = [ "c" ];
+      mode = ["c"];
       key = "<c-s>";
       action.__raw =
         # lua
         ''function() require("flash").toggle() end'';
       options.desc = "Toggle Flash Search";
     }
-
   ];
 }

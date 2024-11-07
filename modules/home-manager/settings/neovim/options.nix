@@ -89,5 +89,4 @@
     virtualedit = "block";
     signcolumn = "yes";
   };
-
 }

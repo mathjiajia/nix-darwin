@@ -2,12 +2,11 @@
   programs.texlive = {
     enable = true;
     extraPackages = tpkgs: {
-      inherit (tpkgs)
+      inherit
+        (tpkgs)
         scheme-minimal
-
         latexindent
         latexmk
-
         collection-basic
         collection-bibtexextra
         collection-fontsextra

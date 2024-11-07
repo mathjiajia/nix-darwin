@@ -1,7 +1,8 @@
 {
   programs.fish = {
     enable = true;
-    interactiveShellInit = # fish
+    interactiveShellInit =
+      # fish
       ''
         set fish_greeting
         fish_add_path --append $GHOSTTY_BIN_DIR
@@ -28,5 +29,4 @@
       nf = "nvim (fzf)";
     };
   };
-
 }

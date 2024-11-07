@@ -1,7 +1,8 @@
 {
   home.file.aerospace = {
     target = ".config/aerospace/aerospace.toml";
-    text = # toml
+    text =
+      # toml
       ''
         start-at-login = true
 

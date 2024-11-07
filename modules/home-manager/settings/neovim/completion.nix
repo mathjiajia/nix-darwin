@@ -1,11 +1,7 @@
 {
   programs.nixvim.plugins.luasnip = {
     enable = true;
-    fromLua = [
-      {
-        lazyLoad = true;
-      }
-    ];
+    fromLua = [{lazyLoad = true;}];
     settings = {
       update_events = "TextChanged,TextChangedI";
       delete_check_events = "TextChanged";
@@ -187,7 +183,7 @@
 
   programs.nixvim.keymaps = [
     {
-      mode = [ "i" ];
+      mode = ["i"];
       key = "<C-k>";
       action.__raw =
         # lua

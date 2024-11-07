@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.nixvim = {
     plugins.conform-nvim = {
       enable = true;
@@ -28,25 +27,25 @@
           ];
         };
         formatters_by_ft = {
-          "_" = [ "trim_whitespace" ];
-          bib = [ "bibtex-tidy" ];
-          c = [ "clang-format" ];
-          css = [ "prettierd" ];
-          html = [ "prettierd" ];
-          javascript = [ "prettierd" ];
-          json = [ "prettierd" ];
-          jsonc = [ "prettierd" ];
-          fish = [ "fish_indent" ];
-          markdown = [ "prettierd" ];
-          "markdown.mdx" = [ "prettierd" ];
-          yaml = [ "prettierd" ];
-          lua = [ "stylua" ];
-          nix = [ "nixfmt" ];
-          python = [ "black" ];
-          sh = [ "shfmt" ];
-          swift = [ "swift_format" ];
-          tex = [ "latexindent" ];
-          toml = [ "taplo" ];
+          "_" = ["trim_whitespace"];
+          bib = ["bibtex-tidy"];
+          c = ["clang-format"];
+          css = ["prettierd"];
+          html = ["prettierd"];
+          javascript = ["prettierd"];
+          json = ["prettierd"];
+          jsonc = ["prettierd"];
+          fish = ["fish_indent"];
+          markdown = ["prettierd"];
+          "markdown.mdx" = ["prettierd"];
+          yaml = ["prettierd"];
+          lua = ["stylua"];
+          nix = ["alejandra"];
+          python = ["black"];
+          sh = ["shfmt"];
+          swift = ["swift_format"];
+          tex = ["latexindent"];
+          toml = ["taplo"];
         };
         format_on_save = {
           lsp_format = "fallback";

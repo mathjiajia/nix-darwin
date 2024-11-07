@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   yaziPlugins = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
@@ -21,7 +20,8 @@ let
   arrowPlugin = pkgs.writeTextFile {
     name = "arrow.yazi";
     destination = "/init.lua";
-    text = # lua
+    text =
+      # lua
       ''
         return {
           entry = function(_, args)
@@ -35,7 +35,8 @@ let
   parentArrowPlugin = pkgs.writeTextFile {
     name = "parent-arrow.yazi";
     destination = "/init.lua";
-    text = # lua
+    text =
+      # lua
       ''
         local function entry(_, args)
           local parent = cx.active.parent
@@ -53,7 +54,8 @@ let
   smartEnterPlugin = pkgs.writeTextFile {
     name = "smart-enter.yazi";
     destination = "/init.lua";
-    text = # lua
+    text =
+      # lua
       ''
         return {
           entry = function()
@@ -63,8 +65,7 @@ let
         }
       '';
   };
-in
-{
+in {
   programs.yazi.plugins = {
     arrow = arrowPlugin;
     chmod = "${yaziPlugins}/chmod.yazi";

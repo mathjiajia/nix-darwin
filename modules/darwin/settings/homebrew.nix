@@ -7,7 +7,7 @@
       upgrade = true;
     };
 
-    brews = [ "swift-format" ];
+    brews = ["swift-format"];
 
     casks = [
       "chatgpt"

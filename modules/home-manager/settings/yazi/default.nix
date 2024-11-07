@@ -9,7 +9,8 @@
     enable = true;
     enableFishIntegration = true;
     shellWrapperName = "lf";
-    initLua = # lua
+    initLua =
+      # lua
       ''
         require("git"):setup()
         require("full-border"):setup()

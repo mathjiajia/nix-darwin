@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   mysnippets = pkgs.vimUtils.buildVimPlugin {
     name = "mySnippets";
     src = pkgs.fetchFromGitHub {
@@ -39,8 +38,7 @@ let
       hash = "sha256-Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
-in
-{
+in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     aerial-nvim
     bamboo-nvim

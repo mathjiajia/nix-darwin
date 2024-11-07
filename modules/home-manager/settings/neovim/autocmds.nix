@@ -1,10 +1,10 @@
 {
   programs.nixvim = {
     autoGroups = {
-      CheckTime = { };
-      HighlightYank = { };
-      LastPlace = { };
-      OpenFile = { };
+      CheckTime = {};
+      HighlightYank = {};
+      LastPlace = {};
+      OpenFile = {};
     };
 
     autoCmd = [
@@ -20,7 +20,7 @@
           ''function() if vim.o.buftype ~= "nofile" then vim.cmd.checktime() end end'';
       }
       {
-        event = [ "TextYankPost" ];
+        event = ["TextYankPost"];
         desc = "Highlight the Yanked Text";
         group = "HighlightYank";
         callback.__raw =
@@ -28,7 +28,7 @@
           "function() vim.highlight.on_yank() end";
       }
       {
-        event = [ "BufReadPost" ];
+        event = ["BufReadPost"];
         desc = "Last Position";
         group = "LastPlace";
         callback.__raw =
@@ -72,7 +72,7 @@
       #     '';
       # }
       {
-        event = [ "BufReadPost" ];
+        event = ["BufReadPost"];
         group = "OpenFile";
         pattern = [
           "*.jpeg"
@@ -90,8 +90,8 @@
           '';
       }
       {
-        event = [ "BufWritePost" ];
-        pattern = [ "*/spell/*.add" ];
+        event = ["BufWritePost"];
+        pattern = ["*/spell/*.add"];
         callback.__raw =
           # lua
           ''function() vim.cmd.mkspell({ "%", bang = true, mods = { silent = true } }) end'';

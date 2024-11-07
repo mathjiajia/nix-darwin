@@ -1,7 +1,8 @@
 {
   home.file.ghostty = {
     target = ".config/ghostty/config";
-    text = # ghostty
+    text =
+      # ghostty
       ''
         theme = bamboo
         # theme = GruvboxDarkHard

@@ -1,5 +1,8 @@
-{ neovim-nightly-overlay, pkgs, ... }:
 {
+  neovim-nightly-overlay,
+  pkgs,
+  ...
+}: {
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -19,7 +22,8 @@
 
     bibtex-tidy
     black
-    nixfmt-rfc-style
+    alejandra
+    # nixfmt-rfc-style
     prettierd
     shfmt
     stylua
@@ -82,5 +86,4 @@
 
     ./extra-files.nix
   ];
-
 }

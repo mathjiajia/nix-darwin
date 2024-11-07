@@ -22,7 +22,7 @@
     }
     {
       key = "<leader>bd";
-      mode = [ "n" ];
+      mode = ["n"];
       action.__raw =
         # lua
         ''function() vim.api.nvim_buf_delete(0, {}) end'';
@@ -30,7 +30,7 @@
     }
     {
       key = "<leader>bD";
-      mode = [ "n" ];
+      mode = ["n"];
       action.__raw =
         # lua
         ''function() vim.api.nvim_buf_delete(0, { force = true }) end'';

@@ -19,71 +19,70 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs =
-    {
-      self,
-      homebrew-bundle,
-      home-manager,
-      neovim-nightly-overlay,
-      nix-darwin,
-      nix-homebrew,
-      nixpkgs,
-      nixvim,
-      ...
-    }@inputs:
-    let
-      system = "aarch64-darwin";
-      username = "jia";
+  outputs = {
+    self,
+    nixpkgs,
+    nix-darwin,
+    home-manager,
+    nix-homebrew,
+    homebrew-bundle,
+    nixvim,
+    neovim-nightly-overlay,
+    ...
+  } @ inputs: let
+    system = "aarch64-darwin";
+    username = "jia";
 
-      commonModules = [
-        ./configuration.nix
-        ./modules/darwin
-        home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            extraSpecialArgs = {
-              inherit (inputs) nixpkgs neovim-nightly-overlay;
-            };
-            users.${username}.imports = [
-              nixvim.homeManagerModules.nixvim
-              ./modules/home-manager
-            ];
+    commonModules = [
+      ./configuration.nix
+      ./modules/darwin
+      home-manager.darwinModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = {
+            inherit (inputs) nixpkgs neovim-nightly-overlay;
           };
-        }
-
-        nix-homebrew.darwinModules.nix-homebrew
-        {
-          nix-homebrew = {
-            enable = true;
-            enableRosetta = true;
-            user = "${username}";
-            taps = {
-              "homebrew/homebrew-bundle" = homebrew-bundle;
-            };
-            mutableTaps = false;
-          };
-        }
-      ];
-    in
-    {
-      # macOS configurations.
-      darwinConfigurations = {
-        "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-          inherit system;
-          modules = commonModules ++ [
-            ./modules/darwin/extra.nix
+          users.${username}.imports = [
+            nixvim.homeManagerModules.nixvim
+            ./modules/home-manager
           ];
         };
+      }
 
-        "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {
-          inherit system;
-          modules = commonModules;
+      nix-homebrew.darwinModules.nix-homebrew
+      {
+        nix-homebrew = {
+          enable = true;
+          enableRosetta = true;
+          user = "${username}";
+          taps = {
+            "homebrew/homebrew-bundle" = homebrew-bundle;
+          };
+          mutableTaps = false;
         };
+      }
+    ];
+  in {
+    # macOS configurations.
+    darwinConfigurations = {
+      "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        inherit system;
+        modules =
+          commonModules
+          ++ [
+            ./modules/darwin/extra.nix
+          ];
       };
 
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."Jias-MacBook-Pro".pkgs;
+      "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {
+        inherit system;
+        modules = commonModules;
+      };
     };
+
+    # Expose the package set, including overlays, for convenience.
+    darwinPackages = self.darwinConfigurations."Jias-MacBook-Pro".pkgs;
+  };
 }

@@ -1,7 +1,8 @@
 {
   home.file.fd = {
     target = ".config/fd/ignore";
-    text = # ignore
+    text =
+      # ignore
       ''
         System/
         Volumes/

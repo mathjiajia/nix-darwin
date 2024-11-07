@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   nvchad-volt = pkgs.vimUtils.buildVimPlugin {
     name = "volt";
     src = pkgs.fetchFromGitHub {
@@ -45,8 +48,7 @@ let
       hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
-in
-{
+in {
   programs.nixvim.globals.base46_cache = "${config.xdg.dataHome}/nvim/base46_cache/";
 
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./settings/bat
     ./settings/git
@@ -38,7 +37,7 @@
       IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
     };
 
-    sessionPath = [ "/opt/homebrew/bin" ];
+    sessionPath = ["/opt/homebrew/bin"];
 
     packages = with pkgs; [
       difftastic
@@ -58,6 +57,30 @@
     vscode.enable = true;
     zoxide.enable = true;
   };
+
+  # accounts.email.accounts = {
+  #   gmail = {
+  #     address = "mathjiajia@gmail.com";
+  #     primary = true;
+  #   };
+  #   nus = {
+  #     address = "jia_jia@u.nus.edu";
+  #   };
+  #   thu = {
+  #     address = "mathjiajia@tsinghua.edu.cn";
+  #     imap = {
+  #       host = "mail.tsinghua.edu.cn";
+  #       port = 143;
+  #       tls.useStartTls = true;
+  #     };
+  #
+  #     smtp = {
+  #       host = "mail.tsinghua.edu.cn";
+  #       port = 587;
+  #       tls.useStartTls = true;
+  #     };
+  #   };
+  # };
 
   xdg.enable = true;
 }

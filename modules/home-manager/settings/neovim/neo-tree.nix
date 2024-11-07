@@ -11,7 +11,7 @@
         filteredItems = {
           hideDotfiles = false;
           hideGitignored = true;
-          hideByName = [ ".git" ];
+          hideByName = [".git"];
         };
       };
     };

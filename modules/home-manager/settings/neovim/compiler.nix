@@ -60,7 +60,7 @@
           "R_original"
         ];
         interpreter_options.Generic.Swift_original = {
-          supported_filetypes = [ "swift" ];
+          supported_filetypes = ["swift"];
           extension = ".swift";
           interpreter = "swift";
           boilerplate_pre = "import Foundation";

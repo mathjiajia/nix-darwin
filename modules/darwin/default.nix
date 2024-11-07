@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./settings/homebrew.nix
     ./settings/mas.nix
@@ -35,7 +34,7 @@
     # zotero
   ];
 
-  environment.shells = [ pkgs.fish ];
+  environment.shells = [pkgs.fish];
 
   fonts.packages = with pkgs; [
     # maple-mono-NF
