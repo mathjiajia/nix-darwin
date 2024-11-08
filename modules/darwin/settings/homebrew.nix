@@ -39,7 +39,6 @@
       "sublime-merge"
       "surge"
       "syntax-highlight"
-      "zed"
       "zotero"
     ];
   };

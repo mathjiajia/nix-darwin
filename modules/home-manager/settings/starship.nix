@@ -1,30 +1,66 @@
-{lib, ...}: {
+{
   programs.starship = {
     enable = true;
     settings = {
       add_newline = false;
-      format = lib.concatStrings [
-        "$directory"
-        "$git_branch"
-        "$git_state"
-        "$git_status"
-        "$cmd_duration"
-        "$c"
-        "$lua"
-        "$nix_shell"
-        "$python"
-        "$swift"
-        "$docker_context"
-        "$line_break"
-        "$character"
-      ];
-      directory.read_only = " 󰌾";
-      docker_context.symbol = " ";
-      git_branch.symbol = " ";
-      hostname.ssh_symbol = " ";
+      aws.disabled = true;
+      battery.disabled = true;
+      buf.disabled = true;
+      bun.disabled = true;
+      cobol.disabled = true;
+      conda.disabled = true;
+      crystal.disabled = true;
+      daml.disabled = true;
+      dart.disabled = true;
+      deno.disabled = true;
+      dotnet.disabled = true;
+      elixir.disabled = true;
+      elm.disabled = true;
+      erlang.disabled = true;
+      fossil_branch.disabled = true;
+      fossil_metrics.disabled = true;
+      gcloud.disabled = true;
+      gleam.disabled = true;
+      guix_shell.disabled = true;
+      gradle.disabled = true;
+      haskell.disabled = true;
+      haxe.disabled = true;
+      helm.disabled = true;
+      hostname.disabled = true;
+      java.disabled = true;
+      julia.disabled = true;
+      kotlin.disabled = true;
+      meson.disabled = true;
+      mojo.disabled = true;
+      nats.disabled = true;
+      nim.disabled = true;
+      ocaml.disabled = true;
+      odin.disabled = true;
+      opa.disabled = true;
+      openstack.disabled = true;
+      php.disabled = true;
+      pijul_channel.disabled = true;
+      pulumi.disabled = true;
+      purescript.disabled = true;
+      quarto.disabled = true;
+      raku.disabled = true;
+      red.disabled = true;
+      scala.disabled = true;
+      singularity.disabled = true;
+      solidity.disabled = true;
+      spack.disabled = true;
+      terraform.disabled = true;
+      username.disabled = true;
+      vagrant.disabled = true;
+      vlang.disabled = true;
+      vcsh.disabled = true;
+
+      # directory.read_only = " 󰌾";
+      # docker_context.symbol = " ";
+      # git_branch.symbol = " ";
       c.symbol = " ";
       lua.symbol = " ";
-      nix_shell.symbol = " ";
+      # nix_shell.symbol = " ";
       python.symbol = " ";
       swift.symbol = " ";
     };

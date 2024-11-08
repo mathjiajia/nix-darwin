@@ -29,7 +29,7 @@
     skimpdf
     # sublime-merge
     # warp-terminal
-    # zed-editor
+    zed-editor
     zoom-us
     # zotero
   ];
@@ -41,7 +41,7 @@
     lxgw-wenkai
     smiley-sans
     (pkgs.nerdfonts.override {
-      fonts = [ "IosevkaTerm" "NerdFontsSymbolsOnly" ];
+      fonts = ["IosevkaTerm" "NerdFontsSymbolsOnly"];
     })
   ];
 }
