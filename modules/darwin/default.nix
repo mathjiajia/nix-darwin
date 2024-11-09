@@ -18,9 +18,7 @@
     ice-bar
     iina
     inkscape-with-extensions
-    # jujutsu
     keka
-    # lazyjj
     ollama
     loopwm
     # mathpix-snipping-tool
@@ -39,6 +37,7 @@
   fonts.packages = with pkgs; [
     # maple-mono-NF
     lxgw-wenkai
+    sarasa-gothic
     smiley-sans
     (pkgs.nerdfonts.override {
       fonts = ["IosevkaTerm" "NerdFontsSymbolsOnly"];

@@ -82,22 +82,24 @@ in {
       	t = "T",
       }
 
-      local function mode()
+      local mode = function()
       	local current_mode = vim.api.nvim_get_mode().mode
-      	return string.format("%%#StatusLineMode# %s %%*", modes[current_mode])
+      	return string.format("%%#MatchParen# %s %%*", modes[current_mode])
       end
 
-      local function formatted_filetype()
+      local formatted_filetype = function()
       	local filetype = vim.bo.filetype or vim.fn.expand("%:e", false)
       	local icon, hlgroup = MiniIcons.get("filetype", filetype)
       	return string.format("%%#%s# %s %s %%*", hlgroup, icon, filetype)
       end
 
-      local function filename()
-      	local file_path = vim.fn.expand("%:p")
-      	local folder_path = vim.fn.fnamemodify(file_path, ":h:t")
-      	local file = vim.fn.expand("%:t")
-      	return file ~= "" and string.format("%%#StatusLine# %s/%s %%*", folder_path, file) or "[No Name]"
+      local workspace = function()
+      	local icon = " " .. (vim.fn.haslocaldir(0) == 1 and "l" or "g") .. "  "
+      	local cwd = vim.fn.getcwd(0)
+      	local path = vim.fn.fnamemodify(cwd, ":~")
+      	path = vim.fn.pathshorten(path)
+      	local trail = path:sub(-1) == "/" and "" or "/"
+      	return icon .. path .. trail
       end
 
       local GIT_ATTRS = {
@@ -106,38 +108,25 @@ in {
       	{ "removed", "diffRemoved#-" },
       }
 
-      local function full_git()
-      	local full = ""
+      local git_branch = function()
       	local branch = vim.b.gitsigns_head
-      	if branch and branch ~= "" then
-      		local icon = " %#diffNewFile#%*"
-      		full = full .. icon .. "%#StatusLine# %*" .. branch .. " "
-      	end
+      	return branch and " %#diffOldFile# %*" .. branch or ""
+      end
 
+      local git_hunks = function()
       	local hunks = {}
       	local gsd = vim.b.gitsigns_status_dict
 
-      	for i, attr in ipairs(GIT_ATTRS) do
-      		local count = gsd and gsd[attr[1]] or 0
-      		if count > 0 then
-      			table.insert(hunks, string.format("%%#%s%s%%*", attr[2], count))
+      	if gsd then
+      		for i, attr in ipairs(GIT_ATTRS) do
+      			local count = gsd[attr[1]] or 0
+      			if count > 0 then
+      				table.insert(hunks, string.format("%%#%s%s", attr[2], count))
+      			end
       		end
       	end
 
-      	return full .. table.concat(hunks, " ")
-      end
-
-      local function lsp_active()
-      	local names = {}
-      	for i, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
-      		table.insert(names, server.name)
-      	end
-
-      	if #names == 0 then
-      		return ""
-      	end
-
-      	return "%#StatusLine# [" .. table.concat(names, " ") .. "]%*"
+      	return table.concat(hunks, " ")
       end
 
       local DIAG_ATTRS = {
@@ -147,24 +136,40 @@ in {
       	{ "DiagnosticSignHint", vim.diagnostic.severity.HINT },
       }
 
-      local function diagnostics()
+      local diagnostics = function()
       	local status = {}
       	local diags = vim.diagnostic.count(0)
       	for i, attr in ipairs(DIAG_ATTRS) do
       		local count = diags[i] or 0
       		if count > 0 then
-      			table.insert(diagnostics, string.format("%%#%s# ● %s%%*", attr[1], count))
+      			table.insert(status, string.format("%%#%s# ● %s%%*", attr[1], count))
       		end
       	end
+      	return #status > 0 and table.concat(status, " ") or ""
+      end
 
-      	if #status == 0 then
+      local lsp_active = function()
+      	local names = {}
+      	for i, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+      		table.insert(names, server.name)
+      	end
+
+      	if #names == 0 then
       		return ""
       	end
 
-      	return table.concat(status, " ")
+      	return "%#Special# [" .. table.concat(names, " ") .. "] "
       end
 
-      local progress = " %3p%% %2l(%02c)/%-3L %*"
+      local progress = "%#LspReferenceText# %7(%l/%3L%):%2c %P "
+
+      local scrollbar = function()
+      	local sbar = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
+      	local curr_line = vim.api.nvim_win_get_cursor(0)[1]
+      	local lines = vim.api.nvim_buf_line_count(0)
+      	local i = math.floor((curr_line - 1) / lines * 8) + 1
+      	return string.rep(sbar[i], 2)
+      end
 
       StatusLine = {}
 
@@ -177,30 +182,27 @@ in {
       StatusLine.active = function()
       	local mode_str = vim.api.nvim_get_mode().mode
       	if mode_str == "t" or mode_str == "nt" then
-      		return table.concat({
-      			mode(),
-      			"%=",
-      			progress,
-      		})
+      		return table.concat({ mode(), "%=", progress })
       	end
 
       	if redeable_filetypes[vim.bo.filetype] or vim.o.modifiable == false then
-      		return table.concat({
-      			formatted_filetype("Special"),
-      			"%=",
-      			progress,
-      		})
+      		return table.concat({ formatted_filetype("Special"), "%=", progress })
       	end
 
       	local statusline = {
       		mode(),
-      		filename(),
-      		full_git(),
+      		workspace(),
+      		"%f%m%r",
+      		git_branch(),
+      		" ",
+      		git_hunks(),
       		"%=",
       		"%S ",
       		diagnostics(),
       		lsp_active(),
       		progress,
+      		scrollbar(),
+      		" ",
       	}
 
       	return table.concat(statusline)
@@ -210,14 +212,7 @@ in {
 
       vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "FileType" }, {
       	group = vim.api.nvim_create_augroup("simple_statusline", { clear = true }),
-      	pattern = {
-      		"aerial",
-      		"fzf",
-      		"lspinfo",
-      		"neo-tree",
-      		"noice",
-      		"qf",
-      	},
+      	pattern = { "aerial", "fzf", "lspinfo", "neo-tree", "noice", "qf" },
       	callback = function()
       		vim.opt_local.statusline = "%!v:lua.StatusLine.inactive()"
       	end,

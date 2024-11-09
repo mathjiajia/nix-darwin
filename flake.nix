@@ -57,9 +57,7 @@
           enable = true;
           enableRosetta = true;
           user = "${username}";
-          taps = {
-            "homebrew/homebrew-bundle" = homebrew-bundle;
-          };
+          taps = {"homebrew/homebrew-bundle" = homebrew-bundle;};
           mutableTaps = false;
         };
       }
@@ -69,9 +67,7 @@
     darwinConfigurations = {
       "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
         inherit system;
-        modules =
-          commonModules
-          ++ [./modules/darwin/extra.nix];
+        modules = commonModules ++ [./modules/darwin/extra.nix];
       };
 
       "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {

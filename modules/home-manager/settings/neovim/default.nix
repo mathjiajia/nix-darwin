@@ -98,7 +98,6 @@
       integrations = {
         aerial = true;
         alpha = false;
-        dropbar.enabled = true;
         grug_far = true;
         neogit = false;
         noice = true;
@@ -108,18 +107,12 @@
         ufo = false;
         overseer = true;
         render_markdown = false;
-        telescope.enabled = false;
+
+        colorful_winsep.enabled = true;
         illuminate.enabled = false;
+        mini.enabled = false;
+        telescope.enabled = false;
       };
-      custom_highlights =
-        # lua
-        ''
-          function(colors)
-            return {
-              StatusLineMode = { fg = colors.text, bg = "#404040", bold = true },
-            }
-          end
-        '';
       color_overrides = {
         latte = {
           rosewater = "#c14a4a";
