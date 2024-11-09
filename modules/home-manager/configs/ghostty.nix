@@ -4,7 +4,7 @@
     text =
       # ghostty
       ''
-        # theme = bamboo
+        theme = gruvbox
         # custom-shader = ./shaders/bloom.glsl
 
         # fonts

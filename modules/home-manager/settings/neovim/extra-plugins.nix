@@ -71,7 +71,7 @@ in {
       	Rc = "Rc",
       	Rx = "Rx",
       	Rv = "Rv",
-      	Rvc = "Rv",
+      	Rvc = "Rc",
       	Rvx = "Rv",
       	c = "C",
       	cv = "Ex",
@@ -180,7 +180,6 @@ in {
       		return table.concat({
       			mode(),
       			"%=",
-      			"%=",
       			progress,
       		})
       	end
@@ -188,7 +187,6 @@ in {
       	if redeable_filetypes[vim.bo.filetype] or vim.o.modifiable == false then
       		return table.concat({
       			formatted_filetype("Special"),
-      			"%=",
       			"%=",
       			progress,
       		})
@@ -198,7 +196,6 @@ in {
       		mode(),
       		filename(),
       		full_git(),
-      		"%=",
       		"%=",
       		"%S ",
       		diagnostics(),
