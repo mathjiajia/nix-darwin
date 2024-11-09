@@ -45,30 +45,41 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      local statusline_augroup = vim.api.nvim_create_augroup("simple_statusline", { clear = true })
-
       local modes = {
-      	["n"] = "NOR",
-      	["no"] = "NOR",
-      	["v"] = "VSL",
-      	["V"] = "VLN",
-      	[""] = "VBK",
-      	["s"] = "SEL",
-      	["S"] = "SLN",
-      	[""] = "SBK",
-      	["i"] = "INS",
-      	["ic"] = "INS",
-      	["R"] = "RPL",
-      	["Rv"] = "VRP",
-      	["c"] = "CMD",
-      	["cv"] = "E·X",
-      	["ce"] = "E·X",
-      	["r"] = "PMT",
-      	["rm"] = "MRE",
-      	["r?"] = "CFM",
-      	["!"] = "SHL",
-      	["t"] = "TEM",
-      	["nt"] = "TEM",
+      	n = "N",
+      	no = "N?",
+      	nov = "N?",
+      	noV = "N?",
+      	["no\22"] = "N?",
+      	niI = "Ni",
+      	niR = "Nr",
+      	niV = "Nv",
+      	nt = "Nt",
+      	v = "V",
+      	vs = "Vs",
+      	V = "V_",
+      	Vs = "Vs",
+      	["\22"] = "^V",
+      	["\22s"] = "^V",
+      	s = "S",
+      	S = "S_",
+      	["\19"] = "^S",
+      	i = "I",
+      	ic = "Ic",
+      	ix = "Ix",
+      	R = "R",
+      	Rc = "Rc",
+      	Rx = "Rx",
+      	Rv = "Rv",
+      	Rvc = "Rv",
+      	Rvx = "Rv",
+      	c = "C",
+      	cv = "Ex",
+      	r = "...",
+      	rm = "M",
+      	["r?"] = "?",
+      	["!"] = "!",
+      	t = "T",
       }
 
       local function mode()
@@ -201,7 +212,7 @@ in {
       vim.opt.statusline = "%!v:lua.StatusLine.active()"
 
       vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "FileType" }, {
-      	group = statusline_augroup,
+      	group = vim.api.nvim_create_augroup("simple_statusline", { clear = true }),
       	pattern = {
       		"aerial",
       		"fzf",
