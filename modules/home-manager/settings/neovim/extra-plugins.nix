@@ -28,16 +28,6 @@
       hash = "sha256-Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
-
-  slimline-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "slimline";
-    src = pkgs.fetchFromGitHub {
-      owner = "sschleemilch";
-      repo = "slimline.nvim";
-      rev = "master";
-      hash = "sha256-xVQWt1M9+gXvCTjQkQY6RQj9E/NYQorse7cFPcsMajw=";
-    };
-  };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     aerial-nvim
@@ -50,18 +40,181 @@ in {
     latex-nvim
     mysnippets
     nvim-treesitter-pairs
-    slimline-nvim
   ];
 
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      require("slimline").setup({
-      	spaces = { components = "", left = "", right = "" },
-      	sep = { hide = { first = true, last = true }, left = "", right = "" },
-      	hl = { primary = "Special" },
-      	icons = { diagnostics = { ERROR = " ", WARN = " ", HINT = " ", INFO = " " } },
+      local statusline_augroup = vim.api.nvim_create_augroup("simple_statusline", { clear = true })
+
+      local modes = {
+      	["n"] = "NOR",
+      	["no"] = "NOR",
+      	["v"] = "VSL",
+      	["V"] = "VLN",
+      	[""] = "VBK",
+      	["s"] = "SEL",
+      	["S"] = "SLN",
+      	[""] = "SBK",
+      	["i"] = "INS",
+      	["ic"] = "INS",
+      	["R"] = "RPL",
+      	["Rv"] = "VRP",
+      	["c"] = "CMD",
+      	["cv"] = "E·X",
+      	["ce"] = "E·X",
+      	["r"] = "PMT",
+      	["rm"] = "MRE",
+      	["r?"] = "CFM",
+      	["!"] = "SHL",
+      	["t"] = "TEM",
+      	["nt"] = "TEM",
+      }
+
+      local function mode()
+      	local current_mode = vim.api.nvim_get_mode().mode
+      	return string.format("%%#StatusLineMode# %s %%*", modes[current_mode])
+      end
+
+      local function formatted_filetype()
+      	local filetype = vim.bo.filetype or vim.fn.expand("%:e", false)
+      	local icon, hlgroup = MiniIcons.get("filetype", filetype)
+      	return string.format("%%#%s# %s %s %%*", hlgroup, icon, filetype)
+      end
+
+      local function filename()
+      	local file_path = vim.fn.expand("%:p")
+      	local folder_path = vim.fn.fnamemodify(file_path, ":h:t")
+      	local file = vim.fn.expand("%:t")
+      	return file ~= "" and string.format("%%#StatusLine# %s/%s %%*", folder_path, file) or "[No Name]"
+      end
+
+      local GIT_ATTRS = {
+      	{ "added", "diffAdded#+" },
+      	{ "changed", "diffChanged#~" },
+      	{ "removed", "diffRemoved#-" },
+      }
+
+      local function full_git()
+      	local full = ""
+      	local branch = vim.b.gitsigns_head
+      	if branch and branch ~= "" then
+      		local icon = " %#diffNewFile#%*"
+      		full = full .. icon .. "%#StatusLine# %*" .. branch .. " "
+      	end
+
+      	local hunks = {}
+      	local gsd = vim.b.gitsigns_status_dict
+
+      	for i, attr in ipairs(GIT_ATTRS) do
+      		local count = gsd and gsd[attr[1]] or 0
+      		if count > 0 then
+      			table.insert(hunks, string.format("%%#%s%s%%*", attr[2], count))
+      		end
+      	end
+
+      	return full .. table.concat(hunks, " ")
+      end
+
+      local function lsp_active()
+      	local names = {}
+      	for i, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+      		table.insert(names, server.name)
+      	end
+
+      	if #names == 0 then
+      		return ""
+      	end
+
+      	return "%#StatusLine# [" .. table.concat(names, " ") .. "]%*"
+      end
+
+      local DIAG_ATTRS = {
+      	{ "DiagnosticSignError", vim.diagnostic.severity.ERROR },
+      	{ "DiagnosticSignWarn", vim.diagnostic.severity.WARN },
+      	{ "DiagnosticSignInfo", vim.diagnostic.severity.INFO },
+      	{ "DiagnosticSignHint", vim.diagnostic.severity.HINT },
+      }
+
+      local function diagnostics()
+      	local status = {}
+      	local diags = vim.diagnostic.count(0)
+      	for i, attr in ipairs(DIAG_ATTRS) do
+      		local count = diags[i] or 0
+      		if count > 0 then
+      			table.insert(diagnostics, string.format("%%#%s# ● %s%%*", attr[1], count))
+      		end
+      	end
+
+      	if #status == 0 then
+      		return ""
+      	end
+
+      	return table.concat(status, " ")
+      end
+
+      local progress = " %3p%% %2l(%02c)/%-3L %*"
+
+      StatusLine = {}
+
+      StatusLine.inactive = function()
+      	return table.concat({ formatted_filetype("String") })
+      end
+
+      local redeable_filetypes = { qf = true, help = true }
+
+      StatusLine.active = function()
+      	local mode_str = vim.api.nvim_get_mode().mode
+      	if mode_str == "t" or mode_str == "nt" then
+      		return table.concat({
+      			mode(),
+      			"%=",
+      			"%=",
+      			progress,
+      		})
+      	end
+
+      	if redeable_filetypes[vim.bo.filetype] or vim.o.modifiable == false then
+      		return table.concat({
+      			formatted_filetype("Special"),
+      			"%=",
+      			"%=",
+      			progress,
+      		})
+      	end
+
+      	local statusline = {
+      		mode(),
+      		filename(),
+      		full_git(),
+      		"%=",
+      		"%=",
+      		"%S ",
+      		diagnostics(),
+      		lsp_active(),
+      		progress,
+      	}
+
+      	return table.concat(statusline)
+      end
+
+      vim.opt.statusline = "%!v:lua.StatusLine.active()"
+
+      vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "FileType" }, {
+      	group = statusline_augroup,
+      	pattern = {
+      		"aerial",
+      		"fzf",
+      		"lspinfo",
+      		"neo-tree",
+      		"noice",
+      		"qf",
+      	},
+      	callback = function()
+      		vim.opt_local.statusline = "%!v:lua.StatusLine.inactive()"
+      	end,
       })
+
       require("dropbar").setup()
       require("grug-far").setup({ headerMaxWidth = 80 })
       require("nvim-highlight-colors").setup()

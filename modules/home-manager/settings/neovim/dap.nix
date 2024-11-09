@@ -26,7 +26,7 @@
             type = "cppdbg";
             request = "launch";
             program.__raw =
-              #lua
+              # lua
               ''
                 function()
                 	return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')

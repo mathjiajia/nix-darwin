@@ -4,7 +4,9 @@
       enable = true;
       settings = {
         float_opts.border = "rounded";
+        highlights.Normal.guibg = "";
         open_mapping = "[[<C-Bslash>]]";
+        shade_terminals = false;
       };
       luaConfig.post =
         # lua

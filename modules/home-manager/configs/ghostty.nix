@@ -5,12 +5,12 @@
       # ghostty
       ''
         # theme = bamboo
-        theme = kanagawabones
         # custom-shader = ./shaders/bloom.glsl
 
         # fonts
         font-size = 24
         font-family = IosevkaTerm Nerd Font
+        font-family = Maple Mono NF CN
         font-thicken = true
         # adjust-cell-height = 20%
 
