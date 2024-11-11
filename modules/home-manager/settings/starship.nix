@@ -55,10 +55,11 @@
       vlang.disabled = true;
       vcsh.disabled = true;
 
+      c.symbol = " ";
       # directory.read_only = " 󰌾";
       # docker_context.symbol = " ";
       # git_branch.symbol = " ";
-      c.symbol = " ";
+      golang.symbol = " ";
       lua.symbol = " ";
       # nix_shell.symbol = " ";
       python.symbol = " ";
