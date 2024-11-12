@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./settings/git
     ./settings/neovim
@@ -35,16 +35,6 @@
       GEM_SPEC_CACHE = "$XDG_CACHE_HOME/gem";
       IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
     };
-
-    packages = with pkgs; [
-      difftastic
-      hugo
-      onefetch
-      python3
-      # swift-format
-      tree
-      unrar
-    ];
   };
 
   programs = {

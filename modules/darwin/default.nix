@@ -4,33 +4,41 @@
     ./settings/mas.nix
     # ./settings/system.nix
 
-    # ./services/aerospace.nix
+    # ./services/aerospace.nix # not finish
     # ./services/jankyborders.nix
   ];
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    # CLI
+    difftastic
+    hugo
+    onefetch
+    python3
+    superfile
+    # swift-format # old
+    tree
+    unrar
+
+    # GUI
     aerospace
-    # follow
-    # github-desktop
-    # ghostty
+    # follow # x86_64-linux
+    # github-desktop # linux
+    # ghostty # closed beta
     ice-bar
     iina
     inkscape-with-extensions
     keka
     ollama
     loopwm
-    # mathpix-snipping-tool
-    # microsoft-edge
+    # mathematica # x86_64-linux
+    # mathpix-snipping-tool # x86_64-linux
+    # microsoft-edge # x86_64-linux
     raycast
     skimpdf
-    # sublime-merge
-    superfile
-    # warp-terminal
+    # sublime-merge # linux
     zed-editor
     zoom-us
-    # zotero
+    # zotero # x86_64-linux
   ];
 
   environment.shells = with pkgs; [fish];
