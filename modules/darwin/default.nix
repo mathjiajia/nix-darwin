@@ -5,7 +5,7 @@
     # ./settings/system.nix
 
     # ./services/aerospace.nix
-    ./services/jankyborders.nix
+    # ./services/jankyborders.nix
   ];
 
   # List packages installed in system profile. To search by name, run:
@@ -26,6 +26,7 @@
     raycast
     skimpdf
     # sublime-merge
+    superfile
     # warp-terminal
     zed-editor
     zoom-us

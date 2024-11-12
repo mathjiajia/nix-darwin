@@ -28,6 +28,15 @@
       hash = "sha256-Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
+  # snacks-nvim = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
+  #   postInstall =
+  #     (oldAttrs.postInstall or "")
+  #     +
+  #     # sh
+  #     ''
+  #       rm -rf $out/queries
+  #     '';
+  # });
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     aerial-nvim
@@ -40,11 +49,45 @@ in {
     latex-nvim
     mysnippets
     nvim-treesitter-pairs
+    # snacks-nvim
   ];
+
+  # programs.nixvim.extraConfigLuaPre =
+  #   # lua
+  #   ''
+  #     require("snacks").setup({
+  #     	bigfile = { enabled = false },
+  #     	notifier = {
+  #     		enabled = true,
+  #     		timeout = 3000,
+  #     	},
+  #     	quickfile = { enabled = false },
+  #     	statuscolumn = { enabled = true },
+  #     	words = { enabled = true },
+  #     	styles = {
+  #     		notification = {
+  #     			wo = { wrap = true }, -- Wrap notifications
+  #     		},
+  #     	},
+  #     })
+  #   '';
 
   programs.nixvim.extraConfigLua =
     # lua
     ''
+      require("dropbar").setup()
+      require("grug-far").setup({ headerMaxWidth = 80 })
+      require("nvim-highlight-colors").setup()
+      require("resession").setup()
+      require("ultimate-autopair").setup()
+
+      require("aerial").setup({
+      	backends = { "lsp", "treesitter", "markdown", "man" },
+      	layout = { resize_to_content = false },
+      	filter_kind = false,
+      	show_guides = true,
+      })
+
       local modes = {
       	n = "N",
       	no = "N?",
@@ -216,19 +259,6 @@ in {
       	callback = function()
       		vim.opt_local.statusline = "%!v:lua.StatusLine.inactive()"
       	end,
-      })
-
-      require("dropbar").setup()
-      require("grug-far").setup({ headerMaxWidth = 80 })
-      require("nvim-highlight-colors").setup()
-      require("resession").setup()
-      require("ultimate-autopair").setup()
-
-      require("aerial").setup({
-      	backends = { "lsp", "treesitter", "markdown", "man" },
-      	layout = { resize_to_content = false },
-      	filter_kind = false,
-      	show_guides = true,
       })
     '';
 
