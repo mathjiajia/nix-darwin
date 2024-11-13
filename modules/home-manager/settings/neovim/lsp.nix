@@ -3,7 +3,9 @@
     enable = true;
     capabilities =
       # lua
-      ''require("cmp_nvim_lsp").default_capabilities()'';
+      ''
+        require("cmp_nvim_lsp").default_capabilities()
+      '';
     inlayHints = true;
     onAttach =
       # lua
@@ -77,10 +79,7 @@
               "%p"
             ];
           };
-          diagnostics.ignoredPatterns = [
-            "^Overfull"
-            "^Underfull"
-          ];
+          diagnostics.ignoredPatterns = ["^Overfull" "^Underfull"];
         };
       };
     };

@@ -1,92 +1,113 @@
 {
-  programs.nixvim.opts = {
-    # 1 important
+  programs.nixvim = {
+    globals = {
+      loaded_perl_provider = 0;
+      loaded_python3_provider = 0;
+      loaded_ruby_provider = 0;
 
-    # 2 moving around, seaching patterns
-    whichwrap = "b,s,[,]";
-    ignorecase = true;
-    smartcase = true;
-
-    # 3 tags
-
-    # 4 displaying text
-    smoothscroll = true;
-    scrolloff = 12;
-    linebreak = true;
-    breakindent = true;
-    showbreak = "> ";
-    fillchars = {
-      diff = "╱";
-      eob = " ";
-      fold = " ";
+      loaded_gzip = 1;
+      loaded_matchit = 1;
+      loaded_matchparen = 1;
+      loaded_netrwPlugin = 1;
+      loaded_remote_plugins = 1;
+      loaded_shada_plugin = 1;
+      loaded_spellfile_plugin = 1;
+      loaded_tarPlugin = 1;
+      loaded_tutor_mode_plugin = 1;
+      loaded_zipPlugin = 1;
     };
-    cmdheight = 0;
-    number = true;
-    relativenumber = true;
 
-    # 5 syntax, highlighting and spelling
-    colorcolumn = "120";
-    cursorline = true;
-    spelllang = "en_gb";
+    clipboard.register = "unnamedplus";
 
-    # 6 multiple windows
-    laststatus = 3;
-    splitbelow = true;
-    splitkeep = "screen";
-    splitright = true;
+    opts = {
+      # 1 important
 
-    # 7 multiple tab pages
+      # 2 moving around, seaching patterns
+      whichwrap = "b,s,[,]";
+      ignorecase = true;
+      smartcase = true;
 
-    # 8 terminal
+      # 3 tags
 
-    # 9 using the mouse
+      # 4 displaying text
+      smoothscroll = true;
+      scrolloff = 12;
+      linebreak = true;
+      breakindent = true;
+      showbreak = "> ";
+      fillchars = {
+        diff = "╱";
+        eob = " ";
+        fold = " ";
+      };
+      cmdheight = 0;
+      number = true;
+      relativenumber = true;
 
-    # 10 messages and info
-    shortmess = "ltToOCFWIc";
-    confirm = true;
+      # 5 syntax, highlighting and spelling
+      colorcolumn = "120";
+      cursorline = true;
+      spelllang = "en_gb";
 
-    # 11 selecting text
+      # 6 multiple windows
+      laststatus = 3;
+      splitbelow = true;
+      splitkeep = "screen";
+      splitright = true;
 
-    # 12 editing text
-    undofile = true;
-    formatoptions = "tcroqnlj";
-    pumheight = 10;
+      # 7 multiple tab pages
 
-    # 13 tabs and indenting
-    tabstop = 2;
-    shiftwidth = 2;
-    softtabstop = 2;
+      # 8 terminal
 
-    # 14 folding
-    foldmethod = "expr";
-    foldexpr = "v:lua.vim.treesitter.foldexpr()";
-    foldlevel = 99;
-    foldtext = "";
+      # 9 using the mouse
 
-    # 15 diff mode
-    diffopt = "internal,filler,closeoff,linematch:90";
+      # 10 messages and info
+      shortmess = "ltToOCFWIc";
+      confirm = true;
 
-    # 16 mapping
-    timeoutlen = 500;
+      # 11 selecting text
 
-    # 17 reading and writng files
+      # 12 editing text
+      undofile = true;
+      formatoptions = "tcroqnlj";
+      pumheight = 10;
 
-    # 18 the swap file
-    swapfile = false;
-    updatetime = 200;
+      # 13 tabs and indenting
+      tabstop = 2;
+      shiftwidth = 2;
+      softtabstop = 2;
 
-    # 19 command line editing
+      # 14 folding
+      foldmethod = "expr";
+      foldexpr = "v:lua.vim.treesitter.foldexpr()";
+      foldlevel = 99;
+      foldtext = "";
 
-    # 20 executing external commands
+      # 15 diff mode
+      diffopt = "internal,filler,closeoff,linematch:90";
 
-    # 21 running make and jumping to errors (quickfix)
+      # 16 mapping
+      timeoutlen = 500;
 
-    # 22 language specific
+      # 17 reading and writng files
 
-    # 23 multi-byte characters
+      # 18 the swap file
+      swapfile = false;
+      updatetime = 200;
 
-    # 24 various
-    virtualedit = "block";
-    signcolumn = "yes";
+      # 19 command line editing
+
+      # 20 executing external commands
+
+      # 21 running make and jumping to errors (quickfix)
+
+      # 22 language specific
+
+      # 23 multi-byte characters
+
+      # 24 various
+      virtualedit = "block";
+      signcolumn = "yes";
+    };
   };
 }

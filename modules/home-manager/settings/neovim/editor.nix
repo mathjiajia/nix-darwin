@@ -119,8 +119,6 @@
           end
         '';
     };
-
-    diffview.enable = false;
   };
 
   programs.nixvim.keymaps = [
@@ -129,7 +127,11 @@
       key = "s";
       action.__raw =
         # lua
-        ''function() require("flash").jump() end'';
+        ''
+          function()
+          	require("flash").jump()
+          end
+        '';
       options.desc = "Flash";
     }
     {
@@ -137,7 +139,11 @@
       key = "S";
       action.__raw =
         # lua
-        ''function() require("flash").treesitter() end'';
+        ''
+          function()
+          	require("flash").treesitter()
+          end
+        '';
       options.desc = "Flash Treesitter";
     }
     {
@@ -145,7 +151,11 @@
       key = "r";
       action.__raw =
         # lua
-        ''function() require("flash").remote() end'';
+        ''
+          function()
+          	require("flash").remote()
+          end
+        '';
       options.desc = "Remote Flash";
     }
     {
@@ -153,7 +163,11 @@
       key = "R";
       action.__raw =
         # lua
-        ''function() require("flash").treesitter_search() end'';
+        ''
+          function()
+          	require("flash").treesitter_search()
+          end
+        '';
       options.desc = "Treesitter Search";
     }
     {
@@ -161,7 +175,11 @@
       key = "<c-s>";
       action.__raw =
         # lua
-        ''function() require("flash").toggle() end'';
+        ''
+          function()
+          	require("flash").toggle()
+          end
+        '';
       options.desc = "Toggle Flash Search";
     }
   ];

@@ -15,7 +15,9 @@
           # lua
           ''
             function()
-            	if vim.o.buftype ~= "nofile" then vim.cmd.checktime() end
+            	if vim.o.buftype ~= "nofile" then
+            		vim.cmd.checktime()
+            	end
             end
           '';
       }
@@ -85,17 +87,6 @@
             function(ev)
               vim.fn.jobstart("open '" .. vim.fn.expand("%") .. "'", { detach = true })
               vim.api.nvim_buf_delete(ev.buf, {})
-            end
-          '';
-      }
-      {
-        event = ["BufWritePost"];
-        pattern = ["*/spell/*.add"];
-        callback.__raw =
-          # lua
-          ''
-            function()
-              vim.cmd.mkspell({ "%", bang = true, mods = { silent = true } })
             end
           '';
       }

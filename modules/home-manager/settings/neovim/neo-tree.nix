@@ -3,7 +3,7 @@
     plugins.neo-tree = {
       enable = true;
       defaultComponentConfigs = {
-        # icon.provider =
+        # icon.provider.__raw =
         #   # lua
         #   ''
         #     function(icon, node)
@@ -20,7 +20,7 @@
         #     	if hl then icon.highlight = hl end
         #     end
         #   '';
-        # kind_icon.provider =
+        # kind_icon.provider.__raw =
         #   # lua
         #   ''
         #     function(icon, node)

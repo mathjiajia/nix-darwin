@@ -7,7 +7,6 @@
       enable = true;
       settings = {
         lsp = {
-          # signature.enabled = false;
           override = {
             "vim.lsp.util.convert_input_to_markdown_lines" = true;
             "vim.lsp.util.stylize_markdown" = true;
@@ -24,11 +23,7 @@
           {
             filter = {
               event = "msg_show";
-              any = [
-                {find = "%d+L, %d+B";}
-                {find = "; after #%d+";}
-                {find = "; before #%d+";}
-              ];
+              any = [{find = "%d+L, %d+B";} {find = "; after #%d+";} {find = "; before #%d+";}];
             };
             view = "mini";
           }
@@ -149,13 +144,9 @@
         '';
       luaConfig.post =
         # lua
-        "hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)";
-    };
-
-    twilight.enable = true;
-    zen-mode = {
-      enable = true;
-      settings.plugins.gitsigns.enabled = false;
+        ''
+          hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+        '';
     };
 
     mini = {
@@ -164,18 +155,38 @@
         postInstall =
           (oldAttrs.postInstall or "")
           +
-          # bash
+          # sh
           ''
-            rm -rf $out/doc/
+            rm -rf $out/doc/mini-cursorword.txt
           '';
       });
       mockDevIcons = true;
-      modules.icons = {
-        lsp = {
+      modules = {
+        hipatterns = {
+          highlighters = let
+            key = pattern: group: icon: {
+              inherit pattern;
+              inherit group;
+              extmark_opts.sign_text = icon;
+            };
+          in {
+            fixme = key "FIXME:" "MiniHipatternsFixme" "";
+            hack = key "HACK:" "MiniHipatternsHack" "";
+            todo = key "TODO:" "MiniHipatternsTodo" "";
+            note = key "NOTE:" "MiniHipatternsNote" "";
+            hex_color.__raw =
+              # lua
+              ''
+                require('mini.hipatterns').gen_highlighter.hex_color()
+              '';
+          };
+        };
+        icons.lsp = {
           "function".glyph = "";
           object.glyph = "";
           value.glyph = "";
         };
+        statusline = {};
       };
     };
   };

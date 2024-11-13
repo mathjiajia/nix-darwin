@@ -28,11 +28,12 @@
     iina
     inkscape-with-extensions
     keka
-    ollama
     loopwm
     # mathematica # x86_64-linux
     # mathpix-snipping-tool # x86_64-linux
     # microsoft-edge # x86_64-linux
+    ollama
+    # openra # x86_64-linux
     raycast
     skimpdf
     # sublime-merge # linux

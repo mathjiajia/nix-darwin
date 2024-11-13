@@ -13,6 +13,7 @@
     "github-copilot-for-xcode"
     "hhkb"
     "openemu"
+    "openra"
     "orbstack"
   ];
 }
