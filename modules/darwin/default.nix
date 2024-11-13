@@ -28,7 +28,7 @@
     iina
     inkscape-with-extensions
     keka
-    loopwm
+    # loopwm # with aerospace
     # mathematica # x86_64-linux
     # mathpix-snipping-tool # x86_64-linux
     # microsoft-edge # x86_64-linux
