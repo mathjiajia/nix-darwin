@@ -165,10 +165,6 @@
         run = 'move-node-to-workspace Notes'
 
         [[on-window-detected]]
-        if.app-id = 'net.kovidgoyal.kitty'
-        run = 'move-node-to-workspace Term'
-
-        [[on-window-detected]]
         if.app-id = 'com.mitchellh.ghostty'
         if.window-title-regex-substring = 'Software Update'
         run = 'layout floating'
