@@ -12,6 +12,7 @@
     "github"
     "github-copilot-for-xcode"
     "hhkb"
+    "neohtop"
     "openemu"
     # "openra"
     "orbstack"

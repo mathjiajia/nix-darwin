@@ -2,33 +2,7 @@
   programs.nixvim = {
     plugins.neo-tree = {
       enable = true;
-      defaultComponentConfigs = {
-        # icon.provider.__raw =
-        #   # lua
-        #   ''
-        #     function(icon, node)
-        #     	local text, hl
-        #     	local mini_icons = require "mini.icons"
-        #     	if node.type == "file" then
-        #     		text, hl = mini_icons.get("file", node.name)
-        #     	elseif node.type == "directory" then
-        #     		text, hl = mini_icons.get("directory", node.name)
-        #     		if node:is_expanded() then text = nil end
-        #     	end
-        #
-        #     	if text then icon.text = text end
-        #     	if hl then icon.highlight = hl end
-        #     end
-        #   '';
-        # kind_icon.provider.__raw =
-        #   # lua
-        #   ''
-        #     function(icon, node)
-        #     	icon.text, icon.highlight = require("mini.icons").get("lsp", node.extra.kind.name)
-        #     end
-        #   '';
-        indent.withExpanders = true;
-      };
+      defaultComponentConfigs.indent.withExpanders = true;
       filesystem = {
         bindToCwd = false;
         followCurrentFile.enabled = true;
@@ -37,6 +11,37 @@
           hideDotfiles = false;
           hideGitignored = true;
           hideByName = [".git"];
+        };
+      };
+      extraOptions = {
+        open_files_do_not_replace_types = ["qf" "terminal"];
+        default_component_configs = {
+          icon.provider.__raw =
+            # lua
+            ''
+              function(icon, node)
+                local text, hl
+                if node.type == "file" then
+                  text, hl = MiniIcons.get("file", node.name)
+                elseif node.type == "directory" and (not node:is_expanded()) then
+                  text, hl = MiniIcons.get("directory", node.name)
+                end
+
+                if text then
+                  icon.text = text
+                end
+                if hl then
+                  icon.highlight = hl
+                end
+              end
+            '';
+          kind_icon.provider.__raw =
+            # lua
+            ''
+              function(icon, node)
+                icon.text, icon.highlight = MiniIcons.get("lsp", node.extra.kind.name)
+              end
+            '';
         };
       };
     };
