@@ -1,7 +1,16 @@
-{
+{pkgs, ...}: {
   programs.nixvim.colorschemes = {
     catppuccin = {
       enable = true;
+      package = pkgs.vimPlugins.catppuccin-nvim.overrideAttrs (oldAttrs: {
+        postInstall =
+          (oldAttrs.postInstall or "")
+          +
+          # sh
+          ''
+            rm -rf $out/autoload $out/lua/barbecue $out/lua/lualine $out/lua/reactive
+          '';
+      });
       settings = {
         integrations = {
           aerial = true;

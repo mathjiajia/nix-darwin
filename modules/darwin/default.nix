@@ -46,6 +46,7 @@
   environment.shells = with pkgs; [fish];
 
   fonts.packages = with pkgs; [
+    # departure-mono
     # maple-mono-NF
     lxgw-wenkai
     sarasa-gothic

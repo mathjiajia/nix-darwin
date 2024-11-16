@@ -2,9 +2,45 @@
   programs.nixvim.plugins = {
     markview.enable = true;
     dressing.enable = true;
-    notify.enable = true;
+    snacks = {
+      enable = true;
+      package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
+        src = pkgs.fetchFromGitHub {
+          owner = "folke";
+          repo = "snacks.nvim";
+          rev = "master";
+          hash = "sha256-VpgZbCf1j2uyg8d4olQYm+GWkaWnFPwCSWOZ/2Jm0Us=";
+        };
+        postInstall =
+          (oldAttrs.postInstall or "")
+          +
+          # sh
+          ''
+            rm -rf $out/queries
+          '';
+      });
+      settings = {
+        bigfile.enabled = false;
+        notifier = {
+          enabled = true;
+          timeout = 3000;
+        };
+        quickfile.enabled = false;
+        statuscolumn.enabled = false;
+        words.enabled = false;
+        styles.notification.wo.wrap = true;
+      };
+    };
     noice = {
       enable = true;
+      package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
+        src = pkgs.fetchFromGitHub {
+          owner = "folke";
+          repo = "noice.nvim";
+          rev = "master";
+          hash = "sha256-rUjtm8rFuXMowBYfJIzk/tQJ5jdZ9+Ke3c/d0uW8iUE=";
+        };
+      });
       settings = {
         lsp = {
           override = {
@@ -193,15 +229,75 @@
 
   programs.nixvim.keymaps = [
     {
-      key = "<leader>tn";
+      key = "<leader>un";
       action.__raw =
         # lua
         ''
           function()
-          	require("notify").dismiss({ silent = true, pending = true })
+          	require("snacks.notifier").hide()
           end
         '';
-      options.desc = "Delete All Notifications";
+      options.desc = "Dismiss All Notifications";
+    }
+
+    {
+      key = "<leader>bd";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	require("snacks.bufdelete")()
+          end
+        '';
+      options.desc = "Delete Buffer";
+    }
+
+    {
+      key = "<leader>gg";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	require("snacks.lazygit")()
+          end
+        '';
+      options.desc = "Lazygit";
+    }
+    {
+      key = "<leader>gf";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	require("snacks.lazygit").log_file()
+          end
+        '';
+      options.desc = "Lazygit Current File History";
+    }
+
+    {
+      key = "<leader>cR";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	require("snacks.rename")()
+          end
+        '';
+      options.desc = "Rename File";
+    }
+
+    {
+      mode = ["n" "t"];
+      key = "<c-/>";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	require("snacks.terminal")()
+          end
+        '';
+      options.desc = "Toggle Terminal";
     }
 
     {
