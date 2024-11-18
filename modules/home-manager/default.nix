@@ -23,7 +23,7 @@
   home = {
     username = "jia";
     homeDirectory = "/Users/jia";
-    stateVersion = "24.11";
+    stateVersion = "25.05";
 
     sessionVariables = {
       VISUAL = "nvim";

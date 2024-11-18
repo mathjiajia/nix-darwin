@@ -43,6 +43,18 @@
               end
             '';
         };
+        event_handlers.__raw =
+          # lua
+          ''
+            {
+              { event = require("neo-tree.events").FILE_MOVED, handler = function(data)
+                Snacks.rename.on_rename_file(data.source, data.destination)
+              end },
+              { event = require("neo-tree.events").FILE_RENAMED, handler = function(data)
+                Snacks.rename.on_rename_file(data.source, data.destination)
+              end },
+            }
+          '';
       };
     };
 

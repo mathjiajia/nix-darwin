@@ -28,15 +28,6 @@
       hash = "sha256-Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
-  # snacks-nvim = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
-  #   postInstall =
-  #     (oldAttrs.postInstall or "")
-  #     +
-  #     # sh
-  #     ''
-  #       rm -rf $out/queries
-  #     '';
-  # });
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     aerial-nvim
@@ -47,28 +38,7 @@ in {
     latex-nvim
     mysnippets
     nvim-treesitter-pairs
-    # snacks-nvim
   ];
-
-  # programs.nixvim.extraConfigLuaPre =
-  #   # lua
-  #   ''
-  #     require("snacks").setup({
-  #     	bigfile = { enabled = false },
-  #     	notifier = {
-  #     		enabled = true,
-  #     		timeout = 3000,
-  #     	},
-  #     	quickfile = { enabled = false },
-  #     	statuscolumn = { enabled = true },
-  #     	words = { enabled = true },
-  #     	styles = {
-  #     		notification = {
-  #     			wo = { wrap = true }, -- Wrap notifications
-  #     		},
-  #     	},
-  #     })
-  #   '';
 
   programs.nixvim.extraConfigLua =
     # lua
