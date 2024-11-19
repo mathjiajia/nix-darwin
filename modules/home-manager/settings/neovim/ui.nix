@@ -9,7 +9,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          hash = "sha256-x3exHt/GEgbCumt+/1LWwrnNrV8yp270rr2Wquz1sgM=";
+          hash = "sha256-6vT8oAKOiGu5TS8MtNCPpcNqQtds7413Dd/Cqwmejjg=";
         };
         postInstall =
           (oldAttrs.postInstall or "")
@@ -113,7 +113,7 @@
           owner = "folke";
           repo = "noice.nvim";
           rev = "master";
-          hash = "sha256-s1JqnPIGQ736+AvLodQGEKHUF/odxIgNFo2BXycF988=";
+          hash = "sha256-Q8EWrPkhpSemkZnx5+DqYFNeHx/VxQSLxTjkcDHkdao=";
         };
       });
       settings = {
