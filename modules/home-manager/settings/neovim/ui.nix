@@ -9,7 +9,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          hash = "sha256-VpgZbCf1j2uyg8d4olQYm+GWkaWnFPwCSWOZ/2Jm0Us=";
+          hash = "sha256-x3exHt/GEgbCumt+/1LWwrnNrV8yp270rr2Wquz1sgM=";
         };
         postInstall =
           (oldAttrs.postInstall or "")
@@ -21,6 +21,81 @@
       });
       settings = {
         bigfile.enabled = false;
+        dashboard = {
+          enabled = true;
+          preset = {
+            keys = [
+              {
+                icon = " ";
+                key = "f";
+                desc = "Find File";
+                action = ":FzfLua files";
+              }
+              {
+                icon = " ";
+                key = "n";
+                desc = "New File";
+                action = ":ene | startinsert";
+              }
+              {
+                icon = " ";
+                key = "g";
+                desc = "Find Text";
+                action = ":FzfLua live_grep";
+              }
+              {
+                icon = " ";
+                key = "r";
+                desc = "Recent Files";
+                action = ":FzfLua oldfiles";
+              }
+              {
+                icon = " ";
+                key = "q";
+                desc = "Quit";
+                action = ":qa";
+              }
+            ];
+          };
+          sections = [
+            {section = "header";}
+            {
+              section = "keys";
+              gap = 1;
+              padding = 1;
+            }
+            {
+              pane = 2;
+              icon = " ";
+              title = "Recent Files";
+              section = "recent_files";
+              indent = 2;
+              padding = 1;
+            }
+            {
+              pane = 2;
+              icon = " ";
+              title = "Projects";
+              section = "projects";
+              indent = 2;
+              padding = 1;
+            }
+            {
+              pane = 2;
+              icon = " ";
+              title = "Git Status";
+              section = "terminal";
+              enabled.__raw = ''
+                vim.fn.isdirectory ".git" == 1
+              '';
+              cmd = "hub status --short --branch --renames";
+              height = 5;
+              padding = 1;
+              ttl = 5 * 60;
+              indent = 3;
+            }
+          ];
+        };
         notifier = {
           enabled = true;
           timeout = 3000;
@@ -38,7 +113,7 @@
           owner = "folke";
           repo = "noice.nvim";
           rev = "master";
-          hash = "sha256-rUjtm8rFuXMowBYfJIzk/tQJ5jdZ9+Ke3c/d0uW8iUE=";
+          hash = "sha256-s1JqnPIGQ736+AvLodQGEKHUF/odxIgNFo2BXycF988=";
         };
       });
       settings = {
@@ -67,61 +142,49 @@
       };
     };
 
-    dashboard = {
+    lualine = {
       enable = true;
       settings = {
-        config = {
-          footer = [
-            ""
-            "Powered by nixvim!"
-          ];
-          header = [
-            ""
-            "                                                                     "
-            "       ████ ██████           █████      ██                     "
-            "      ███████████             █████                             "
-            "      █████████ ███████████████████ ███   ███████████   "
-            "     █████████  ███    █████████████ █████ ██████████████   "
-            "    █████████ ██████████ █████████ █████ █████ ████ █████   "
-            "  ███████████ ███    ███ █████████ █████ █████ ████ █████  "
-            " ██████  █████████████████████ ████ █████ █████ ████ ██████ "
-            ""
-            ""
-          ];
-          mru.cwd_only = true;
-          packages.enable = false;
-          project.action = "FzfLua files cwd=";
-          shortcut = [
+        options.disabled_filetypes.statusline = ["dap-repl" "snacks_dashboard"];
+        sections = {
+          lualine_a = ["mode"];
+          lualine_b = [
+            "branch"
             {
-              action = "FzfLua files";
-              desc = "Find File";
-              group = "Directory";
-              icon = "  ";
-              key = "ff";
-            }
-            {
-              action = "FzfLua oldfiles";
-              desc = "Recent Files";
-              group = "Identifier";
-              icon = "  ";
-              key = "fo";
-            }
-            {
-              action = "FzfLua live_grep";
-              desc = "Live Grep";
-              group = "Float";
-              icon = "  ";
-              key = "sg";
-            }
-            {
-              action.__raw = ''function(path) vim.api.nvim_input("<Cmd>qa<CR>") end'';
-              desc = "Quit";
-              group = "String";
-              icon = "  ";
-              key = "q";
+              __unkeyed-1 = "diff";
+              source.__raw =
+                # lua
+                ''
+                  function()
+                    local gitsigns = vim.b.gitsigns_status_dict
+                    if gitsigns then
+                      return {
+                        added = gitsigns.added,
+                        modified = gitsigns.changed,
+                        removed = gitsigns.removed,
+                      }
+                    end
+                  end,
+                '';
             }
           ];
+          lualine_c = ["filename"];
+          lualine_x = [
+            "diagnostics"
+            {
+              __unkeyed-1 = "filetype";
+              icon_only = true;
+              separator = "";
+              padding = {
+                left = 1;
+                right = 0;
+              };
+            }
+          ];
+          lualine_y = ["progress"];
+          lualine_z = ["location"];
         };
+        extensions = ["aerial" "man" "neo-tree" "nvim-dap-ui" "overseer" "quickfix" "toggleterm"];
       };
     };
 
@@ -235,7 +298,7 @@
             hex_color.__raw =
               # lua
               ''
-                require('mini.hipatterns').gen_highlighter.hex_color()
+                require("mini.hipatterns").gen_highlighter.hex_color()
               '';
           };
         };
@@ -244,7 +307,6 @@
           object.glyph = "";
           value.glyph = "";
         };
-        statusline = {};
       };
     };
   };

@@ -46,13 +46,12 @@
   environment.shells = with pkgs; [fish];
 
   fonts.packages = with pkgs; [
-    # departure-mono
     # maple-mono-NF
     lxgw-wenkai
     sarasa-gothic
     smiley-sans
-    (pkgs.nerdfonts.override {
-      fonts = ["IosevkaTerm" "NerdFontsSymbolsOnly"];
+    (nerdfonts.override {
+      fonts = ["IosevkaTerm" "NerdFontsSymbolsOnly"]; # "DepartureMono"
     })
   ];
 }

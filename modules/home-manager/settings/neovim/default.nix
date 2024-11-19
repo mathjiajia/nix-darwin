@@ -12,6 +12,7 @@
   };
 
   programs.nixvim.extraPackages = with pkgs; [
+    hub
     luajit
     nodejs # for copilot.lua
     python312Packages.ipython # for REPL (overseer)

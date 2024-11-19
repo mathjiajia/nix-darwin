@@ -15,6 +15,7 @@
     "neohtop"
     "openemu"
     # "openra"
+    "openra-playtest"
     "orbstack"
     # "steam"
   ];
