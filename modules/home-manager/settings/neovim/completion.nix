@@ -72,7 +72,7 @@
                 Event = "",
                 Operator = "",
                 TypeParameter = "",
-                Copilot = "",
+                -- Copilot = "",
               }
               if vim.fn.strchars(vim_item.abbr) > maxwidth then
                 vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, maxwidth) .. "…"
@@ -82,7 +82,7 @@
                 async_path = "[Path]",
                 buffer = "[Buf]",
                 cmdline = "[Cmd]",
-                copilot = "[GHC]",
+                -- copilot = "[GHC]",
                 nvim_lsp = "[LSP]",
                 luasnip = "[Snip]",
                 -- neorg = "[Norg]",
@@ -132,11 +132,11 @@
           group_index = 1;
         }
 
-        {
-          name = "copilot";
-          group_index = 2;
-          max_item_count = 2;
-        }
+        # {
+        #  name = "copilot";
+        #  group_index = 2;
+        #  max_item_count = 2;
+        # }
         {
           name = "rg";
           group_index = 2;
@@ -154,7 +154,7 @@
   };
 
   programs.nixvim.plugins.copilot-lua = {
-    enable = true;
+    # enable = true;
     panel.enabled = false;
     suggestion.enabled = false;
   };

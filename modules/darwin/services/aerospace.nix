@@ -65,8 +65,169 @@
         alt-shift-k = ["join-with up" "mode main"];
         alt-shift-l = ["join-with right" "mode main"];
 
-        on-window-detected = {
-        };
+        on-window-detected = [
+          {
+            "if".app-id = "com.apple.Safari";
+            "run" = "move-node-to-workspace Safari";
+          }
+          {
+            "if".app-id = "com.microsoft.edgemac";
+            "run" = "move-node-to-workspace Safari";
+          }
+          {
+            "if".app-id = "com.tdesktop.Telegram";
+            "run" = ["layout floating" "move-node-to-workspace Chat"];
+          }
+          {
+            "if".app-id = "com.tencent.xinWeChat";
+            "run" = ["layout floating" "move-node-to-workspace Chat"];
+          }
+          {
+            "if".app-id = "com.apple.mail";
+            "run" = ["layout floating" "move-node-to-workspace Chat"];
+          }
+          {
+            "if".app-id = "net.whatsapp.WhatsApp";
+            "run" = ["layout floating" "move-node-to-workspace Chat"];
+          }
+          {
+            "if".app-id = "com.hnc.Discord";
+            "run" = ["layout floating" "move-node-to-workspace Chat"];
+          }
+          {
+            "if".app-id = "com.sublimemerge";
+            "run" = "move-node-to-workspace Dev";
+          }
+          {
+            "if".app-id = "com.wangchujiang.DevHub";
+            "run" = "move-node-to-workspace Dev";
+          }
+          {
+            "if".app-id = "dev.kdrag0n.MacVirt";
+            "run" = "move-node-to-workspace Dev";
+          }
+          {
+            "if".app-id = "com.apple.dt.Xcode";
+            "run" = "move-node-to-workspace Dev";
+          }
+          {
+            "if".app-id = "com.microsoft.VSCode";
+            "run" = "move-node-to-workspace Dev";
+          }
+          {
+            "if".app-id = "dev.zed.Zed";
+            "run" = "move-node-to-workspace Dev";
+          }
+          {
+            "if".app-id = "com.apple.finder";
+            "run" = ["layout floating" "move-node-to-workspace Finder"];
+          }
+
+          {
+            "if".app-id = "com.apple.Notes";
+            "run" = ["layout floating" "move-node-to-workspace Notes"];
+          }
+          {
+            "if".app-id = "com.agiletortoise.Drafts-OSX";
+            "run" = ["layout floating" "move-node-to-workspace Notes"];
+          }
+          {
+            "if".app-id = "net.sourceforge.skim-app.skim";
+            "run" = "move-node-to-workspace Notes";
+          }
+          {
+            "if".app-id = "com.superace.updf.mac";
+            "run" = "move-node-to-workspace Notes";
+          }
+          {
+            "if".app-id = "org.zotero.zotero";
+            "run" = "move-node-to-workspace Notes";
+          }
+          {
+            "if".app-id = "com.mitchellh.ghostty";
+            "if".window-title-regex-substring = "Software Update";
+            "run" = "layout floating";
+          }
+          {
+            "if".app-id = "com.mitchellh.ghostty";
+            "if".window-title-regex-substring = "Updating Ghostty";
+            "run" = "layout floating";
+          }
+          {
+            "if".app-id = "com.mitchellh.ghostty";
+            "run" = "move-node-to-workspace Term";
+          }
+          {
+            "if".app-id = "info.sioyek.sioyek";
+            "if".window-title-regex-substring = "main.pdf";
+            "run" = "move-node-to-workspace Term";
+          }
+          {
+            "if".app-id = "info.sioyek.sioyek";
+            "if".window-title-regex-substring = "^(?!main\.pdf$).+";
+            "run" = "move-node-to-workspace Notes";
+          }
+          {
+            "if".app-id = "com.microsoft.Excel";
+            "run" = "move-node-to-workspace Work";
+          }
+          {
+            "if".app-id = "com.microsoft.Powerpoint";
+            "run" = "move-node-to-workspace Work";
+          }
+          {
+            "if".app-id = "com.microsoft.Word";
+            "run" = "move-node-to-workspace Work";
+          }
+          {
+            "if".app-id = "com.apple.iWork.Kenotes";
+            "run" = "move-node-to-workspace Work";
+          }
+          {
+            "if".app-id = "com.apple.iWork.Numbers";
+            "run" = "move-node-to-workspace Work";
+          }
+          {
+            "if".app-id = "com.apple.iWork.Pages";
+            "run" = "move-node-to-workspace Work";
+          }
+          {
+            "if".app-id = "us.zoom.xos";
+            "run" = "move-node-to-workspace Video";
+          }
+          {
+            "if".app-id = "com.tencent.tencentmeeting";
+            "run" = "move-node-to-workspace Video";
+          }
+          {
+            "if".app-id = "com.nssurge.surge-mac";
+            "run" = "layout floating";
+          }
+          {
+            "if".app-id = "com.openai.chat";
+            "run" = "layout floating";
+          }
+          {
+            "if".app-id = "com.apple.AppStore";
+            "run" = "layout floating";
+          }
+          {
+            "if".app-id = "com.apple.Passwords";
+            "run" = "layout floating";
+          }
+          {
+            "if".app-id = "com.noodlesoft.Hazel";
+            "run" = "layout floating";
+          }
+          {
+            "if".app-id = "ai.riffo.riffo";
+            "run" = "layout floating";
+          }
+          {
+            "if".app-id = "com.jordanbaird.Ice";
+            "run" = "layout floating";
+          }
+        ];
       };
     };
   };

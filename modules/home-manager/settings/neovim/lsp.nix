@@ -64,6 +64,7 @@
             forwardSearchAfter = false;
             onSave = true;
           };
+          diagnostics.ignoredPatterns = ["^Overfull" "^Underfull"];
           forwardSearch = {
             executable = "/Applications/sioyek.app/Contents/MacOS/sioyek";
             args = [
@@ -79,7 +80,7 @@
               "%p"
             ];
           };
-          diagnostics.ignoredPatterns = ["^Overfull" "^Underfull"];
+          latexindent.modifyLineBreaks = true;
         };
       };
     };

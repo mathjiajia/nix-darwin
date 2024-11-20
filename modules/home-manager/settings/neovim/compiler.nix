@@ -1,17 +1,9 @@
 {
   programs.nixvim.plugins = {
-    toggleterm = {
-      enable = true;
-      settings = {
-        highlights.Normal.guibg = "";
-        shade_terminals = false;
-      };
-    };
-
     overseer = {
       enable = true;
       settings = {
-        strategy = "toggleterm";
+        # strategy = "jobstart";
         templates = ["builtin" "user.builder" "user.runner"];
       };
     };

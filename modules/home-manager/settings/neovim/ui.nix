@@ -9,7 +9,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          hash = "sha256-6vT8oAKOiGu5TS8MtNCPpcNqQtds7413Dd/Cqwmejjg=";
+          hash = "sha256-AUapfKtYWQvsD38A/G51lxEE2q1V8CqJGWdxH0lIep4=";
         };
         postInstall =
           (oldAttrs.postInstall or "")

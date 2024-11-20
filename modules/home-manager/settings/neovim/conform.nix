@@ -15,7 +15,6 @@
       });
       settings = {
         formatters = {
-          latexindent.prepend_args = ["-c" "./.aux" "-m"];
           bibtex-tidy.prepend_args = [
             "--curly"
             "--tab"
@@ -26,7 +25,6 @@
         };
         formatters_by_ft = {
           bib = ["bibtex-tidy"];
-          c = ["clang-format"];
           css = ["prettierd"];
           html = ["prettierd"];
           javascript = ["prettierd"];
@@ -41,8 +39,6 @@
           python = ["black"];
           sh = ["shfmt"];
           swift = ["swift_format"];
-          tex = ["latexindent"];
-          toml = ["taplo"];
         };
         format_on_save = {
           lsp_format = "fallback";
