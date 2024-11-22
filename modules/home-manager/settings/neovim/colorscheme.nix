@@ -1,14 +1,14 @@
 {pkgs, ...}: {
   programs.nixvim.colorschemes = {
     catppuccin = {
-      enable = true;
+      # enable = true;
       package = pkgs.vimPlugins.catppuccin-nvim.overrideAttrs (oldAttrs: {
         postInstall =
           (oldAttrs.postInstall or "")
           +
           # sh
           ''
-            rm -rf $out/autoload $out/lua/barbecue $out/lua/lualine $out/lua/reactive
+            rm -rf $out/autoload $out/lua/barbecue $out/lua/reactive
           '';
       });
       settings = {
@@ -18,7 +18,6 @@
           grug_far = true;
           neogit = false;
           noice = true;
-          notify = true;
           nvim_surround = true;
           nvimtree = false;
           ufo = false;
@@ -83,7 +82,7 @@
             surface2 = "#4d4d4d";
             surface1 = "#404040";
             surface0 = "#292929";
-            base = "#1d2021";
+            base = "#191724";
             mantle = "#191b1c";
             crust = "#141617";
           };
@@ -131,6 +130,21 @@
         terminalColors = false;
         transparent = false;
         undercurl = true;
+      };
+    };
+
+    rose-pine = {
+      enable = true;
+      settings = {
+        dark_variant = "main";
+        dim_inactive_windows = true;
+        enable = {
+          legacy_highlights = false;
+          migrations = false;
+        };
+        highlight_groups = {};
+        styles.transparency = true;
+        variant = "auto";
       };
     };
   };

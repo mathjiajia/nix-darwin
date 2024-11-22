@@ -9,7 +9,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          hash = "sha256-AUapfKtYWQvsD38A/G51lxEE2q1V8CqJGWdxH0lIep4=";
+          hash = "sha256-dDvSjP1IXtLS+Bud/sZntz+sD0VRVTEaXtZGp+AdvaI=";
         };
         postInstall =
           (oldAttrs.postInstall or "")
@@ -20,7 +20,7 @@
           '';
       });
       settings = {
-        bigfile.enabled = false;
+        # bigfile.enabled = true;
         dashboard = {
           enabled = true;
           preset = {
@@ -86,7 +86,7 @@
               title = "Git Status";
               section = "terminal";
               enabled.__raw = ''
-                vim.fn.isdirectory ".git" == 1
+                Snacks.git.get_root() ~= nil
               '';
               cmd = "hub status --short --branch --renames";
               height = 5;
@@ -100,10 +100,17 @@
           enabled = true;
           timeout = 3000;
         };
-        quickfile.enabled = false;
-        statuscolumn.enabled = false;
+        # quickfile.enabled = true;
+        # statuscolumn.enabled = true;
         words.enabled = false;
-        styles.notification.wo.wrap = true;
+        styles = {
+          lazygit = {
+            width = 0;
+            height = 0;
+          };
+          notification.wo = {wrap = true;};
+          terminal.height = 12;
+        };
       };
     };
     noice = {
@@ -113,7 +120,7 @@
           owner = "folke";
           repo = "noice.nvim";
           rev = "master";
-          hash = "sha256-Q8EWrPkhpSemkZnx5+DqYFNeHx/VxQSLxTjkcDHkdao=";
+          hash = "sha256-gyhefqPxOVBmNeKPW6d0i6f5OQyd6cy1lZsYqwpcH2c=";
         };
       });
       settings = {
@@ -145,7 +152,10 @@
     lualine = {
       enable = true;
       settings = {
-        options.disabled_filetypes.statusline = ["dap-repl" "snacks_dashboard"];
+        options = {
+          disabled_filetypes.statusline = ["dap-repl" "snacks_dashboard"];
+          theme = "rose-pine";
+        };
         sections = {
           lualine_a = ["mode"];
           lualine_b = [

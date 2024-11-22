@@ -3,7 +3,7 @@
     owner = "yazi-rs";
     repo = "plugins";
     rev = "master";
-    hash = "sha256-NNfPwiY1J+s/b2rajEdAubGsGKfFCA5ALz7MNX8wyGM=";
+    hash = "sha256-84lrFEdJ2oqEaZj5VfLU1HLrvX6LziWo+HtKNT2JErw=";
   };
   # yaziGlow = pkgs.fetchFromGitHub {
   #   owner = "Reledia";
