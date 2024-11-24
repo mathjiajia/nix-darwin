@@ -9,7 +9,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          hash = "sha256-dDvSjP1IXtLS+Bud/sZntz+sD0VRVTEaXtZGp+AdvaI=";
+          hash = "sha256-kfxX3r2TuNNre+MVQFUhVYQ9cHWaDBiHsWM396F5Yoo=";
         };
         postInstall =
           (oldAttrs.postInstall or "")
@@ -102,7 +102,7 @@
         };
         # quickfile.enabled = true;
         # statuscolumn.enabled = true;
-        words.enabled = false;
+        # words.enabled = true;
         styles = {
           lazygit = {
             width = 0;
@@ -115,14 +115,6 @@
     };
     noice = {
       enable = true;
-      package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
-        src = pkgs.fetchFromGitHub {
-          owner = "folke";
-          repo = "noice.nvim";
-          rev = "master";
-          hash = "sha256-gyhefqPxOVBmNeKPW6d0i6f5OQyd6cy1lZsYqwpcH2c=";
-        };
-      });
       settings = {
         lsp = {
           override = {
