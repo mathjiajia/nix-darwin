@@ -52,6 +52,7 @@ in {
       require("dropbar").setup()
       require("grug-far").setup({ headerMaxWidth = 80 })
       require("ultimate-autopair").setup()
+
     '';
 
   programs.nixvim.keymaps = [

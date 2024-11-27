@@ -11,7 +11,6 @@
   environment.systemPackages = with pkgs; [
     # CLI
     difftastic
-    dotnet-sdk
     hugo
     onefetch
     python3

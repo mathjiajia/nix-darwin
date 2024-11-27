@@ -18,11 +18,12 @@
           grug_far = true;
           neogit = false;
           noice = true;
-          nvim_surround = true;
           nvimtree = false;
-          ufo = false;
+          nvim_surround = true;
           overseer = true;
           render_markdown = false;
+          snacks = true;
+          ufo = false;
 
           colorful_winsep.enabled = true;
           illuminate.enabled = false;

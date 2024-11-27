@@ -9,7 +9,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          hash = "sha256-kfxX3r2TuNNre+MVQFUhVYQ9cHWaDBiHsWM396F5Yoo=";
+          hash = "sha256-cqSxFo+2Ivw+m3LgAaDiQL6+1ZpIghB3Po37FV9Hklo=";
         };
         postInstall =
           (oldAttrs.postInstall or "")
@@ -88,11 +88,11 @@
               enabled.__raw = ''
                 Snacks.git.get_root() ~= nil
               '';
-              cmd = "hub status --short --branch --renames";
+              cmd = "git status --short --branch --renames";
               height = 5;
               padding = 1;
               ttl = 5 * 60;
-              indent = 3;
+              indent = 2;
             }
           ];
         };

@@ -34,7 +34,7 @@
       "sf-symbols"
       "sioyek"
       "soulver"
-      "squirrel"
+      # "squirrel"
       "sublime-merge"
       "surge"
       "syntax-highlight"
