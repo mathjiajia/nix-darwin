@@ -4,7 +4,7 @@
     text =
       # ghostty
       ''
-        theme = gruvbox
+        theme = light:rose-pine-dawn,dark:rose-pine
         # custom-shader = ./shaders/bloom.glsl
 
         # fonts
@@ -26,8 +26,6 @@
         # macos-titlebar-style = hidden
         # mouse-hide-while-typing = true
         macos-option-as-alt = left
-
-        auto-update = check
       '';
   };
 }

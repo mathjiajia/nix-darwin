@@ -49,8 +49,8 @@
     lxgw-wenkai
     sarasa-gothic
     smiley-sans
-    (nerdfonts.override {
-      fonts = ["IosevkaTerm" "NerdFontsSymbolsOnly"]; # "DepartureMono"
-    })
+    # nerd-fonts.departure-mono
+    nerd-fonts.iosevka-term
+    nerd-fonts.symbols-only
   ];
 }

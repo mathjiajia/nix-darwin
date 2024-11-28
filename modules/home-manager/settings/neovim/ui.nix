@@ -146,7 +146,7 @@
       settings = {
         options = {
           disabled_filetypes.statusline = ["dap-repl" "snacks_dashboard"];
-          theme = "rose-pine";
+          theme = "catppuccin";
         };
         sections = {
           lualine_a = ["mode"];

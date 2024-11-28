@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.colorschemes = {
     catppuccin = {
-      # enable = true;
+      enable = true;
       package = pkgs.vimPlugins.catppuccin-nvim.overrideAttrs (oldAttrs: {
         postInstall =
           (oldAttrs.postInstall or "")
@@ -22,7 +22,7 @@
           nvim_surround = true;
           overseer = true;
           render_markdown = false;
-          snacks = true;
+          # snacks = true;
           ufo = false;
 
           colorful_winsep.enabled = true;
@@ -135,7 +135,7 @@
     };
 
     rose-pine = {
-      enable = true;
+      # enable = true;
       settings = {
         dark_variant = "main";
         dim_inactive_windows = true;
