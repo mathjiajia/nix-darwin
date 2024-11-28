@@ -212,7 +212,16 @@
     indent-blankline = {
       enable = true;
       settings = {
-        exclude.filetypes = ["conf" "dashboard" "markdown"];
+        exclude.filetypes = [
+          "conf"
+          "help"
+          "markdown"
+          "neo-tree"
+          "snacks_dashboard"
+          "snacks_nofit"
+          "snacks_terminal"
+          "snacks_win"
+        ];
         scope.highlight = [
           "RainbowRed"
           "RainbowYellow"
