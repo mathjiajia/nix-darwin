@@ -5,12 +5,6 @@
     snacks = {
       enable = true;
       package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
-        src = pkgs.fetchFromGitHub {
-          owner = "folke";
-          repo = "snacks.nvim";
-          rev = "master";
-          hash = "sha256-Srw9QyUb7fp5Qk03cnDZIawt5zg556aSbCnVQzTKFWg=";
-        };
         postInstall =
           (oldAttrs.postInstall or "")
           +
