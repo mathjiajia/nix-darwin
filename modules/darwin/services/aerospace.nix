@@ -28,25 +28,25 @@
         alt-shift-minus = "resize smart -50";
         alt-shift-equal = "resize smart +50";
 
-        alt-1 = "workspace 1";
-        alt-2 = "workspace Chat";
-        alt-3 = "workspace Dev";
-        alt-4 = "workspace Finder";
-        alt-5 = "workspace Notes";
-        alt-6 = "workspace Safari";
-        alt-7 = "workspace Term";
-        alt-8 = "workspace Video";
-        alt-9 = "workspace Work";
+        alt-1 = "workspace Chat";
+        alt-2 = "workspace Dev";
+        alt-3 = "workspace Finder";
+        alt-4 = "workspace Notes";
+        alt-5 = "workspace Safari";
+        alt-6 = "workspace Term";
+        alt-7 = "workspace Video";
+        alt-8 = "workspace Work";
+        alt-0 = "workspace Backup";
 
-        alt-shift-1 = "move-node-to-workspace 1";
-        alt-shift-2 = "move-node-to-workspace Chat";
-        alt-shift-3 = "move-node-to-workspace Dev";
-        alt-shift-4 = "move-node-to-workspace Finder";
-        alt-shift-5 = "move-node-to-workspace Notes";
-        alt-shift-6 = "move-node-to-workspace Safari";
-        alt-shift-7 = "move-node-to-workspace Term";
-        alt-shift-8 = "move-node-to-workspace Video";
-        alt-shift-9 = "move-node-to-workspace Work";
+        alt-shift-1 = "move-node-to-workspace Chat";
+        alt-shift-2 = "move-node-to-workspace Dev";
+        alt-shift-3 = "move-node-to-workspace Finder";
+        alt-shift-4 = "move-node-to-workspace Notes";
+        alt-shift-5 = "move-node-to-workspace Safari";
+        alt-shift-6 = "move-node-to-workspace Term";
+        alt-shift-7 = "move-node-to-workspace Video";
+        alt-shift-8 = "move-node-to-workspace Work";
+        alt-shift-0 = "move-node-to-workspace Backup";
 
         alt-tab = "workspace-back-and-forth";
         alt-shift-tab = "move-workspace-to-monitor --wrap-around next";

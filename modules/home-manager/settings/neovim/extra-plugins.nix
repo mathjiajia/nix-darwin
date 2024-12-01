@@ -30,10 +30,8 @@
   };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
-    aerial-nvim
     dropbar-nvim
     grug-far-nvim
-    ultimate-autopair-nvim
 
     latex-nvim
     mysnippets
@@ -43,25 +41,11 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      require("aerial").setup({
-      	backends = { "lsp", "treesitter", "markdown", "man" },
-      	layout = { resize_to_content = false },
-      	filter_kind = false,
-      	show_guides = true,
-      })
       require("dropbar").setup()
       require("grug-far").setup({ headerMaxWidth = 80 })
-      require("ultimate-autopair").setup()
-
     '';
 
   programs.nixvim.keymaps = [
-    {
-      key = "<leader>cs";
-      action = "<Cmd>AerialToggle<CR>";
-      options.desc = "Aerial (Symbols)";
-    }
-
     {
       mode = ["n" "v"];
       key = "<leader>sr";

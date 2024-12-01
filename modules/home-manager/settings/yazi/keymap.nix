@@ -41,19 +41,19 @@
         desc = "Go to the current project dir";
       }
       {
-        on = lib.strings.stringToCharacters "gt";
-        run = "cd ~/Documents/Talks";
-        desc = "Go to the talks directory";
-      }
-      {
-        on = lib.strings.stringToCharacters "gv";
-        run = "cd ~/.config/vimtex";
-        desc = "Go to the yazi config directory";
-      }
-      {
         on = lib.strings.stringToCharacters "gn";
         run = "cd ~/.config/nix-darwin";
         desc = "Go to the nix-darwin config directory";
+      }
+      {
+        on = lib.strings.stringToCharacters "gr";
+        run = "cd ~/Documents/Review";
+        desc = "Go to the review directory";
+      }
+      {
+        on = lib.strings.stringToCharacters "gt";
+        run = "cd ~/Documents/Talks";
+        desc = "Go to the talks directory";
       }
 
       # Operation

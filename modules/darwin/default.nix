@@ -26,7 +26,7 @@
     # ghostty # closed beta
     ice-bar
     iina
-    inkscape-with-extensions
+    inkscape
     keka
     # loopwm # with aerospace
     # mathematica # x86_64-linux
