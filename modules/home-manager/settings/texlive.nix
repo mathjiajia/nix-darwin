@@ -4,8 +4,10 @@
     extraPackages = tpkgs: {
       inherit
         (tpkgs)
+        scheme-minimal
         latexindent
         latexmk
+        collection-basic
         collection-bibtexextra
         collection-fontsextra
         collection-fontsrecommended
