@@ -1,13 +1,11 @@
 {
   homebrew.masApps = {
-    Bear = 1091189122;
     Craft = 1487937127;
     DevHub = 6476452351;
     Dictionaries = 1380563956;
     Drafts = 1435957248;
     Dropover = 1355679052;
     Due = 524373870;
-    FileFillet = 6443969762;
     GarageBand = 682658836;
     Goodnotes = 1444383602;
     iMovie = 408981434;
@@ -22,14 +20,11 @@
     Pages = 409201541;
     Playgrounds = 1496833156;
     "Perplexity: Ask Anything" = 6714467650;
-    Reeder = 6475002485;
     SnippetsLab = 1006087419;
     Taio = 1527036273;
     Telegram = 747648890;
-    TestFlight = 899247664;
     Things = 904280696;
     "uBlacklist for Safari" = 1547912640;
-    Ulysses = 1225570693;
     UPDF = 1619925971;
     VidHub = 1659622164;
     VooV = 1497685373;
