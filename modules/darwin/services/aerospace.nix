@@ -227,6 +227,10 @@
             "if".app-id = "com.jordanbaird.Ice";
             "run" = "layout floating";
           }
+          {
+            "if".app-id = "org.fcitx.inputmethod.Fcitx5";
+            "run" = "layout floating";
+          }
         ];
       };
     };

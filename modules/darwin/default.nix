@@ -10,6 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     # CLI
+    # cachix
     difftastic
     hugo
     onefetch

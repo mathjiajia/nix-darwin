@@ -323,7 +323,7 @@
         # lua
         ''
           function()
-          	require("snacks.notifier").hide()
+          	Snacks.notifier.hide()
           end
         '';
       options.desc = "Dismiss All Notifications";
@@ -335,7 +335,18 @@
         # lua
         ''
           function()
-          	require("snacks.bufdelete")()
+          	Snacks.bufdelete()
+          end
+        '';
+      options.desc = "Delete Buffer";
+    }
+    {
+      key = "<leader>bD";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	Snacks.bufdelete()
           end
         '';
       options.desc = "Delete Buffer";
@@ -347,7 +358,7 @@
         # lua
         ''
           function()
-          	require("snacks.lazygit")()
+          	Snacks.lazygit()
           end
         '';
       options.desc = "Lazygit";
@@ -358,7 +369,7 @@
         # lua
         ''
           function()
-          	require("snacks.lazygit").log_file()
+          	Snacks.lazygit.log_file()
           end
         '';
       options.desc = "Lazygit Current File History";
@@ -370,7 +381,7 @@
         # lua
         ''
           function()
-          	require("snacks.rename")()
+          	Snacks.rename.rename_file()
           end
         '';
       options.desc = "Rename File";
@@ -383,7 +394,7 @@
         # lua
         ''
           function()
-          	require("snacks.terminal")()
+          	Snacks.terminal()
           end
         '';
       options.desc = "Toggle Terminal";

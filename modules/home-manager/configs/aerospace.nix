@@ -249,7 +249,7 @@
         run = 'layout floating'
 
         [[on-window-detected]]
-        if.app-id = 'Rime.Squirrel-Designer'
+        if.app-id = 'org.fcitx.inputmethod.Fcitx5'
         run = 'layout floating'
       '';
   };
