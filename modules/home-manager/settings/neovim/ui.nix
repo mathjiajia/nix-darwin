@@ -346,10 +346,10 @@
         # lua
         ''
           function()
-          	Snacks.bufdelete()
+          	Snacks.bufdelete.other()
           end
         '';
-      options.desc = "Delete Buffer";
+      options.desc = "Delete Other Buffers";
     }
 
     {
