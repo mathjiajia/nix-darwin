@@ -10,7 +10,7 @@
         # fonts
         font-size = 24
         font-family = IosevkaTerm Nerd Font
-        font-family = Sarasa Term SC
+        font-family = Sarasa T SC
         font-thicken = true
         # adjust-cell-height = 20%
 

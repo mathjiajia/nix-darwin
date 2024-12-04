@@ -45,25 +45,27 @@
         # should be supported at all https://github.com/nikitabobko/AeroSpace/issues/5
         # alt-a = 'focus parent'
 
-        alt-1 = 'workspace Backup'
-        alt-2 = 'workspace Chat'
-        alt-3 = 'workspace Dev'
-        alt-4 = 'workspace Finder'
-        alt-5 = 'workspace Notes'
-        alt-6 = 'workspace Safari'
-        alt-7 = 'workspace Term'
-        alt-8 = 'workspace Video'
-        alt-9 = 'workspace Work'
+        alt-1 = 'workspace 1'
+        alt-2 = 'workspace B'
+        alt-3 = 'workspace C'
+        alt-4 = 'workspace D'
+        alt-5 = 'workspace F'
+        alt-6 = 'workspace N'
+        alt-7 = 'workspace T'
+        alt-8 = 'workspace V'
+        alt-9 = 'workspace W'
+        alt-0 = 'workspace 0'
 
-        alt-shift-1 = 'move-node-to-workspace Backup'
-        alt-shift-2 = 'move-node-to-workspace Chat'
-        alt-shift-3 = 'move-node-to-workspace Dev'
-        alt-shift-4 = 'move-node-to-workspace Finder'
-        alt-shift-5 = 'move-node-to-workspace Notes'
-        alt-shift-6 = 'move-node-to-workspace Safari'
-        alt-shift-7 = 'move-node-to-workspace Term'
-        alt-shift-8 = 'move-node-to-workspace Video'
-        alt-shift-9 = 'move-node-to-workspace Work'
+        alt-shift-1 = 'move-node-to-workspace 1'
+        alt-shift-2 = 'move-node-to-workspace B'
+        alt-shift-3 = 'move-node-to-workspace C'
+        alt-shift-4 = 'move-node-to-workspace D'
+        alt-shift-5 = 'move-node-to-workspace F'
+        alt-shift-6 = 'move-node-to-workspace N'
+        alt-shift-7 = 'move-node-to-workspace T'
+        alt-shift-8 = 'move-node-to-workspace V'
+        alt-shift-9 = 'move-node-to-workspace W'
+        alt-shift-0 = 'move-node-to-workspace 0'
 
         alt-tab = 'workspace-back-and-forth'
         alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
@@ -86,83 +88,83 @@
 
         [[on-window-detected]]
         if.app-id = 'com.apple.Safari'
-        run = 'move-node-to-workspace Safari'
+        run = 'move-node-to-workspace B'
 
         [[on-window-detected]]
         if.app-id = 'com.microsoft.edgemac'
-        run = 'move-node-to-workspace Safari'
+        run = 'move-node-to-workspace B'
 
         [[on-window-detected]]
         if.app-id = 'com.tdesktop.Telegram'
-        run = ['layout floating', 'move-node-to-workspace Chat']
+        run = ['layout floating', 'move-node-to-workspace C']
 
         [[on-window-detected]]
         if.app-id = 'com.tencent.xinWeChat'
-        run = ['layout floating', 'move-node-to-workspace Chat']
+        run = ['layout floating', 'move-node-to-workspace C']
 
         [[on-window-detected]]
         if.app-id = 'com.apple.mail'
-        run = ['layout floating', 'move-node-to-workspace Chat']
+        run = ['layout floating', 'move-node-to-workspace C']
 
         [[on-window-detected]]
         if.app-id = 'net.whatsapp.WhatsApp'
-        run = ['layout floating', 'move-node-to-workspace Chat']
+        run = ['layout floating', 'move-node-to-workspace C']
 
         [[on-window-detected]]
         if.app-id = 'com.hnc.Discord'
-        run = ['layout floating', 'move-node-to-workspace Chat']
+        run = ['layout floating', 'move-node-to-workspace C']
 
         [[on-window-detected]]
         if.app-id = 'com.sublimemerge'
-        run = 'move-node-to-workspace Dev'
+        run = 'move-node-to-workspace D'
 
         [[on-window-detected]]
         if.app-id = 'com.wangchujiang.DevHub'
-        run = 'move-node-to-workspace Dev'
+        run = 'move-node-to-workspace D'
 
         [[on-window-detected]]
         if.app-id = 'dev.kdrag0n.MacVirt'
-        run = 'move-node-to-workspace Dev'
+        run = 'move-node-to-workspace D'
 
         [[on-window-detected]]
         if.app-id = 'com.apple.dt.Xcode'
-        run = 'move-node-to-workspace Dev'
+        run = 'move-node-to-workspace D'
 
         [[on-window-detected]]
         if.app-id = 'com.microsoft.VSCode'
-        run = 'move-node-to-workspace Dev'
+        run = 'move-node-to-workspace D'
 
         [[on-window-detected]]
         if.app-id = 'dev.zed.Zed'
-        run = 'move-node-to-workspace Dev'
+        run = 'move-node-to-workspace D'
 
         [[on-window-detected]]
         if.app-id = 'com.neovide.neovide'
-        run = 'move-node-to-workspace Dev'
+        run = 'move-node-to-workspace D'
 
         [[on-window-detected]]
         if.app-id = 'com.apple.finder'
-        run = ['layout floating', 'move-node-to-workspace Finder']
+        run = ['layout floating', 'move-node-to-workspace F']
 
         [[on-window-detected]]
         if.app-id = 'com.apple.Notes'
-        run = ['layout floating', 'move-node-to-workspace Notes']
+        run = ['layout floating', 'move-node-to-workspace N']
 
         [[on-window-detected]]
         if.app-id = 'com.agiletortoise.Drafts-OSX'
-        run = ['layout floating', 'move-node-to-workspace Notes']
+        run = ['layout floating', 'move-node-to-workspace N']
 
         [[on-window-detected]]
         if.app-id = 'net.sourceforge.skim-app.skim'
-        run = 'move-node-to-workspace Notes'
+        run = 'move-node-to-workspace N'
 
         [[on-window-detected]]
         if.app-id = 'com.superace.updf.mac'
-        run = 'move-node-to-workspace Notes'
+        run = 'move-node-to-workspace N'
 
         [[on-window-detected]]
         if.app-id = 'org.zotero.zotero'
-        run = 'move-node-to-workspace Notes'
+        run = 'move-node-to-workspace N'
 
         [[on-window-detected]]
         if.app-id = 'com.mitchellh.ghostty'
@@ -176,49 +178,49 @@
 
         [[on-window-detected]]
         if.app-id = 'com.mitchellh.ghostty'
-        run = 'move-node-to-workspace Term'
+        run = 'move-node-to-workspace T'
 
         [[on-window-detected]]
         if.app-id = 'info.sioyek.sioyek'
-        if.window-title-regex-substring = 'main.pdf'
-        run = 'move-node-to-workspace Term'
+        if.window-title-regex-substring = '(main|report)\.pdf'
+        run = 'move-node-to-workspace T'
 
         [[on-window-detected]]
         if.app-id = 'info.sioyek.sioyek'
-        if.window-title-regex-substring = '^(?!main\.pdf$).+'
-        run = 'move-node-to-workspace Notes'
+        if.window-title-regex-substring = '^(?!main\.pdf|report\.pdf).+'
+        run = 'move-node-to-workspace N'
 
         [[on-window-detected]]
         if.app-id = 'com.microsoft.Excel'
-        run = 'move-node-to-workspace Work'
+        run = 'move-node-to-workspace W'
 
         [[on-window-detected]]
         if.app-id = 'com.microsoft.Powerpoint'
-        run = 'move-node-to-workspace Work'
+        run = 'move-node-to-workspace W'
 
         [[on-window-detected]]
         if.app-id = 'com.microsoft.Word'
-        run = 'move-node-to-workspace Work'
+        run = 'move-node-to-workspace W'
 
         [[on-window-detected]]
         if.app-id = 'com.apple.iWork.Kenotes'
-        run = 'move-node-to-workspace Work'
+        run = 'move-node-to-workspace W'
 
         [[on-window-detected]]
         if.app-id = 'com.apple.iWork.Numbers'
-        run = 'move-node-to-workspace Work'
+        run = 'move-node-to-workspace W'
 
         [[on-window-detected]]
         if.app-id = 'com.apple.iWork.Pages'
-        run = 'move-node-to-workspace Work'
+        run = 'move-node-to-workspace W'
 
         [[on-window-detected]]
         if.app-id = 'us.zoom.xos'
-        run = 'move-node-to-workspace Video'
+        run = 'move-node-to-workspace V'
 
         [[on-window-detected]]
         if.app-id = 'com.tencent.tencentmeeting'
-        run = 'move-node-to-workspace Video'
+        run = 'move-node-to-workspace V'
 
         [[on-window-detected]]
         if.app-id = 'com.nssurge.surge-mac'
