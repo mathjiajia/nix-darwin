@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   nixpkgs = {
     config.allowUnfree = true;
+    config.permittedInsecurePackages = ["dotnet-sdk-wrapped-6.0.428"];
     hostPlatform = "aarch64-darwin";
   };
 
