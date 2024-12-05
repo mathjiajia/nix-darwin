@@ -14,11 +14,19 @@
     difftastic
     hugo
     onefetch
-    python3
     superfile
     # swift-format # old
     tree
     unrar
+
+    # PYTHON
+    (python3.withPackages (ps:
+      with ps; [
+        jupyter
+        numpy
+        pandas
+        plotly
+      ]))
 
     # GUI
     aerospace
