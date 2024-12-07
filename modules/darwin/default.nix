@@ -23,9 +23,11 @@
     (python3.withPackages (ps:
       with ps; [
         jupyter
+        matplotlib
         numpy
         pandas
         plotly
+        scipy
       ]))
 
     # GUI

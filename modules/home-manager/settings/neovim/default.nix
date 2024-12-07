@@ -41,6 +41,7 @@
     ./colorscheme.nix
     ./diagnostics.nix
 
+    ./ai.nix
     ./conform.nix
     ./compiler.nix
     ./completion.nix
