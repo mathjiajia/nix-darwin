@@ -15,19 +15,19 @@
         integrations = {
           aerial = true;
           alpha = false;
+          dashboard = false;
+          dropbar.enabled = true;
           grug_far = true;
           neogit = false;
           noice = true;
           nvimtree = false;
           nvim_surround = true;
           overseer = true;
-          render_markdown = false;
-          # snacks = true;
+          snacks = true;
           ufo = false;
 
           colorful_winsep.enabled = true;
           illuminate.enabled = false;
-          mini.enabled = true;
           telescope.enabled = false;
         };
         color_overrides = {

@@ -123,25 +123,6 @@
       };
     };
 
-    nvim-autopairs = {
-      enable = true;
-      settings.check_ts = true;
-      luaConfig.post =
-        # lua
-        ''
-          require("nvim-autopairs").get_rule("'")[1]:with_pair(function()
-              if vim.bo.filetype == "tex" then
-                  return false
-              end
-          end)
-          require("nvim-autopairs").get_rule('"')[1]:with_pair(function()
-              if vim.bo.filetype == "tex" then
-                  return false
-              end
-          end)
-        '';
-    };
-
     aerial = {
       enable = true;
       settings = {

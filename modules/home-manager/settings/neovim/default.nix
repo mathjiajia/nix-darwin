@@ -49,6 +49,7 @@
     ./editor.nix
     ./lint.nix
     ./lsp.nix
+    ./mini.nix
     ./neo-tree.nix
     ./treesitter.nix
     ./ui.nix
