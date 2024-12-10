@@ -11,12 +11,12 @@
   #   rev = "master";
   #   hash = "sha256-bqaFqjlQ/VgMdt2VVjEI8cIkA9THjOZDgNspNicxlbc=";
   # };
-  # yaziMdcat = pkgs.fetchFromGitHub {
-  #   owner = "GrzegorzKozub";
-  #   repo = "mdcat.yazi";
-  #   rev = "master";
-  #   hash = "sha256-dZOOmkoyjTty1LWXobNVxicD0yrzRNzF3N0BiWz+a+E=";
-  # };
+  yaziMdcat = pkgs.fetchFromGitHub {
+    owner = "GrzegorzKozub";
+    repo = "mdcat.yazi";
+    rev = "master";
+    hash = "sha256-F6rNLWJxMmTOOlna6lev4m1h559BWftfy6pNoTqVGKw=";
+  };
   arrowPlugin = pkgs.writeTextFile {
     name = "arrow.yazi";
     destination = "/init.lua";
@@ -74,7 +74,7 @@ in {
     git = "${yaziPlugins}/git.yazi";
     # glow = yaziGlow;
     jump-to-char = "${yaziPlugins}/jump-to-char.yazi";
-    # macat = yaziMdcat;
+    macat = yaziMdcat;
     parent-arrow = parentArrowPlugin;
     smart-enter = smartEnterPlugin;
     smart-filter = "${yaziPlugins}/smart-filter.yazi";

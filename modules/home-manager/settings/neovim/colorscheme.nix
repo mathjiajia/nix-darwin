@@ -15,6 +15,8 @@
         integrations = {
           aerial = true;
           alpha = false;
+          # blink_cmp = true;
+          # cmp = false;
           dashboard = false;
           dropbar.enabled = true;
           grug_far = true;

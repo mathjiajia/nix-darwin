@@ -4,10 +4,9 @@
   ...
 }: {
   home.packages = with pkgs; [
-    ffmpegthumbnailer
-    # glow
+    ffmpeg
     imagemagick
-    # mdcat
+    mdcat
     poppler
   ];
 
@@ -43,16 +42,12 @@
           run = "git";
         }
       ];
-      # prepend_previewers = [
-      #   {
-      #     name = "*.md";
-      #     run = "glow";
-      #   }
-      #   {
-      #     name = "*.md";
-      #     run = "mdcat";
-      #   }
-      # ];
+      prepend_previewers = [
+        {
+          name = "*.md";
+          run = "mdcat";
+        }
+      ];
     };
   };
 }

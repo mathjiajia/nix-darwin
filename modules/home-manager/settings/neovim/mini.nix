@@ -53,10 +53,9 @@
             '';
         };
       };
-      icons.lsp = {
-        "function".glyph = "";
-        object.glyph = "";
-        value.glyph = "";
+      icons.lsp.copilot = {
+        glyph = "";
+        hl = "MiniIconsCyan";
       };
       pairs = {};
     };
