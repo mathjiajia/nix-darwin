@@ -27,7 +27,11 @@
           "<C-j>" = ["snippet_backward" "fallback"];
           "<C-l>" = ["snippet_forward" "fallback"];
         };
-        # menu.draw.columns = [["label" "label_description"] ["kind_icon" "kind"]];
+        menu.draw.columns.__raw =
+          # lua
+          ''
+            {{ "label", "label_description", gap = 1 }, { "kind_icon", gap = 1, "kind" }}
+          '';
         snippets = {
           expand.__raw =
             # lua

@@ -6,7 +6,6 @@
   home.packages = with pkgs; [
     ffmpeg
     imagemagick
-    mdcat
     poppler
   ];
 

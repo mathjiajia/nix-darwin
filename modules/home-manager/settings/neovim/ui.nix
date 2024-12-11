@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.nixvim.plugins = {
-    dressing.enable = true;
+    rainbow-delimiters.enable = true;
     render-markdown.enable = true;
     snacks = {
       enable = true;
@@ -12,9 +12,14 @@
           ''
             rm -rf $out/queries
           '';
+        src = pkgs.fetchFromGitHub {
+          owner = "folke";
+          repo = "snacks.nvim";
+          rev = "master";
+          hash = "sha256-yijpToBDevNdjOqTl4lhzmL/RUQ6No5yGokbKPr6G4A=";
+        };
       });
       settings = {
-        # bigfile.enabled = true;
         dashboard = {
           enabled = true;
           preset = {
@@ -90,13 +95,23 @@
             }
           ];
         };
-        notifier = {
+        indent = {
           enabled = true;
-          timeout = 3000;
+          scope.hl = [
+            "RainbowDelimiterRed"
+            "RainbowDelimiterYellow"
+            "RainbowDelimiterBlue"
+            "RainbowDelimiterOrange"
+            "RainbowDelimiterGreen"
+            "RainbowDelimiterViolet"
+            "RainbowDelimiterCyan"
+          ];
         };
-        # quickfile.enabled = true;
+        input.enabled = true;
+        notifier.enabled = true;
+        scroll.enabled = true;
         # statuscolumn.enabled = true;
-        # words.enabled = true;
+        words.enabled = true;
         styles = {
           lazygit = {
             width = 0;
@@ -212,54 +227,66 @@
         };
       };
     };
-
-    rainbow-delimiters.enable = true;
-    indent-blankline = {
-      enable = true;
-      settings = {
-        exclude.filetypes = [
-          "conf"
-          "help"
-          "markdown"
-          "neo-tree"
-          "snacks_dashboard"
-          "snacks_nofit"
-          "snacks_terminal"
-          "snacks_win"
-        ];
-        scope.highlight = [
-          "RainbowRed"
-          "RainbowYellow"
-          "RainbowBlue"
-          "RainbowOrange"
-          "RainbowGreen"
-          "RainbowViolet"
-          "RainbowCyan"
-        ];
-      };
-      luaConfig.pre =
-        # lua
-        ''
-          local hooks = require("ibl.hooks")
-          hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-          	vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-          	vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-          	vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-          	vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-          	vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-          	vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-          	vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-          end)
-        '';
-      luaConfig.post =
-        # lua
-        ''
-          hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-        '';
-    };
   };
 
   programs.nixvim.keymaps = [
+    {
+      key = "<leader>z";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	Snacks.zen()
+          end
+        '';
+      options.desc = "Toggle Zen Mode";
+    }
+    {
+      key = "<leader>Z";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	Snacks.zen.zoom()
+          end
+        '';
+      options.desc = "Toggle Zoom";
+    }
+
+    {
+      key = "<leader>.";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	Snacks.scratch()
+          end
+        '';
+      options.desc = "Toggle Scratch Buffer";
+    }
+    {
+      key = "<leader>S";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	Snacks.scratch.select()
+          end
+        '';
+      options.desc = "Select Scratch Buffer";
+    }
+
+    {
+      key = "<leader>n";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	Snacks.notifier.show_history()
+          end
+        '';
+      options.desc = "Notification History";
+    }
     {
       key = "<leader>un";
       action.__raw =

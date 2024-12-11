@@ -8,29 +8,25 @@
       }
       {
         on = "j";
-        run = "plugin --sync arrow --args=1";
-        desc = "Move cursor down";
+        run = "plugin arrow --args=1";
       }
       {
         on = "k";
-        run = "plugin --sync arrow --args=-1";
-        desc = "Move cursor up";
+        run = "plugin arrow --args=-1";
       }
 
       {
         on = "J";
-        run = "plugin --sync parent-arrow --args=1";
-        desc = "Move cursor down in the parent dir";
+        run = "plugin parent-arrow --args=1";
       }
       {
         on = "K";
-        run = "plugin --sync parent-arrow --args=-1";
-        desc = "Move cursor up in the parent dir";
+        run = "plugin parent-arrow --args=-1";
       }
 
       {
         on = "l";
-        run = "plugin --sync smart-enter";
+        run = "plugin smart-enter";
         desc = "Enter the child directory; or open the file";
       }
 

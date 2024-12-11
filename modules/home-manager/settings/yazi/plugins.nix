@@ -5,30 +5,19 @@
     rev = "master";
     hash = "sha256-cdPeIhtTzSYhJZ3v3Xlq8J3cOmR7ZiOGl5q48Qgthyk=";
   };
-  # yaziGlow = pkgs.fetchFromGitHub {
-  #   owner = "Reledia";
-  #   repo = "glow.yazi";
-  #   rev = "master";
-  #   hash = "sha256-bqaFqjlQ/VgMdt2VVjEI8cIkA9THjOZDgNspNicxlbc=";
-  # };
-  yaziMdcat = pkgs.fetchFromGitHub {
-    owner = "GrzegorzKozub";
-    repo = "mdcat.yazi";
-    rev = "master";
-    hash = "sha256-F6rNLWJxMmTOOlna6lev4m1h559BWftfy6pNoTqVGKw=";
-  };
   arrowPlugin = pkgs.writeTextFile {
     name = "arrow.yazi";
     destination = "/init.lua";
     text =
       # lua
       ''
+        --- @sync entry
         return {
-          entry = function(_, args)
-            local current = cx.active.current
-            local new = (current.cursor + args[1]) % #current.files
-            ya.manager_emit("arrow", { new - current.cursor })
-        end,
+        	entry = function(_, job)
+        		local current = cx.active.current
+        		local new = (current.cursor + job.args[1]) % #current.files
+        		ya.manager_emit("arrow", { new - current.cursor })
+        	end,
         }
       '';
   };
@@ -38,31 +27,18 @@
     text =
       # lua
       ''
-        local function entry(_, args)
-          local parent = cx.active.parent
-          if not parent then
-            return
-          end
-          local target = parent.files[parent.cursor + 1 + args[1]]
-          if target and target.cha.is_dir then
-            ya.manager_emit("cd", { target.url })
-          end
+        --- @sync entry
+        local function entry(_, job)
+        	local parent = cx.active.parent
+        	if not parent then return end
+
+        	local target = parent.files[parent.cursor + 1 + job.args[1]]
+        	if target and target.cha.is_dir then
+        		ya.manager_emit("cd", { target.url })
+        	end
         end
+
         return { entry = entry }
-      '';
-  };
-  smartEnterPlugin = pkgs.writeTextFile {
-    name = "smart-enter.yazi";
-    destination = "/init.lua";
-    text =
-      # lua
-      ''
-        return {
-          entry = function()
-            local h = cx.active.current.hovered
-            ya.manager_emit(h and h.cha.is_dir and "enter" or "open", { hovered = true })
-          end,
-        }
       '';
   };
 in {
@@ -72,11 +48,9 @@ in {
     diff = "${yaziPlugins}/diff.yazi";
     full-border = "${yaziPlugins}/full-border.yazi";
     git = "${yaziPlugins}/git.yazi";
-    # glow = yaziGlow;
     jump-to-char = "${yaziPlugins}/jump-to-char.yazi";
-    macat = yaziMdcat;
     parent-arrow = parentArrowPlugin;
-    smart-enter = smartEnterPlugin;
+    smart-enter = "${yaziPlugins}/smart-enter.yazi";
     smart-filter = "${yaziPlugins}/smart-filter.yazi";
   };
 }

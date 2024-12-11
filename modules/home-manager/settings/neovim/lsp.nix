@@ -7,21 +7,6 @@
         require("cmp_nvim_lsp").default_capabilities()
       '';
     inlayHints = true;
-    onAttach =
-      # lua
-      ''
-        local methods = vim.lsp.protocol.Methods
-        if client.supports_method(methods.textDocument_documentHighlight) then
-        	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-        		buffer = bufnr,
-        		callback = vim.lsp.buf.document_highlight,
-        	})
-        	vim.api.nvim_create_autocmd("CursorMoved", {
-        		buffer = bufnr,
-        		callback = vim.lsp.buf.clear_references,
-        	})
-        end
-      '';
     keymaps.lspBuf = {
       gD = "declaration";
       gd = "definition";
