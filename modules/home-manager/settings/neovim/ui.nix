@@ -1,5 +1,9 @@
 {pkgs, ...}: {
   programs.nixvim.plugins = {
+    dressing = {
+      enable = true;
+      settings.input.enabled = false;
+    };
     rainbow-delimiters.enable = true;
     render-markdown.enable = true;
     snacks = {

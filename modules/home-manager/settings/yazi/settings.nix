@@ -41,12 +41,6 @@
           run = "git";
         }
       ];
-      prepend_previewers = [
-        {
-          name = "*.md";
-          run = "mdcat";
-        }
-      ];
     };
   };
 }
