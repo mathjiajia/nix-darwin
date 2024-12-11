@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
@@ -21,13 +21,21 @@
 
     blink-cmp = {
       # enable = true;
+      package = pkgs.vimPlugins.blink-cmp.overrideAttrs (oldAttrs: {
+        src = pkgs.fetchFromGitHub {
+          owner = "Saghen";
+          repo = "blink.cmp";
+          rev = "master";
+          hash = "sha256-nxiODLKgGeXzN5sqkLWU0PcsuSSB1scSzTC5qyCxLCI=";
+        };
+      });
       settings = {
         keymap = {
           preset = "default";
           "<C-j>" = ["snippet_backward" "fallback"];
           "<C-l>" = ["snippet_forward" "fallback"];
         };
-        menu.draw.columns.__raw =
+        completion.menu.draw.columns.__raw =
           # lua
           ''
             {{ "label", "label_description", gap = 1 }, { "kind_icon", gap = 1, "kind" }}
@@ -54,7 +62,74 @@
               function(direction) require('luasnip').jump(direction) end
             '';
         };
-        sources.completion.enabled_providers = ["lsp" "path" "luasnip" "buffer"];
+        sources = {
+          default = ["lsp" "path" "luasnip" "buffer" "copilot"];
+          providers = {
+            copilot = {
+              name = "copilot";
+              module = "blink-cmp-copilot";
+            };
+            # ripgrep = {
+            #   module = "blink-ripgrep";
+            #   name = "Ripgrep";
+            #   opts = {
+            #     prefix_min_len = 3;
+            #     context_size = 5;
+            #     max_filesize = "1M";
+            #     # get_command.__raw =
+            #     #   # lua
+            #     #   ''
+            #     #     function(context, prefix)
+            #     #     	return {
+            #     #     		"rg",
+            #     #     		"--no-config",
+            #     #     		"--json",
+            #     #     		"--word-regexp",
+            #     #     		"--ignore-case",
+            #     #     		"--",
+            #     #     		prefix .. "[\\w_-]+",
+            #     #     		vim.fs.root(0, ".git") or vim.fn.getcwd(),
+            #     #     	}
+            #     #     end
+            #     #   '';
+            #     # get_prefix =
+            #     #   # lua
+            #     #   ''
+            #     #     function(context)
+            #     #     	return context.line:sub(1, context.cursor[2]):match("[%w_-]+$") or ""
+            #     #     end
+            #     #   '';
+            #   };
+            # };
+          };
+        };
+        appearance.kind_icons = {
+          Text = " ";
+          Method = " ";
+          Function = " ";
+          Constructor = " ";
+          Field = " ";
+          Variable = " ";
+          Class = " ";
+          Interface = " ";
+          Module = " ";
+          Property = " ";
+          Unit = " ";
+          Value = " ";
+          Enum = " ";
+          Keyword = " ";
+          Snippet = " ";
+          Color = " ";
+          File = " ";
+          Reference = " ";
+          Folder = " ";
+          EnumMember = " ";
+          Constant = " ";
+          Struct = " ";
+          Event = " ";
+          Operator = " ";
+          TypeParameter = " ";
+        };
       };
     };
 
@@ -186,7 +261,7 @@
 
   programs.nixvim.keymaps = [
     {
-      mode = ["i"];
+      mode = "i";
       key = "<C-k>";
       action.__raw =
         # lua
@@ -223,7 +298,7 @@
     }
     {
       mode = ["i" "s"];
-      key = "<C-e>";
+      key = "<C-;>";
       action.__raw =
         # lua
         ''

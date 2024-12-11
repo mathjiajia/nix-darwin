@@ -57,11 +57,6 @@
           action = "grep_cword";
           options.desc = "Search Word Under Cursor";
         };
-        # ["<leader>sw"] = {
-        #   action = "grep_visual";
-        #   mode = [ "v" ];
-        #   options.desc = "Search Visual Selection";
-        # };
       };
       settings = {
         defaults = {
@@ -69,7 +64,6 @@
           formatter = "path.dirname_first";
         };
         grep.RIPGREP_CONFIG_PATH = "~/.config/ripgrep/ripgreprc";
-        register_ui_select = true;
       };
       luaConfig.post =
         # lua
@@ -142,6 +136,13 @@
 
   programs.nixvim.keymaps = [
     {
+      mode = "v";
+      key = "<leader>sw";
+      action = "FzfLua grep_visual";
+      options.desc = "Search Visual Selection";
+    }
+
+    {
       key = "<leader>cs";
       action = "<Cmd>AerialToggle<CR>";
       options.desc = "Aerial (Symbols)";
@@ -172,7 +173,7 @@
       options.desc = "Flash Treesitter";
     }
     {
-      mode = ["o"];
+      mode = "o";
       key = "r";
       action.__raw =
         # lua
@@ -196,7 +197,7 @@
       options.desc = "Treesitter Search";
     }
     {
-      mode = ["c"];
+      mode = "c";
       key = "<c-s>";
       action.__raw =
         # lua
