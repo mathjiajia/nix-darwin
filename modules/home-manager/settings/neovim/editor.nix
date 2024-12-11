@@ -64,12 +64,18 @@
         # };
       };
       settings = {
-        grep.RIPGREP_CONFIG_PATH = "~/.config/ripgrep/ripgreprc";
         defaults = {
           file_icons = "mini";
           formatter = "path.dirname_first";
         };
+        grep.RIPGREP_CONFIG_PATH = "~/.config/ripgrep/ripgreprc";
+        register_ui_select = true;
       };
+      luaConfig.post =
+        # lua
+        ''
+          require("fzf-lua").register_ui_select()
+        '';
     };
 
     gitsigns = {
