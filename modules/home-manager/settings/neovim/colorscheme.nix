@@ -25,6 +25,7 @@
           nvimtree = false;
           nvim_surround = true;
           overseer = true;
+          render_markdown = false;
           snacks = true;
           ufo = false;
 
@@ -90,6 +91,96 @@
             crust = "#141617";
           };
         };
+        custom_highlights =
+          # lua
+          ''
+            function(colors)
+              local C = colors
+              -- local O = require("catppuccin").options
+              -- local U = require("catppuccin.utils.colors")
+              -- local base = not O.transparent_background and colors.base or nil
+
+              return {
+                MarkviewBlockQuoteWarn = { fg = C.yellow },
+                -- MarkviewBlockQuoteSpecial = {},
+                -- MarkviewBlockQuoteNote = {},
+                -- MarkviewBlockQuoteDefault = {},
+                MarkviewBlockQuoteOk = { fg = C.green },
+                MarkviewBlockQuoteError = { fg = C.red },
+                -- MarkviewCheckboxCancelled = {},
+
+                -- MarkviewCheckboxChecked = {},
+                -- MarkviewCheckboxPending = {},
+                -- MarkviewCheckboxProgress = {},
+                -- MarkviewCheckboxUnchecked = {},
+                -- MarkviewCheckboxStriked = {},
+                --
+                MarkviewInlineCode = { bg = C.surface0 },
+                -- MarkviewCodeInfo = {},
+                MarkviewCode = { bg = C.mantle },
+
+                -- MarkviewIcon1 = {},
+                -- MarkviewIcon1Sign = {},
+                -- MarkviewIcon1Fg = {},
+                -- MarkviewIcon2 = {},
+                -- MarkviewIcon2Sign = {},
+                -- MarkviewIcon2Fg = {},
+                -- MarkviewIcon3 = {},
+                -- MarkviewIcon3Sign = {},
+                -- MarkviewIcon3Fg = {},
+                -- MarkviewIcon4 = {},
+                -- MarkviewIcon4Sign = {},
+                -- MarkviewIcon4Fg = {},
+                -- MarkviewIcon5 = {},
+                -- MarkviewIcon5Sign = {},
+                -- MarkviewIcon5Fg = {},
+                -- MarkviewIcon6 = {},
+                -- MarkviewIcon6Sign = {},
+                -- MarkviewIcon6Fg = {},
+
+                -- MarkviewHeading1Sign = {},
+                -- MarkviewHeading1 = { fg = C.red, bg = U.darken(C.red, 0.30, base) },
+                -- MarkviewHeading2Sign = {},
+                -- MarkviewHeading2 = { fg = C.peach, bg = U.darken(C.peach, 0.30, base) },
+                -- MarkviewHeading3Sign = {},
+                -- MarkviewHeading3 = { fg = C.yellow, bg = U.darken(C.yellow, 0.30, base) },
+                -- MarkviewHeading4Sign = {},
+                -- MarkviewHeading4 = { fg = C.green, bg = U.darken(C.green, 0.30, base) },
+                -- MarkviewHeading5Sign = {},
+                -- MarkviewHeading5 = { fg = C.sapphire, bg = U.darken(C.sapphire, 0.30, base) },
+                -- MarkviewHeading6Sign = {},
+                -- MarkviewHeading6 = { fg = C.lavender, bg = U.darken(C.lavender, 0.30, base) },
+
+                -- MarkviewGradient1 = {},
+                -- MarkviewGradient2 = {},
+                -- MarkviewGradient3 = {},
+                -- MarkviewGradient4 = {},
+                -- MarkviewGradient5 = {},
+                -- MarkviewGradient6 = {},
+                -- MarkviewGradient7 = {},
+                -- MarkviewGradient8 = {},
+                -- MarkviewGradient9 = {},
+                -- MarkviewGradient10 = {},
+
+                -- MarkviewLatexSubscript = {},
+                -- MarkviewLatexSuperscript = {},
+
+                -- MarkviewListItemStar = {},
+                -- MarkviewListItemPlus = {},
+                -- MarkviewListItemMinus = {},
+
+                -- MarkviewEmail = {},
+                -- MarkviewImageLink = {},
+                -- MarkviewHyperlink = {},
+
+                -- MarkviewTableHeader = {},
+                -- MarkviewTableBorder = {},
+                -- MarkviewTableAlignCenter = {},
+                -- MarkviewTableAlignLeft = {},
+                -- MarkviewTableAlignRight = {},
+              }
+            end
+          '';
         term_colors = true;
         transparent_background = true;
       };
@@ -112,7 +203,7 @@
     kanagawa = {
       # enable = true;
       settings = {
-        colors = {theme = {all = {ui = {bg_gutter = "none";};};};};
+        colors.theme.all.ui.bg_gutter = "none";
         compile = true;
         dimInactive = false;
         overrides =

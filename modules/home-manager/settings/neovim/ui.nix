@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.plugins = {
+    markview.enable = true;
     rainbow-delimiters.enable = true;
-    render-markdown.enable = true;
     snacks = {
       enable = true;
       package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
