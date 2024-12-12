@@ -16,7 +16,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          hash = "sha256-1SxNVI2IB6LBN+fP82Yb2Wkf3VADtzvlhAFIlzw+Ug4=";
+          hash = "sha256-KHEnwmKsAXoCCzd2xoXgNQibU5xI7yzChJZBJM/E+P8=";
         };
       });
       settings = {
