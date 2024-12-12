@@ -22,7 +22,7 @@
           '';
       }
       {
-        event = ["TextYankPost"];
+        event = "TextYankPost";
         desc = "Highlight the Yanked Text";
         group = "HighlightYank";
         callback.__raw =
@@ -34,16 +34,16 @@
           '';
       }
       {
-        event = ["BufReadPost"];
+        event = "BufReadPost";
         desc = "Last Position";
         group = "LastPlace";
         callback.__raw =
           # lua
           ''
-            function(event)
+            function(ev)
               local exclude_bt = { "help", "nofile", "quickfix" }
               local exclude_ft = { "gitcommit" }
-              local buf = event.buf
+              local buf = ev.buf
               if
                 vim.list_contains(exclude_bt, vim.bo[buf].buftype)
                 or vim.list_contains(exclude_ft, vim.bo[buf].filetype)
@@ -62,7 +62,7 @@
           '';
       }
       # {
-      #   event = [ "FileType" ];
+      #   event = "FileType";
       #   desc = "Enable Treesitter";
       #   callback.__raw =
       #     # lua
@@ -77,8 +77,9 @@
       #       end
       #     '';
       # }
+
       {
-        event = ["BufReadPost"];
+        event = "BufReadPost";
         group = "OpenFile";
         pattern = ["*.jpeg" "*.jpg" "*.pdf" "*.png"];
         callback.__raw =

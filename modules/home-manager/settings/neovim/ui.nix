@@ -16,7 +16,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          hash = "sha256-yijpToBDevNdjOqTl4lhzmL/RUQ6No5yGokbKPr6G4A=";
+          hash = "sha256-1SxNVI2IB6LBN+fP82Yb2Wkf3VADtzvlhAFIlzw+Ug4=";
         };
       });
       settings = {
@@ -117,10 +117,15 @@
             width = 0;
             height = 0;
           };
-          notification.wo = {wrap = true;};
+          notification.wo.wrap = true;
           terminal.height = 12;
         };
       };
+      luaConfig.post =
+        # lua
+        ''
+          Snacks.toggle.zen():map("<leader>z")
+        '';
     };
     noice = {
       enable = true;
@@ -151,7 +156,7 @@
     };
 
     lualine = {
-      enable = true;
+      # enable = true;
       settings = {
         options = {
           disabled_filetypes.statusline = ["dap-repl" "snacks_dashboard"];
@@ -230,17 +235,6 @@
   };
 
   programs.nixvim.keymaps = [
-    {
-      key = "<leader>z";
-      action.__raw =
-        # lua
-        ''
-          function()
-          	Snacks.zen()
-          end
-        '';
-      options.desc = "Toggle Zen Mode";
-    }
     {
       key = "<leader>Z";
       action.__raw =

@@ -12,6 +12,8 @@
     });
     mockDevIcons = true;
     modules = {
+      # diff.view.style = "sign";
+      # git = {};
       hipatterns = {
         highlighters = {
           fixme = {
@@ -58,6 +60,7 @@
         hl = "MiniIconsCyan";
       };
       pairs = {};
+      statusline = {};
     };
   };
 }
