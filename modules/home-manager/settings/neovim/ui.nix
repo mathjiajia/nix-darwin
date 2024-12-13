@@ -108,6 +108,7 @@
         input.enabled = true;
         notifier.enabled = true;
         scroll.enabled = true;
+        scope.enabled = true;
         # statuscolumn.enabled = true;
         words.enabled = true;
         styles = {
@@ -253,17 +254,6 @@
     }
 
     {
-      key = "<leader>gg";
-      action.__raw =
-        # lua
-        ''
-          function()
-          	Snacks.lazygit()
-          end
-        '';
-      options.desc = "Lazygit";
-    }
-    {
       key = "<leader>gf";
       action.__raw =
         # lua
@@ -273,6 +263,17 @@
           end
         '';
       options.desc = "Lazygit Current File History";
+    }
+    {
+      key = "<leader>gg";
+      action.__raw =
+        # lua
+        ''
+          function()
+          	Snacks.lazygit()
+          end
+        '';
+      options.desc = "Lazygit";
     }
 
     {

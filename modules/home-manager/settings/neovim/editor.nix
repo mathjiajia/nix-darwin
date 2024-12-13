@@ -201,7 +201,7 @@
     }
     {
       mode = "c";
-      key = "<c-s>";
+      key = "<C-s>";
       action.__raw =
         # lua
         ''
