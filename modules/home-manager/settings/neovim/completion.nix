@@ -21,54 +21,62 @@
 
     blink-cmp = {
       # enable = true;
-      package = pkgs.vimPlugins.blink-cmp.overrideAttrs (oldAttrs: {
+      package = pkgs.vimPlugins.blink-cmp.overrideAttrs {
         src = pkgs.fetchFromGitHub {
           owner = "Saghen";
           repo = "blink.cmp";
           rev = "master";
-          hash = "sha256-nxiODLKgGeXzN5sqkLWU0PcsuSSB1scSzTC5qyCxLCI=";
+          sha256 = "3zU3gjaSY2TMR55f5e2Y+hV5R1byKCO6w1gcmaGpR34=";
         };
-      });
+      };
       settings = {
         keymap = {
           preset = "default";
           "<C-j>" = ["snippet_backward" "fallback"];
           "<C-l>" = ["snippet_forward" "fallback"];
         };
-        completion.menu.draw.columns.__raw =
-          # lua
-          ''
-            {{ "label", "label_description", gap = 1 }, { "kind_icon", gap = 1, "kind" }}
-          '';
+        completion.menu = {
+          border = "rounded";
+          draw.columns.__raw =
+            # lua
+            ''
+              {
+              	{ "label", "label_description", gap = 1 },
+              	{ "kind_icon", "kind" },
+              	{ "source_name" },
+              }
+            '';
+        };
         snippets = {
           expand.__raw =
             # lua
             ''
-              function(snippet) require('luasnip').lsp_expand(snippet) end
+              function(snippet) require("luasnip").lsp_expand(snippet) end
             '';
           active.__raw =
             # lua
             ''
               function(filter)
                 if filter and filter.direction then
-                  return require('luasnip').jumpable(filter.direction)
+                  return require("luasnip").jumpable(filter.direction)
                 end
-                return require('luasnip').in_snippet()
+                return require("luasnip").in_snippet()
               end
             '';
           jump.__raw =
             # lua
             ''
-              function(direction) require('luasnip').jump(direction) end
+              function(direction) require("luasnip").jump(direction) end
             '';
         };
         sources = {
-          default = ["lsp" "path" "luasnip" "buffer" "copilot"];
+          default = ["lsp" "path" "luasnip" "buffer"];
           providers = {
-            copilot = {
-              name = "copilot";
-              module = "blink-cmp-copilot";
-            };
+            # copilot = {
+            #  name = "copilot";
+            #   module = "blink-cmp-copilot";
+            # };
+            luasnip.opts.show_autosnippets = false;
             # ripgrep = {
             #   module = "blink-ripgrep";
             #   name = "Ripgrep";

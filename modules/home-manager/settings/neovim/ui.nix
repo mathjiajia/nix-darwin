@@ -16,7 +16,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          hash = "sha256-KHEnwmKsAXoCCzd2xoXgNQibU5xI7yzChJZBJM/E+P8=";
+          sha256 = "Aod2LtvwB9rIE2rNLOgPJIr8gd7W9tiCtHRL/P6Euzg=";
         };
       });
       settings = {
@@ -125,6 +125,7 @@
         # lua
         ''
           Snacks.toggle.zen():map("<leader>z")
+          Snacks.toggle.zoom():map("<leader>Z")
         '';
     };
     noice = {
@@ -152,55 +153,6 @@
             view = "mini";
           }
         ];
-      };
-    };
-
-    lualine = {
-      # enable = true;
-      settings = {
-        options = {
-          disabled_filetypes.statusline = ["dap-repl" "snacks_dashboard"];
-          theme = "catppuccin";
-        };
-        sections = {
-          lualine_a = ["mode"];
-          lualine_b = [
-            "branch"
-            {
-              __unkeyed-1 = "diff";
-              source.__raw =
-                # lua
-                ''
-                  function()
-                    local gitsigns = vim.b.gitsigns_status_dict
-                    if gitsigns then
-                      return {
-                        added = gitsigns.added,
-                        modified = gitsigns.changed,
-                        removed = gitsigns.removed,
-                      }
-                    end
-                  end,
-                '';
-            }
-          ];
-          lualine_c = ["filename"];
-          lualine_x = [
-            "diagnostics"
-            {
-              __unkeyed-1 = "filetype";
-              icon_only = true;
-              separator = "";
-              padding = {
-                left = 1;
-                right = 0;
-              };
-            }
-          ];
-          lualine_y = ["progress"];
-          lualine_z = ["location"];
-        };
-        extensions = ["aerial" "man" "neo-tree" "nvim-dap-ui" "overseer" "quickfix" "toggleterm"];
       };
     };
 
@@ -235,18 +187,6 @@
   };
 
   programs.nixvim.keymaps = [
-    {
-      key = "<leader>Z";
-      action.__raw =
-        # lua
-        ''
-          function()
-          	Snacks.zen.zoom()
-          end
-        '';
-      options.desc = "Toggle Zoom";
-    }
-
     {
       key = "<leader>.";
       action.__raw =

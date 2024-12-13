@@ -1,12 +1,12 @@
 {
   programs.nixvim.plugins = {
-    flash.enable = true;
-    nvim-surround.enable = true;
-    nvim-bqf = {
+    aerial = {
       enable = true;
-      preview = {
-        winHeight = 5;
-        winVheight = 5;
+      settings = {
+        backends = ["lsp" "treesitter" "markdown" "man"];
+        layout = {resize_to_content = false;};
+        filter_kind = false;
+        show_guides = true;
       };
     };
 
@@ -123,15 +123,18 @@
       };
     };
 
-    aerial = {
+    grug-far.enable = true;
+    flash.enable = true;
+
+    nvim-bqf = {
       enable = true;
-      settings = {
-        backends = ["lsp" "treesitter" "markdown" "man"];
-        layout = {resize_to_content = false;};
-        filter_kind = false;
-        show_guides = true;
+      preview = {
+        winHeight = 5;
+        winVheight = 5;
       };
     };
+
+    nvim-surround.enable = true;
   };
 
   programs.nixvim.keymaps = [

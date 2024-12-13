@@ -9,7 +9,7 @@
       owner = "NvChad";
       repo = "volt";
       rev = "master";
-      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
   nvchad-menu = pkgs.vimUtils.buildVimPlugin {
@@ -18,7 +18,7 @@
       owner = "NvChad";
       repo = "menu";
       rev = "master";
-      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
   nvchad-minty = pkgs.vimUtils.buildVimPlugin {
@@ -27,7 +27,7 @@
       owner = "NvChad";
       repo = "minty";
       rev = "master";
-      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
   nvchad-timerly = pkgs.vimUtils.buildVimPlugin {
@@ -36,7 +36,7 @@
       owner = "NvChad";
       repo = "timerly";
       rev = "master";
-      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
   nvchad-showkeys = pkgs.vimUtils.buildVimPlugin {
@@ -45,7 +45,7 @@
       owner = "NvChad";
       repo = "showkeys";
       rev = "master";
-      hash = "sha256-C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
+      sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
 in {

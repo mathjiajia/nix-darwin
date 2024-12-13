@@ -5,7 +5,7 @@
       owner = "mathjiajia";
       repo = "mySnippets";
       rev = "master";
-      hash = "sha256-hKF4yr8TR4ImpiW2vHaiPUcYz5MO3JgDWagwPRbYnS4=";
+      sha256 = "hKF4yr8TR4ImpiW2vHaiPUcYz5MO3JgDWagwPRbYnS4=";
     };
   };
 
@@ -15,7 +15,7 @@
       owner = "mathjiajia";
       repo = "latex.nvim";
       rev = "master";
-      hash = "sha256-9RwMlelpXxZS054cE5OVP/PHOnP0I9GLfBqgVESi4xU=";
+      sha256 = "9RwMlelpXxZS054cE5OVP/PHOnP0I9GLfBqgVESi4xU=";
     };
   };
 
@@ -25,7 +25,7 @@
       owner = "lewis6991";
       repo = "nvim-treesitter-pairs";
       rev = "master";
-      hash = "sha256-Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
+      sha256 = "Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
   # blink-cmp-copilot = pkgs.vimUtils.buildVimPlugin {
@@ -34,7 +34,7 @@
   #     owner = "giuxtaposition";
   #     repo = "blink-cmp-copilot";
   #     rev = "master";
-  #     hash = "sha256-CL/JJP7x0MJMrItZUI3+YvClVX5ciqmaukqgyFEj2uw=";
+  #     sha256 = "CL/JJP7x0MJMrItZUI3+YvClVX5ciqmaukqgyFEj2uw=";
   #   };
   # };
   # blink-ripgrep-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -43,13 +43,12 @@
   #     owner = "mikavilpas";
   #     repo = "blink-ripgrep.nvim";
   #     rev = "master";
-  #     hash = "sha256-2vzEoi9taT96mXjFNf3GHyOoImQB/CXqY6zt/TeKXKA=";
+  #     sha256 = "2vzEoi9taT96mXjFNf3GHyOoImQB/CXqY6zt/TeKXKA=";
   #   };
   # };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     dropbar-nvim
-    grug-far-nvim
 
     latex-nvim
     mysnippets
@@ -62,7 +61,6 @@ in {
     # lua
     ''
       require("dropbar").setup()
-      require("grug-far").setup({ headerMaxWidth = 80 })
     '';
 
   programs.nixvim.keymaps = [
