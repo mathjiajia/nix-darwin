@@ -4,21 +4,19 @@
     rainbow-delimiters.enable = true;
     snacks = {
       enable = true;
-      package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
-        postInstall =
-          (oldAttrs.postInstall or "")
-          +
-          # sh
-          ''
-            rm -rf $out/queries
-          '';
+      package = pkgs.vimPlugins.snacks-nvim.overrideAttrs {
         src = pkgs.fetchFromGitHub {
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          sha256 = "Aod2LtvwB9rIE2rNLOgPJIr8gd7W9tiCtHRL/P6Euzg=";
+          sha256 = "2i8N7WDARX1ZOKKciLkPkKpCehCoMfPfpvFkd3/pnx4=";
         };
-      });
+        postInstall =
+          # sh
+          ''
+            rm -rf $out/queries
+          '';
+      };
       settings = {
         dashboard = {
           enabled = true;
@@ -131,12 +129,10 @@
     noice = {
       enable = true;
       settings = {
-        lsp = {
-          override = {
-            "vim.lsp.util.convert_input_to_markdown_lines" = true;
-            "vim.lsp.util.stylize_markdown" = true;
-            "cmp.entry.get_documentation" = true;
-          };
+        lsp.override = {
+          "vim.lsp.util.convert_input_to_markdown_lines" = true;
+          "vim.lsp.util.stylize_markdown" = true;
+          "cmp.entry.get_documentation" = true;
         };
         presets = {
           bottom_search = true;

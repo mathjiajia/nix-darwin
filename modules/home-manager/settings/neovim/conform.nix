@@ -2,17 +2,13 @@
   programs.nixvim = {
     plugins.conform-nvim = {
       enable = true;
-      # because combinePlugins.enable = true, the collision of `doc` is
-      # unavoidable. this renames them.
-      package = pkgs.vimPlugins.conform-nvim.overrideAttrs (oldAttrs: {
+      package = pkgs.vimPlugins.conform-nvim.overrideAttrs {
         postInstall =
-          (oldAttrs.postInstall or "")
-          +
           # sh
           ''
             mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md
           '';
-      });
+      };
       settings = {
         formatters = {
           bibtex-tidy.prepend_args = [

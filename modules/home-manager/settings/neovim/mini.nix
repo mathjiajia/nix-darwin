@@ -1,15 +1,13 @@
 {pkgs, ...}: {
   programs.nixvim.plugins.mini = {
     enable = true;
-    package = pkgs.vimPlugins.mini-nvim.overrideAttrs (oldAttrs: {
+    package = pkgs.vimPlugins.mini-nvim.overrideAttrs {
       postInstall =
-        (oldAttrs.postInstall or "")
-        +
         # sh
         ''
           rm -rf $out/doc/mini-cursorword.txt
         '';
-    });
+    };
     mockDevIcons = true;
     modules = {
       # diff.view.style = "sign";
