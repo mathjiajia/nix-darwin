@@ -28,33 +28,33 @@
       sha256 = "Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
-  # blink-cmp-copilot = pkgs.vimUtils.buildVimPlugin {
-  #   name = "blink-cmp-copilot";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "giuxtaposition";
-  #     repo = "blink-cmp-copilot";
-  #     rev = "master";
-  #     sha256 = "CL/JJP7x0MJMrItZUI3+YvClVX5ciqmaukqgyFEj2uw=";
-  #   };
-  # };
-  # blink-ripgrep-nvim = pkgs.vimUtils.buildVimPlugin {
-  #   name = "blink-ripgrep-nvim";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "mikavilpas";
-  #     repo = "blink-ripgrep.nvim";
-  #     rev = "master";
-  #     sha256 = "2vzEoi9taT96mXjFNf3GHyOoImQB/CXqY6zt/TeKXKA=";
-  #   };
-  # };
+  blink-cmp-copilot = pkgs.vimUtils.buildVimPlugin {
+    name = "blink-cmp-copilot";
+    src = pkgs.fetchFromGitHub {
+      owner = "giuxtaposition";
+      repo = "blink-cmp-copilot";
+      rev = "master";
+      sha256 = "CL/JJP7x0MJMrItZUI3+YvClVX5ciqmaukqgyFEj2uw=";
+    };
+  };
+  blink-ripgrep-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "blink-ripgrep";
+    src = pkgs.fetchFromGitHub {
+      owner = "mikavilpas";
+      repo = "blink-ripgrep.nvim";
+      rev = "master";
+      sha256 = "pOy0R3Y89y8FV32XRss+q71bQx4RHDvu8zc0xe420+M=";
+    };
+  };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     dropbar-nvim
 
+    blink-cmp-copilot
+    blink-ripgrep-nvim
     latex-nvim
     mysnippets
     nvim-treesitter-pairs
-    # blink-cmp-copilot
-    # blink-ripgrep-nvim
   ];
 
   programs.nixvim.extraConfigLua =

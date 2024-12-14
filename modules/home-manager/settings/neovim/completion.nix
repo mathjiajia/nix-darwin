@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
@@ -20,15 +20,7 @@
     };
 
     blink-cmp = {
-      # enable = true;
-      package = pkgs.vimPlugins.blink-cmp.overrideAttrs {
-        src = pkgs.fetchFromGitHub {
-          owner = "Saghen";
-          repo = "blink.cmp";
-          rev = "master";
-          sha256 = "3zU3gjaSY2TMR55f5e2Y+hV5R1byKCO6w1gcmaGpR34=";
-        };
-      };
+      enable = true;
       settings = {
         keymap = {
           preset = "default";
@@ -70,45 +62,18 @@
             '';
         };
         sources = {
-          default = ["lsp" "path" "luasnip" "buffer"];
+          completion.enabled_providers = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"];
+          # default = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"];
           providers = {
-            # copilot = {
-            #  name = "copilot";
-            #   module = "blink-cmp-copilot";
-            # };
+            copilot = {
+              module = "blink-cmp-copilot";
+              name = "copilot";
+            };
             luasnip.opts.show_autosnippets = false;
-            # ripgrep = {
-            #   module = "blink-ripgrep";
-            #   name = "Ripgrep";
-            #   opts = {
-            #     prefix_min_len = 3;
-            #     context_size = 5;
-            #     max_filesize = "1M";
-            #     # get_command.__raw =
-            #     #   # lua
-            #     #   ''
-            #     #     function(context, prefix)
-            #     #     	return {
-            #     #     		"rg",
-            #     #     		"--no-config",
-            #     #     		"--json",
-            #     #     		"--word-regexp",
-            #     #     		"--ignore-case",
-            #     #     		"--",
-            #     #     		prefix .. "[\\w_-]+",
-            #     #     		vim.fs.root(0, ".git") or vim.fn.getcwd(),
-            #     #     	}
-            #     #     end
-            #     #   '';
-            #     # get_prefix =
-            #     #   # lua
-            #     #   ''
-            #     #     function(context)
-            #     #     	return context.line:sub(1, context.cursor[2]):match("[%w_-]+$") or ""
-            #     #     end
-            #     #   '';
-            #   };
-            # };
+            ripgrep = {
+              module = "blink-ripgrep";
+              name = "Ripgrep";
+            };
           };
         };
         appearance.kind_icons = {
@@ -141,125 +106,6 @@
       };
     };
 
-    cmp = {
-      enable = true;
-      autoEnableSources = true;
-      cmdline = {
-        "/" = {
-          mapping.__raw =
-            # lua
-            ''
-              cmp.mapping.preset.cmdline()
-            '';
-          sources = [{name = "buffer";}];
-        };
-        "?" = {
-          mapping.__raw =
-            # lua
-            ''
-              cmp.mapping.preset.cmdline()
-            '';
-          sources = [{name = "buffer";}];
-        };
-        ":" = {
-          mapping.__raw =
-            # lua
-            ''
-              cmp.mapping.preset.cmdline()
-            '';
-          sources = [
-            {name = "async_path";}
-            {name = "cmdline";}
-          ];
-        };
-      };
-      settings = {
-        formatting = {
-          fields = ["abbr" "menu" "kind"];
-          format =
-            # lua
-            ''
-              function(entry, vim_item)
-                local maxwidth = 30
-                if vim.fn.strchars(vim_item.abbr) > maxwidth then
-                  vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, maxwidth) .. "…"
-                end
-                vim_item.menu = ({
-                  async_path = "[Path]",
-                  buffer = "[Buf]",
-                  cmdline = "[Cmd]",
-                  copilot = "[GHC]",
-                  nvim_lsp = "[LSP]",
-                  luasnip = "[Snip]",
-                  -- neorg = "[Norg]",
-                  rg = "[RG]",
-                })[entry.source.name]
-                vim_item.kind = MiniIcons.get("lsp", vim_item.kind)
-                return vim_item
-              end
-            '';
-        };
-        mapping.__raw =
-          # lua
-          ''
-            cmp.mapping.preset.insert({
-            	["<C-b>"] = cmp.mapping.scroll_docs(-4),
-            	["<C-f>"] = cmp.mapping.scroll_docs(4),
-            	["<C-Space>"] = cmp.mapping.complete(),
-            	["<C-y>"] = cmp.mapping.confirm({ select = true }),
-            })
-          '';
-        matching.disallow_prefix_unmatching = true;
-        snippet.expand =
-          # lua
-          ''
-            function(args) require("luasnip").lsp_expand(args.body) end
-          '';
-        sources = [
-          {
-            name = "nvim_lsp";
-            group_index = 1;
-          }
-          {
-            name = "luasnip";
-            group_index = 1;
-            option.show_autosnippets = true;
-          }
-          {
-            name = "async_path";
-            group_index = 1;
-          }
-
-          # {
-          #   name = "neorg";
-          #   group_index = 1;
-          # }
-          {
-            name = "buffer";
-            group_index = 1;
-          }
-
-          {
-            name = "copilot";
-            group_index = 2;
-            max_item_count = 2;
-          }
-          {
-            name = "rg";
-            group_index = 2;
-            keyword_length = 2;
-          }
-        ];
-        window = {
-          completion = {
-            border = "rounded";
-            col_offset = -1;
-          };
-          documentation.border = "rounded";
-        };
-      };
-    };
-
     copilot-lua = {
       enable = true;
       panel.enabled = false;
@@ -279,30 +125,6 @@
           end
         '';
       options.desc = "LuaSnip Expand";
-    }
-    {
-      mode = ["i" "s"];
-      key = "<C-l>";
-      action.__raw =
-        # lua
-        ''
-          function()
-          	if require("luasnip").locally_jumpable(1) then require("luasnip").jump(1) end
-          end
-        '';
-      options.desc = "LuaSnip Forward Jump";
-    }
-    {
-      mode = ["i" "s"];
-      key = "<C-j>";
-      action.__raw =
-        # lua
-        ''
-          function()
-          	if require("luasnip").locally_jumpable(-1) then require("luasnip").jump(-1) end
-          end
-        '';
-      options.desc = "LuaSnip Backward Jump";
     }
     {
       mode = ["i" "s"];
