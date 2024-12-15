@@ -17,7 +17,6 @@
     python312Packages.ipython # for REPL (overseer)
 
     vscode-extensions.vadimcn.vscode-lldb
-    # vscode-extensions.ms-vscode.cpptools
 
     commitlint
     markdownlint-cli2

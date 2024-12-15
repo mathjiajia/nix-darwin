@@ -9,7 +9,7 @@
           owner = "folke";
           repo = "snacks.nvim";
           rev = "master";
-          sha256 = "apUnqprHaqlWSSkMUhTvxYHro7YJglb9RoNiGkHOaLo=";
+          sha256 = "meIxEC+3XXoRZizHcOAnBbwI1L7kvSI2nZMFTO6WErU=";
         };
         postInstall =
           # sh

@@ -10,7 +10,6 @@
 
   environment.systemPackages = with pkgs; [
     # CLI
-    # cachix
     difftastic
     hugo
     onefetch
@@ -56,12 +55,11 @@
   environment.shells = with pkgs; [fish];
 
   fonts.packages = with pkgs; [
-    # maple-mono-NF
     lxgw-wenkai
+    # maple-mono
     sarasa-gothic
     smiley-sans
-    # nerd-fonts.departure-mono
-    nerd-fonts.iosevka-term
+
     nerd-fonts.symbols-only
   ];
 }

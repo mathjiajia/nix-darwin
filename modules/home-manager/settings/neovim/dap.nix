@@ -1,75 +1,45 @@
 {pkgs, ...}: {
   programs.nixvim = {
-    plugins.dap = {
-      enable = true;
-      adapters = {
-        # executables = {
-        #   cppdbg = {
-        #     id = "cppdbg";
-        #     command = "${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7";
-        #   };
-        # };
-        servers = {
-          cppdbg = {
-            port = "\${port}";
-            executable = {
-              command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-              args = ["--port" "\${port}"];
-            };
+    plugins = {
+      dap = {
+        enable = true;
+        extensions = {
+          # dap-lldb.enable = true;
+          dap-python.enable = true;
+          dap-ui.enable = true;
+          dap-virtual-text.enable = true;
+        };
+        signs = {
+          dapBreakpoint = {
+            numhl = "";
+            text = " ";
+            texthl = "DapBreakpoint";
+          };
+          dapBreakpointCondition = {
+            numhl = "";
+            text = " ";
+            texthl = "DapBreakpointCondition";
+          };
+          dapBreakpointRejected = {
+            numhl = "";
+            text = " ";
+            texthl = "DapBreakpointRejected";
+          };
+          dapLogPoint = {
+            numhl = "";
+            text = ".>";
+            texthl = "DapLogPoint";
+          };
+          dapStopped = {
+            numhl = "";
+            text = "󰁕 ";
+            texthl = "DapStopped";
           };
         };
       };
-      configurations = rec {
-        cpp = [
-          {
-            name = "Launch";
-            type = "cppdbg";
-            request = "launch";
-            program.__raw =
-              # lua
-              ''
-                function()
-                	return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-                end
-              '';
-            cwd = "\${workspaceFolder}";
-            stopAtEntry = false;
-          }
-        ];
-
-        c = cpp;
-      };
-      extensions = {
-        dap-python.enable = true;
-        dap-ui.enable = true;
-        dap-virtual-text.enable = true;
-      };
-      signs = {
-        dapBreakpoint = {
-          numhl = "";
-          text = " ";
-          texthl = "DapBreakpoint";
-        };
-        dapBreakpointCondition = {
-          numhl = "";
-          text = " ";
-          texthl = "DapBreakpointCondition";
-        };
-        dapBreakpointRejected = {
-          numhl = "";
-          text = " ";
-          texthl = "DapBreakpointRejected";
-        };
-        dapLogPoint = {
-          numhl = "";
-          text = ".>";
-          texthl = "DapLogPoint";
-        };
-        dapStopped = {
-          numhl = "";
-          text = "󰁕 ";
-          texthl = "DapStopped";
-        };
+      dap-lldb = {
+        enable = true;
+        settings.codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
       };
     };
 
@@ -77,18 +47,10 @@
       # lua
       ''
         local dap, dapui = require("dap"), require("dapui")
-        dap.listeners.before.attach.dapui_config = function()
-        	dapui.open()
-        end
-        dap.listeners.before.launch.dapui_config = function()
-        	dapui.open()
-        end
-        dap.listeners.before.event_terminated.dapui_config = function()
-        	dapui.close()
-        end
-        dap.listeners.before.event_exited.dapui_config = function()
-        	dapui.close()
-        end
+        dap.listeners.before.attach.dapui_config = function() dapui.open() end
+        dap.listeners.before.launch.dapui_config = function() dapui.open() end
+        dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+        dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
       '';
 
     keymaps = [
@@ -102,9 +64,7 @@
         action.__raw =
           # lua
           ''
-            function()
-            	require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-            end
+            function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end
           '';
         options.desc = "Breakpoint Condition";
       }
@@ -118,9 +78,7 @@
         action.__raw =
           # lua
           ''
-            function()
-            	require("dap").goto_()
-            	end
+            function() require("dap").goto_() end
           '';
         options.desc = "Go to Line (No Execute)";
       }
@@ -134,9 +92,7 @@
         action.__raw =
           # lua
           ''
-            function()
-            	require("dap").run_last()
-            end
+            function() require("dap").run_last() end
           '';
         options.desc = "Run Last";
       }
@@ -161,9 +117,7 @@
         action.__raw =
           # lua
           ''
-            function()
-            	require("dap.ui.widgets").hover()
-            end
+            function() require("dap.ui.widgets").hover() end
           '';
         options.desc = "Widgets";
       }
@@ -172,9 +126,7 @@
         action.__raw =
           # lua
           ''
-            function()
-            	require("dapui").toggle()
-            end
+            function() require("dapui").toggle() end
           '';
         options.desc = "Dap UI";
       }
@@ -184,9 +136,7 @@
         action.__raw =
           # lua
           ''
-            function()
-            	require("dapui").eval()
-            end
+            function() require("dapui").eval() end
           '';
         options.desc = "Eval";
       }

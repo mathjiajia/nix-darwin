@@ -27,17 +27,28 @@
           "<C-j>" = ["snippet_backward" "fallback"];
           "<C-l>" = ["snippet_forward" "fallback"];
         };
-        completion.menu = {
-          border = "rounded";
-          draw.columns.__raw =
-            # lua
-            ''
-              {
-              	{ "label", "label_description", gap = 1 },
-              	{ "kind_icon", "kind" },
-              	{ "source_name" },
-              }
-            '';
+        completion = {
+          documentation = {
+            auto_show = true;
+            auto_show_delay_ms = 200;
+            window.border = "rounded";
+          };
+          menu = {
+            border = "rounded";
+            draw = {
+              columns.__raw =
+                # lua
+                ''
+                  {
+                  	{ "label", "label_description", gap = 1 },
+                  	{ "kind_icon", "kind" },
+                  	{ "source_name" },
+                  }
+                '';
+              # treesitter = ["lsp"];
+              treesitter = true;
+            };
+          };
         };
         snippets = {
           expand.__raw =
