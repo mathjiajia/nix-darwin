@@ -79,15 +79,42 @@
             copilot = {
               module = "blink-cmp-copilot";
               name = "copilot";
+              transform_items.__raw =
+                # lua
+                ''
+                  function(_, items)
+                    local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+                    local kind_idx = #CompletionItemKind + 1
+                    CompletionItemKind[kind_idx] = "Copilot"
+                    for _, item in ipairs(items) do
+                      item.kind = kind_idx
+                    end
+                    return items
+                  end
+                '';
             };
             luasnip.opts.show_autosnippets = false;
             ripgrep = {
               module = "blink-ripgrep";
               name = "Ripgrep";
+              transform_items.__raw =
+                # lua
+                ''
+                  function(_, items)
+                    local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+                    local kind_idx = #CompletionItemKind + 1
+                    CompletionItemKind[kind_idx] = "Text"
+                    for _, item in ipairs(items) do
+                      item.kind = kind_idx
+                    end
+                    return items
+                  end
+                '';
             };
           };
         };
         appearance.kind_icons = {
+          Copilot = " ";
           Text = " ";
           Method = " ";
           Function = " ";
