@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   programs.nixvim.plugins = {
-    markview.enable = true;
+    markview = {
+      enable = true;
+      settings.filetypes = ["markdown" "rmd" "codecompanion"];
+    };
     rainbow-delimiters.enable = true;
     snacks = {
       enable = true;

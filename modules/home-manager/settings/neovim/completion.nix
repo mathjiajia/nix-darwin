@@ -4,18 +4,14 @@
       enable = true;
       fromLua = [{lazyLoad = true;}];
       settings = {
-        update_events = "TextChanged,TextChangedI";
+        update_events = ["TextChanged" "TextChangedI"];
         delete_check_events = "TextChanged";
         enable_autosnippets = true;
         store_selection_keys = "<Tab>";
-        ext_opts.__raw =
-          # lua
-          ''
-            {
-              [require("luasnip.util.types").insertNode] = { active = { virt_text = { { "", "Boolean" } } } },
-              [require("luasnip.util.types").choiceNode] = { active = { virt_text = { { "󱥸", "Special" } } } },
-            }
-          '';
+        ext_opts = {
+          "types.insertNode".active.virt_text = [["" "Boolean"]];
+          "types.choiceNode".active.virt_text = [["󱥸" "Special"]];
+        };
       };
     };
 
