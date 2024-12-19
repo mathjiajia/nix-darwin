@@ -29,6 +29,7 @@
             auto_show_delay_ms = 200;
             window.border = "rounded";
           };
+          list.selection = "auto_insert";
           menu = {
             border = "rounded";
             draw = {
@@ -93,6 +94,7 @@
             ripgrep = {
               module = "blink-ripgrep";
               name = "Ripgrep";
+              additional_rg_options = ["--glob=!*.pdf"];
               transform_items.__raw =
                 # lua
                 ''

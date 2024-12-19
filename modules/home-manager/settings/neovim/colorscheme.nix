@@ -92,6 +92,7 @@
               -- local base = not O.transparent_background and colors.base or nil
 
               return {
+                BlinkCmpKindCopilot = { fg = C.blue },
                 MarkviewBlockQuoteWarn = { fg = C.yellow },
                 -- MarkviewBlockQuoteSpecial = {},
                 -- MarkviewBlockQuoteNote = {},
