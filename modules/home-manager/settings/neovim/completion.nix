@@ -9,8 +9,8 @@
         enable_autosnippets = true;
         store_selection_keys = "<Tab>";
         ext_opts = {
-          "types.insertNode".active.virt_text = [["" "Boolean"]];
           "types.choiceNode".active.virt_text = [["󱥸" "Special"]];
+          "types.insertNode".active.virt_text = [["" "Boolean"]];
         };
       };
     };
