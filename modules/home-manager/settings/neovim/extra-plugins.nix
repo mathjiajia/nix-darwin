@@ -34,7 +34,7 @@
       owner = "giuxtaposition";
       repo = "blink-cmp-copilot";
       rev = "master";
-      sha256 = "CL/JJP7x0MJMrItZUI3+YvClVX5ciqmaukqgyFEj2uw=";
+      sha256 = "d4j59RKSATgpqZ6oISFC47sDaQwFmg/J+2iw5ALIJds=";
     };
   };
   blink-ripgrep-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -43,7 +43,7 @@
       owner = "mikavilpas";
       repo = "blink-ripgrep.nvim";
       rev = "master";
-      sha256 = "pOy0R3Y89y8FV32XRss+q71bQx4RHDvu8zc0xe420+M=";
+      sha256 = "uaENF0SvH5pEIXWNPZDy0Tm8313b0qeHWXzqhKiwcdU=";
     };
   };
 in {
