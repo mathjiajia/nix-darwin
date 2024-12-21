@@ -2,15 +2,15 @@
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
-      fromLua = [{lazyLoad = true;}];
+      fromLua = [{}];
       settings = {
         update_events = ["TextChanged" "TextChangedI"];
         delete_check_events = "TextChanged";
         enable_autosnippets = true;
         store_selection_keys = "<Tab>";
         ext_opts = {
-          "types.choiceNode".active.virt_text = [["󱥸" "Special"]];
-          "types.insertNode".active.virt_text = [["" "Boolean"]];
+          "__rawKey__require('luasnip.util.types').choiceNode".active.virt_text = [["󱥸" "Special"]];
+          "__rawKey__require('luasnip.util.types').insertNode".active.virt_text = [["" "Boolean"]];
         };
       };
     };
@@ -76,6 +76,7 @@
             copilot = {
               module = "blink-cmp-copilot";
               name = "copilot";
+              async = true;
               transform_items.__raw =
                 # lua
                 ''

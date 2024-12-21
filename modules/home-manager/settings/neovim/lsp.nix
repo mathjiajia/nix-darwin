@@ -4,7 +4,7 @@
     capabilities =
       # lua
       ''
-        require("blink.cmp").get_lsp_capabilities()
+        capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
       '';
     inlayHints = true;
     keymaps.lspBuf = {

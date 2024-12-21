@@ -28,15 +28,7 @@
       sha256 = "Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
-  blink-cmp-copilot = pkgs.vimUtils.buildVimPlugin {
-    name = "blink-cmp-copilot";
-    src = pkgs.fetchFromGitHub {
-      owner = "giuxtaposition";
-      repo = "blink-cmp-copilot";
-      rev = "master";
-      sha256 = "d4j59RKSATgpqZ6oISFC47sDaQwFmg/J+2iw5ALIJds=";
-    };
-  };
+
   blink-ripgrep-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "blink-ripgrep";
     src = pkgs.fetchFromGitHub {
@@ -49,8 +41,8 @@
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     dropbar-nvim
-
     blink-cmp-copilot
+
     blink-ripgrep-nvim
     latex-nvim
     mysnippets
