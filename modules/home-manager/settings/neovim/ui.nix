@@ -8,12 +8,6 @@
     snacks = {
       enable = true;
       package = pkgs.vimPlugins.snacks-nvim.overrideAttrs {
-        src = pkgs.fetchFromGitHub {
-          owner = "folke";
-          repo = "snacks.nvim";
-          rev = "master";
-          sha256 = "GVK8+fe9iR8TlhRbRRtrvMvBSurfnzoELblVlTZfwXM=";
-        };
         postInstall =
           # sh
           ''

@@ -42,11 +42,11 @@
                   	{ "source_name" },
                   }
                 '';
-              # treesitter = ["lsp"];
-              treesitter = true;
+              treesitter = ["lsp"];
             };
           };
         };
+        fuzzy.prebuilt_binaries.download = false;
         snippets = {
           expand.__raw =
             # lua
@@ -70,8 +70,7 @@
             '';
         };
         sources = {
-          completion.enabled_providers = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"];
-          # default = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"];
+          default = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"];
           providers = {
             copilot = {
               module = "blink-cmp-copilot";
@@ -95,7 +94,7 @@
             ripgrep = {
               module = "blink-ripgrep";
               name = "Ripgrep";
-              additional_rg_options = ["--glob=!*.pdf"];
+              opts.additional_rg_options = ["--glob=!*.pdf"];
               transform_items.__raw =
                 # lua
                 ''

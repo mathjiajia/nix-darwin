@@ -35,7 +35,7 @@
       owner = "mikavilpas";
       repo = "blink-ripgrep.nvim";
       rev = "master";
-      sha256 = "uaENF0SvH5pEIXWNPZDy0Tm8313b0qeHWXzqhKiwcdU=";
+      sha256 = "MXeoAFRVf6Y7Ni/KtSloFH79l9/+pfNCn4yR7fKBCsA=";
     };
   };
 in {
