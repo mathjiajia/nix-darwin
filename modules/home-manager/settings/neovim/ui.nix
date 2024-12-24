@@ -79,9 +79,11 @@
               icon = " ";
               title = "Git Status";
               section = "terminal";
-              enabled.__raw = ''
-                Snacks.git.get_root() ~= nil
-              '';
+              enabled.__raw =
+                # lua
+                ''
+                  Snacks.git.get_root() ~= nil
+                '';
               cmd = "git status --short --branch --renames";
               height = 5;
               padding = 1;

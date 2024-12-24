@@ -23,6 +23,8 @@
           "<C-j>" = ["snippet_backward" "fallback"];
           "<C-l>" = ["snippet_forward" "fallback"];
         };
+        fuzzy.prebuilt_binaries.download = false;
+        signature.window.border = "rounded";
         completion = {
           documentation = {
             auto_show = true;
@@ -46,7 +48,6 @@
             };
           };
         };
-        fuzzy.prebuilt_binaries.download = false;
         snippets = {
           expand.__raw =
             # lua
