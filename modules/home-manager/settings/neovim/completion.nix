@@ -15,6 +15,7 @@
       };
     };
 
+    blink-cmp-copilot.enable = true;
     blink-cmp = {
       enable = true;
       settings = {
@@ -35,6 +36,27 @@
           menu = {
             border = "rounded";
             draw = {
+              components = {
+                kind_icon = {
+                  ellipsis = false;
+                  text.__raw =
+                    # lua
+                    ''
+                      function(ctx)
+                        local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                        return kind_icon
+                      end
+                    '';
+                  highlight.__raw =
+                    # lua
+                    ''
+                      function(ctx)
+                        local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                        return hl
+                      end
+                    '';
+                };
+              };
               columns.__raw =
                 # lua
                 ''
@@ -74,9 +96,9 @@
           default = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"];
           providers = {
             copilot = {
+              async = true;
               module = "blink-cmp-copilot";
               name = "copilot";
-              async = true;
               transform_items.__raw =
                 # lua
                 ''

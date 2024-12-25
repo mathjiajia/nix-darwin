@@ -5,7 +5,7 @@
       owner = "mathjiajia";
       repo = "mySnippets";
       rev = "master";
-      sha256 = "+DN3rzmQO0+vjw0zsDR3b0f87vDZ34jSGG8yAiU26OQ=";
+      sha256 = "1kRxF9QuObu4BYBpSzo1gsCqMkNaqnDDCWaGm38BvR0=";
     };
   };
 
@@ -41,7 +41,6 @@
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     dropbar-nvim
-    blink-cmp-copilot
 
     blink-ripgrep-nvim
     latex-nvim
@@ -54,21 +53,4 @@ in {
     ''
       require("dropbar").setup()
     '';
-
-  programs.nixvim.keymaps = [
-    {
-      mode = ["n" "v"];
-      key = "<leader>sr";
-      action.__raw =
-        # lua
-        ''
-          function()
-            local grug = require("grug-far")
-            local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
-            grug.open({ prefills = { filesFilter = ext and ext ~= "" and "*." .. ext or nil } })
-          end
-        '';
-      options.desc = "Search and Replace";
-    }
-  ];
 }

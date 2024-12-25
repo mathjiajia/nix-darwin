@@ -146,6 +146,21 @@
     }
 
     {
+      mode = ["n" "v"];
+      key = "<leader>sr";
+      action.__raw =
+        # lua
+        ''
+          function()
+            local grug = require("grug-far")
+            local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+            grug.open({ prefills = { filesFilter = ext and ext ~= "" and "*." .. ext or nil } })
+          end
+        '';
+      options.desc = "Search and Replace";
+    }
+
+    {
       key = "<leader>cs";
       action = "<Cmd>AerialToggle<CR>";
       options.desc = "Aerial (Symbols)";
