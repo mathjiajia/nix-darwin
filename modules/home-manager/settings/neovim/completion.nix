@@ -44,7 +44,7 @@
                     ''
                       function(ctx)
                         local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-                        return kind_icon
+                        return kind_icon .. " "
                       end
                     '';
                   highlight.__raw =
@@ -122,45 +122,14 @@
                 # lua
                 ''
                   function(_, items)
-                    local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-                    local kind_idx = #CompletionItemKind + 1
-                    CompletionItemKind[kind_idx] = "Text"
                     for _, item in ipairs(items) do
-                      item.kind = kind_idx
+                      item.kind = require("blink.cmp.types").CompletionItemKind.Field
                     end
                     return items
                   end
                 '';
             };
           };
-        };
-        appearance.kind_icons = {
-          Copilot = " ";
-          Text = " ";
-          Method = " ";
-          Function = " ";
-          Constructor = " ";
-          Field = " ";
-          Variable = " ";
-          Class = " ";
-          Interface = " ";
-          Module = " ";
-          Property = " ";
-          Unit = " ";
-          Value = " ";
-          Enum = " ";
-          Keyword = " ";
-          Snippet = " ";
-          Color = " ";
-          File = " ";
-          Reference = " ";
-          Folder = " ";
-          EnumMember = " ";
-          Constant = " ";
-          Struct = " ";
-          Event = " ";
-          Operator = " ";
-          TypeParameter = " ";
         };
       };
     };

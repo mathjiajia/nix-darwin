@@ -4,7 +4,6 @@
       dap = {
         enable = true;
         extensions = {
-          # dap-lldb.enable = true;
           dap-python.enable = true;
           dap-ui.enable = true;
           dap-virtual-text.enable = true;
@@ -37,10 +36,10 @@
           };
         };
       };
-      dap-lldb = {
-        enable = true;
-        settings.codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-      };
+      # dap-lldb = {
+      #   enable = true;
+      #   settings.codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+      # };
     };
 
     extraConfigLua =

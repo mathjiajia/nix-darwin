@@ -17,15 +17,15 @@
     servers = {
       basedpyright.enable = true;
       clangd.enable = true;
-      lua_ls = {
-        enable = true;
-        settings = {
-          completion.callSnippet = "Replace";
-          hint.enable = true;
-          telemetry.enable = false;
-          workspace.checkThirdParty = false;
-        };
-      };
+      # lua_ls = {
+      #   enable = true;
+      #   settings = {
+      #     completion.callSnippet = "Replace";
+      #     hint.enable = true;
+      #     telemetry.enable = false;
+      #     workspace.checkThirdParty = false;
+      #   };
+      # };
       matlab_ls = {
         enable = true;
         settings.MATLAB = {

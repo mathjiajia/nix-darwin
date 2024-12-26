@@ -16,7 +16,7 @@
     nodejs # for copilot.lua
     python312Packages.ipython # for REPL (overseer)
 
-    vscode-extensions.vadimcn.vscode-lldb
+    # vscode-extensions.vadimcn.vscode-lldb
 
     commitlint
     markdownlint-cli2
@@ -25,7 +25,7 @@
     alejandra
     bibtex-tidy
     black
-    prettierd
+    # prettierd
     shfmt
     stylua
   ];

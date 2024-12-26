@@ -47,7 +47,7 @@
     raycast
     skimpdf
     # sublime-merge # linux
-    zed-editor
+    # zed-editor
     zoom-us
     # zotero # x86_64-linux
   ];
