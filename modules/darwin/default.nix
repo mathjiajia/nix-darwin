@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ghostty, pkgs, ...}: {
   imports = [
     ./settings/homebrew.nix
     ./settings/mas.nix
@@ -33,7 +33,7 @@
     aerospace
     # follow # x86_64-linux
     # github-desktop # linux
-    # ghostty # closed beta
+    # ghostty.packages.aarch64-darwin.default
     ice-bar
     iina
     inkscape
