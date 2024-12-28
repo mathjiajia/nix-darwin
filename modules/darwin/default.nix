@@ -1,4 +1,4 @@
-{ghostty, pkgs, ...}: {
+{pkgs, ...}: {
   imports = [
     ./settings/homebrew.nix
     ./settings/mas.nix
@@ -12,11 +12,8 @@
     # CLI
     difftastic
     hugo
-    onefetch
-    superfile
-    # swift-format # old
+    swift-format
     tree
-    unrar
 
     # PYTHON
     (python3.withPackages (ps:
@@ -33,7 +30,7 @@
     aerospace
     # follow # x86_64-linux
     # github-desktop # linux
-    # ghostty.packages.aarch64-darwin.default
+    # ghostty
     ice-bar
     iina
     inkscape
@@ -45,11 +42,12 @@
     ollama
     # openra # x86_64-linux
     raycast
+    # sioyek
     skimpdf
     # sublime-merge # linux
-    # zed-editor
+    zed-editor
     zoom-us
-    # zotero # x86_64-linux
+    zotero
   ];
 
   environment.shells = with pkgs; [fish];

@@ -17,7 +17,7 @@
 
     ./configs/aerospace.nix
     ./configs/fd.nix
-    # ./configs/ghostty.nix
+    ./configs/ghostty.nix
   ];
 
   home = {

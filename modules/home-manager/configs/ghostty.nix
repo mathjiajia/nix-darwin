@@ -1,31 +1,24 @@
-{
-  home.file.ghostty = {
-    target = ".config/ghostty/config";
-    text =
-      # ghostty
-      ''
-        theme = light:rose-pine-dawn,dark:rose-pine
-        # custom-shader = ./shaders/bloom.glsl
+{lib, ...}: let
+  inherit (lib.generators) toKeyValue mkKeyValueDefault;
+in {
+  xdg.configFile."ghostty/config".text = toKeyValue {mkKeyValue = mkKeyValueDefault {} " = ";} {
+    theme = "gruvbox";
+    # custom-shader = "./shaders/tft.glsl";
 
-        # fonts
-        font-size = 24
-        font-family = IosevkaTerm Nerd Font
-        font-family = Sarasa T SC
-        font-thicken = true
-        # adjust-cell-height = 20%
+    font-size = 24;
+    font-family = "Sarasa Term SC";
+    font-thicken = true;
+    # adjust-cell-height = "20%";
 
-        background-opacity = 0.95
-        background-blur-radius = 20
-        window-title-font-family = Maple Mono NF CN
-        window-colorspace = display-p3
+    keybind = "global:super+grave_accent=toggle_quick_terminal";
 
-        shell-integration = fish
+    macos-titlebar-style = "hidden";
+    mouse-hide-while-typing = true;
+    macos-icon = "custom-style";
+    macos-icon-ghost-color = "yellow";
+    macos-icon-screen-color = "purple,maroon";
+    window-colorspace = "display-p3";
 
-        keybind = global:super+grave_accent=toggle_quick_terminal
-
-        # macos-titlebar-style = hidden
-        # mouse-hide-while-typing = true
-        macos-option-as-alt = left
-      '';
+    auto-update = "off";
   };
 }

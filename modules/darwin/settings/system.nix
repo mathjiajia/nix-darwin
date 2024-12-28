@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   security.pam.enableSudoTouchIdAuth = true;
 
   system.defaults = {
@@ -28,8 +28,10 @@
         "/Applications/Goodnotes.app"
         "/Applications/UPDF.app"
         "/Applications/sioyek.app"
+        # "${pkgs.sioyek}/Applications/sioyek.app"
         "/Applications/Ghostty.app"
-        "/Applications/Zotero.app"
+        # "${pkgs.ghostty}/Applications/Ghostty.app"
+        "${pkgs.zotero}/Applications/Zotero.app"
         "/Applications/Publish or Perish.app"
         "/Applications/WeChat.app"
         "/Applications/Dictionaries.app"
@@ -43,8 +45,22 @@
     };
 
     finder = {
-      FXPreferredViewStyle = "Nlsv";
-      _FXShowPosixPathInTitle = false;
+      # Always show hidden files
+      "AppleShowAllFiles" = true;
+      # Always show file extensions
+      "AppleShowAllExtensions" = true;
+      # Show status bar at bottom of finder windows with item/disk space stats
+      "ShowStatusBar" = true;
+      # Show path breadcrumbs in finder windows
+      "ShowPathbar" = true;
+      # Show the full POSIX filepath in the window title
+      "_FXShowPosixPathInTitle" = true;
+      # When performing a search, search the current folder by default
+      "FXDefaultSearchScope" = "SCcf";
+      # Disable the warning when changing a file extension
+      "FXEnableExtensionChangeWarning" = false;
+      # Use list view in all Finder windows by default
+      "FXPreferredViewStyle" = "Nlsv";
     };
 
     loginwindow = {
@@ -52,7 +68,9 @@
     };
 
     trackpad = {
+      # Enable tap to click
       Clicking = true;
+      # Enable three finger drag
       TrackpadThreeFingerDrag = true;
     };
 
@@ -91,6 +109,36 @@
       #   "NSStatusItem Visible Sound" = 1;
       #   "NSStatusItem Visible WiFi" = 1;
       # };
+
+      "com.apple.SoftwareUpdate" = {
+        # Enable the automatic update check
+        AutomaticCheckEnabled = true;
+        # Download newly available updates in background
+        AutomaticDownload = 1;
+        # Install System data files & security updates
+        CriticalUpdateInstall = 1;
+      };
+
+      "com.apple.TimeMachine" = {
+        # Prevent Time Machine from prompting to use new hard drives as backup volume
+        DoNotOfferNewDisksForBackup = true;
+      };
+
+      "com.jordanbaird.Ice" = {
+        AutoRehide = true;
+        CanToggleAlwaysHiddenSection = true;
+        EnableAlwaysHiddenSection = true;
+        HideApplicationMenus = true;
+        RehideInterval = 15;
+        RehideStrategy = 0;
+        ShowIceIcon = false;
+        ShowOnClick = true;
+        ShowOnHover = false;
+        ShowOnHoverDelay = "0.2";
+        ShowOnScroll = false;
+        ShowSectionDividers = false;
+        UseIceBar = false;
+      };
     };
   };
 

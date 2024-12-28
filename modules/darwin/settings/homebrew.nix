@@ -9,8 +9,6 @@
       upgrade = true;
     };
 
-    brews = ["swift-format"];
-
     casks = [
       "chatgpt"
       "dash"
@@ -35,11 +33,9 @@
       "sf-symbols"
       "sioyek"
       "soulver"
-      # "squirrel"
       "sublime-merge"
       "surge"
       "syntax-highlight"
-      "zotero"
     ];
   };
 }

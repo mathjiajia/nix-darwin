@@ -25,7 +25,7 @@
     alejandra
     bibtex-tidy
     black
-    # prettierd
+    prettierd
     shfmt
     stylua
   ];
