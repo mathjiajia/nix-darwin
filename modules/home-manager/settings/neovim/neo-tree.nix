@@ -27,12 +27,9 @@
                   text, hl = MiniIcons.get("directory", node.name)
                 end
 
-                if text then
-                  icon.text = text
-                end
-                if hl then
-                  icon.highlight = hl
-                end
+                if text then icon.text = text end
+
+                if hl then icon.highlight = hl end
               end
             '';
           kind_icon.provider.__raw =
@@ -47,12 +44,14 @@
           # lua
           ''
             {
-              { event = require("neo-tree.events").FILE_MOVED, handler = function(data)
-                Snacks.rename.on_rename_file(data.source, data.destination)
-              end },
-              { event = require("neo-tree.events").FILE_RENAMED, handler = function(data)
-                Snacks.rename.on_rename_file(data.source, data.destination)
-              end },
+              {
+                event = require("neo-tree.events").FILE_MOVED,
+                handler = function(data) Snacks.rename.on_rename_file(data.source, data.destination) end
+              },
+              {
+                event = require("neo-tree.events").FILE_RENAMED,
+                handler = function(data) Snacks.rename.on_rename_file(data.source, data.destination) end
+              },
             }
           '';
       };

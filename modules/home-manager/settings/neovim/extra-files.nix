@@ -9,27 +9,21 @@
       # lua
       ''
         vim.opt_local.buflisted = false
-        vim.keymap.set("n", "q", function()
-        	vim.api.nvim_win_close(0, false)
-        end, { buffer = 0, silent = true })
+        vim.keymap.set("n", "q", function() vim.api.nvim_win_close(0, false) end, { buffer = 0, silent = true })
       '';
 
     "after/ftplugin/grug-far.lua".text =
       # lua
       ''
         vim.opt_local.buflisted = false
-        vim.keymap.set("n", "q", function()
-        	vim.api.nvim_win_close(0, false)
-        end, { buffer = 0, silent = true })
+        vim.keymap.set("n", "q", function() vim.api.nvim_win_close(0, false) end, { buffer = 0, silent = true })
       '';
 
     "after/ftplugin/help.lua".text =
       # lua
       ''
         vim.opt_local.buflisted = false
-        vim.keymap.set("n", "q", function()
-        	vim.api.nvim_win_close(0, false)
-        end, { buffer = 0, silent = true })
+        vim.keymap.set("n", "q", function() vim.api.nvim_win_close(0, false) end, { buffer = 0, silent = true })
       '';
 
     "after/ftplugin/man.lua".text =
@@ -56,9 +50,7 @@
       # lua
       ''
         vim.opt_local.buflisted = false
-        vim.keymap.set("n", "q", function()
-        	vim.api.nvim_win_close(0, false)
-        end, { buffer = 0, silent = true })
+        vim.keymap.set("n", "q", function() vim.api.nvim_win_close(0, false) end, { buffer = 0, silent = true })
       '';
 
     "after/ftplugin/tex.lua".text =
@@ -78,27 +70,19 @@
         	c = {
         		name = "C",
         		filerunner = function()
-        			return "cd "
-        				.. vim.fn.expand("%:p:h")
-        				.. "&& gcc "
-        				.. vim.fn.expand("%:p")
-        				.. " -o "
-        				.. vim.fn.expand("%:p:r")
-        				.. " && "
-        				.. vim.fn.expand("%:p:r")
+        			return "cd " .. vim.fn.expand("%:p:h")
+        				.. "&& gcc " .. vim.fn.expand("%:p")
+        				.. " -o " .. vim.fn.expand("%:p:r")
+        				.. " && " .. vim.fn.expand("%:p:r")
         		end,
         	},
         	cpp = {
         		name = "C++",
         		filerunner = function()
-        			return "cd "
-        				.. vim.fn.expand("%:p:h")
-        				.. "&& g++ "
-        				.. vim.fn.expand("%:p")
-        				.. " -o "
-        				.. vim.fn.expand("%:p:r")
-        				.. " && "
-        				.. vim.fn.expand("%:p:r")
+        			return "cd " .. vim.fn.expand("%:p:h")
+        				.. "&& g++ " .. vim.fn.expand("%:p")
+        				.. " -o " .. vim.fn.expand("%:p:r")
+        				.. " && " .. vim.fn.expand("%:p:r")
         		end,
         	},
         }
@@ -121,7 +105,6 @@
         				priority = 4,
         			},
         		}
-
         		cb(ret)
         	end,
         }

@@ -77,7 +77,7 @@
             surface2 = "#4d4d4d";
             surface1 = "#404040";
             surface0 = "#292929";
-            base = "#191724";
+            base = "#1d2021";
             mantle = "#191b1c";
             crust = "#141617";
           };
@@ -174,7 +174,7 @@
             end
           '';
         term_colors = true;
-        transparent_background = true;
+        # transparent_background = true;
       };
     };
 

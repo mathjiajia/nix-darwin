@@ -15,9 +15,7 @@
           # lua
           ''
             function()
-            	if vim.o.buftype ~= "nofile" then
-            		vim.cmd.checktime()
-            	end
+            	if vim.o.buftype ~= "nofile" then vim.cmd.checktime() end
             end
           '';
       }
@@ -28,9 +26,7 @@
         callback.__raw =
           # lua
           ''
-            function()
-            	vim.highlight.on_yank()
-            end
+            function() vim.highlight.on_yank() end
           '';
       }
       {
@@ -68,9 +64,8 @@
       #     # lua
       #     ''
       #       function(ev)
-      #         if not pcall(vim.treesitter.start, ev.buf) then
-      #           return
-      #         end
+      #         if not pcall(vim.treesitter.start, ev.buf) then return end
+      #
       #         vim.opt_local.foldmethod = "expr"
       #         vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
       #         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

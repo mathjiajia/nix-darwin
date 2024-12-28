@@ -188,9 +188,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.scratch()
-          end
+          function() Snacks.scratch() end
         '';
       options.desc = "Toggle Scratch Buffer";
     }
@@ -199,9 +197,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.scratch.select()
-          end
+          function() Snacks.scratch.select() end
         '';
       options.desc = "Select Scratch Buffer";
     }
@@ -211,9 +207,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.notifier.show_history()
-          end
+          function() Snacks.notifier.show_history() end
         '';
       options.desc = "Notification History";
     }
@@ -222,9 +216,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.notifier.hide()
-          end
+          function() Snacks.notifier.hide() end
         '';
       options.desc = "Dismiss All Notifications";
     }
@@ -234,9 +226,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.bufdelete()
-          end
+          function() Snacks.bufdelete() end
         '';
       options.desc = "Delete Buffer";
     }
@@ -245,9 +235,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.bufdelete.other()
-          end
+          function() Snacks.bufdelete.other() end
         '';
       options.desc = "Delete Other Buffers";
     }
@@ -257,9 +245,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.lazygit.log_file()
-          end
+          function() Snacks.lazygit.log_file() end
         '';
       options.desc = "Lazygit Current File History";
     }
@@ -268,9 +254,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.lazygit()
-          end
+          function() Snacks.lazygit() end
         '';
       options.desc = "Lazygit";
     }
@@ -280,9 +264,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.rename.rename_file()
-          end
+          function() Snacks.rename.rename_file() end
         '';
       options.desc = "Rename File";
     }
@@ -293,9 +275,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	Snacks.terminal()
-          end
+          function() Snacks.terminal() end
         '';
       options.desc = "Toggle Terminal";
     }
@@ -306,11 +286,7 @@
       action.__raw =
         # lua
         ''
-          function()
-            if not require("noice.lsp").scroll(4) then
-              return "<C-f>"
-            end
-          end
+          function() if not require("noice.lsp").scroll(4) then return "<C-f>" end end
         '';
       options.silent = true;
       options.expr = true;
@@ -321,11 +297,7 @@
       action.__raw =
         # lua
         ''
-          function()
-          	if not require("noice.lsp").scroll(-4) then
-          		return "<C-b>"
-          	end
-          end
+          function() if not require("noice.lsp").scroll(-4) then return "<C-b>" end end
         '';
       options.silent = true;
       options.expr = true;
