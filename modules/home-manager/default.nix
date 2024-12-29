@@ -10,10 +10,11 @@
     ./settings/fastfetch.nix
     ./settings/fish.nix
     ./settings/fzf.nix
-    ./settings/texlive.nix
+    # ./settings/ghostty.nix
     ./settings/ripgrep.nix
     ./settings/sioyek.nix
     ./settings/starship.nix
+    ./settings/texlive.nix
 
     ./configs/aerospace.nix
     ./configs/fd.nix

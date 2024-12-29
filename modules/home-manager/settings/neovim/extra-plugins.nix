@@ -5,7 +5,7 @@
       owner = "mathjiajia";
       repo = "mySnippets";
       rev = "master";
-      sha256 = "D1DdGoqeR0mNgnk2zSrLC7YE9R6UsMiJCSWiYJybiP4=";
+      sha256 = "8ZbQ7pOrz8siT/jThLZuL+EKChPS0s5YO7GwA+5UARU=";
     };
   };
 

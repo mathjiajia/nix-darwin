@@ -8,7 +8,7 @@
         outer.left = 8;
         outer.bottom = 8;
         outer.top = 8;
-        oute.right = 8;
+        outer.right = 8;
       };
 
       mode.main.binding = {
@@ -66,175 +66,175 @@
         alt-shift-j = ["join-with down" "mode main"];
         alt-shift-k = ["join-with up" "mode main"];
         alt-shift-l = ["join-with right" "mode main"];
-
-        on-window-detected = [
-          {
-            "if".app-id = "com.apple.Safari";
-            "run" = "move-node-to-workspace B";
-          }
-          {
-            "if".app-id = "com.microsoft.edgemac";
-            "run" = "move-node-to-workspace B";
-          }
-          {
-            "if".app-id = "com.tdesktop.Telegram";
-            "run" = ["layout floating" "move-node-to-workspace C"];
-          }
-          {
-            "if".app-id = "com.tencent.xinWeChat";
-            "run" = ["layout floating" "move-node-to-workspace C"];
-          }
-          {
-            "if".app-id = "com.apple.mail";
-            "run" = ["layout floating" "move-node-to-workspace C"];
-          }
-          {
-            "if".app-id = "net.whatsapp.WhatsApp";
-            "run" = ["layout floating" "move-node-to-workspace C"];
-          }
-          {
-            "if".app-id = "com.hnc.Discord";
-            "run" = ["layout floating" "move-node-to-workspace C"];
-          }
-          {
-            "if".app-id = "com.sublimemerge";
-            "run" = "move-node-to-workspace D";
-          }
-          {
-            "if".app-id = "com.wangchujiang.DevHub";
-            "run" = "move-node-to-workspace D";
-          }
-          {
-            "if".app-id = "dev.kdrag0n.MacVirt";
-            "run" = "move-node-to-workspace D";
-          }
-          {
-            "if".app-id = "com.apple.dt.Xcode";
-            "run" = "move-node-to-workspace D";
-          }
-          {
-            "if".app-id = "com.microsoft.VSCode";
-            "run" = "move-node-to-workspace D";
-          }
-          {
-            "if".app-id = "dev.zed.Zed";
-            "run" = "move-node-to-workspace D";
-          }
-          {
-            "if".app-id = "com.apple.finder";
-            "run" = ["layout floating" "move-node-to-workspace F"];
-          }
-
-          {
-            "if".app-id = "com.apple.Notes";
-            "run" = ["layout floating" "move-node-to-workspace N"];
-          }
-          {
-            "if".app-id = "com.agiletortoise.Drafts-OSX";
-            "run" = ["layout floating" "move-node-to-workspace N"];
-          }
-          {
-            "if".app-id = "net.sourceforge.skim-app.skim";
-            "run" = "move-node-to-workspace N";
-          }
-          {
-            "if".app-id = "com.superace.updf.mac";
-            "run" = "move-node-to-workspace N";
-          }
-          {
-            "if".app-id = "org.zotero.zotero";
-            "run" = "move-node-to-workspace N";
-          }
-          {
-            "if".app-id = "com.mitchellh.ghostty";
-            "if".window-title-regex-substring = "Software Update";
-            "run" = "layout floating";
-          }
-          {
-            "if".app-id = "com.mitchellh.ghostty";
-            "if".window-title-regex-substring = "Updating Ghostty";
-            "run" = "layout floating";
-          }
-          {
-            "if".app-id = "com.mitchellh.ghostty";
-            "run" = "move-node-to-workspace T";
-          }
-          {
-            "if".app-id = "info.sioyek.sioyek";
-            "if".window-title-regex-substring = "main.pdf";
-            "run" = "move-node-to-workspace T";
-          }
-          {
-            "if".app-id = "info.sioyek.sioyek";
-            "if".window-title-regex-substring = "^(?!main\.pdf$).+";
-            "run" = "move-node-to-workspace N";
-          }
-          {
-            "if".app-id = "com.microsoft.Excel";
-            "run" = "move-node-to-workspace W";
-          }
-          {
-            "if".app-id = "com.microsoft.Powerpoint";
-            "run" = "move-node-to-workspace W";
-          }
-          {
-            "if".app-id = "com.microsoft.Word";
-            "run" = "move-node-to-workspace W";
-          }
-          {
-            "if".app-id = "com.apple.iWork.Kenotes";
-            "run" = "move-node-to-workspace W";
-          }
-          {
-            "if".app-id = "com.apple.iWork.Numbers";
-            "run" = "move-node-to-workspace W";
-          }
-          {
-            "if".app-id = "com.apple.iWork.Pages";
-            "run" = "move-node-to-workspace W";
-          }
-          {
-            "if".app-id = "us.zoom.xos";
-            "run" = "move-node-to-workspace V";
-          }
-          {
-            "if".app-id = "com.tencent.tencentmeeting";
-            "run" = "move-node-to-workspace V";
-          }
-          {
-            "if".app-id = "com.nssurge.surge-mac";
-            "run" = "layout floating";
-          }
-          {
-            "if".app-id = "com.openai.chat";
-            "run" = "layout floating";
-          }
-          {
-            "if".app-id = "com.apple.AppStore";
-            "run" = "layout floating";
-          }
-          {
-            "if".app-id = "com.apple.Passwords";
-            "run" = "layout floating";
-          }
-          {
-            "if".app-id = "com.noodlesoft.Hazel";
-            "run" = "layout floating";
-          }
-          {
-            "if".app-id = "ai.riffo.riffo";
-            "run" = "layout floating";
-          }
-          {
-            "if".app-id = "com.jordanbaird.Ice";
-            "run" = "layout floating";
-          }
-          {
-            "if".app-id = "org.fcitx.inputmethod.Fcitx5";
-            "run" = "layout floating";
-          }
-        ];
       };
+
+      on-window-detected = [
+        {
+          "if".app-id = "com.apple.Safari";
+          run = "move-node-to-workspace B";
+        }
+        {
+          "if".app-id = "com.microsoft.edgemac";
+          run = "move-node-to-workspace B";
+        }
+        {
+          "if".app-id = "com.tdesktop.Telegram";
+          run = ["layout floating" "move-node-to-workspace C"];
+        }
+        {
+          "if".app-id = "com.tencent.xinWeChat";
+          run = ["layout floating" "move-node-to-workspace C"];
+        }
+        {
+          "if".app-id = "com.apple.mail";
+          run = ["layout floating" "move-node-to-workspace C"];
+        }
+        {
+          "if".app-id = "net.whatsapp.WhatsApp";
+          run = ["layout floating" "move-node-to-workspace C"];
+        }
+        {
+          "if".app-id = "com.hnc.Discord";
+          run = ["layout floating" "move-node-to-workspace C"];
+        }
+        {
+          "if".app-id = "com.sublimemerge";
+          run = "move-node-to-workspace D";
+        }
+        {
+          "if".app-id = "com.wangchujiang.DevHub";
+          run = "move-node-to-workspace D";
+        }
+        {
+          "if".app-id = "dev.kdrag0n.MacVirt";
+          run = "move-node-to-workspace D";
+        }
+        {
+          "if".app-id = "com.apple.dt.Xcode";
+          run = "move-node-to-workspace D";
+        }
+        {
+          "if".app-id = "com.microsoft.VSCode";
+          run = "move-node-to-workspace D";
+        }
+        {
+          "if".app-id = "dev.zed.Zed";
+          run = "move-node-to-workspace D";
+        }
+        {
+          "if".app-id = "com.apple.finder";
+          run = ["layout floating" "move-node-to-workspace F"];
+        }
+
+        {
+          "if".app-id = "com.apple.Notes";
+          run = ["layout floating" "move-node-to-workspace N"];
+        }
+        {
+          "if".app-id = "com.agiletortoise.Drafts-OSX";
+          run = ["layout floating" "move-node-to-workspace N"];
+        }
+        {
+          "if".app-id = "net.sourceforge.skim-app.skim";
+          run = "move-node-to-workspace N";
+        }
+        {
+          "if".app-id = "com.superace.updf.mac";
+          run = "move-node-to-workspace N";
+        }
+        {
+          "if".app-id = "org.zotero.zotero";
+          run = "move-node-to-workspace N";
+        }
+        {
+          "if".app-id = "com.mitchellh.ghostty";
+          "if".window-title-regex-substring = "Software Update";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.mitchellh.ghostty";
+          "if".window-title-regex-substring = "Updating Ghostty";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.mitchellh.ghostty";
+          run = "move-node-to-workspace T";
+        }
+        {
+          "if".app-id = "info.sioyek.sioyek";
+          "if".window-title-regex-substring = "main.pdf";
+          run = "move-node-to-workspace T";
+        }
+        {
+          "if".app-id = "info.sioyek.sioyek";
+          "if".window-title-regex-substring = "^(?!main\.pdf$).+";
+          run = "move-node-to-workspace N";
+        }
+        {
+          "if".app-id = "com.microsoft.Excel";
+          run = "move-node-to-workspace W";
+        }
+        {
+          "if".app-id = "com.microsoft.Powerpoint";
+          run = "move-node-to-workspace W";
+        }
+        {
+          "if".app-id = "com.microsoft.Word";
+          run = "move-node-to-workspace W";
+        }
+        {
+          "if".app-id = "com.apple.iWork.Kenotes";
+          run = "move-node-to-workspace W";
+        }
+        {
+          "if".app-id = "com.apple.iWork.Numbers";
+          run = "move-node-to-workspace W";
+        }
+        {
+          "if".app-id = "com.apple.iWork.Pages";
+          run = "move-node-to-workspace W";
+        }
+        {
+          "if".app-id = "us.zoom.xos";
+          run = "move-node-to-workspace V";
+        }
+        {
+          "if".app-id = "com.tencent.tencentmeeting";
+          run = "move-node-to-workspace V";
+        }
+        {
+          "if".app-id = "com.nssurge.surge-mac";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.openai.chat";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.apple.AppStore";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.apple.Passwords";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.noodlesoft.Hazel";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "ai.riffo.riffo";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.jordanbaird.Ice";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "org.fcitx.inputmethod.Fcitx5";
+          run = "layout floating";
+        }
+      ];
     };
   };
 }
