@@ -1,4 +1,6 @@
-{
+{pkgs, ...}: {
+  programs.nixvim.extraPackages = [pkgs.python312Packages.ipython];
+
   programs.nixvim.plugins = {
     overseer = {
       enable = true;

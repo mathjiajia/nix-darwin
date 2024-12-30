@@ -1,4 +1,10 @@
-{
+{pkgs, ...}: {
+  programs.nixvim.extraPackages = with pkgs; [
+    commitlint
+    markdownlint-cli2
+    shellcheck
+  ];
+
   programs.nixvim.plugins.lint = {
     enable = true;
     lintersByFt = {

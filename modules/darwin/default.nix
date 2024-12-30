@@ -4,7 +4,7 @@
     ./settings/mas.nix
     # ./settings/system.nix
 
-    # ./services/aerospace.nix # not finish
+    ./services/aerospace.nix # not finish
     # ./services/jankyborders.nix
   ];
 
@@ -27,7 +27,6 @@
       ]))
 
     # GUI
-    aerospace
     # follow # x86_64-linux
     # github-desktop # linux
     # ghostty

@@ -11,28 +11,28 @@
     vimdiffAlias = true;
   };
 
-  programs.nixvim.extraPackages = with pkgs; [
-    luajit
-    nodejs # for copilot.lua
-    python312Packages.ipython # for REPL (overseer)
+  programs.nixvim.extraPackages = [pkgs.luajit];
 
-    # vscode-extensions.vadimcn.vscode-lldb
+  programs.nixvim.performance = {
+    byteCompileLua = {
+      enable = true;
+      configs = true;
+      initLua = true;
+      nvimRuntime = true;
+      plugins = true;
+    };
 
-    commitlint
-    markdownlint-cli2
-    shellcheck
-
-    alejandra
-    bibtex-tidy
-    black
-    prettierd
-    shfmt
-    stylua
-  ];
+    combinePlugins = {
+      enable = true;
+      pathsToLink = [
+        "/copilot"
+        "/luasnippets"
+      ];
+      # standalonePlugins = ["nvim-treesitter"];
+    };
+  };
 
   imports = [
-    ./performance.nix
-
     ./options.nix
     ./keymaps.nix
     ./autocmds.nix
@@ -44,7 +44,7 @@
     ./conform.nix
     ./compiler.nix
     ./completion.nix
-    ./dap.nix
+    # ./dap.nix
     ./editor.nix
     ./lint.nix
     ./lsp.nix

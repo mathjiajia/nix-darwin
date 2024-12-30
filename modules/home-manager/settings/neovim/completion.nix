@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
@@ -140,6 +140,8 @@
       suggestion.enabled = false;
     };
   };
+
+  programs.nixvim.extraPackages = [pkgs.nodejs];
 
   programs.nixvim.keymaps = [
     {

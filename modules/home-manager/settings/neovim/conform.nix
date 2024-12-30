@@ -1,5 +1,14 @@
 {pkgs, ...}: {
   programs.nixvim = {
+    extraPackages = with pkgs; [
+      alejandra
+      bibtex-tidy
+      black
+      prettierd
+      shfmt
+      stylua
+    ];
+
     plugins.conform-nvim = {
       enable = true;
       package = pkgs.vimPlugins.conform-nvim.overrideAttrs {

@@ -147,13 +147,17 @@
           run = "move-node-to-workspace N";
         }
         {
-          "if".app-id = "com.mitchellh.ghostty";
-          "if".window-title-regex-substring = "Software Update";
+          "if" = {
+            app-id = "com.mitchellh.ghostty";
+            window-title-regex-substring = "Software Update";
+          };
           run = "layout floating";
         }
         {
-          "if".app-id = "com.mitchellh.ghostty";
-          "if".window-title-regex-substring = "Updating Ghostty";
+          "if" = {
+            app-id = "com.mitchellh.ghostty";
+            window-title-regex-substring = "Updating Ghostty";
+          };
           run = "layout floating";
         }
         {
@@ -161,13 +165,17 @@
           run = "move-node-to-workspace T";
         }
         {
-          "if".app-id = "info.sioyek.sioyek";
-          "if".window-title-regex-substring = "main.pdf";
+          "if" = {
+            app-id = "info.sioyek.sioyek";
+            window-title-regex-substring = "main.pdf";
+          };
           run = "move-node-to-workspace T";
         }
         {
-          "if".app-id = "info.sioyek.sioyek";
-          "if".window-title-regex-substring = "^(?!main\.pdf$).+";
+          "if" = {
+            app-id = "info.sioyek.sioyek";
+            window-title-regex-substring = "^(?!main\.pdf$).+";
+          };
           run = "move-node-to-workspace N";
         }
         {

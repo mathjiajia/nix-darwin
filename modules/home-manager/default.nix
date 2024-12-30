@@ -16,7 +16,6 @@
     ./settings/starship.nix
     ./settings/texlive.nix
 
-    ./configs/aerospace.nix
     ./configs/fd.nix
     ./configs/ghostty.nix
   ];
