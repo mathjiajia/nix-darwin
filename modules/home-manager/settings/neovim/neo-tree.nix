@@ -2,6 +2,26 @@
   programs.nixvim = {
     plugins.neo-tree = {
       enable = true;
+      # lazyLoad.settings = {
+      #   cmd = "Neotree";
+      #   keys = [
+      #     {
+      #       __unkeyed-1 = "<leader>fe";
+      #       __unkeyed-2 = "<Cmd>Neotree toggle<CR>";
+      #       desc = "Explorer NeoTree (cwd)";
+      #     }
+      #     {
+      #       __unkeyed-1 = "<leader>ge";
+      #       __unkeyed-2 = "<Cmd>Neotree toggle git_status<CR>";
+      #       desc = "Git Explorer";
+      #     }
+      #     {
+      #       __unkeyed-1 = "<leader>be";
+      #       __unkeyed-2 = "<Cmd>Neotree toggle buffers<CR>";
+      #       desc = "Buffer Explorer";
+      #     }
+      #   ];
+      # };
       defaultComponentConfigs.indent.withExpanders = true;
       filesystem = {
         bindToCwd = false;

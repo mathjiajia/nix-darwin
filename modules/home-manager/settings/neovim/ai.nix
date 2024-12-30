@@ -2,6 +2,9 @@
   programs.nixvim.plugins = {
     codecompanion = {
       enable = true;
+      lazyLoad.settings = {
+        cmd = ["CodeCompanion" "CodeCompanionChat" "CodeCompanionAction" "CodeCompanionCmd"];
+      };
       settings = {
         adapters = {
           ollama.__raw =

@@ -32,6 +32,8 @@
     };
   };
 
+  programs.nixvim.plugins.lz-n.enable = true;
+
   imports = [
     ./options.nix
     ./keymaps.nix
@@ -44,7 +46,7 @@
     ./conform.nix
     ./compiler.nix
     ./completion.nix
-    # ./dap.nix
+    ./dap.nix
     ./editor.nix
     ./lint.nix
     ./lsp.nix

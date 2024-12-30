@@ -7,6 +7,9 @@
 
   programs.nixvim.plugins.lint = {
     enable = true;
+    lazyLoad.settings = {
+      ft = ["bash" "fish" "gitcommit" "markdown" "zsh"];
+    };
     lintersByFt = {
       bash = ["shellcheck"];
       fish = ["fish"];
