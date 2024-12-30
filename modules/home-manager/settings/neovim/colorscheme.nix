@@ -2,7 +2,6 @@
   programs.nixvim.colorschemes = {
     catppuccin = {
       enable = true;
-      lazyLoad.enable = true;
       settings = {
         integrations = {
           aerial = true;

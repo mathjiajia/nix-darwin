@@ -4,23 +4,6 @@
   programs.nixvim.plugins = {
     overseer = {
       enable = true;
-      lazyLoad.settings = {
-        cmd = ["OverseerRun" "OverseerOpen"];
-        keys = [
-          {
-            __unkeyed-1 = "<leader>rf";
-            __unkeyed-2 = "<Cmd>OverseerRun RunFile<CR>";
-            silent = true;
-            desc = "Run File";
-          }
-          {
-            __unkeyed-1 = "<leader>rr";
-            __unkeyed-2 = "<Cmd>OverseerRun OpenREPL<CR>";
-            silent = true;
-            desc = "Run REPL";
-          }
-        ];
-      };
       settings = {
         # strategy = "jobstart";
         templates = ["builtin" "user.builder" "user.runner"];
@@ -29,17 +12,6 @@
 
     sniprun = {
       enable = true;
-      lazyLoad.settings = {
-        keys = [
-          {
-            __unkeyed-1 = "<leader>rs";
-            __unkeyed-2 = "<Plug>SnipRun";
-            mode = ["n" "v"];
-            silent = true;
-            desc = "Snip Run";
-          }
-        ];
-      };
       settings = {
         display = ["VirtualTextOk" "VirtualTextErr" "Terminal"];
         selected_interpreters = ["Generic" "Lua_nvim" "Python3_fifo"];
@@ -53,4 +25,27 @@
       };
     };
   };
+
+  programs.nixvim.keymaps = [
+    {
+      key = "<leader>rf";
+      action = "<Cmd>OverseerRun RunFile<CR>";
+      options.silent = true;
+      options.desc = "Run File";
+    }
+    {
+      key = "<leader>rr";
+      action = "<Cmd>OverseerRun OpenREPL<CR>";
+      options.silent = true;
+      options.desc = "Open REPL";
+    }
+
+    {
+      mode = ["n" "v"];
+      key = "<leader>rs";
+      action = "<Plug>SnipRun";
+      options.silent = true;
+      options.desc = "Snip Run";
+    }
+  ];
 }

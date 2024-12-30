@@ -32,8 +32,6 @@
     };
   };
 
-  programs.nixvim.plugins.lz-n.enable = true;
-
   imports = [
     ./options.nix
     ./keymaps.nix

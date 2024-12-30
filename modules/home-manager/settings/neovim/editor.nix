@@ -2,16 +2,6 @@
   programs.nixvim.plugins = {
     aerial = {
       enable = true;
-      lazyLoad.settings = {
-        cmd = ["AerialToggle"];
-        keys = [
-          {
-            __unkeyed-1 = "<leader>cs";
-            __unkeyed-2 = "<Cmd>AerialToggle<CR>";
-            desc = "Aerial (Symbols)";
-          }
-        ];
-      };
       settings = {
         backends = ["lsp" "treesitter" "markdown" "man"];
         layout = {resize_to_content = false;};
@@ -22,66 +12,51 @@
 
     fzf-lua = {
       enable = true;
-      lazyLoad.settings = {
-        cmd = "FzfLua";
-        keys = [
-          {
-            __unkeyed-1 = "<leader><space>";
-            __unkeyed-2 = "<Cmd>FzfLua files<CR>";
-            desc = "Find Files (current)";
-          }
-          {
-            __unkeyed-1 = "<leader>fb";
-            __unkeyed-2 = "<Cmd>FzfLua buffers<CR>";
-            desc = "Buffers";
-          }
-          {
-            __unkeyed-1 = "<leader>ff";
-            __unkeyed-2 = "<Cmd>FzfLua files<CR>";
-            desc = "Find Files";
-          }
-          {
-            __unkeyed-1 = "<leader>fg";
-            __unkeyed-2 = "<Cmd>FzfLua git_files<CR>";
-            desc = "Find Git Files";
-          }
-          {
-            __unkeyed-1 = "<leader>fl";
-            __unkeyed-2 = "<Cmd>FzfLua lsp_finder<CR>";
-            desc = "Lsp Finder";
-          }
-          {
-            __unkeyed-1 = "<leader>fo";
-            __unkeyed-2 = "<Cmd>FzfLua oldfiles<CR>";
-            desc = "Old Files";
-          }
-          {
-            __unkeyed-1 = "<leader>sb";
-            __unkeyed-2 = "<Cmd>FzfLua blines<CR>";
-            desc = "Search Current Buffer Lines";
-          }
-          {
-            __unkeyed-1 = "<leader>sg";
-            __unkeyed-2 = "<Cmd>FzfLua live_grep<CR>";
-            desc = "Live Grep";
-          }
-          {
-            __unkeyed-1 = "<leader>sh";
-            __unkeyed-2 = "<Cmd>FzfLua helptags<CR>";
-            desc = "Help Tags";
-          }
-          {
-            __unkeyed-1 = "<leader>sw";
-            __unkeyed-2 = "<Cmd>FzfLua grep_cword<CR>";
-            desc = "Search Word Under Cursor";
-          }
-          {
-            mode = "v";
-            __unkeyed-1 = "<leader>sw";
-            __unkeyed-2 = "<Cmd>FzfLua grep_visual<CR>";
-            desc = "Search Visual Selection";
-          }
-        ];
+      keymaps = {
+        "<leader><space>" = {
+          action = "files";
+          options.desc = "Find Files (current)";
+        };
+        "<leader>fb" = {
+          action = "buffers";
+          options.desc = "Buffers";
+        };
+        "<leader>fc" = {
+          action = "files";
+          options.desc = "Find Config File";
+        };
+        "<leader>ff" = {
+          action = "files";
+          options.desc = "Find Files (cwd)";
+        };
+        "<leader>fg" = {
+          action = "git_files";
+          options.desc = "Find Git Files";
+        };
+        "<leader>fl" = {
+          action = "lsp_finder";
+          options.desc = "Lsp Finder";
+        };
+        "<leader>fo" = {
+          action = "oldfiles";
+          options.desc = "Old Files";
+        };
+        "<leader>sb" = {
+          action = "blines";
+          options.desc = "Search Current Buffer Lines";
+        };
+        "<leader>sg" = {
+          action = "live_grep";
+          options.desc = "Live Grep";
+        };
+        "<leader>sh" = {
+          action = "helptags";
+          options.desc = "Help Tags";
+        };
+        "<leader>sw" = {
+          action = "grep_cword";
+          options.desc = "Search Word Under Cursor";
+        };
       };
       settings = {
         defaults = {
@@ -148,30 +123,7 @@
       };
     };
 
-    grug-far = {
-      enable = true;
-      lazyLoad = {
-        settings = {
-          cmd = "GrugFar";
-          keys = [
-            {
-              mode = ["n" "v"];
-              __unkeyed-1 = "<leader>sr";
-              __unkeyed-2.__raw =
-                # lua
-                ''
-                  function()
-                  	local grug = require("grug-far")
-                  	local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
-                  	grug.open({ prefills = { filesFilter = ext and ext ~= "" and "*." .. ext or nil } })
-                  end
-                '';
-              desc = "Search and Replace";
-            }
-          ];
-        };
-      };
-    };
+    grug-far.enable = true;
     flash.enable = true;
 
     nvim-bqf = {
@@ -186,6 +138,34 @@
   };
 
   programs.nixvim.keymaps = [
+    {
+      mode = "v";
+      key = "<leader>sw";
+      action = "FzfLua grep_visual";
+      options.desc = "Search Visual Selection";
+    }
+
+    {
+      mode = ["n" "v"];
+      key = "<leader>sr";
+      action.__raw =
+        # lua
+        ''
+          function()
+            local grug = require("grug-far")
+            local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+            grug.open({ prefills = { filesFilter = ext and ext ~= "" and "*." .. ext or nil } })
+          end
+        '';
+      options.desc = "Search and Replace";
+    }
+
+    {
+      key = "<leader>cs";
+      action = "<Cmd>AerialToggle<CR>";
+      options.desc = "Aerial (Symbols)";
+    }
+
     {
       mode = ["n" "x" "o"];
       key = "s";
