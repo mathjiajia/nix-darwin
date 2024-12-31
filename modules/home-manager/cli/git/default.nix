@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   programs.git = {
     enable = true;
     difftastic.enable = true;
@@ -10,14 +6,6 @@
     userEmail = "mathjiajia@outlook.com";
     extraConfig = {
       core.editor = "nvim";
-      diff = {
-        tool = "difftastic";
-        colorMoved = "default";
-      };
-      difftool = {
-        difftastic.cmd = "$difft $LOCAL $REMOTE";
-        prompt = false;
-      };
       merge = {
         conflictstyle = "diff3";
         tool = "vimdiff";

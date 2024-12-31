@@ -1,7 +1,7 @@
 {
   imports = [
     ./cli/git
-    ./cli/neovim
+    ./cli/nvim
     ./cli/yazi
 
     ./cli/bat.nix
@@ -17,6 +17,9 @@
     ./gui/emacs.nix
     # ./gui/ghostty.nix
     # ./gui/sioyek.nix
+    ./gui/vscode.nix
+    ./gui/zed.nix
+
     ./ghostty.nix
   ];
 
@@ -39,9 +42,7 @@
 
   programs = {
     home-manager.enable = true; # manage itslef
-    fd.enable = true;
     pandoc.enable = true;
-    vscode.enable = true;
     zoxide.enable = true;
   };
 

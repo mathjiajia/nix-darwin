@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   imports = [
-    ./settings/homebrew.nix
-    ./settings/mas.nix
-    # ./settings/system.nix
+    ./homebrew/homebrew.nix
+    ./mas/mas.nix
+    # ./system.nix
 
     ./services/aerospace.nix
   ];
@@ -41,7 +41,6 @@
     raycast
     skimpdf
     # sublime-merge # linux
-    zed-editor
     zoom-us
     zotero
   ];

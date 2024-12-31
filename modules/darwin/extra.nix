@@ -1,6 +1,6 @@
 {
   imports = [
-    ./settings/homebrew-extra.nix
-    ./settings/mas-extra.nix
+    ./homebrew/homebrew-extra.nix
+    ./mas/mas-extra.nix
   ];
 }
