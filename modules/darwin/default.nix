@@ -4,13 +4,11 @@
     ./settings/mas.nix
     # ./settings/system.nix
 
-    ./services/aerospace.nix # not finish
-    # ./services/jankyborders.nix
+    ./services/aerospace.nix
   ];
 
   environment.systemPackages = with pkgs; [
     # CLI
-    difftastic
     hugo
     swift-format
     tree

@@ -1,19 +1,21 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs.git = {
     enable = true;
-    delta.enable = true;
+    difftastic.enable = true;
     userName = "Jia Jia";
     userEmail = "mathjiajia@outlook.com";
     extraConfig = {
       core.editor = "nvim";
-      delta.navigate = true;
       diff = {
-        # external = "difft";
         tool = "difftastic";
         colorMoved = "default";
       };
       difftool = {
-        difftastic.cmd = "difft $LOCAL $REMOTE";
+        difftastic.cmd = "$difft $LOCAL $REMOTE";
         prompt = false;
       };
       merge = {

@@ -1,22 +1,22 @@
 {
   imports = [
-    ./settings/git
-    ./settings/neovim
-    ./settings/yazi
+    ./cli/git
+    ./cli/neovim
+    ./cli/yazi
 
-    ./settings/bat.nix
-    ./settings/btop.nix
-    ./settings/emacs.nix
-    ./settings/fastfetch.nix
-    ./settings/fd.nix
-    ./settings/fish.nix
-    ./settings/fzf.nix
-    # ./settings/ghostty.nix
-    ./settings/ripgrep.nix
-    # ./settings/sioyek.nix
-    ./settings/starship.nix
-    ./settings/texlive.nix
+    ./cli/bat.nix
+    ./cli/btop.nix
+    ./cli/fastfetch.nix
+    ./cli/fd.nix
+    ./cli/fish.nix
+    ./cli/fzf.nix
+    ./cli/ripgrep.nix
+    ./cli/starship.nix
+    ./cli/texlive.nix
 
+    ./gui/emacs.nix
+    # ./gui/ghostty.nix
+    # ./gui/sioyek.nix
     ./ghostty.nix
   ];
 
