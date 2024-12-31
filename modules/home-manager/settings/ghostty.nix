@@ -4,7 +4,7 @@
     settings = {
       theme = "gruvbox";
       font-family = "Sarasa Term SC";
-      font-size = 24;
+      font-size = 21;
       font-thicken = true;
       keybind = "global:super+grave_accent=toggle_quick_terminal";
       macos-icon = "custom-style";

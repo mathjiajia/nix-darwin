@@ -14,7 +14,6 @@
       "dash"
       "downie"
       "follow"
-      "ghostty"
       "hazel"
       "hazeover"
       "hookmark"

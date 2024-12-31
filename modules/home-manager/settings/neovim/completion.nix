@@ -118,16 +118,6 @@
               module = "blink-ripgrep";
               name = "Ripgrep";
               opts.additional_rg_options = ["--glob=!*.pdf"];
-              transform_items.__raw =
-                # lua
-                ''
-                  function(_, items)
-                    for _, item in ipairs(items) do
-                      item.kind = require("blink.cmp.types").CompletionItemKind.Field
-                    end
-                    return items
-                  end
-                '';
             };
           };
         };

@@ -1,6 +1,6 @@
 {
   programs.sioyek = {
-    # enable = true;
+    enable = true;
     config = {
       use_system_theme = "1";
       use_custom_color_as_dark_system_theme = "1";

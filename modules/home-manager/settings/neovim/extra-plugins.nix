@@ -15,7 +15,7 @@
       owner = "mathjiajia";
       repo = "latex.nvim";
       rev = "master";
-      sha256 = "9RwMlelpXxZS054cE5OVP/PHOnP0I9GLfBqgVESi4xU=";
+      sha256 = "vHlBle2Ohf9oPIL5L5+9+B3gS+Y9woRhRfMNLFWLf/8=";
     };
   };
 
@@ -35,7 +35,7 @@
       owner = "mikavilpas";
       repo = "blink-ripgrep.nvim";
       rev = "master";
-      sha256 = "V3Tf8bPpO7KjP/AwcgYjMZdTejydvBx/t33H3+wsNLo=";
+      sha256 = "lYZoTbgbQaaIoPtuYzvWuq99QWlyxZapIYHWZIY7sKU=";
     };
   };
 in {

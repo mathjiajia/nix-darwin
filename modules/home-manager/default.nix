@@ -8,16 +8,16 @@
     ./settings/btop.nix
     ./settings/emacs.nix
     ./settings/fastfetch.nix
+    ./settings/fd.nix
     ./settings/fish.nix
     ./settings/fzf.nix
     # ./settings/ghostty.nix
     ./settings/ripgrep.nix
-    ./settings/sioyek.nix
+    # ./settings/sioyek.nix
     ./settings/starship.nix
     ./settings/texlive.nix
 
-    ./configs/fd.nix
-    ./configs/ghostty.nix
+    ./ghostty.nix
   ];
 
   home = {

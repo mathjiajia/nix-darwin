@@ -29,7 +29,7 @@
     # GUI
     # follow # x86_64-linux
     # github-desktop # linux
-    # ghostty
+    ghostty
     ice-bar
     iina
     inkscape
@@ -41,7 +41,6 @@
     ollama
     # openra # x86_64-linux
     raycast
-    # sioyek
     skimpdf
     # sublime-merge # linux
     zed-editor
