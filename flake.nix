@@ -14,7 +14,7 @@
     homebrew-bundle.url = "github:homebrew/homebrew-bundle";
     homebrew-bundle.flake = false;
 
-    nixvim.url = "github:nix-community/nixvim/c2e88653576b9bfd8634db4882a97b4c29a6d706";
+    nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
