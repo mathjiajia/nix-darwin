@@ -5,7 +5,6 @@
       inherit
         (tpkgs)
         scheme-minimal
-        latexindent
         latexmk
         collection-basic
         collection-bibtexextra

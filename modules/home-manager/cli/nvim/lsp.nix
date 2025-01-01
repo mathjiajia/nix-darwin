@@ -52,6 +52,7 @@
           diagnostics.ignoredPatterns = ["^Overfull" "^Underfull"];
           forwardSearch = {
             executable = "/Applications/sioyek.app/Contents/MacOS/sioyek";
+            # "${pkgs.sioyek}/Applications/sioyek.app"
             args = [
               "--reuse-window"
               "--execute-command"
@@ -65,7 +66,6 @@
               "%p"
             ];
           };
-          latexindent.modifyLineBreaks = true;
         };
       };
     };

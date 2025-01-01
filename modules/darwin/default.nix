@@ -40,12 +40,13 @@
     # openra # x86_64-linux
     raycast
     skimpdf
+    # stats
     # sublime-merge # linux
     zoom-us
     zotero
   ];
 
-  environment.shells = with pkgs; [fish];
+  environment.shells = [pkgs.fish];
 
   fonts.packages = with pkgs; [
     lxgw-wenkai

@@ -7,6 +7,7 @@
       prettierd
       shfmt
       stylua
+      tex-fmt
     ];
 
     plugins.conform-nvim = {
@@ -27,6 +28,13 @@
             "--sort-fields=author,year,month,day,title,shorttitle"
             "--remove-braces"
           ];
+          tex-fmt.prepend_args = [
+            "--wrap" # "--wraplen"
+            "120"
+            "--tab" # "--tabsize"
+            "1"
+            "--usetabs"
+          ];
         };
         formatters_by_ft = {
           bib = ["bibtex-tidy"];
@@ -44,6 +52,7 @@
           python = ["black"];
           sh = ["shfmt"];
           swift = ["swift_format"];
+          tex = ["tex-fmt"];
         };
         format_on_save = {
           lsp_format = "fallback";
