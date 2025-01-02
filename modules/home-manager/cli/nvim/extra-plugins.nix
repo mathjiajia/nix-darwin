@@ -35,7 +35,7 @@
       owner = "mikavilpas";
       repo = "blink-ripgrep.nvim";
       rev = "master";
-      sha256 = "lYZoTbgbQaaIoPtuYzvWuq99QWlyxZapIYHWZIY7sKU=";
+      sha256 = "ShwwdJ2DkwVEbpduKGNmuA+5ziNaUpFlL8LdGbk+ggE=";
     };
   };
 in {
@@ -51,6 +51,36 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      require("dropbar").setup()
+      require("dropbar").setup({
+        icons = {
+          kinds = {
+            file_icon = function(path)
+              local file_icon = "󰈔 "
+              local file_icon_hl = 'DropBarIconKindFile'
+              local _, mini_icons = pcall(require, 'mini.icons')
+              if not _G.MiniIcons then
+                return file_icon, file_icon_hl
+              end
+
+              local mini_icon, mini_icon_hl = mini_icons.get('file', vim.fs.basename(path))
+
+              if not mini_icon then
+                local buf = vim.iter(vim.api.nvim_list_bufs()):find(function(buf)
+                  return vim.api.nvim_buf_get_name(buf) == path
+                end)
+                if buf then
+                  local filetype = vim.api.nvim_get_option_value('filetype', { buf = buf })
+                  mini_icon, mini_icon_hl = mini_icons.get('filetype', filetype)
+                end
+              end
+
+              file_icon = mini_icon and mini_icon .. ' ' or file_icon
+              file_icon_hl = mini_icon_hl
+
+              return file_icon, file_icon_hl
+            end
+          }
+        }
+      })
     '';
 }

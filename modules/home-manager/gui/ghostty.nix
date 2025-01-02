@@ -7,11 +7,11 @@
       font-family = "Sarasa Term SC";
       font-size = 21;
       font-thicken = true;
-      keybind = "global:cmd+grave_accent=toggle_quick_terminal";
+      mouse-hide-while-typing = true;
       macos-icon = "custom-style";
       macos-icon-ghost-color = "yellow";
       macos-icon-screen-color = "purple,maroon";
-      mouse-hide-while-typing = true;
+      keybind = "global:cmd+grave_accent=toggle_quick_terminal";
       window-colorspace = "display-p3";
       window-title-font-family = "Maple Mono CN";
       auto-update = "off";
