@@ -2,7 +2,7 @@
   imports = [
     ./homebrew/homebrew.nix
     ./mas/mas.nix
-    # ./system.nix
+    ./system.nix
 
     ./services/aerospace.nix
   ];

@@ -6,7 +6,6 @@
         bash
         bibtex
         c
-        # comment
         commonlisp
         csv
         editorconfig
@@ -30,11 +29,10 @@
         matlab
         nix
         python
+        query
         r
         regex
         requirements
-        query
-        regex
         swift
         todotxt
         toml
