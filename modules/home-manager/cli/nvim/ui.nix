@@ -177,6 +177,11 @@
               text_align = "left";
             }
           ];
+          get_element_icon.__raw =
+            # lua
+            ''
+              function(opts) return MiniIcons.get(opts.directory and "directory" or "file", opts.path) end
+            '';
         };
       };
     };

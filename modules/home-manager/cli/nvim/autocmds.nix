@@ -57,21 +57,6 @@
             end
           '';
       }
-      # {
-      #   event = "FileType";
-      #   desc = "Enable Treesitter";
-      #   callback.__raw =
-      #     # lua
-      #     ''
-      #       function(ev)
-      #         if not pcall(vim.treesitter.start, ev.buf) then return end
-      #
-      #         vim.opt_local.foldmethod = "expr"
-      #         vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      #         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-      #       end
-      #     '';
-      # }
 
       {
         event = "BufReadPost";

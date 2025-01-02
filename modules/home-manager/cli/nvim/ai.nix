@@ -8,7 +8,7 @@
             # lua
             ''
               function()
-                return require('codecompanion.adapters').extend('ollama', {
+                return require("codecompanion.adapters").extend("ollama", {
                     env = { url = "http://127.0.0.1:11434" },
                     schema = {
                         model = { default = "qwq:32b-preview-fp16" },
