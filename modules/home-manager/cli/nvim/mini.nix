@@ -53,9 +53,14 @@
             '';
         };
       };
-      icons.lsp.copilot = {
-        glyph = "";
-        hl = "MiniIconsCyan";
+      icons.lsp = {
+        copilot = {
+          glyph = "";
+          hl = "MiniIconsCyan";
+        };
+        "function".glyph = "";
+        object.glyph = "";
+        value.glyph = "";
       };
       pairs = {};
       statusline = {};

@@ -95,6 +95,7 @@
         sources = {
           default = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"];
           providers = {
+            luasnip.opts.show_autosnippets = false;
             copilot = {
               async = true;
               module = "blink-cmp-copilot";
@@ -113,7 +114,6 @@
                   end
                 '';
             };
-            luasnip.opts.show_autosnippets = false;
             ripgrep = {
               module = "blink-ripgrep";
               name = "Ripgrep";

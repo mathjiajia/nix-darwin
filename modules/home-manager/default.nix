@@ -1,28 +1,4 @@
 {
-  imports = [
-    ./cli/git
-    ./cli/nvim
-    ./cli/yazi
-
-    ./cli/bat.nix
-    ./cli/btop.nix
-    ./cli/fastfetch.nix
-    ./cli/fd.nix
-    ./cli/fish.nix
-    ./cli/fzf.nix
-    ./cli/ripgrep.nix
-    ./cli/starship.nix
-    ./cli/texlive.nix
-
-    ./gui/emacs.nix
-    # ./gui/ghostty.nix
-    # ./gui/sioyek.nix
-    ./gui/vscode.nix
-    ./gui/zed.nix
-
-    ./ghostty.nix
-  ];
-
   home = {
     username = "jia";
     homeDirectory = "/Users/jia";
@@ -45,6 +21,30 @@
     pandoc.enable = true;
     zoxide.enable = true;
   };
+
+  imports = [
+    ./cli/git
+    ./cli/nvim
+    ./cli/yazi
+
+    ./cli/bat.nix
+    ./cli/btop.nix
+    ./cli/fastfetch.nix
+    ./cli/fd.nix
+    ./cli/fish.nix
+    ./cli/fzf.nix
+    ./cli/ripgrep.nix
+    ./cli/starship.nix
+    ./cli/texlive.nix
+
+    ./gui/emacs.nix
+    ./gui/ghostty.nix
+    # ./gui/sioyek.nix
+    ./gui/vscode.nix
+    ./gui/zed.nix
+
+    # ./ghostty.nix
+  ];
 
   # accounts.email.accounts = {
   #   gmail = {

@@ -130,7 +130,7 @@ in {
         		float = { width = 1, height = 1, border = "rounded" },
         	},
         	lsp = { signature = true },
-        	cheatsheet = { excluded_groups = { ":help", "autopairs", "Opens" } },
+        	cheatsheet = { excluded_groups = { ":help", "Opens" } },
         }
         return options
       '';

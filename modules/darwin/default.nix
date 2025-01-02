@@ -27,7 +27,6 @@
     # GUI
     # follow # x86_64-linux
     # github-desktop # linux
-    ghostty
     ice-bar
     iina
     inkscape

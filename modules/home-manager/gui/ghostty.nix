@@ -1,6 +1,7 @@
 {
   programs.ghostty = {
     enable = true;
+    installBatSyntax = false;
     settings = {
       theme = "gruvbox";
       font-family = "Sarasa Term SC";
@@ -14,6 +15,40 @@
       mouse-hide-while-typing = true;
       window-colorspace = "display-p3";
       auto-update = "off";
+    };
+    themes = {
+      gruvbox = {
+        cursor-color = "ebdbb2";
+        background = "1d2021";
+        foreground = "ebdbb2";
+        selection-background = "665c54";
+        selection-foreground = "ebdbb2";
+        palette = [
+          "0=#595959"
+          "8=#928374"
+
+          "1=#ea6962"
+          "9=#ea6962"
+
+          "2=#a9b665"
+          "10=#a9b665"
+
+          "3=#d8a657"
+          "11=#d8a657"
+
+          "4=#7daea3"
+          "12=#7daea3"
+
+          "5=#d3869b"
+          "13=#d3869b"
+
+          "6=#89b482"
+          "14=#89b482"
+
+          "7=#ebdbb2"
+          "15=#ebdbb2"
+        ];
+      };
     };
   };
 }
