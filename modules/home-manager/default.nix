@@ -38,12 +38,12 @@
     ./cli/texlive.nix
 
     ./gui/emacs.nix
-    ./gui/ghostty.nix
+    # ./gui/ghostty.nix
     # ./gui/sioyek.nix
     ./gui/vscode.nix
     ./gui/zed.nix
 
-    # ./ghostty.nix
+    ./ghostty.nix
   ];
 
   # accounts.email.accounts = {

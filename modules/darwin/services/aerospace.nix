@@ -143,6 +143,13 @@
           run = "move-node-to-workspace N";
         }
         {
+          "if" = {
+            app-id = "org.zotero.zotero";
+            window-title-regex-substring = "Zotero Settings";
+          };
+          run = "layout floating";
+        }
+        {
           "if".app-id = "org.zotero.zotero";
           run = "move-node-to-workspace N";
         }

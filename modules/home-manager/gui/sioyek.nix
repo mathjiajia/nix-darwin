@@ -8,6 +8,11 @@
 
       startup_commands = "fit_to_page_width_smart";
 
+      ui_font = "Sarasa Term SC";
+      status_font = "Sarasa Term SC";
+
+      should_launch_new_window = "1";
+
       custom_background_color = "#252623";
       custom_text_color = "#f1e9d2";
 
