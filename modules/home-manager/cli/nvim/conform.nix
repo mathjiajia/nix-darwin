@@ -29,9 +29,9 @@
             "--remove-braces"
           ];
           tex-fmt.prepend_args = [
-            "--wrap" # "--wraplen"
+            "--wraplen"
             "120"
-            "--tab" # "--tabsize"
+            "--tabsize"
             "1"
             "--usetabs"
           ];

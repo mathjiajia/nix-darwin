@@ -5,6 +5,18 @@
 # vim.opt.rtp:append("${fzf-plugin}")
 {
   programs.nixvim.extraFiles = {
+    "ginit.vim".text =
+      # vim
+      ''
+        lua << EOF
+        vim.opt.autochdir = true
+
+        local stats = vim.uv.fs_stat(vim.fn.argv(0))
+        if stats and stats.type == "directory" then
+        	vim.cmd.cd("~")
+        end
+        EOF
+      '';
     "after/ftplugin/checkhealth.lua".text =
       # lua
       ''

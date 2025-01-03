@@ -92,7 +92,11 @@
               -- local base = not O.transparent_background and colors.base or nil
 
               return {
-                BlinkCmpKindCopilot = { fg = C.blue },
+                BlinkCmpLabelMatch = { fg = C.lavender },
+                BlinkCmpMenu = { link = "NormalFloat" },
+                BlinkCmpMenuBorder = { link = "FloatBorder" },
+                BlinkCmpDocBorder = { link = "FloatBorder" },
+
                 MarkviewBlockQuoteWarn = { fg = C.yellow },
                 -- MarkviewBlockQuoteSpecial = {},
                 -- MarkviewBlockQuoteNote = {},

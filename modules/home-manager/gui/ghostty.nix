@@ -1,7 +1,6 @@
 {
   programs.ghostty = {
     enable = true;
-    installBatSyntax = false;
     settings = {
       theme = "gruvbox";
       font-family = "Sarasa Term SC";

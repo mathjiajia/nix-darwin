@@ -41,6 +41,7 @@
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     dropbar-nvim
+    # bamboo-nvim
 
     blink-ripgrep-nvim
     latex-nvim
@@ -51,6 +52,8 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
+      -- require("bamboo").setup()
+      -- require("bamboo").load()
       require("dropbar").setup({
         icons = {
           kinds = {
