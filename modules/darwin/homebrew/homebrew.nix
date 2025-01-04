@@ -18,7 +18,6 @@
       "hazeover"
       "hookmark"
       "istat-menus"
-      "kekaexternalhelper"
       "keyboard-maestro"
       "keyboardcleantool"
       "launchbar"

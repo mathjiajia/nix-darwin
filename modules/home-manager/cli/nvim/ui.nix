@@ -106,7 +106,11 @@
         };
         input.enabled = true;
         notifier.enabled = true;
-        scroll.enabled = true;
+        scroll.enabled.__raw =
+          #
+          ''
+            not vim.g.neovide
+          '';
         scope.enabled = true;
         # statuscolumn.enabled = true;
         words.enabled = true;
