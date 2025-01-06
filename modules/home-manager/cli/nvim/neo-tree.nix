@@ -7,14 +7,20 @@
         bindToCwd = false;
         followCurrentFile.enabled = true;
         useLibuvFileWatcher = true;
-        filteredItems = {
-          hideDotfiles = false;
-          hideGitignored = true;
-          hideByName = [".git"];
-        };
+      };
+      eventHandlers = {
+        file_moved =
+          # lua
+          ''
+            function(data) Snacks.rename.on_rename_file(data.source, data.destination) end
+          '';
+        file_renamed =
+          # lua
+          ''
+            function(data) Snacks.rename.on_rename_file(data.source, data.destination) end
+          '';
       };
       extraOptions = {
-        open_files_do_not_replace_types = ["qf" "terminal"];
         default_component_configs = {
           icon.provider.__raw =
             # lua
@@ -28,32 +34,15 @@
                 end
 
                 if text then icon.text = text end
-
                 if hl then icon.highlight = hl end
               end
             '';
           kind_icon.provider.__raw =
             # lua
             ''
-              function(icon, node)
-                icon.text, icon.highlight = MiniIcons.get("lsp", node.extra.kind.name)
-              end
+              function(icon, node) icon.text, icon.highlight = MiniIcons.get("lsp", node.extra.kind.name) end
             '';
         };
-        event_handlers.__raw =
-          # lua
-          ''
-            {
-              {
-                event = require("neo-tree.events").FILE_MOVED,
-                handler = function(data) Snacks.rename.on_rename_file(data.source, data.destination) end
-              },
-              {
-                event = require("neo-tree.events").FILE_RENAMED,
-                handler = function(data) Snacks.rename.on_rename_file(data.source, data.destination) end
-              },
-            }
-          '';
       };
     };
 
