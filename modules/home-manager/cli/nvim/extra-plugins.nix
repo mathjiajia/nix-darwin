@@ -5,7 +5,7 @@
       owner = "mathjiajia";
       repo = "mySnippets";
       rev = "master";
-      sha256 = "w6uLM7B4HF0tnal9qw6g1ubmDeVs3oXgcbhFJevDfIA=";
+      sha256 = "6tw3ac56ybQMmJK6sEy4/GHbrDGEtAifEXX2LqKixZs=";
     };
   };
 
@@ -28,21 +28,11 @@
       sha256 = "Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
-
-  blink-ripgrep-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "blink-ripgrep";
-    src = pkgs.fetchFromGitHub {
-      owner = "mikavilpas";
-      repo = "blink-ripgrep.nvim";
-      rev = "master";
-      sha256 = "ShwwdJ2DkwVEbpduKGNmuA+5ziNaUpFlL8LdGbk+ggE=";
-    };
-  };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     dropbar-nvim
-
     blink-ripgrep-nvim
+
     latex-nvim
     mysnippets
     nvim-treesitter-pairs
