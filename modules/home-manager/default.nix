@@ -42,8 +42,6 @@
     # ./gui/sioyek.nix
     ./gui/vscode.nix
     ./gui/zed.nix
-
-    ./ghostty.nix
   ];
 
   # accounts.email.accounts = {
