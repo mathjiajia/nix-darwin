@@ -1,4 +1,5 @@
-{
+{pkgs, ...}: {
+  programs.nixvim.extraPackages = [pkgs.ast-grep];
   programs.nixvim.plugins = {
     aerial = {
       enable = true;
@@ -123,7 +124,14 @@
       };
     };
 
-    grug-far.enable = true;
+    grug-far = {
+      enable = true;
+      settings = {
+        engine = "astgrep";
+        engines.astgrep.path = "${pkgs.ast-grep}/bin/sg";
+        icons.fileIconsProvider = "mini.icons";
+      };
+    };
     flash.enable = true;
 
     nvim-bqf = {

@@ -122,12 +122,12 @@
         input.enabled = true;
         notifier.enabled = true;
         scroll.enabled.__raw =
-          #
+          # lua
           ''
             not vim.g.neovide
           '';
         scope.enabled = true;
-        # statuscolumn.enabled = true;
+        terminal.win.wo.winbar = "";
         words.enabled = true;
         styles = {
           lazygit = {
@@ -261,7 +261,7 @@
 
     {
       mode = ["n" "t"];
-      key = "<C-Bslash>";
+      key = "<C-/>";
       action.__raw =
         # lua
         ''
