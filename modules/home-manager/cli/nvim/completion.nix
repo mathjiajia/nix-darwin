@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  programs.nixvim.extraPackages = [pkgs.nodejs];
+
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
@@ -32,7 +34,7 @@
             auto_show_delay_ms = 200;
             window.border = "rounded";
           };
-          list.selection = "auto_insert";
+          list.selection = "auto_insert"; # remove after 0.10
           menu = {
             border = "rounded";
             draw = {
@@ -126,12 +128,12 @@
 
     copilot-lua = {
       enable = true;
-      panel.enabled = false;
-      suggestion.enabled = false;
+      settings = {
+        panel.enabled = false;
+        suggestion.enabled = false;
+      };
     };
   };
-
-  programs.nixvim.extraPackages = [pkgs.nodejs];
 
   programs.nixvim.keymaps = [
     {

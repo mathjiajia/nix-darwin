@@ -61,7 +61,6 @@
         value.glyph = "";
       };
       pairs = {};
-      statusline = {};
     };
   };
 }

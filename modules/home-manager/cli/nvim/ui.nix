@@ -18,6 +18,16 @@
         dashboard = {
           enabled = true;
           preset = {
+            header = ''
+              ██████████████████████████████████████████████████
+              █████ ████████████████████████████████████████
+              ████   ███  ████████████████  █ ███████████
+              ███     █     █     ██  ████ █ ███
+              ██  █       ██ ██    █        ██
+              ██  ███   █   ██ ██ █   █  █ █  ██
+              ███████ ██    █    ███ █  █████ ██
+              ██████████████████████████████████████████████████
+            '';
             keys = [
               {
                 icon = " ";
@@ -51,6 +61,11 @@
               }
             ];
           };
+          formats.key.__raw =
+            # lua
+            ''
+              function(item) return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } } end
+            '';
           sections = [
             {section = "header";}
             {
@@ -153,40 +168,6 @@
             view = "mini";
           }
         ];
-      };
-    };
-
-    bufferline = {
-      enable = true;
-      settings = {
-        options = {
-          always_show_bufferline = false;
-          diagnostics = "nvim_lsp";
-          highlight.__raw =
-            # lua
-            ''
-              require("catppuccin.groups.integrations.bufferline").get()
-            '';
-          offsets = [
-            {
-              filetype = "aerial";
-              highlight = "Directory";
-              text = "Aerial";
-              text_align = "left";
-            }
-            {
-              filetype = "neo-tree";
-              highlight = "Directory";
-              text = "File Explorer";
-              text_align = "left";
-            }
-          ];
-          get_element_icon.__raw =
-            # lua
-            ''
-              function(opts) return MiniIcons.get(opts.directory and "directory" or "file", opts.path) end
-            '';
-        };
       };
     };
   };

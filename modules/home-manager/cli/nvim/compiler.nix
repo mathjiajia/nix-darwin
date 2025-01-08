@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.nixvim.extraPackages = [pkgs.python312Packages.ipython];
+  programs.nixvim.extraPackages = [pkgs.python3Packages.ipython];
 
   programs.nixvim.plugins = {
     overseer = {
