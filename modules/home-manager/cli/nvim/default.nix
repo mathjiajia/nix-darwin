@@ -49,7 +49,6 @@
     ./lint.nix
     ./lsp.nix
     ./mini.nix
-    ./neo-tree.nix
     ./snacks.nix
     ./treesitter.nix
     ./ui.nix

@@ -16,5 +16,6 @@
     "openra-playtest"
     "orbstack"
     # "steam"
+    "vimr"
   ];
 }

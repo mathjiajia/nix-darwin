@@ -54,13 +54,13 @@ in {
       	orange = utils.get_highlight("Constant").fg,
       	purple = utils.get_highlight("Statement").fg,
       	cyan = utils.get_highlight("Special").fg,
-        diag_warn = utils.get_highlight("DiagnosticWarn").fg,
-        diag_error = utils.get_highlight("DiagnosticError").fg,
-        diag_hint = utils.get_highlight("DiagnosticHint").fg,
-        diag_info = utils.get_highlight("DiagnosticInfo").fg,
-        git_del = utils.get_highlight("diffRemoved").fg,
-        git_add = utils.get_highlight("diffAdded").fg,
-        git_change = utils.get_highlight("diffChanged").fg,
+      	diag_warn = utils.get_highlight("DiagnosticWarn").fg,
+      	diag_error = utils.get_highlight("DiagnosticError").fg,
+      	diag_hint = utils.get_highlight("DiagnosticHint").fg,
+      	diag_info = utils.get_highlight("DiagnosticInfo").fg,
+      	git_del = utils.get_highlight("diffRemoved").fg,
+      	git_add = utils.get_highlight("diffAdded").fg,
+      	git_change = utils.get_highlight("diffChanged").fg,
       }
 
       local VimMode = {

@@ -39,6 +39,7 @@
 
     ./gui/emacs.nix
     # ./gui/ghostty.nix
+    ./gui/neovide.nix
     # ./gui/sioyek.nix
     ./gui/vscode.nix
     ./gui/zed.nix

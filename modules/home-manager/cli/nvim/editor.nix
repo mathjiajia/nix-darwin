@@ -1,5 +1,10 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.nixvim.extraPackages = [pkgs.ast-grep];
+
   programs.nixvim.plugins = {
     aerial = {
       enable = true;
@@ -64,7 +69,7 @@
           file_icons = "mini";
           formatter = "path.dirname_first";
         };
-        grep.RIPGREP_CONFIG_PATH = "~/.config/ripgrep/ripgreprc";
+        grep.RIPGREP_CONFIG_PATH = "${config.xdg.configHome}/ripgrep/ripgreprc";
       };
       luaConfig.post =
         # lua
@@ -132,7 +137,6 @@
         icons.fileIconsProvider = "mini.icons";
       };
     };
-    flash.enable = true;
 
     nvim-bqf = {
       enable = true;
@@ -142,6 +146,42 @@
       };
     };
 
+    oil = {
+      enable = true;
+      package = pkgs.vimPlugins.oil-nvim.overrideAttrs {
+        postInstall =
+          # sh
+          ''
+            mv $out/doc/recipes.md $out/doc/oil-nvim_recipes.md
+            rm $out/doc/api.md
+          '';
+      };
+      settings = {
+        delete_to_trash = true;
+        float = {
+          max_height = 45;
+          max_width = 80;
+          preview_split = "below";
+        };
+        preview = {
+          max_height = 45;
+          max_width = 80;
+        };
+        keymaps = {
+          "<C-c>" = false;
+          "<C-l>" = false;
+          "<C-h>" = false;
+          "<C-s>" = false;
+          "<C-r>" = "actions.refresh";
+          "<C-x>" = "actions.select_split";
+          "<C-v>" = "actions.select_vsplit";
+          "q" = "actions.close";
+          "y." = "actions.copy_entry_path";
+        };
+      };
+    };
+
+    flash.enable = true;
     nvim-surround.enable = true;
   };
 
@@ -149,8 +189,14 @@
     {
       mode = "v";
       key = "<leader>sw";
-      action = "FzfLua grep_visual";
+      action = "<Cmd>FzfLua grep_visual<CR>";
       options.desc = "Search Visual Selection";
+    }
+
+    {
+      key = "-";
+      action = "<Cmd>Oil --float<CR>";
+      options.desc = "Open parent directory";
     }
 
     {

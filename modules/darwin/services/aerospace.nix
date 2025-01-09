@@ -222,6 +222,10 @@
           run = "layout floating";
         }
         {
+          "if".app-id = "com.nssurge.surge-dashboard";
+          run = "layout floating";
+        }
+        {
           "if".app-id = "com.openai.chat";
           run = "layout floating";
         }

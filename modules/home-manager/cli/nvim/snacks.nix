@@ -91,7 +91,7 @@
             enabled.__raw =
               # lua
               ''
-                Snacks.git.get_root() ~= nil
+                function() return Snacks.git.get_root() ~= nil end
               '';
             cmd = "git status --short --branch --renames";
             height = 5;

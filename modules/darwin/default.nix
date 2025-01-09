@@ -52,6 +52,7 @@
     sarasa-gothic
     smiley-sans
 
+    nerd-fonts.iosevka-term
     nerd-fonts.symbols-only
   ];
 }
