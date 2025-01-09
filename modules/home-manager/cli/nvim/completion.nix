@@ -26,7 +26,6 @@
           "<C-j>" = ["snippet_backward" "fallback"];
           "<C-l>" = ["snippet_forward" "fallback"];
         };
-        fuzzy.prebuilt_binaries.download = false;
         signature.window.border = "rounded";
         completion = {
           documentation = {
@@ -72,6 +71,7 @@
             };
           };
         };
+        # snippets.preset = "luasnip"; # change in 0.10
         snippets = {
           expand.__raw =
             # lua
@@ -95,7 +95,7 @@
             '';
         };
         sources = {
-          default = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"];
+          default = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"]; # change to "snippets"
           providers = {
             luasnip.opts.show_autosnippets = false;
             copilot = {

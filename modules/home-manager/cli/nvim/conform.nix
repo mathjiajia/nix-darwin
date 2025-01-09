@@ -7,7 +7,9 @@
       prettierd
       shfmt
       stylua
+      swift-format
       tex-fmt
+      # typstyle
     ];
 
     plugins.conform-nvim = {
@@ -53,6 +55,7 @@
           sh = ["shfmt"];
           swift = ["swift_format"];
           tex = ["tex-fmt"];
+          # typst = ["typstyle"];
         };
         format_on_save = {
           lsp_format = "fallback";

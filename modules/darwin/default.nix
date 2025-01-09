@@ -10,7 +10,6 @@
   environment.systemPackages = with pkgs; [
     # CLI
     hugo
-    swift-format
     tree
 
     # PYTHON

@@ -35,25 +35,24 @@
       "Public/"
       "Zotero/"
 
+      ".aux/"
       ".cpan/"
-      ".cargo/"
       ".docker/"
-      ".gem/"
+      ".jupyter/"
+      ".lldb/"
       ".nix-defexpr/"
+      ".nuget/"
       ".ollama/"
       ".orbstack/"
       ".prettierd/"
-      ".repro/"
-      ".swiftpm"
-      ".zim"
+      ".swiftpm/"
 
-      "# website"
       "MySite/public/"
       "MySite/static/"
       "MySite/resources/"
       "MySite/themes/"
 
-      "raycast/extensions/"
+      ".config/raycast/extensions/"
     ];
   };
 }

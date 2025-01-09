@@ -30,7 +30,6 @@
   };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
-    dropbar-nvim
     blink-ripgrep-nvim
     heirline-nvim
 
@@ -42,33 +41,6 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      require("dropbar").setup({
-      	icons = {
-      		kinds = {
-      			file_icon = function(path)
-      				local file_icon = "󰈔 "
-      				local file_icon_hl = "DropBarIconKindFile"
-
-      				local mini_icon, mini_icon_hl = MiniIcons.get("file", vim.fs.basename(path))
-
-      				if not mini_icon then
-      					local buf = vim.iter(vim.api.nvim_list_bufs()):find(function(buf)
-      						return vim.api.nvim_buf_get_name(buf) == path
-      					end)
-      					if buf then
-      						local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
-      						mini_icon, mini_icon_hl = MiniIcons.get("filetype", filetype)
-      					end
-      				end
-
-      				file_icon = mini_icon and mini_icon .. " " or file_icon
-      				file_icon_hl = mini_icon_hl
-      				return file_icon, file_icon_hl
-      			end,
-      		},
-      	},
-      })
-
       local get_hl = require("aerial.highlight").get_highlight
       local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")
@@ -599,88 +571,10 @@ in {
 
       local TabLine = { TabLineOffset, BufferLine, TabPages }
 
-      -- local Aerial = {
-      -- 	static = {
-      -- 		enc = function(line, col, winnr)
-      -- 			return bit.bor(bit.lshift(line, 16), bit.lshift(col, 6), winnr)
-      -- 		end,
-      -- 		dec = function(c)
-      -- 			local line = bit.rshift(c, 16)
-      -- 			local col = bit.band(bit.rshift(c, 6), 1023)
-      -- 			local winnr = bit.band(c, 63)
-      -- 			return line, col, winnr
-      -- 		end,
-      -- 		pad_string = function(str, padding)
-      -- 			padding = padding or {}
-      -- 			return str
-      -- 					and str ~= ""
-      -- 					and string.rep(" ", padding.left or 0) .. str .. string.rep(" ", padding.right or 0)
-      -- 				or ""
-      -- 		end,
-      -- 		separator = " ",
-      -- 	},
-      -- 	init = function(self)
-      -- 		local data = require("aerial").get_location(true) or {}
-      -- 		local children = {}
-      -- 		local count = #data
-      --
-      -- 		for i, d in ipairs(data) do
-      -- 			local child = {
-      -- 				-- icon
-      -- 				{
-      -- 					provider = string.format("%s ", d.icon),
-      -- 					hl = string.format("Aerial%sIcon", d.kind),
-      -- 				},
-      -- 				-- text
-      -- 				{
-      -- 					provider = string.gsub(d.name, "%%", "%%%%"):gsub("%s*->%s*", ""),
-      -- 					hl = { italic = true, bold = true },
-      -- 					on_click = {
-      -- 						minwid = self.enc(d.lnum, d.col, self.winnr),
-      -- 						callback = function(_, minwid)
-      -- 							local line, col, winnr = self.dec(minwid)
-      -- 							vim.api.nvim_win_set_cursor(vim.fn.win_getid(winnr), { line, col })
-      -- 						end,
-      -- 						name = "heirline_aerial",
-      -- 					},
-      -- 				},
-      -- 				-- sep
-      -- 				{
-      -- 					provider = function()
-      -- 						return i ~= count and self.separator or ""
-      -- 					end,
-      -- 					hl = { fg = colors.purple },
-      -- 				},
-      -- 			}
-      -- 			table.insert(children, child)
-      -- 		end
-      -- 		self.child = self:new(children, 1)
-      -- 	end,
-      -- 	provider = function(self)
-      -- 		local cwd = vim.fn.getcwd(0)
-      -- 		cwd = vim.fn.fnamemodify(cwd, ":~")
-      -- 		local trail = cwd:sub(-1) == "/" and "" or "/"
-      --
-      -- 		return cwd .. trail .. self.child:eval()
-      -- 	end,
-      -- 	update = { "CursorMoved", "CursorMovedI" },
-      -- }
-
-      -- local Winbar = { Aerial }
-
       require("heirline").setup({
       	statusline = StatusLine,
       	tabline = TabLine,
-      	-- winbar = Winbar,
-      	opts = {
-      		colors = colors,
-      		-- disable_winbar_cb = function(args)
-      		-- 	return conditions.buffer_matches({
-      		-- 		buftype = { "nofile", "prompt", "help", "quickfix", "terminal" },
-      		-- 		filetype = { "^git.*", "fugitive", "snacks_dashboard" },
-      		-- 	}, args.buf)
-      		-- end,
-      	},
+      	opts = { colors = colors },
       })
 
       vim.api.nvim_create_autocmd({ "FileType" }, {

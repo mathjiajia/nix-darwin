@@ -87,11 +87,12 @@
           ''
             function(colors)
               return {
-                BlinkCmpLabelMatch = { fg = colors.lavender },
-                BlinkCmpKind = { fg = colors.blue },
                 BlinkCmpMenu = { fg = colors.text },
                 BlinkCmpMenuBorder = { fg = colors.blue },
+                BlinkCmpLabelMatch = { fg = colors.lavender },
+                BlinkCmpKind = { fg = colors.blue },
                 BlinkCmpDocBorder = { fg = colors.blue },
+                BlinkCmpSignatureHelpBorder = { fg = colors.blue },
                 BlinkCmpSignatureHelpActiveParameter = { fg = colors.mauve },
               }
             end
