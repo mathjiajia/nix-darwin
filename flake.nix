@@ -36,15 +36,14 @@
     commonModules = [
       ./configuration.nix
       ./modules/darwin
+
       home-manager.darwinModules.home-manager
       {
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
           backupFileExtension = "backup";
-          extraSpecialArgs = {
-            inherit (inputs) nixpkgs neovim-nightly-overlay;
-          };
+          extraSpecialArgs = {inherit inputs;};
           users.${username}.imports = [
             nixvim.homeManagerModules.nixvim
             ./modules/home-manager
@@ -64,7 +63,6 @@
       }
     ];
   in {
-    # macOS configurations.
     darwinConfigurations = {
       "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
         inherit system;
@@ -76,8 +74,5 @@
         modules = commonModules;
       };
     };
-
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."Jias-MacBook-Pro".pkgs;
   };
 }
