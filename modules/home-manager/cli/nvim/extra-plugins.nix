@@ -5,8 +5,13 @@
       owner = "mathjiajia";
       repo = "mySnippets";
       rev = "master";
-      sha256 = "6tw3ac56ybQMmJK6sEy4/GHbrDGEtAifEXX2LqKixZs=";
+      sha256 = "HP9h/LdLoEjodD2SGXqcLwNsiiEJuKlKzhwTvk8DrDI=";
     };
+    nvimSkipModule = [
+      "mySnippets.position"
+      "mySnippets.context"
+      "mySnippets.latex"
+    ];
   };
 
   latex-nvim = pkgs.vimUtils.buildVimPlugin {

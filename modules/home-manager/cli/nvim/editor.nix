@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.nixvim.extraPackages = [pkgs.ast-grep];
 
   programs.nixvim.plugins = {
@@ -14,68 +10,6 @@
         filter_kind = false;
         show_guides = true;
       };
-    };
-
-    fzf-lua = {
-      enable = true;
-      keymaps = {
-        "<leader><space>" = {
-          action = "files";
-          options.desc = "Find Files (current)";
-        };
-        "<leader>fb" = {
-          action = "buffers";
-          options.desc = "Buffers";
-        };
-        "<leader>fc" = {
-          action = "files";
-          options.desc = "Find Config File";
-        };
-        "<leader>ff" = {
-          action = "files";
-          options.desc = "Find Files (cwd)";
-        };
-        "<leader>fg" = {
-          action = "git_files";
-          options.desc = "Find Git Files";
-        };
-        "<leader>fl" = {
-          action = "lsp_finder";
-          options.desc = "Lsp Finder";
-        };
-        "<leader>fo" = {
-          action = "oldfiles";
-          options.desc = "Old Files";
-        };
-        "<leader>sb" = {
-          action = "blines";
-          options.desc = "Search Current Buffer Lines";
-        };
-        "<leader>sg" = {
-          action = "live_grep";
-          options.desc = "Live Grep";
-        };
-        "<leader>sh" = {
-          action = "helptags";
-          options.desc = "Help Tags";
-        };
-        "<leader>sw" = {
-          action = "grep_cword";
-          options.desc = "Search Word Under Cursor";
-        };
-      };
-      settings = {
-        defaults = {
-          file_icons = "mini";
-          formatter = "path.dirname_first";
-        };
-        grep.RIPGREP_CONFIG_PATH = "${config.xdg.configHome}/ripgrep/ripgreprc";
-      };
-      luaConfig.post =
-        # lua
-        ''
-          require("fzf-lua").register_ui_select()
-        '';
     };
 
     gitsigns = {
@@ -135,6 +69,7 @@
         engine = "astgrep";
         engines.astgrep.path = "${pkgs.ast-grep}/bin/sg";
         icons.fileIconsProvider = "mini.icons";
+        keymaps.close.n = "q";
       };
     };
 
@@ -153,7 +88,7 @@
           # sh
           ''
             mv $out/doc/recipes.md $out/doc/oil-nvim_recipes.md
-            rm $out/doc/api.md
+            mv $out/doc/api.md $out/doc/oil-nvim_api.md
           '';
       };
       settings = {
@@ -187,13 +122,6 @@
 
   programs.nixvim.keymaps = [
     {
-      mode = "v";
-      key = "<leader>sw";
-      action = "<Cmd>FzfLua grep_visual<CR>";
-      options.desc = "Search Visual Selection";
-    }
-
-    {
       key = "-";
       action = "<Cmd>Oil --float<CR>";
       options.desc = "Open parent directory";
@@ -223,51 +151,31 @@
     {
       mode = ["n" "x" "o"];
       key = "s";
-      action.__raw =
-        # lua
-        ''
-          function() require("flash").jump() end
-        '';
+      action.__raw = ''function() require("flash").jump() end'';
       options.desc = "Flash";
     }
     {
       mode = ["n" "x" "o"];
       key = "S";
-      action.__raw =
-        # lua
-        ''
-          function() require("flash").treesitter() end
-        '';
+      action.__raw = ''function() require("flash").treesitter() end'';
       options.desc = "Flash Treesitter";
     }
     {
       mode = "o";
       key = "r";
-      action.__raw =
-        # lua
-        ''
-          function() require("flash").remote() end
-        '';
+      action.__raw = ''function() require("flash").remote() end'';
       options.desc = "Remote Flash";
     }
     {
       mode = ["x" "o"];
       key = "R";
-      action.__raw =
-        # lua
-        ''
-          function() require("flash").treesitter_search() end
-        '';
+      action.__raw = ''function() require("flash").treesitter_search() end'';
       options.desc = "Treesitter Search";
     }
     {
       mode = "c";
       key = "<C-s>";
-      action.__raw =
-        # lua
-        ''
-          function() require("flash").toggle() end
-        '';
+      action.__raw = ''function() require("flash").toggle() end'';
       options.desc = "Toggle Flash Search";
     }
   ];

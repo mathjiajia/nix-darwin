@@ -7,7 +7,8 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager";
+    # home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:damidoug/home-manager/aerospace";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
@@ -19,7 +20,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     nix-darwin,
@@ -29,7 +30,7 @@
     nixvim,
     neovim-nightly-overlay,
     ...
-  } @ inputs: let
+  }: let
     system = "aarch64-darwin";
     username = "jia";
 

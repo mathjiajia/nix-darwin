@@ -7,7 +7,6 @@
       prettierd
       shfmt
       stylua
-      swift-format
       tex-fmt
       # typstyle
     ];
@@ -31,10 +30,8 @@
             "--remove-braces"
           ];
           tex-fmt.prepend_args = [
-            "--wraplen"
-            "120"
-            "--tabsize"
-            "1"
+            "--wraplen=120"
+            "--tabsize=1"
             "--usetabs"
           ];
         };
@@ -53,7 +50,6 @@
           nix = ["alejandra"];
           python = ["black"];
           sh = ["shfmt"];
-          swift = ["swift_format"];
           tex = ["tex-fmt"];
           # typst = ["typstyle"];
         };
@@ -68,13 +64,7 @@
       {
         mode = ["n" "v"];
         key = "<leader>cF";
-        action.__raw =
-          # lua
-          ''
-            function()
-            	require("conform").format({ formatters = { "injected" }, timeout_ms = 2000 })
-            end
-          '';
+        action.__raw = ''function() require("conform").format({ formatters = { "injected" }, timeout_ms = 2000 }) end'';
         options.desc = "Format Injected Langs";
       }
     ];

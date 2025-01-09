@@ -37,6 +37,7 @@
     ./cli/starship.nix
     ./cli/texlive.nix
 
+    ./gui/aerospace.nix
     ./gui/emacs.nix
     # ./gui/ghostty.nix
     ./gui/neovide.nix
@@ -44,30 +45,6 @@
     ./gui/vscode.nix
     ./gui/zed.nix
   ];
-
-  # accounts.email.accounts = {
-  #   gmail = {
-  #     address = "mathjiajia@gmail.com";
-  #     primary = true;
-  #   };
-  #   nus = {
-  #     address = "jia_jia@u.nus.edu";
-  #   };
-  #   thu = {
-  #     address = "mathjiajia@tsinghua.edu.cn";
-  #     imap = {
-  #       host = "mail.tsinghua.edu.cn";
-  #       port = 143;
-  #       tls.useStartTls = true;
-  #     };
-  #
-  #     smtp = {
-  #       host = "mail.tsinghua.edu.cn";
-  #       port = 587;
-  #       tls.useStartTls = true;
-  #     };
-  #   };
-  # };
 
   xdg.enable = true;
 }

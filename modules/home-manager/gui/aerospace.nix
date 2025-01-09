@@ -1,7 +1,8 @@
 {
-  services.aerospace = {
+  programs.aerospace = {
     enable = true;
-    settings = {
+    userSettings = {
+      start-at-login = true;
       gaps = {
         inner.horizontal = 8;
         inner.vertical = 8;
@@ -10,7 +11,6 @@
         outer.top = 8;
         outer.right = 8;
       };
-
       mode.main.binding = {
         alt-slash = "layout tiles horizontal vertical";
         alt-comma = "layout accordion horizontal vertical";
@@ -55,7 +55,6 @@
 
         alt-shift-semicolon = "mode service";
       };
-
       mode.service.binding = {
         esc = ["reload-config" "mode main"];
         r = ["flatten-workspace-tree" "mode main"];
@@ -67,7 +66,6 @@
         alt-shift-k = ["join-with up" "mode main"];
         alt-shift-l = ["join-with right" "mode main"];
       };
-
       on-window-detected = [
         {
           "if".app-id = "com.apple.Safari";
@@ -170,6 +168,7 @@
         {
           "if".app-id = "com.mitchellh.ghostty";
           run = "move-node-to-workspace T";
+          # run = "layout tiling";
         }
         {
           "if" = {

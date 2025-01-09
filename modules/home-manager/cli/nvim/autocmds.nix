@@ -11,23 +11,13 @@
       {
         event = ["FocusGained" "TermClose" "TermLeave"];
         group = "CheckTime";
-        callback.__raw =
-          # lua
-          ''
-            function()
-            	if vim.o.buftype ~= "nofile" then vim.cmd.checktime() end
-            end
-          '';
+        callback.__raw = ''function() if vim.o.buftype ~= "nofile" then vim.cmd.checktime() end end'';
       }
       {
         event = "TextYankPost";
         desc = "Highlight the Yanked Text";
         group = "HighlightYank";
-        callback.__raw =
-          # lua
-          ''
-            function() vim.highlight.on_yank() end
-          '';
+        callback.__raw = ''function() vim.highlight.on_yank() end'';
       }
       {
         event = "BufReadPost";

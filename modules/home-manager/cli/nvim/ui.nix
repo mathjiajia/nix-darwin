@@ -2,7 +2,7 @@
   programs.nixvim.plugins = {
     markview = {
       enable = true;
-      settings.filetypes = ["markdown" "rmd" "codecompanion"];
+      settings.filetypes = ["markdown" "quarto" "rmd" "codecompanion"];
     };
     rainbow-delimiters.enable = true;
     dropbar = {
@@ -30,6 +30,11 @@
             file_icon_hl = mini_icon_hl
             return file_icon, file_icon_hl
           end
+        '';
+      luaConfig.post =
+        # lua
+        ''
+          vim.ui.select = require("dropbar.utils.menu").select
         '';
     };
     noice = {
@@ -63,22 +68,14 @@
     {
       mode = ["n" "i" "s"];
       key = "<C-f>";
-      action.__raw =
-        # lua
-        ''
-          function() if not require("noice.lsp").scroll(4) then return "<C-f>" end end
-        '';
+      action.__raw = ''function() if not require("noice.lsp").scroll(4) then return "<C-f>" end end'';
       options.silent = true;
       options.expr = true;
     }
     {
       mode = ["n" "i" "s"];
       key = "<C-b>";
-      action.__raw =
-        # lua
-        ''
-          function() if not require("noice.lsp").scroll(-4) then return "<C-b>" end end
-        '';
+      action.__raw = ''function() if not require("noice.lsp").scroll(-4) then return "<C-b>" end end'';
       options.silent = true;
       options.expr = true;
     }

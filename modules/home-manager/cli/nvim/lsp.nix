@@ -1,12 +1,6 @@
 {pkgs, ...}: {
   programs.nixvim.plugins.lsp = {
     enable = true;
-    capabilities =
-      # lua
-      ''
-        capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-      '';
-    # remove in blink-cmp 0.10
     inlayHints = true;
     keymaps.lspBuf = {
       gD = "declaration";

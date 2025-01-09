@@ -6,36 +6,24 @@
         prefix = "●";
       };
       severity_sort = true;
-      signs.text.__raw =
-        # lua
-        ''
-          {
-          	[vim.diagnostic.severity.ERROR] = " ",
-          	[vim.diagnostic.severity.WARN] = " ",
-          	[vim.diagnostic.severity.HINT] = " ",
-          	[vim.diagnostic.severity.INFO] = " ",
-          }
-        '';
+      signs.text = {
+        "__rawKey__vim.diagnostic.severity.ERROR" = "";
+        "__rawKey__vim.diagnostic.severity.WARN" = "";
+        "__rawKey__vim.diagnostic.severity.HINT" = "";
+        "__rawKey__vim.diagnostic.severity.INFO" = "";
+      };
     };
 
     keymaps = [
       {
         key = "<leader>qq";
-        action.__raw =
-          # lua
-          ''
-            function() vim.diagnostic.setqflist() end
-          '';
+        action.__raw = ''function() vim.diagnostic.setqflist() end'';
         options.desc = "Set Quickfix";
       }
 
       {
         key = "<leader>ql";
-        action.__raw =
-          # lua
-          ''
-            function() vim.diagnostic.setloclist() end
-          '';
+        action.__raw = ''function() vim.diagnostic.setloclist() end'';
         options.desc = "Set Loclist";
       }
     ];

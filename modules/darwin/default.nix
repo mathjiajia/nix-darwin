@@ -3,8 +3,6 @@
     ./homebrew/homebrew.nix
     ./mas/mas.nix
     # ./system.nix
-
-    ./services/aerospace.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -25,6 +23,7 @@
 
     # GUI
     # follow # x86_64-linux
+    # github-copilot-cli
     # github-desktop # linux
     ice-bar
     iina

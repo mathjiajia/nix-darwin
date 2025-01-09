@@ -23,85 +23,82 @@
       settings = {
         keymap = {
           preset = "default";
+          "<Tab>" = ["fallback"];
+          "<S-Tab>" = ["fallback"];
           "<C-j>" = ["snippet_backward" "fallback"];
           "<C-l>" = ["snippet_forward" "fallback"];
         };
         signature.window.border = "rounded";
+        appearance = {
+          nerd_font_variant = "normal";
+          kind_icons = {
+            Copilot = "";
+
+            Text = "";
+            Method = "";
+            Function = "";
+            Constructor = "";
+
+            Field = "";
+            Variable = "";
+            Property = "";
+
+            Class = "";
+            Interface = "";
+            Struct = "";
+            Module = "";
+
+            Unit = "";
+            Value = "";
+            Enum = "";
+            Enummember = "";
+
+            Keyword = "";
+            Constant = "";
+
+            Snippet = "";
+            Color = "";
+            File = "";
+            Reference = "";
+            Folder = "";
+
+            Event = "";
+            Operator = "";
+            Typeparameter = "";
+          };
+        };
         completion = {
           documentation = {
             auto_show = true;
             auto_show_delay_ms = 200;
             window.border = "rounded";
           };
-          list.selection = "auto_insert"; # remove after 0.10
           menu = {
             border = "rounded";
             draw = {
-              components = {
-                kind_icon = {
-                  ellipsis = false;
-                  text.__raw =
-                    # lua
-                    ''
-                      function(ctx)
-                        local kind_icon, _, _ = MiniIcons.get("lsp", ctx.kind)
-                        return kind_icon .. " "
-                      end
-                    '';
-                  highlight.__raw =
-                    # lua
-                    ''
-                      function(ctx)
-                        local _, hl, _ = MiniIcons.get("lsp", ctx.kind)
-                        return hl
-                      end
-                    '';
-                };
-              };
-              columns.__raw =
-                # lua
-                ''
-                  {
-                  	{ "label", "label_description", gap = 1 },
-                  	{ "kind_icon", "kind" },
-                  	{ "source_name" },
-                  }
-                '';
+              columns = [
+                {
+                  __unkeyed-1 = "label";
+                  __unkeyed-2 = "label_description";
+                  gap = 1;
+                }
+                ["kind_icon" "kind"]
+                ["source_name"]
+              ];
               treesitter = ["lsp"];
             };
           };
         };
-        # snippets.preset = "luasnip"; # change in 0.10
-        snippets = {
-          expand.__raw =
-            # lua
-            ''
-              function(snippet) require("luasnip").lsp_expand(snippet) end
-            '';
-          active.__raw =
-            # lua
-            ''
-              function(filter)
-                if filter and filter.direction then
-                  return require("luasnip").jumpable(filter.direction)
-                end
-                return require("luasnip").in_snippet()
-              end
-            '';
-          jump.__raw =
-            # lua
-            ''
-              function(direction) require("luasnip").jump(direction) end
-            '';
-        };
+        snippets.preset = "luasnip";
         sources = {
-          default = ["lsp" "path" "luasnip" "buffer" "ripgrep" "copilot"]; # change to "snippets"
+          default = ["lsp" "path" "snippets" "buffer" "ripgrep" "copilot"];
           providers = {
-            luasnip.opts.show_autosnippets = false;
+            snippets.opts.show_autosnippets = false;
             copilot = {
               async = true;
               module = "blink-cmp-copilot";
               name = "copilot";
+              score_offset = -5;
               transform_items.__raw =
                 # lua
                 ''
@@ -139,25 +136,13 @@
     {
       mode = "i";
       key = "<C-k>";
-      action.__raw =
-        # lua
-        ''
-          function()
-          	if require("luasnip").expandable() then require("luasnip").expand() end
-          end
-        '';
+      action.__raw = ''function() if require("luasnip").expandable() then require("luasnip").expand() end end'';
       options.desc = "LuaSnip Expand";
     }
     {
       mode = ["i" "s"];
       key = "<C-;>";
-      action.__raw =
-        # lua
-        ''
-          function()
-          	if require("luasnip").choice_active() then require("luasnip").change_choice(1) end
-          end
-        '';
+      action.__raw = ''function() if require("luasnip").choice_active() then require("luasnip").change_choice(1) end end'';
       options.desc = "LuaSnip Next Choice";
     }
   ];

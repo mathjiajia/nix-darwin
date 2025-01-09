@@ -61,11 +61,7 @@
       }
       {
         key = "<leader>dB";
-        action.__raw =
-          # lua
-          ''
-            function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end
-          '';
+        action.__raw = ''function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end'';
         options.desc = "Breakpoint Condition";
       }
       {
@@ -75,11 +71,7 @@
       }
       {
         key = "<leader>dg";
-        action.__raw =
-          # lua
-          ''
-            function() require("dap").goto_() end
-          '';
+        action.__raw = ''function() require("dap").goto_() end'';
         options.desc = "Go to Line (No Execute)";
       }
       {
@@ -89,11 +81,7 @@
       }
       {
         key = "<leader>dl";
-        action.__raw =
-          # lua
-          ''
-            function() require("dap").run_last() end
-          '';
+        action.__raw = ''function() require("dap").run_last() end'';
         options.desc = "Run Last";
       }
       {
@@ -114,30 +102,18 @@
       {
         mode = ["n" "v"];
         key = "<leader>dw";
-        action.__raw =
-          # lua
-          ''
-            function() require("dap.ui.widgets").hover() end
-          '';
+        action.__raw = ''function() require("dap.ui.widgets").hover() end'';
         options.desc = "Widgets";
       }
       {
         key = "<leader>du";
-        action.__raw =
-          # lua
-          ''
-            function() require("dapui").toggle() end
-          '';
+        action.__raw = ''function() require("dapui").toggle() end'';
         options.desc = "Dap UI";
       }
       {
         mode = ["n" "v"];
         key = "<leader>de";
-        action.__raw =
-          # lua
-          ''
-            function() require("dapui").eval() end
-          '';
+        action.__raw = ''function() require("dapui").eval() end'';
         options.desc = "Eval";
       }
     ];

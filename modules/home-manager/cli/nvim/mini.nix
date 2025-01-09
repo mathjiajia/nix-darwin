@@ -2,11 +2,7 @@
   programs.nixvim.plugins.mini = {
     enable = true;
     package = pkgs.vimPlugins.mini-nvim.overrideAttrs {
-      postInstall =
-        # sh
-        ''
-          rm -rf $out/doc/mini-cursorword.txt
-        '';
+      postInstall = ''rm -rf $out/doc/mini-cursorword.txt'';
     };
     mockDevIcons = true;
     modules = {
@@ -44,18 +40,10 @@
               sign_hl_group = "DiagnosticHint";
             };
           };
-          hex_color.__raw =
-            # lua
-            ''
-              require("mini.hipatterns").gen_highlighter.hex_color()
-            '';
+          hex_color.__raw = ''require("mini.hipatterns").gen_highlighter.hex_color()'';
         };
       };
       icons.lsp = {
-        copilot = {
-          glyph = "";
-          hl = "MiniIconsCyan";
-        };
         "function".glyph = "";
         object.glyph = "";
         value.glyph = "";

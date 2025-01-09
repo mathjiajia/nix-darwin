@@ -1,13 +1,26 @@
 {pkgs, ...}: {
   programs.nixvim.plugins.snacks = {
     enable = true;
-    package = pkgs.vimPlugins.snacks-nvim.overrideAttrs {
+    package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (old: {
       postInstall =
         # sh
         ''
-          rm -rf $out/queries
+          mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/
         '';
-    };
+      src = pkgs.fetchFromGitHub {
+        owner = "folke";
+        repo = "snacks.nvim";
+        rev = "picker";
+        sha256 = "K6l+YvytETi48nR5PGHjlFux96DdSdNZjFIvqkFxe/U=";
+      };
+      nvimSkipModule =
+        old.nvimSkipModule
+        ++ [
+          "snacks.picker.actions"
+          "snacks.picker.config.sources"
+          "snacks.picker.config.highlights"
+        ];
+    });
     settings = {
       dashboard = {
         enabled = true;
@@ -27,7 +40,7 @@
               icon = " ";
               key = "f";
               desc = "Find File";
-              action = ":FzfLua files";
+              action = ":lua Snacks.picker.files()";
             }
             {
               icon = " ";
@@ -39,13 +52,13 @@
               icon = " ";
               key = "g";
               desc = "Find Text";
-              action = ":FzfLua live_grep";
+              action = ":lua Snacks.picker.grep()";
             }
             {
               icon = " ";
               key = "r";
               desc = "Recent Files";
-              action = ":FzfLua oldfiles";
+              action = ":lua Snacks.picker.recent()";
             }
             {
               icon = " ";
@@ -88,11 +101,7 @@
             icon = " ";
             title = "Git Status";
             section = "terminal";
-            enabled.__raw =
-              # lua
-              ''
-                function() return Snacks.git.get_root() ~= nil end
-              '';
+            enabled.__raw = ''function() return Snacks.git.get_root() ~= nil end'';
             cmd = "git status --short --branch --renames";
             height = 5;
             padding = 1;
@@ -115,11 +124,8 @@
       };
       input.enabled = true;
       notifier.enabled = true;
-      scroll.enabled.__raw =
-        # lua
-        ''
-          not vim.g.neovide
-        '';
+      picker.ui_select = true;
+      scroll.enabled.__raw = ''not vim.g.neovide'';
       scope.enabled = true;
       terminal.win.wo.winbar = "";
       words.enabled = true;
@@ -143,99 +149,171 @@
   programs.nixvim.keymaps = [
     {
       key = "<leader>.";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.scratch() end
-        '';
+      action.__raw = ''function() Snacks.scratch() end'';
       options.desc = "Toggle Scratch Buffer";
     }
     {
       key = "<leader>S";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.scratch.select() end
-        '';
+      action.__raw = ''function() Snacks.scratch.select() end'';
       options.desc = "Select Scratch Buffer";
     }
 
     {
       key = "<leader>n";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.notifier.show_history() end
-        '';
+      action.__raw = ''function() Snacks.notifier.show_history() end'';
       options.desc = "Notification History";
     }
     {
       key = "<leader>un";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.notifier.hide() end
-        '';
+      action.__raw = ''function() Snacks.notifier.hide() end'';
       options.desc = "Dismiss All Notifications";
     }
 
     {
       key = "<leader>bd";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.bufdelete() end
-        '';
+      action.__raw = ''function() Snacks.bufdelete() end'';
       options.desc = "Delete Buffer";
     }
     {
       key = "<leader>bD";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.bufdelete.other() end
-        '';
+      action.__raw = ''function() Snacks.bufdelete.other() end'';
       options.desc = "Delete Other Buffers";
     }
 
     {
       key = "<leader>gf";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.lazygit.log_file() end
-        '';
+      action.__raw = ''function() Snacks.lazygit.log_file() end'';
       options.desc = "Lazygit Current File History";
     }
     {
       key = "<leader>gg";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.lazygit() end
-        '';
+      action.__raw = ''function() Snacks.lazygit() end'';
       options.desc = "Lazygit";
     }
 
     {
       key = "<leader>cR";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.rename.rename_file() end
-        '';
+      action.__raw = ''function() Snacks.rename.rename_file() end'';
       options.desc = "Rename File";
     }
 
     {
       mode = ["n" "t"];
       key = "<C-/>";
-      action.__raw =
-        # lua
-        ''
-          function() Snacks.terminal() end
-        '';
+      action.__raw = ''function() Snacks.terminal() end'';
       options.desc = "Toggle Terminal";
+    }
+
+    {
+      key = "<leader><space>";
+      action.__raw = ''function() Snacks.picker.files({ cwd = vim.fs.root(0, ".git") }) end'';
+      options.desc = "Find Files";
+    }
+    {
+      key = "<leader>fb";
+      action.__raw = ''function() Snacks.picker.buffers() end'';
+      options.desc = "Buffers";
+    }
+    {
+      key = "<leader>ff";
+      action.__raw = ''function() Snacks.picker.files() end'';
+      options.desc = "Find Files";
+    }
+    {
+      key = "<leader>fg";
+      action.__raw = ''function() Snacks.picker.git_files() end'';
+      options.desc = "Find Files (git-files)";
+    }
+    {
+      key = "<leader>fp";
+      action.__raw = ''function() Snacks.picker.pick("pickers", { preset = "nopreview" }) end'';
+      options.desc = "Snacks Picker";
+    }
+    {
+      key = "<leader>fr";
+      action.__raw = ''function() Snacks.picker.recent() end'';
+      options.desc = "Recent";
+    }
+    {
+      key = ''<leader>s"'';
+      action.__raw = ''function() Snacks.picker.registers() end'';
+      options.desc = "Registers";
+    }
+    {
+      key = "<leader>sb";
+      action.__raw = ''function() Snacks.picker.lines() end'';
+      options.desc = "Buffer Lines";
+    }
+    {
+      key = "<leader>sc";
+      action.__raw = ''function() Snacks.picker.command_history() end'';
+      options.desc = "Command History";
+    }
+    {
+      key = "<leader>sC";
+      action.__raw = ''function() Snacks.picker.commands() end'';
+      options.desc = "Commands";
+    }
+    {
+      key = "<leader>sd";
+      action.__raw = ''function() Snacks.picker.diagnostics() end'';
+      options.desc = "Diagnostics";
+    }
+    {
+      key = "<leader>sg";
+      action.__raw = ''function() Snacks.picker.grep() end'';
+      options.desc = "Grep";
+    }
+    {
+      key = "<leader>sh";
+      action.__raw = ''function() Snacks.picker.help() end'';
+      options.desc = "Help Pages";
+    }
+    {
+      key = "<leader>sj";
+      action.__raw = ''function() Snacks.picker.jumps() end'';
+      options.desc = "Jumps";
+    }
+    {
+      key = "<leader>sl";
+      action.__raw = ''function() Snacks.picker.loclist() end'';
+      options.desc = "Location List";
+    }
+    {
+      key = "<leader>sM";
+      action.__raw = ''function() Snacks.picker.man() end'';
+      options.desc = "Man Pages";
+    }
+    {
+      key = "<leader>sm";
+      action.__raw = ''function() Snacks.picker.marks() end'';
+      options.desc = "Marks";
+    }
+    {
+      key = "<leader>sR";
+      action.__raw = ''function() Snacks.picker.resume() end'';
+      options.desc = "Resume";
+    }
+    {
+      key = "<leader>sq";
+      action.__raw = ''function() Snacks.picker.qflist() end'';
+      options.desc = "Quickfix List";
+    }
+    {
+      key = "<leader>ss";
+      action.__raw = ''function() Snacks.picker.lsp_symbols() end'';
+      options.desc = "Lsp Symbols";
+    }
+    {
+      mode = ["n" "x"];
+      key = "<leader>sw";
+      action.__raw = ''function() Snacks.picker.grep_word() end'';
+      options.desc = "Grep Word";
+    }
+    {
+      key = "<leader>qp";
+      action.__raw = ''function() Snacks.picker.projects() end'';
+      options.desc = "Projects";
     }
   ];
 }
