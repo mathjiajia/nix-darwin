@@ -41,7 +41,6 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      local get_hl = require("aerial.highlight").get_highlight
       local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")
       local colors = {
@@ -55,6 +54,13 @@ in {
       	orange = utils.get_highlight("Constant").fg,
       	purple = utils.get_highlight("Statement").fg,
       	cyan = utils.get_highlight("Special").fg,
+        diag_warn = utils.get_highlight("DiagnosticWarn").fg,
+        diag_error = utils.get_highlight("DiagnosticError").fg,
+        diag_hint = utils.get_highlight("DiagnosticHint").fg,
+        diag_info = utils.get_highlight("DiagnosticInfo").fg,
+        git_del = utils.get_highlight("diffRemoved").fg,
+        git_add = utils.get_highlight("diffAdded").fg,
+        git_change = utils.get_highlight("diffChanged").fg,
       }
 
       local VimMode = {
@@ -202,21 +208,21 @@ in {
       			local count = self.status_dict.added or 0
       			return count > 0 and ("  " .. count)
       		end,
-      		hl = "GitSignsAdd",
+      		hl = { fg = "git_add" },
       	},
       	{
       		provider = function(self)
       			local count = self.status_dict.removed or 0
       			return count > 0 and ("  " .. count)
       		end,
-      		hl = "GitSignsDelete",
+      		hl = { fg = "git_del" },
       	},
       	{
       		provider = function(self)
       			local count = self.status_dict.changed or 0
       			return count > 0 and ("  " .. count)
       		end,
-      		hl = "GitSignsChange",
+      		hl = { fg = "git_change" },
       	},
       }
 
@@ -235,25 +241,25 @@ in {
       		provider = function(self)
       			return self.errors > 0 and (self.Error .. self.errors .. " ")
       		end,
-      		hl = "DiagnosticError",
+      		hl = { fg = "diag_error" },
       	},
       	{
       		provider = function(self)
       			return self.warnings > 0 and (self.Warn .. self.warnings .. " ")
       		end,
-      		hl = "DiagnosticWarn",
+      		hl = { fg = "diag_warn" },
       	},
       	{
       		provider = function(self)
       			return self.info > 0 and (self.Info .. self.info .. " ")
       		end,
-      		hl = "DiagnosticInfo",
+      		hl = { fg = "diag_info" },
       	},
       	{
       		provider = function(self)
       			return self.hints > 0 and (self.Hint .. self.hints)
       		end,
-      		hl = "DiagnosticHint",
+      		hl = { fg = "diag_hint" },
       	},
       	{ provider = "]" },
       }
