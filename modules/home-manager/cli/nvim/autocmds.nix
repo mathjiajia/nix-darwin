@@ -26,10 +26,10 @@
         callback.__raw =
           # lua
           ''
-            function(ev)
+            function(args)
               local exclude_bt = { "help", "nofile", "quickfix" }
               local exclude_ft = { "gitcommit" }
-              local buf = ev.buf
+              local buf = args.buf
               if
                 vim.list_contains(exclude_bt, vim.bo[buf].buftype)
                 or vim.list_contains(exclude_ft, vim.bo[buf].filetype)
@@ -55,12 +55,27 @@
         callback.__raw =
           # lua
           ''
-            function(ev)
+            function(args)
               vim.fn.jobstart("open '" .. vim.fn.expand("%") .. "'", { detach = true })
-              vim.api.nvim_buf_delete(ev.buf, {})
+              vim.api.nvim_buf_delete(args.buf, {})
             end
           '';
       }
+
+      # {
+      #   event = "LspAttach";
+      #   callback.__raw =
+      #     # lua
+      #     ''
+      #       function(args)
+      #       	local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+      #       	local bufnr = args.buf
+      #       	if client.server_capabilities.inlayHintProvider then
+      #       		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      #       	end
+      #       end
+      #     '';
+      # }
     ];
   };
 }

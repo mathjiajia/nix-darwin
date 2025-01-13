@@ -37,7 +37,7 @@
     ./cli/starship.nix
     ./cli/texlive.nix
 
-    ./gui/aerospace.nix
+    # ./gui/aerospace.nix
     ./gui/emacs.nix
     # ./gui/ghostty.nix
     ./gui/neovide.nix

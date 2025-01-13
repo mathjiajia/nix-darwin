@@ -20,14 +20,6 @@
         vim.keymap.set("i", "<C-h>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Crect Last Spelling" })
       '';
 
-    # "after/ftplugin/norg.lua".text =
-    #   # lua
-    #   ''
-    #     vim.opt_local.conceallevel = 2
-    #     vim.opt_local.spell = true
-    #     vim.keymap.set("i", "<C-h>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Crect Last Spelling" })
-    #   '';
-
     "after/ftplugin/qf.lua".text =
       # lua
       ''
@@ -46,6 +38,14 @@
         vim.keymap.set("i", "'", "'", { buffer = true })
         vim.keymap.set("i", '"', '"', { buffer = true })
       '';
+
+    # "lsp/basedpyright.lua".text =
+    # "lsp/clangd_ls.lua".text =
+    # "lsp/matlab_ls.lua".text =
+    # "lsp/nil_ls.lua".text =
+    # "lsp/sourcekit.lua".text =
+    # "lsp/taple.lua".text =
+    # "lsp/texlab.lua".text =
 
     "lua/overseer/template/user/builder.lua".text =
       # lua

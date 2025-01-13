@@ -22,6 +22,7 @@
       ]))
 
     # GUI
+    aerospace
     # follow # x86_64-linux
     # github-copilot-cli
     # github-desktop # linux
@@ -34,6 +35,7 @@
     # mathpix-snipping-tool # x86_64-linux
     # microsoft-edge # x86_64-linux
     ollama
+    openconnect
     # openra # x86_64-linux
     raycast
     skimpdf

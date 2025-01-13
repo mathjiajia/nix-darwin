@@ -65,4 +65,27 @@
       };
     };
   };
+
+  # programs.nixvim.extraPackages = with pkgs; [
+  #   basedpyright
+  #   clang-tools
+  #   lua-language-server
+  #   matlab-language-server
+  #   nil
+  #   taplo
+  #   texlab
+  # ];
+  #
+  # programs.nixvim.extraConfigLua =
+  #   # lua
+  #   ''
+  #     vim.lsp.config('*', {
+  #     	root_markers = { '.git' },
+  #     })
+  #
+  #     vim.lsp.enable("matlab_ls")
+  #     vim.lsp.enable("nil_ls")
+  #     vim.lsp.enable("sourcekit")
+  #     vim.lsp.enable("taplo")
+  #   '';
 }

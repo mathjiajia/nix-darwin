@@ -2,16 +2,12 @@
   programs.nixvim.plugins.snacks = {
     enable = true;
     package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (old: {
-      postInstall =
-        # sh
-        ''
-          mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/
-        '';
+      postInstall = ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
       src = pkgs.fetchFromGitHub {
         owner = "folke";
         repo = "snacks.nvim";
-        rev = "picker";
-        sha256 = "K6l+YvytETi48nR5PGHjlFux96DdSdNZjFIvqkFxe/U=";
+        rev = "master";
+        sha256 = "FP40grjoFBHuSOxthMtkFFR7BHBQJEgi+LIikZjlaHw=";
       };
       nvimSkipModule =
         old.nvimSkipModule
@@ -182,8 +178,8 @@
 
     {
       key = "<leader>gf";
-      action.__raw = ''function() Snacks.lazygit.log_file() end'';
-      options.desc = "Lazygit Current File History";
+      action.__raw = ''function() Snacks.picker.git_log_file() end'';
+      options.desc = "Git Current File History";
     }
     {
       key = "<leader>gg";
@@ -226,7 +222,7 @@
     }
     {
       key = "<leader>fp";
-      action.__raw = ''function() Snacks.picker.pick("pickers", { preset = "nopreview" }) end'';
+      action.__raw = ''function() Snacks.picker({ layout = "vscode" }) end'';
       options.desc = "Snacks Picker";
     }
     {

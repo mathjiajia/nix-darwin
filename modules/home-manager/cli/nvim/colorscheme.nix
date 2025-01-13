@@ -54,17 +54,17 @@
             crust = "#e8e3c8";
           };
           mocha = {
-            rosewater = "#ea6962";
-            flamingo = "#ea6962";
+            rosewater = "#eb7a73";
+            flamingo = "#eb7a73";
             red = "#ea6962";
             maroon = "#ea6962";
             pink = "#d3869b";
-            mauve = "#d3869b";
+            mauve = "#e396a4";
             peach = "#e78a4e";
             yellow = "#d8a657";
             green = "#a9b665";
             teal = "#8ec07c";
-            sky = "#89b482";
+            sky = "#99c792";
             sapphire = "#89b482";
             blue = "#83a598";
             lavender = "#7daea3";

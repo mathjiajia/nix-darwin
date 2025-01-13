@@ -54,7 +54,7 @@
       # Show path breadcrumbs in finder windows
       "ShowPathbar" = true;
       # Show the full POSIX filepath in the window title
-      "_FXShowPosixPathInTitle" = true;
+      "_FXShowPosixPathInTitle" = false;
       # When performing a search, search the current folder by default
       "FXDefaultSearchScope" = "SCcf";
       # Disable the warning when changing a file extension

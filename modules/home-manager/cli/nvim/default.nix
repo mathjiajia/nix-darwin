@@ -54,7 +54,7 @@
     ./ui.nix
 
     ./extra-plugins.nix
-    # ./nvchad.nix
+    # ./nvzone.nix
 
     ./extra-files.nix
   ];
