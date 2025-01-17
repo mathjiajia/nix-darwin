@@ -1,21 +1,12 @@
 {pkgs, ...}: {
   programs.nixvim.plugins.snacks = {
     enable = true;
-    package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (old: {
-      postInstall = ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
-      src = pkgs.fetchFromGitHub {
-        owner = "folke";
-        repo = "snacks.nvim";
-        rev = "master";
-        sha256 = "FP40grjoFBHuSOxthMtkFFR7BHBQJEgi+LIikZjlaHw=";
-      };
-      nvimSkipModule =
-        old.nvimSkipModule
-        ++ [
-          "snacks.picker.actions"
-          "snacks.picker.config.sources"
-          "snacks.picker.config.highlights"
-        ];
+    package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
+      postInstall =
+        oldAttrs.postInstall
+        or ""
+        + # sh
+        ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
     });
     settings = {
       dashboard = {
