@@ -2,7 +2,10 @@
   programs.nixvim.plugins = {
     markview = {
       enable = true;
-      settings.filetypes = ["markdown" "quarto" "rmd" "codecompanion"];
+      settings = {
+        buf_ignore.__raw = "{}";
+        filetypes = ["markdown" "quarto" "rmd" "codecompanion"];
+      };
     };
     rainbow-delimiters.enable = true;
     dropbar = {
@@ -31,11 +34,7 @@
             return file_icon, file_icon_hl
           end
         '';
-      luaConfig.post =
-        # lua
-        ''
-          vim.ui.select = require("dropbar.utils.menu").select
-        '';
+      luaConfig.post = ''vim.ui.select = require("dropbar.utils.menu").select'';
     };
     noice = {
       enable = true;
