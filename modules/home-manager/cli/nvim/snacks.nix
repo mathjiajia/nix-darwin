@@ -111,7 +111,7 @@
       };
       input.enabled = true;
       notifier.enabled = true;
-      picker.ui_select = true;
+      picker = {};
       scroll.enabled.__raw = ''not vim.g.neovide'';
       scope.enabled = true;
       terminal.win.wo.winbar = "";
@@ -198,7 +198,7 @@
     }
     {
       key = "<leader>fb";
-      action.__raw = ''function() Snacks.picker.buffers() end'';
+      action.__raw = ''function() Snacks.picker.buffers({ layout = "select" }) end'';
       options.desc = "Buffers";
     }
     {
@@ -212,9 +212,14 @@
       options.desc = "Find Files (git-files)";
     }
     {
-      key = "<leader>fp";
-      action.__raw = ''function() Snacks.picker({ layout = "vscode" }) end'';
+      key = "<leader>fm";
+      action.__raw = ''function() Snacks.picker({ layout = "select" }) end'';
       options.desc = "Snacks Picker";
+    }
+    {
+      key = "<leader>fp";
+      action.__raw = ''function() Snacks.picker.projects() end'';
+      options.desc = "Projects";
     }
     {
       key = "<leader>fr";
@@ -296,11 +301,6 @@
       key = "<leader>sw";
       action.__raw = ''function() Snacks.picker.grep_word() end'';
       options.desc = "Grep Word";
-    }
-    {
-      key = "<leader>qp";
-      action.__raw = ''function() Snacks.picker.projects() end'';
-      options.desc = "Projects";
     }
   ];
 }

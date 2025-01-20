@@ -30,7 +30,6 @@
       "publish-or-perish"
       "qlmarkdown"
       "sf-symbols"
-      "sioyek"
       "soulver"
       "sublime-merge"
       "surge"

@@ -48,7 +48,6 @@
         object.glyph = "";
         value.glyph = "";
       };
-      pairs = {};
     };
   };
 }

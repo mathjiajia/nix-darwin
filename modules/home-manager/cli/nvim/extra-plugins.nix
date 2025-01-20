@@ -30,13 +30,14 @@
       owner = "lewis6991";
       repo = "nvim-treesitter-pairs";
       rev = "master";
-      sha256 = "Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
+      sha256 = "i5WG4ffLHlrpU+EtCYl474UNgzDJz1wDcTDuRh5wa2Y=";
     };
   };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     blink-ripgrep-nvim
     heirline-nvim
+    ultimate-autopair-nvim
 
     latex-nvim
     mysnippets
@@ -46,6 +47,8 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
+      require("ultimate-autopair").setup()
+
       local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")
       local colors = {

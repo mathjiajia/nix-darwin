@@ -34,7 +34,6 @@
             return file_icon, file_icon_hl
           end
         '';
-      luaConfig.post = ''vim.ui.select = require("dropbar.utils.menu").select'';
     };
     noice = {
       enable = true;

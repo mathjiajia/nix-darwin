@@ -49,7 +49,7 @@
 
   fonts.packages = with pkgs; [
     lxgw-wenkai
-    # maple-mono
+    maple-mono
     sarasa-gothic
     smiley-sans
 
