@@ -3,7 +3,7 @@
     owner = "yazi-rs";
     repo = "plugins";
     rev = "master";
-    hash = "sha256-cdPeIhtTzSYhJZ3v3Xlq8J3cOmR7ZiOGl5q48Qgthyk=";
+    sha256 = "oWdptgAtTAHX5u7lYe1o2TlvyCiOsuV1D5gm85J4dSE=";
   };
   arrowPlugin = pkgs.writeTextFile {
     name = "arrow.yazi";

@@ -6,7 +6,7 @@
       theme = "dark";
       font = {
         normal = ["Sarasa Term SC" "Symbols Nerd Font"];
-        size = 23.0;
+        size = 21;
       };
     };
   };

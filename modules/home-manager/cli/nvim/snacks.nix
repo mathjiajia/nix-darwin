@@ -111,7 +111,7 @@
       };
       input.enabled = true;
       notifier.enabled = true;
-      picker = {};
+      picker.ui_select = true;
       scroll.enabled.__raw = ''not vim.g.neovide'';
       scope.enabled = true;
       terminal.win.wo.winbar = "";

@@ -46,7 +46,7 @@
           };
           diagnostics.ignoredPatterns = ["^Overfull" "^Underfull"];
           forwardSearch = {
-            executable = "${pkgs.sioyek}/Applications/sioyek.app";
+            executable = "${pkgs.sioyek}/bin/sioyek";
             args = [
               "--reuse-window"
               "--execute-command"

@@ -29,8 +29,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "lewis6991";
       repo = "nvim-treesitter-pairs";
-      rev = "master";
-      sha256 = "i5WG4ffLHlrpU+EtCYl474UNgzDJz1wDcTDuRh5wa2Y=";
+      rev = "77423fac578ea8ec00552e75f9a1b1b6fb5ae695";
+      sha256 = "Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
     };
   };
 in {
