@@ -168,7 +168,10 @@
         {
           "if".app-id = "com.mitchellh.ghostty";
           run = "move-node-to-workspace T";
-          # run = "layout tiling";
+        }
+        {
+          "if".app-id = "net.kovidgoyal.kitty";
+          run = "move-node-to-workspace T";
         }
         {
           "if" = {

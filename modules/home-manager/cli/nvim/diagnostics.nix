@@ -1,16 +1,17 @@
 {
   programs.nixvim = {
     diagnostics = {
-      virtual_text = {
-        spacing = 4;
-        prefix = "●";
-      };
+      float.border = "rounded";
       severity_sort = true;
       signs.text = {
         "__rawKey__vim.diagnostic.severity.ERROR" = "";
         "__rawKey__vim.diagnostic.severity.WARN" = "";
         "__rawKey__vim.diagnostic.severity.HINT" = "";
         "__rawKey__vim.diagnostic.severity.INFO" = "";
+      };
+      virtual_text = {
+        spacing = 2;
+        prefix = "●";
       };
     };
 

@@ -39,6 +39,7 @@
 
     # ./gui/aerospace.nix
     ./gui/emacs.nix
+    ./gui/kitty.nix
     # ./gui/ghostty.nix
     ./gui/neovide.nix
     ./gui/sioyek.nix

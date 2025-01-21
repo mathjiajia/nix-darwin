@@ -37,7 +37,8 @@
     ./keymaps.nix
     ./autocmds.nix
 
-    ./colorscheme.nix
+    # ./hl_bamboo.nix
+    ./hl_catppuccin.nix
     ./diagnostics.nix
 
     ./ai.nix
