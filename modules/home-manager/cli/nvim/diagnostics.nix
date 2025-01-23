@@ -9,10 +9,11 @@
         "__rawKey__vim.diagnostic.severity.HINT" = "";
         "__rawKey__vim.diagnostic.severity.INFO" = "";
       };
-      virtual_text = {
-        spacing = 2;
-        prefix = "●";
-      };
+      virtual_lines.current_line = true;
+      # virtual_text = {
+      #   spacing = 2;
+      #   prefix = "●";
+      # };
     };
 
     keymaps = [

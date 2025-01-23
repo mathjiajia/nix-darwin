@@ -1,6 +1,5 @@
-{pkgs, ...}: {
+{
   programs.nixvim = {
-    # extraPackages = [pkgs.vscode-extensions.vadimcn.vscode-lldb];
     plugins = {
       dap = {
         enable = true;
@@ -37,10 +36,6 @@
           };
         };
       };
-      dap-lldb = {
-        # enable = true;
-        settings.codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-      };
     };
 
     extraConfigLua =
@@ -49,7 +44,7 @@
         local dap, dapui = require("dap"), require("dapui")
         dap.listeners.before.attach.dapui_config = function() dapui.open() end
         dap.listeners.before.launch.dapui_config = function() dapui.open() end
-        dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+        -- dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
         dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
       '';
 

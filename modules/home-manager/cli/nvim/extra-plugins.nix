@@ -20,7 +20,7 @@
       owner = "mathjiajia";
       repo = "latex.nvim";
       rev = "master";
-      sha256 = "vHlBle2Ohf9oPIL5L5+9+B3gS+Y9woRhRfMNLFWLf/8=";
+      sha256 = "N90VTow1FKNERJE1kDXibpPuOIiZdylvcwBOpvTa41Y=";
     };
   };
 
@@ -29,8 +29,18 @@
     src = pkgs.fetchFromGitHub {
       owner = "lewis6991";
       repo = "nvim-treesitter-pairs";
-      rev = "77423fac578ea8ec00552e75f9a1b1b6fb5ae695";
-      sha256 = "Nr8h0yUpJMfRx+VZ3Jf03p3tCeSc7JWiwtruqkjzzkw=";
+      rev = "master";
+      sha256 = "4kVZJd8KMX7YPNCz2m+FXCGAyOnde/OGkBx6tKy+eTA=";
+    };
+  };
+
+  blink-copilot = pkgs.vimUtils.buildVimPlugin {
+    name = "blink-copilot";
+    src = pkgs.fetchFromGitHub {
+      owner = "fang2hou";
+      repo = "blink-copilot";
+      rev = "master";
+      sha256 = "3dAMpKeIXFxryI1OtDBsbpYGpI54+q5ACrk1CRu63w4=";
     };
   };
 in {
@@ -42,6 +52,7 @@ in {
     latex-nvim
     mysnippets
     nvim-treesitter-pairs
+    blink-copilot
   ];
 
   programs.nixvim.extraConfigLua =

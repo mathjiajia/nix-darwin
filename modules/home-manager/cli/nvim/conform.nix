@@ -13,13 +13,13 @@
 
     plugins.conform-nvim = {
       enable = true;
-      package = pkgs.vimPlugins.conform-nvim.overrideAttrs {
+      package = pkgs.vimPlugins.conform-nvim.overrideAttrs (oldAttrs: {
         postInstall =
-          # sh
-          ''
-            mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md
-          '';
-      };
+          oldAttrs.postInstall
+          or ""
+          + # sh
+          ''mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md'';
+      });
       settings = {
         formatters = {
           bibtex-tidy.prepend_args = [
@@ -28,11 +28,6 @@
             "--trailing-commas"
             "--sort-fields=author,year,month,day,title,shorttitle"
             "--remove-braces"
-          ];
-          tex-fmt.prepend_args = [
-            "--wraplen=120"
-            "--tabsize=1"
-            "--usetabs"
           ];
         };
         formatters_by_ft = {

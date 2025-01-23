@@ -62,6 +62,7 @@
           };
         };
       };
+      # tinymist.enable = true;
     };
   };
 
@@ -78,9 +79,7 @@
   # programs.nixvim.extraConfigLua =
   #   # lua
   #   ''
-  #     vim.lsp.config('*', {
-  #     	root_markers = { '.git' },
-  #     })
+  #     vim.lsp.config('*', { root_markers = { '.git' } })
   #
   #     vim.lsp.enable("matlab_ls")
   #     vim.lsp.enable("nil_ls")

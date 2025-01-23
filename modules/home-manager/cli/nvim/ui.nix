@@ -3,8 +3,12 @@
     markview = {
       enable = true;
       settings = {
-        buf_ignore.__raw = "{}";
+        # preview = {
         filetypes = ["markdown" "quarto" "rmd" "codecompanion"];
+        # ignore_buftypes.__raw = "{}";
+        buf_ignore.__raw = "{}";
+        # icon_provider = "mini";
+        # };
       };
     };
     rainbow-delimiters.enable = true;

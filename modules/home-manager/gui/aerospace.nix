@@ -255,6 +255,10 @@
           "if".app-id = "org.fcitx.inputmethod.Fcitx5";
           run = "layout floating";
         }
+        {
+          "if".app-id = "com.aone.keka";
+          run = "layout floating";
+        }
       ];
     };
   };

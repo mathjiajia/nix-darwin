@@ -35,6 +35,7 @@
     ./cli/fzf.nix
     ./cli/ripgrep.nix
     ./cli/starship.nix
+    # ./cli/tex-fmt.nix
     ./cli/texlive.nix
 
     # ./gui/aerospace.nix

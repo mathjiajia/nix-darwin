@@ -10,6 +10,7 @@
     "github"
     "github-copilot-for-xcode"
     "hhkb"
+    "huggingchat"
     "neohtop"
     "openemu"
     # "openra"

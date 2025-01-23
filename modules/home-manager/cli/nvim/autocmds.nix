@@ -17,7 +17,7 @@
         event = "TextYankPost";
         desc = "Highlight the Yanked Text";
         group = "HighlightYank";
-        callback.__raw = ''function() vim.highlight.on_yank() end'';
+        callback.__raw = ''function() vim.hl.on_yank() end'';
       }
       {
         event = "BufReadPost";

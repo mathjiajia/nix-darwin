@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  programs.nixvim.extraPackages = [pkgs.ast-grep];
-
   programs.nixvim.plugins = {
     aerial = {
       enable = true;
@@ -61,8 +59,6 @@
     grug-far = {
       enable = true;
       settings = {
-        engine = "astgrep";
-        engines.astgrep.path = "${pkgs.ast-grep}/bin/sg";
         icons.fileIconsProvider = "mini.icons";
         keymaps.close.n = "q";
       };
@@ -78,14 +74,16 @@
 
     oil = {
       enable = true;
-      package = pkgs.vimPlugins.oil-nvim.overrideAttrs {
+      package = pkgs.vimPlugins.oil-nvim.overrideAttrs (oldAttrs: {
         postInstall =
-          # sh
+          oldAttrs.postInstall
+          or ""
+          + # sh
           ''
             mv $out/doc/recipes.md $out/doc/oil-nvim_recipes.md
             mv $out/doc/api.md $out/doc/oil-nvim_api.md
           '';
-      };
+      });
       settings = {
         delete_to_trash = true;
         float = {

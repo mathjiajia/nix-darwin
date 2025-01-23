@@ -1,10 +1,13 @@
 {pkgs, ...}: {
   programs.nixvim.plugins.mini = {
     enable = true;
-    package = pkgs.vimPlugins.mini-nvim.overrideAttrs {
-      postInstall = ''rm -rf $out/doc/mini-cursorword.txt'';
-    };
-    mockDevIcons = true;
+    package = pkgs.vimPlugins.mini-nvim.overrideAttrs (oldAttrs: {
+      postInstall =
+        oldAttrs.postInstall
+        or ""
+        + # sh
+        ''rm -rf $out/doc/mini-cursorword.txt'';
+    });
     modules = {
       hipatterns = {
         highlighters = {
