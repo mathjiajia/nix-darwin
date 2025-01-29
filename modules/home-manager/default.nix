@@ -38,10 +38,10 @@
     # ./cli/tex-fmt.nix
     ./cli/texlive.nix
 
-    # ./gui/aerospace.nix
+    ./gui/aerospace.nix
     ./gui/emacs.nix
     ./gui/kitty.nix
-    # ./gui/ghostty.nix
+    ./gui/ghostty.nix
     ./gui/neovide.nix
     ./gui/sioyek.nix
     ./gui/vscode.nix

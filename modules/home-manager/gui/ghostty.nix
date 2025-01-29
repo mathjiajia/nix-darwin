@@ -1,8 +1,9 @@
 {
   programs.ghostty = {
     enable = true;
+    package = null;
     settings = {
-      theme = "gruvbox";
+      theme = "bamboo";
       font-family = "Sarasa Term SC";
       font-size = 21;
       font-thicken = true;
@@ -16,6 +17,39 @@
       auto-update = "off";
     };
     themes = {
+      bamboo = {
+        cursor-color = "fff8f0";
+        cursor-text = "0f0800";
+        foreground = "f1e9d2";
+        background = "252623";
+        selection-foreground = "f1e9d2";
+        selection-background = "5b5e5a";
+        palette = [
+          "0=#1c1e1b"
+          "8=#5b5e5a"
+
+          "1=#e75a7c"
+          "9=#e75a7c"
+
+          "2=#8fb573"
+          "10=#8fb573"
+
+          "3=#dbb651"
+          "11=#dbb651"
+
+          "4=#57a5e5"
+          "12=#57a5e5"
+
+          "5=#aaaaff"
+          "13=#aaaaff"
+
+          "6=#70c2be"
+          "14=#70c2be"
+
+          "7=#f1e9dc"
+          "15=#fff8f0"
+        ];
+      };
       gruvbox = {
         cursor-color = "ebdbb2";
         background = "1d2021";

@@ -22,7 +22,6 @@
       ]))
 
     # GUI
-    aerospace
     # follow # x86_64-linux
     # github-copilot-cli
     # github-desktop # linux

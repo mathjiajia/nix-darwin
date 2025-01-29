@@ -33,18 +33,9 @@
       sha256 = "4kVZJd8KMX7YPNCz2m+FXCGAyOnde/OGkBx6tKy+eTA=";
     };
   };
-
-  blink-copilot = pkgs.vimUtils.buildVimPlugin {
-    name = "blink-copilot";
-    src = pkgs.fetchFromGitHub {
-      owner = "fang2hou";
-      repo = "blink-copilot";
-      rev = "master";
-      sha256 = "3dAMpKeIXFxryI1OtDBsbpYGpI54+q5ACrk1CRu63w4=";
-    };
-  };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+    blink-copilot
     blink-ripgrep-nvim
     heirline-nvim
     ultimate-autopair-nvim
@@ -52,7 +43,6 @@ in {
     latex-nvim
     mysnippets
     nvim-treesitter-pairs
-    blink-copilot
   ];
 
   programs.nixvim.extraConfigLua =
