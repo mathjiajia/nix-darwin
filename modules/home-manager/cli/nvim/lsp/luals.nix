@@ -13,6 +13,7 @@
       		"stylua.toml",
       		"selene.toml",
       		"selene.yml",
+      		".git",
       	},
       	single_file_support = true,
       	settings = {
