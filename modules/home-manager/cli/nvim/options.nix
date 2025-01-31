@@ -84,7 +84,6 @@
       foldtext = "";
 
       # 15 diff mode
-      diffopt = "internal,filler,closeoff,linematch:90";
 
       # 16 mapping
       timeoutlen = 500;

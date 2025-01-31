@@ -111,7 +111,39 @@
       };
       input.enabled = true;
       notifier.enabled = true;
-      picker.ui_select = true;
+      picker = {
+        enabled = true;
+        win.input.keys = {
+          "<a-s>" = {
+            __unkeyed-1 = "flash";
+            mode = ["n" "i"];
+          };
+          s = ["flash"];
+        };
+        action.flash.__raw =
+          # lua
+          ''
+            function(picker)
+            	require("flash").jump({
+            		pattern = "^",
+            		label = { after = { 0, 0 } },
+            		search = {
+            			mode = "search",
+            			exclude = {
+            				function(win)
+            					return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
+            				end,
+            			},
+            		},
+            		action = function(match)
+            			local idx = picker.list:row2idx(match.pos[1])
+            			picker.list:_move(idx, true, true)
+            		end,
+            	})
+            end
+          '';
+        ui_select = true;
+      };
       scroll.enabled.__raw = ''not vim.g.neovide'';
       scope.enabled = true;
       terminal.win.wo.winbar = "";
@@ -145,11 +177,6 @@
       options.desc = "Select Scratch Buffer";
     }
 
-    {
-      key = "<leader>n";
-      action.__raw = ''function() Snacks.notifier.show_history() end'';
-      options.desc = "Notification History";
-    }
     {
       key = "<leader>un";
       action.__raw = ''function() Snacks.notifier.hide() end'';
@@ -197,9 +224,20 @@
       options.desc = "Find Files";
     }
     {
+      key = "<leader>n";
+      action.__raw = ''function() Snacks.picker.notifications() end'';
+      options.desc = "Notification History";
+    }
+
+    {
       key = "<leader>fb";
       action.__raw = ''function() Snacks.picker.buffers({ layout = "select" }) end'';
       options.desc = "Buffers";
+    }
+    {
+      key = "<leader>fe";
+      action.__raw = ''function() Snacks.explorer() end'';
+      options.desc = "File Explorer";
     }
     {
       key = "<leader>ff";

@@ -60,6 +60,7 @@
               "%p"
             ];
           };
+          latexFormatter = "tex-fmt";
         };
       };
       # tinymist.enable = true;

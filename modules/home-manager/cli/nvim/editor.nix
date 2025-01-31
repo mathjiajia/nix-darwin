@@ -13,6 +13,11 @@
     gitsigns = {
       enable = true;
       settings = {
+        diff_opts = {
+          internal = true;
+          indent_heuristic = true;
+          linematch = 60;
+        };
         preview_config.border = "rounded";
         on_attach =
           # lua
