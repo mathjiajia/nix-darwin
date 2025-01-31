@@ -33,23 +33,15 @@
   };
 
   imports = [
-    ./options.nix
-    ./keymaps.nix
-    ./autocmds.nix
+    ./users
+    ./highlight
+    ./lsp
 
-    ./hl_bamboo.nix
-    # ./hl_catppuccin.nix
-    # ./hl_vscode.nix
-    ./diagnostics.nix
-
-    ./ai.nix
-    ./conform.nix
-    ./compiler.nix
+    ./compiler
     ./completion.nix
     ./dap.nix
     ./editor.nix
-    ./lint.nix
-    ./lsp.nix
+    ./fmtlint.nix
     ./mini.nix
     ./snacks.nix
     ./treesitter.nix
@@ -57,7 +49,5 @@
 
     ./extra-plugins.nix
     # ./nvzone.nix
-
-    ./extra-files.nix
   ];
 }

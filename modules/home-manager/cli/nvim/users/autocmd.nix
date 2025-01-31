@@ -61,21 +61,6 @@
             end
           '';
       }
-
-      # {
-      #   event = "LspAttach";
-      #   callback.__raw =
-      #     # lua
-      #     ''
-      #       function(args)
-      #       	local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-      #       	local bufnr = args.buf
-      #       	if client.server_capabilities.inlayHintProvider then
-      #       		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-      #       	end
-      #       end
-      #     '';
-      # }
     ];
   };
 }

@@ -7,6 +7,12 @@
         or ""
         + # sh
         ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
+      src = pkgs.fetchFromGitHub {
+        owner = "folke";
+        repo = "snacks.nvim";
+        rev = "v2.17.0";
+        sha256 = "SwMr2R3/JBwzHlEyFt2fujUQCUfmJJSjVNd1JKVIoHM=";
+      };
     });
     settings = {
       dashboard = {
@@ -97,6 +103,7 @@
           }
         ];
       };
+      explorer.replace_netrw = true;
       indent = {
         enabled = true;
         scope.hl = [
@@ -114,34 +121,51 @@
       picker = {
         enabled = true;
         win.input.keys = {
-          "<a-s>" = {
+          "<M-c>" = {
+            __unkeyed-1 = "toggle_cwd";
+            mode = ["n" "i"];
+          };
+          "<M-s>" = {
             __unkeyed-1 = "flash";
             mode = ["n" "i"];
           };
           s = ["flash"];
         };
-        action.flash.__raw =
-          # lua
-          ''
-            function(picker)
-            	require("flash").jump({
-            		pattern = "^",
-            		label = { after = { 0, 0 } },
-            		search = {
-            			mode = "search",
-            			exclude = {
-            				function(win)
-            					return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
-            				end,
-            			},
-            		},
-            		action = function(match)
-            			local idx = picker.list:row2idx(match.pos[1])
-            			picker.list:_move(idx, true, true)
-            		end,
-            	})
-            end
-          '';
+        action = {
+          flash.__raw =
+            # lua
+            ''
+              function(picker)
+              	require("flash").jump({
+              		pattern = "^",
+              		label = { after = { 0, 0 } },
+              		search = {
+              			mode = "search",
+              			exclude = {
+              				function(win)
+              					return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
+              				end,
+              			},
+              		},
+              		action = function(match)
+              			local idx = picker.list:row2idx(match.pos[1])
+              			picker.list:_move(idx, true, true)
+              		end,
+              	})
+              end
+            '';
+          toggle_cwd.__raw =
+            # lua
+            ''
+              function(p)
+              	local root = require("util.root")({ buf = p.input.filter.current_buf })
+              	local cwd = vim.fs.normalize(vim.uv.cwd() or ".")
+              	local current = p:cwd()
+              	p:set_cwd(current == root and cwd or root)
+              	p:find()
+              end
+            '';
+        };
         ui_select = true;
       };
       scroll.enabled.__raw = ''not vim.g.neovide'';
@@ -195,14 +219,29 @@
     }
 
     {
+      key = "<leader>gg";
+      action.__raw = ''function() Snacks.lazygit({ cwd = require("util.root").git() }) end'';
+      options.desc = "Lazygit (Root Dir)";
+    }
+    {
+      key = "<leader>gG";
+      action.__raw = ''function() Snacks.lazygit() end'';
+      options.desc = "Lazygit (cwd)";
+    }
+    {
       key = "<leader>gf";
       action.__raw = ''function() Snacks.picker.git_log_file() end'';
       options.desc = "Git Current File History";
     }
     {
-      key = "<leader>gg";
-      action.__raw = ''function() Snacks.lazygit() end'';
-      options.desc = "Lazygit";
+      key = "<leader>gl";
+      action.__raw = ''function() Snacks.picker.git_log({ cwd = require("util.root").git() }) end'';
+      options.desc = "Git Log";
+    }
+    {
+      key = "<leader>gL";
+      action.__raw = ''function() Snacks.picker.git_log() end'';
+      options.desc = "Git Log (cwd)";
     }
 
     {
@@ -211,17 +250,30 @@
       options.desc = "Rename File";
     }
 
+    # Terminal
     {
-      mode = ["n" "t"];
       key = "<C-/>";
+      action.__raw = ''function() Snacks.terminal(nil, { cwd = require("util.root")() }) end'';
+      options.desc = "Terminal (Root Dir)";
+    }
+    {
+      mode = "t";
+      key = "<C-/>";
+      action = ''<Cmd>close<CR>'';
+      options.desc = "Hide Terminal";
+    }
+    {
+      key = "<leader>fT";
       action.__raw = ''function() Snacks.terminal() end'';
-      options.desc = "Toggle Terminal";
+      options.desc = "Terminal (cwd)";
     }
 
+    # Picker
+    # Find
     {
       key = "<leader><space>";
-      action.__raw = ''function() Snacks.picker.files({ cwd = vim.fs.root(0, ".git") }) end'';
-      options.desc = "Find Files";
+      action.__raw = ''function() Snacks.picker.files({ cwd = require("util.root")() }) end'';
+      options.desc = "Find Files (Root Dir)";
     }
     {
       key = "<leader>n";
@@ -236,6 +288,11 @@
     }
     {
       key = "<leader>fe";
+      action.__raw = ''function() Snacks.explorer({ cwd = require("util.root")() }) end'';
+      options.desc = "File Explorer (Root Dir)";
+    }
+    {
+      key = "<leader>fE";
       action.__raw = ''function() Snacks.explorer() end'';
       options.desc = "File Explorer";
     }
@@ -264,15 +321,41 @@
       action.__raw = ''function() Snacks.picker.recent() end'';
       options.desc = "Recent";
     }
-    {
-      key = ''<leader>s"'';
-      action.__raw = ''function() Snacks.picker.registers() end'';
-      options.desc = "Registers";
-    }
+
+    # Grep
     {
       key = "<leader>sb";
       action.__raw = ''function() Snacks.picker.lines() end'';
       options.desc = "Buffer Lines";
+    }
+    {
+      key = "<leader>sg";
+      action.__raw = ''function() Snacks.picker.grep({ dirs = { require("util.root")() } }) end'';
+      options.desc = "Grep (Root Dir)";
+    }
+    {
+      key = "<leader>sG";
+      action.__raw = ''function() Snacks.picker.grep() end'';
+      options.desc = "Grep (cwd)";
+    }
+    {
+      mode = ["n" "x"];
+      key = "<leader>sw";
+      action.__raw = ''function() Snacks.picker.grep_word({ dirs = { require("util.root")() } }) end'';
+      options.desc = "Word (Root Dir)";
+    }
+    {
+      mode = ["n" "x"];
+      key = "<leader>sW";
+      action.__raw = ''function() Snacks.picker.grep_word() end'';
+      options.desc = "Word (cwd)";
+    }
+
+    # Search
+    {
+      key = ''<leader>s"'';
+      action.__raw = ''function() Snacks.picker.registers() end'';
+      options.desc = "Registers";
     }
     {
       key = "<leader>sc";
@@ -289,11 +372,7 @@
       action.__raw = ''function() Snacks.picker.diagnostics() end'';
       options.desc = "Diagnostics";
     }
-    {
-      key = "<leader>sg";
-      action.__raw = ''function() Snacks.picker.grep() end'';
-      options.desc = "Grep";
-    }
+
     {
       key = "<leader>sh";
       action.__raw = ''function() Snacks.picker.help() end'';
@@ -333,12 +412,6 @@
       key = "<leader>ss";
       action.__raw = ''function() Snacks.picker.lsp_symbols() end'';
       options.desc = "Lsp Symbols";
-    }
-    {
-      mode = ["n" "x"];
-      key = "<leader>sw";
-      action.__raw = ''function() Snacks.picker.grep_word() end'';
-      options.desc = "Grep Word";
     }
   ];
 }

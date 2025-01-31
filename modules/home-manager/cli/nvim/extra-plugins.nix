@@ -20,7 +20,7 @@
       owner = "mathjiajia";
       repo = "latex.nvim";
       rev = "master";
-      sha256 = "N90VTow1FKNERJE1kDXibpPuOIiZdylvcwBOpvTa41Y=";
+      sha256 = "k31f0zrj0cVN1dxWnFeWrlZ2hC4nqoyP/YqxtTQ3MQc=";
     };
   };
 

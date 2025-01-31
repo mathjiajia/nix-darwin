@@ -8,15 +8,6 @@
       sha256 = "C9ETFYyh8M6LJ5yAnYoUI+fNdhVcq8lcUb31/4eedLo=";
     };
   };
-  nvzone-typr = pkgs.vimUtils.buildVimPlugin {
-    name = "typr";
-    src = pkgs.fetchFromGitHub {
-      owner = "nvzone";
-      repo = "typr";
-      rev = "master";
-      sha256 = "iVLxQeQqpqohCPZAE3SxReEo3KmWAo+xGAiJJnRBbUE=";
-    };
-  };
   nvzone-showkeys = pkgs.vimUtils.buildVimPlugin {
     name = "showkeys";
     src = pkgs.fetchFromGitHub {
@@ -30,23 +21,17 @@ in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     nvzone-menu
     nvzone-minty
+    nvzone-typr
     nvzone-volt
 
     nvzone-timerly
-    nvzone-typr
     nvzone-showkeys
   ];
 
   programs.nixvim.keymap = [
     {
       key = "<C-t>";
-      action.__raw =
-        # lua
-        ''
-          function()
-          	require("menu").open("default")
-          end
-        '';
+      action.__raw = ''function() require("menu").open("default") end'';
       options.desc = "Menu";
     }
 
