@@ -10,9 +10,10 @@
       src = pkgs.fetchFromGitHub {
         owner = "folke";
         repo = "snacks.nvim";
-        rev = "v2.17.0";
-        sha256 = "SwMr2R3/JBwzHlEyFt2fujUQCUfmJJSjVNd1JKVIoHM=";
+        rev = "master";
+        sha256 = "fj3cLaUK9WxjbqwtKH7yurfDf4WFKOyhY9c9XbPFMZ4=";
       };
+      nvimSkipModule = oldAttrs.nvimSkipModule ++ ["snacks.picker.core.list"];
     });
     settings = {
       dashboard = {
@@ -272,8 +273,8 @@
     # Find
     {
       key = "<leader><space>";
-      action.__raw = ''function() Snacks.picker.files({ cwd = require("util.root")() }) end'';
-      options.desc = "Find Files (Root Dir)";
+      action.__raw = ''function() Snacks.picker.smart() end'';
+      options.desc = "Smart Open";
     }
     {
       key = "<leader>n";
@@ -298,8 +299,13 @@
     }
     {
       key = "<leader>ff";
+      action.__raw = ''function() Snacks.picker.files({ cwd = require("util.root")() }) end'';
+      options.desc = "Find Files (Root Dir)";
+    }
+    {
+      key = "<leader>fF";
       action.__raw = ''function() Snacks.picker.files() end'';
-      options.desc = "Find Files";
+      options.desc = "Find Files (cwd)";
     }
     {
       key = "<leader>fg";

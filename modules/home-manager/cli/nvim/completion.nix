@@ -17,6 +17,7 @@
       };
     };
 
+    blink-copilot.enable = true;
     blink-cmp = {
       enable = true;
       settings = {

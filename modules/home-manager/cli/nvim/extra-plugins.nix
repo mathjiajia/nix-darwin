@@ -35,7 +35,6 @@
   };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
-    blink-copilot
     blink-ripgrep-nvim
     heirline-nvim
     ultimate-autopair-nvim
