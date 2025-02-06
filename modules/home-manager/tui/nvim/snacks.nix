@@ -11,7 +11,7 @@
         owner = "folke";
         repo = "snacks.nvim";
         rev = "master";
-        sha256 = "trdadfjSxgUlE0IjZof/EHpawD695DFU/98txrnvpiU=";
+        sha256 = "BRsQYRn+LaIJvZrGRWdArre1vumnSftc0NR1tcScQ6M=";
       };
       nvimSkipModule = oldAttrs.nvimSkipModule ++ ["snacks.picker.core.list"];
     });

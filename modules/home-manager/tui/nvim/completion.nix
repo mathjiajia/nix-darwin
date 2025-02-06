@@ -18,6 +18,7 @@
     };
 
     blink-copilot.enable = true;
+    blink-ripgrep.enable = true;
     blink-cmp = {
       enable = true;
       settings = {
@@ -120,13 +121,10 @@
 
     codecompanion = {
       enable = true;
-      settings = {
-        display.chat.show_header_separator = false;
-        strategies = {
-          chat.adapter = "ollama";
-          inline.adapter = "ollama";
-          agent.adapter = "ollama";
-        };
+      settings.strategies = {
+        chat.adapter = "ollama";
+        inline.adapter = "ollama";
+        agent.adapter = "ollama";
       };
     };
   };

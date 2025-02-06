@@ -47,7 +47,7 @@
     ./treesitter.nix
     ./ui.nix
 
-    ./extra-plugins.nix
+    ./extras.nix
     # ./nvzone.nix
   ];
 }

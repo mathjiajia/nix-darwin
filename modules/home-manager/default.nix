@@ -23,20 +23,20 @@
   };
 
   imports = [
-    ./cli/git
-    ./cli/nvim
-    ./cli/yazi
+    ./tui/git
+    ./tui/nvim
+    ./tui/yazi
 
-    ./cli/bat.nix
-    ./cli/btop.nix
-    ./cli/fastfetch.nix
-    ./cli/fd.nix
-    ./cli/fish.nix
-    ./cli/fzf.nix
-    ./cli/ripgrep.nix
-    ./cli/starship.nix
-    # ./cli/tex-fmt.nix
-    ./cli/texlive.nix
+    ./tui/bat.nix
+    ./tui/btop.nix
+    ./tui/fastfetch.nix
+    ./tui/fd.nix
+    ./tui/fish.nix
+    ./tui/fzf.nix
+    ./tui/ripgrep.nix
+    ./tui/starship.nix
+    # ./tui/tex-fmt.nix
+    ./tui/texlive.nix
 
     ./gui/aerospace.nix
     ./gui/emacs.nix

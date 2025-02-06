@@ -5,7 +5,7 @@
       owner = "mathjiajia";
       repo = "mySnippets";
       rev = "master";
-      sha256 = "HP9h/LdLoEjodD2SGXqcLwNsiiEJuKlKzhwTvk8DrDI=";
+      sha256 = "02eMQHAjivU47X7Mqu5dPVmVUEf42Vrn9e81/KJweJc=";
     };
     nvimSkipModule = [
       "mySnippets.position"
@@ -35,7 +35,6 @@
   };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
-    blink-ripgrep-nvim
     heirline-nvim
     ultimate-autopair-nvim
 
@@ -189,9 +188,7 @@ in {
       		local icon = (vim.fn.haslocaldir(0) == 1 and "l" or "g") .. "  "
       		local cwd = vim.fn.getcwd(0)
       		cwd = vim.fn.fnamemodify(cwd, ":~")
-      		if not conditions.width_percent_below(#cwd, 0.25) then
-      			cwd = vim.fn.pathshorten(cwd)
-      		end
+      		cwd = vim.fn.pathshorten(vim.fn.fnamemodify(cwd, ":~"))
       		local trail = cwd:sub(-1) == "/" and "" or "/"
       		return icon .. cwd .. trail
       	end,

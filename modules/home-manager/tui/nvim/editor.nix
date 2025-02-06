@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{
   programs.nixvim.plugins = {
     aerial = {
       enable = true;
       settings = {
         backends = ["lsp" "treesitter" "markdown" "man"];
-        layout = {resize_to_content = false;};
+        layout.resize_to_content = false;
         filter_kind = false;
         show_guides = true;
       };
@@ -13,11 +13,6 @@
     gitsigns = {
       enable = true;
       settings = {
-        diff_opts = {
-          internal = true;
-          indent_heuristic = true;
-          linematch = 60;
-        };
         preview_config.border = "rounded";
         on_attach =
           # lua
@@ -76,43 +71,6 @@
         winVheight = 5;
       };
     };
-
-    # oil = {
-    #   enable = true;
-    #   package = pkgs.vimPlugins.oil-nvim.overrideAttrs (oldAttrs: {
-    #     postInstall =
-    #       oldAttrs.postInstall
-    #       or ""
-    #       + # sh
-    #       ''
-    #         mv $out/doc/recipes.md $out/doc/oil-nvim_recipes.md
-    #         mv $out/doc/api.md $out/doc/oil-nvim_api.md
-    #       '';
-    #   });
-    #   settings = {
-    #     delete_to_trash = true;
-    #     float = {
-    #       max_height = 45;
-    #       max_width = 80;
-    #       preview_split = "below";
-    #     };
-    #     preview = {
-    #       max_height = 45;
-    #       max_width = 80;
-    #     };
-    #     keymaps = {
-    #       "<C-c>" = false;
-    #       "<C-l>" = false;
-    #       "<C-h>" = false;
-    #       "<C-s>" = false;
-    #       "<C-r>" = "actions.refresh";
-    #       "<C-x>" = "actions.select_split";
-    #       "<C-v>" = "actions.select_vsplit";
-    #       "q" = "actions.close";
-    #       "y." = "actions.copy_entry_path";
-    #     };
-    #   };
-    # };
 
     flash.enable = true;
     nvim-surround.enable = true;
