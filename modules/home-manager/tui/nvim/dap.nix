@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   programs.nixvim = {
     plugins = {
       dap-python.enable = true;
@@ -6,6 +6,46 @@
       dap-virtual-text.enable = true;
       dap = {
         enable = true;
+        adapters.executables.lldb.command = "${config.home.homeDirectory}/.vscode/extensions/vadimcn.vscode-lldb-1.11.3/adapter/codelldb";
+        configurations = rec {
+          cpp = [
+            {
+              type = "lldb";
+              request = "launch";
+              name = "Debug";
+              program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
+              cwd = "\${workspaceFolder}";
+              args = [];
+              preLaunchTask = "C/C++: clang build active file";
+            }
+          ];
+          c = cpp;
+          swift = [
+            {
+              type = "lldb";
+              request = "launch";
+              args = [];
+              name = "Debug swiftc";
+              program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
+              cwd = "\${workspaceFolder}";
+              preLaunchTask = "swiftc: Build Debug";
+            }
+            {
+              type = "lldb";
+              request = "launch";
+              args = [];
+              cwd = "\${workspaceFolder}";
+              name = "Debug swift Package";
+              program.__raw = ''
+                function()
+                	local root = require("util.root")()
+                	return root .. "/.build/debug/" .. vim.fn.fnamemodify(root, ":t")
+                end
+              '';
+              preLaunchTask = "swift: Build Debug";
+            }
+          ];
+        };
         signs = {
           dapBreakpoint = {
             numhl = "";
@@ -40,10 +80,16 @@
       # lua
       ''
         local dap, dapui = require("dap"), require("dapui")
-        dap.listeners.before.attach.dapui_config = function() dapui.open() end
-        dap.listeners.before.launch.dapui_config = function() dapui.open() end
+        dap.listeners.before.attach.dapui_config = function()
+        	dapui.open()
+        end
+        dap.listeners.before.launch.dapui_config = function()
+        	dapui.open()
+        end
         -- dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
-        dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
+        dap.listeners.before.event_exited.dapui_config = function()
+        	dapui.close()
+        end
       '';
 
     keymaps = [

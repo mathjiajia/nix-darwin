@@ -11,9 +11,16 @@
         owner = "folke";
         repo = "snacks.nvim";
         rev = "master";
-        sha256 = "BRsQYRn+LaIJvZrGRWdArre1vumnSftc0NR1tcScQ6M=";
+        sha256 = "B7I9OK7LW/EatL1CP5FyCU6Mj4MR5fEe7MCEqe4XEqU=";
       };
-      nvimSkipModule = oldAttrs.nvimSkipModule ++ ["snacks.picker.core.list"];
+      nvimSkipModule =
+        oldAttrs.nvimSkipModule
+        ++ [
+          "snacks.image.init"
+          "snacks.image.placement"
+          "snacks.image.image"
+          "snacks.picker.core.list"
+        ];
     });
     settings = {
       dashboard = {

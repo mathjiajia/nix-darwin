@@ -3,11 +3,11 @@
     owner = "yazi-rs";
     repo = "plugins";
     rev = "master";
-    sha256 = "1FZ8wcf2VVp6ZWY27vm1dUU1KAL32WwoYbNA/8RUAog=";
+    sha256 = "enIt79UvQnKJalBtzSEdUkjNHjNJuKUWC4L6QFb3Ou4=";
   };
   arrowPlugin = pkgs.writeTextFile {
     name = "arrow.yazi";
-    destination = "/init.lua";
+    destination = "/main.lua";
     text =
       # lua
       ''
@@ -23,7 +23,7 @@
   };
   parentArrowPlugin = pkgs.writeTextFile {
     name = "parent-arrow.yazi";
-    destination = "/init.lua";
+    destination = "/main.lua";
     text =
       # lua
       ''

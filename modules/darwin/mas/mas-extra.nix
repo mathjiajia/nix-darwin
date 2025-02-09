@@ -18,5 +18,11 @@
     Ulysses = 1225570693;
     Xcode = 497799835;
     "西窗烛" = 912139104;
+
+    # Compressor = 424390742;
+    # "Final Cut Pro" = 424389933;
+    # "Logic Pro" = 634148309;
+    # MainStage = 634159523;
+    # Motion = 434290957;
   };
 }

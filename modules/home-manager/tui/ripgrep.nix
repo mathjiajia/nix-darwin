@@ -2,13 +2,6 @@
   programs.ripgrep = {
     enable = true;
     arguments = [
-      # Filetypes
-      "--type-add=l:*.lua"
-      "--type-add=m:*.md"
-      "--type-add=p:*.py"
-      "--type-add=s:*.sh"
-      "--type-add=t:*.tex"
-
       # Exclude directories.
       "--glob=!{System,Volumes,bin,cores,dev,etc,opt,private,sbin,tmp,usr,var,Shared}"
       "--glob=!{.cache,.cpan,.git,.local,.Trash}"

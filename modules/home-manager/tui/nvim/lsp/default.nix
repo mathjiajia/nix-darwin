@@ -37,20 +37,6 @@
       # };
     };
 
-    keymaps = [
-      {
-        key = "<leader>qq";
-        action.__raw = ''function() vim.diagnostic.setqflist() end'';
-        options.desc = "Set Quickfix";
-      }
-
-      {
-        key = "<leader>ql";
-        action.__raw = ''function() vim.diagnostic.setloclist() end'';
-        options.desc = "Set Loclist";
-      }
-    ];
-
     extraConfigLua =
       # lua
       ''

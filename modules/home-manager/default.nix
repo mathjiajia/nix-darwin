@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   home = {
     username = "jia";
     homeDirectory = "/Users/jia";
@@ -7,12 +7,13 @@
     sessionVariables = {
       VISUAL = "nvim";
       MANPAGER = "nvim +Man!";
-      DFT_PARSE_ERROR_LIMIT = 999;
 
-      DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
-      GEM_HOME = "$XDG_DATA_HOME/gem";
-      GEM_SPEC_CACHE = "$XDG_CACHE_HOME/gem";
-      IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
+      DOCKER_CONFIG = "${config.xdg.configHome}/docker";
+      GEM_HOME = "${config.xdg.dataHome}/gem";
+      GEM_SPEC_CACHE = "${config.xdg.cacheHome}/gem";
+      IPYTHONDIR = "${config.xdg.configHome}/ipython";
+      JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
+      MPLCONFIGDIR = "${config.xdg.configHome}/matplotlib";
     };
   };
 

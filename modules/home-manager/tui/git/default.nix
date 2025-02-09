@@ -1,9 +1,9 @@
 {lib, ...}: {
   programs.git = {
     enable = true;
-    difftastic.enable = true;
     userName = "Jia Jia";
     userEmail = "mathjiajia@outlook.com";
+    difftastic.enable = true;
     extraConfig = {
       core.editor = "nvim";
       merge = {
@@ -20,16 +20,12 @@
       rebase.autoSquash = true;
       github.user = "mathjiajia";
     };
-    aliases = {
-      a = "add";
-      au = "add -u";
-      ci = "commit";
-      co = "checkout";
-      f = "fetch";
-      r = "rebase";
-      st = "status";
-    };
     ignores = lib.splitString "\n" (builtins.readFile ./gitignore_global);
+    # signing = {
+    #   format = "ssh";
+    #   key = "~/.ssh/id_ed25519";
+    #   signByDefault = true;
+    # };
   };
 
   programs.lazygit = {
@@ -42,5 +38,4 @@
       git.paging.externalDiffCommand = "difft --color=always --display=inline";
     };
   };
-  # programs.gitui.enable = true;
 }

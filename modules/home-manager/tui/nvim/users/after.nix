@@ -1,7 +1,6 @@
 {
   programs.nixvim.extraFiles = {
     "after/ftplugin/checkhealth.lua".text = ''vim.opt_local.buflisted = false'';
-    "after/ftplugin/grug-far.lua".text = ''vim.opt_local.buflisted = false'';
     "after/ftplugin/man.lua".text = ''vim.opt_local.buflisted = false'';
 
     "after/ftplugin/help.lua".text =

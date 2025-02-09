@@ -1,19 +1,37 @@
 {
   programs.nixvim.plugins = {
+    flash.enable = true;
+    nvim-surround.enable = true;
+
     aerial = {
       enable = true;
       settings = {
         backends = ["lsp" "treesitter" "markdown" "man"];
-        layout.resize_to_content = false;
         filter_kind = false;
+        nerd_font = true;
         show_guides = true;
+      };
+    };
+
+    grug-far = {
+      enable = true;
+      settings = {
+        icons.fileIconsProvider = "mini.icons";
+        keymaps.close.n = "q";
+      };
+    };
+
+    nvim-bqf = {
+      enable = true;
+      preview = {
+        winHeight = 5;
+        winVheight = 5;
       };
     };
 
     gitsigns = {
       enable = true;
       settings = {
-        preview_config.border = "rounded";
         on_attach =
           # lua
           ''
@@ -53,36 +71,12 @@
             	map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
             end
           '';
+        preview_config.border = "rounded";
       };
     };
-
-    grug-far = {
-      enable = true;
-      settings = {
-        icons.fileIconsProvider = "mini.icons";
-        keymaps.close.n = "q";
-      };
-    };
-
-    nvim-bqf = {
-      enable = true;
-      preview = {
-        winHeight = 5;
-        winVheight = 5;
-      };
-    };
-
-    flash.enable = true;
-    nvim-surround.enable = true;
   };
 
   programs.nixvim.keymaps = [
-    {
-      key = "-";
-      action = "<Cmd>Oil --float<CR>";
-      options.desc = "Open parent directory";
-    }
-
     {
       mode = ["n" "v"];
       key = "<leader>sr";

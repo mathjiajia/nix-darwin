@@ -23,6 +23,13 @@
         options.silent = true;
         options.desc = "Snip Run";
       }
+
+      {
+        key = "<leader>rf";
+        action = ":let b:caret=winsaveview() <CR> | :%SnipRun <CR>| :call winrestview(b:caret) <CR>";
+        options.silent = true;
+        options.desc = "Run File";
+      }
     ];
   };
 }

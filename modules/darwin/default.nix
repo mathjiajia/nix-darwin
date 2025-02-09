@@ -7,7 +7,9 @@
 
   environment.systemPackages = with pkgs; [
     # CLI
+    gh
     hugo
+    mas
     tree
 
     # PYTHON

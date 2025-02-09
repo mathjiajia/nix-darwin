@@ -4,24 +4,24 @@
 
     plugins.overseer = {
       enable = true;
-      settings = {
-        # strategy = "jobstart";
-        templates = ["builtin" "user.builder" "user.runner"];
-      };
+      settings.templates = ["builtin" "user.builder" "user.runner"];
     };
 
     keymaps = [
       {
-        key = "<leader>rf";
-        action = "<Cmd>OverseerRun RunFile<CR>";
-        options.silent = true;
-        options.desc = "Run File";
+        key = "<leader>ro";
+        action = "<Cmd>OverseerToggle<CR>";
+        options.desc = "Task List";
       }
       {
         key = "<leader>rr";
-        action = "<Cmd>OverseerRun OpenREPL<CR>";
-        options.silent = true;
-        options.desc = "Open REPL";
+        action = "<Cmd>OverseerRun<CR>";
+        options.desc = "Run Task";
+      }
+      {
+        key = "<leader>rb";
+        action = "<Cmd>OverseerBuild<CR>";
+        options.desc = "Task Builder";
       }
     ];
 
@@ -29,54 +29,110 @@
       "lua/overseer/template/user/builder.lua".text =
         # lua
         ''
-          local builders = {
-          	c = {
-          		name = "C",
-          		filerunner = function()
-          			return "cd "
-          				.. vim.fn.expand("%:p:h")
-          				.. "&& gcc "
-          				.. vim.fn.expand("%:p")
-          				.. " -o "
-          				.. vim.fn.expand("%:p:r")
-          				.. " && "
-          				.. vim.fn.expand("%:p:r")
-          		end,
-          	},
-          	cpp = {
-          		name = "C++",
-          		filerunner = function()
-          			return "cd "
-          				.. vim.fn.expand("%:p:h")
-          				.. "&& g++ "
-          				.. vim.fn.expand("%:p")
-          				.. " -o "
-          				.. vim.fn.expand("%:p:r")
-          				.. " && "
-          				.. vim.fn.expand("%:p:r")
-          		end,
-          	},
+          return {
+          	"user.builder.clang",
+          	"user.builder.swift",
           }
+        '';
+
+      "lua/overseer/template/user/builder/clang.lua".text =
+        # lua
+        ''
+          local clang = "clang"
 
           return {
-          	condition = { filetype = vim.tbl_keys(builders) },
+          	cached_key = function()
+          		return vim.fn.expand("%:p")
+          	end,
+          	condition = { filetype = { "c", "cpp" } },
           	generator = function(_, cb)
-          		local ft = builders[vim.bo.filetype]
-
-          		local ret = {
+          		cb({
           			{
-          				name = "RunFile",
+          				name = "C/C++: clang build active file",
           				builder = function()
+          					local file = vim.fn.expand("%:p")
+          					local exec_file = vim.fn.expand("%:p:r")
           					return {
-          						cmd = ft.filerunner(),
-          						name = "Running " .. vim.fn.expand("%:t:r"),
-          						components = { "default", "unique" },
+          						cmd = { clang },
+          						args = { "-fcolor-diagnostics", "-fansi-escape-codes", "-g", file, "-o", exec_file },
+          						cwd = vim.fn.expand("%:p:h"),
           					}
           				end,
-          				priority = 4,
+          				priority = 6,
           			},
-          		}
-          		cb(ret)
+          			{
+          				name = "Build and Run with " .. clang,
+          				builder = function()
+          					local file = vim.fn.expand("%:p")
+          					local exec_file = vim.fn.expand("%:p:r")
+          					return {
+          						cmd = { clang },
+          						args = { file, "-o", exec_file },
+          						cwd = vim.fn.expand("%:p:h"),
+          						components = { "open_output", "default", { "run_after", task_names = { { cmd = exec_file } } } },
+          					}
+          				end,
+          				priority = 2,
+          			},
+          		})
+          	end,
+          }
+        '';
+
+      "lua/overseer/template/user/builder/swift.lua".text =
+        # lua
+        ''
+          return {
+          	cached_key = function()
+          		return vim.fn.expand("%:p")
+          	end,
+          	condition = { filetype = { "swift" } },
+          	generator = function(_, cb)
+          		local tasks = {}
+          		local file = vim.fn.expand("%:p")
+          		local file_basename = vim.fn.expand("%:t:r")
+
+          		table.insert(tasks, {
+          			name = "swiftc: Build Debug",
+          			builder = function()
+          				local file = vim.fn.expand("%:p")
+          				return {
+          					cmd = { "swiftc" },
+          					args = { "-g", file },
+          					cwd = vim.fn.expand("%:p:h"),
+          				}
+          			end,
+          			priority = 6,
+          		})
+
+          		local root = require("util.root")()
+          		local package_manifest = vim.fn.findfile("Package.swift", root)
+          		if package_manifest ~= "" then
+          			table.insert(tasks, {
+          				name = "swift: Build Debug",
+          				builder = function()
+          					return {
+          						cmd = { "swift", "build" },
+          						args = { "-c", "debug" },
+          						cwd = root,
+          					}
+          				end,
+          				priority = 6,
+          			})
+          			table.insert(tasks, {
+          				name = "Swift Package Run",
+          				builder = function()
+          					return {
+          						cmd = { "swift", "run" },
+          						cwd = root,
+          						components = { "open_output", "default" },
+          					}
+          				end,
+          				priority = 5,
+          			})
+          		end
+
+          		cb(tasks)
           	end,
           }
         '';
@@ -89,50 +145,54 @@
           	bash = { name = "Bash", cmd = "bash", repl = "bash" },
           	zsh = { name = "Zsh", cmd = "zsh", repl = "zsh" },
           	fish = { name = "Fish", cmd = "fish", repl = "fish" },
+          	m2 = { name = "Macaulay2", cmd = "M2", repl = "M2" },
           	python = { name = "Python", cmd = "python", repl = "ipython" },
           	r = { name = "R", cmd = "Rscript", repl = "R" },
           	lua = { name = "Lua", cmd = { "nvim", "-l" }, repl = "lua" },
           	swift = { name = "Swift", cmd = "swift", repl = { "swift", "repl" } },
           }
 
+          local repl_counters = {}
+
           return {
           	condition = { filetype = vim.tbl_keys(filerunners) },
           	generator = function(_, cb)
           		local ft = filerunners[vim.bo.filetype]
-          		local file = vim.fn.expand("%:p")
-          		local ret = {}
+          		if not ft then
+          			return
+          		end
 
-          		table.insert(ret, {
+          		local file = vim.fn.expand("%:p")
+          		local file_basename = vim.fn.expand("%:t:r")
+          		local tasks = {}
+
+          		tasks[#tasks + 1] = {
           			name = "RunFile",
           			builder = function()
           				return {
           					cmd = ft.cmd,
           					args = { file },
-          					name = "Running " .. vim.fn.expand("%:t:r"),
-          					components = { "default", "unique" },
+          					name = "Running " .. file_basename,
+          					components = { "open_output", "default", "unique" },
           				}
           			end,
           			priority = 4,
-          		})
+          		}
 
-          		table.insert(ret, {
+          		tasks[#tasks + 1] = {
           			name = "OpenREPL",
           			builder = function()
-          				if ft.num then
-          					ft.num = ft.num + 1
-          				else
-          					ft.num = 1
-          				end
+          				repl_counters[vim.bo.filetype] = (repl_counters[vim.bo.filetype] or 0) + 1
           				return {
           					cmd = ft.repl,
-          					name = ft.name .. " REPL " .. ft.num,
-          					components = { "default" },
+          					name = ft.name .. " REPL " .. repl_counters[vim.bo.filetype],
+          					components = { "open_output", "default" },
           				}
           			end,
           			priority = 5,
-          		})
+          		}
 
-          		cb(ret)
+          		cb(tasks)
           	end,
           }
         '';

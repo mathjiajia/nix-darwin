@@ -2,7 +2,8 @@
   homebrew.casks = [
     "adobe-acrobat-pro"
     "adobe-creative-cloud"
-    "anythingllm"
+    "chatwise"
+    "cherry-studio"
     "claude"
     "codeedit"
     "coherence-x"
@@ -11,6 +12,7 @@
     "github-copilot-for-xcode"
     "hhkb"
     "huggingchat"
+    "miaoyan"
     "neohtop"
     "openemu"
     # "openra"

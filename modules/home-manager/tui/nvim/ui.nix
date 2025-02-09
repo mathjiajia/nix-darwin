@@ -1,14 +1,25 @@
-{
+{pkgs, ...}: {
   programs.nixvim.plugins = {
     markview = {
       enable = true;
-      settings = {
-        # preview = {
-        filetypes = ["markdown" "quarto" "rmd" "codecompanion"];
-        # ignore_buftypes.__raw = "{}";
-        buf_ignore.__raw = "{}";
-        # icon_provider = "mini";
-        # };
+      package = pkgs.vimPlugins.markview-nvim.overrideAttrs (oldAttrs: {
+        postInstall =
+          oldAttrs.postInstall
+          or ""
+          + # sh
+          ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
+        src = pkgs.fetchFromGitHub {
+          owner = "OXY2DEV";
+          repo = "markview.nvim";
+          rev = "v25.3.1";
+          sha256 = "uWwW6cUErZXkd3At2LExMrGYSKlle6XILs53Z3cfDLs=";
+          fetchSubmodules = false;
+        };
+      });
+      settings.preview = {
+        filetypes = ["markdown" "codecompanion"];
+        ignore_buftypes.__raw = "{}";
+        icon_provider = "mini";
       };
     };
     rainbow-delimiters.enable = true;
@@ -60,6 +71,13 @@
               any = [{find = "%d+L, %d+B";} {find = "; after #%d+";} {find = "; before #%d+";}];
             };
             view = "mini";
+          }
+          {
+            filter = {
+              event = "msg_show";
+              any = [{find = "vim.tbl_islist is deprecated";}];
+            };
+            opts.skip = true;
           }
         ];
       };

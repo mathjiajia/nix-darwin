@@ -5,7 +5,7 @@
       owner = "mathjiajia";
       repo = "mySnippets";
       rev = "master";
-      sha256 = "02eMQHAjivU47X7Mqu5dPVmVUEf42Vrn9e81/KJweJc=";
+      sha256 = "47wUkY7vJuJ7jYrb4t+rGssJv76R0UjYTKNPs6ghgmc=";
     };
     nvimSkipModule = [
       "mySnippets.position"

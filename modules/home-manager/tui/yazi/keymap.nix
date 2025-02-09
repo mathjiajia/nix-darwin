@@ -8,20 +8,20 @@
       }
       {
         on = "j";
-        run = "plugin arrow --args=1";
+        run = "plugin arrow 1";
       }
       {
         on = "k";
-        run = "plugin arrow --args=-1";
+        run = "plugin arrow -1";
       }
 
       {
         on = "J";
-        run = "plugin parent-arrow --args=1";
+        run = "plugin parent-arrow 1";
       }
       {
         on = "K";
-        run = "plugin parent-arrow --args=-1";
+        run = "plugin parent-arrow -1";
       }
 
       {
