@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs; [
     # CLI
     gh
+    ghostscript
     hugo
     mas
     tree

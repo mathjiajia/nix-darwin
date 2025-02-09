@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  # programs.nixvim.extraPackages = [pkgs.mermaid-cli];
   programs.nixvim.plugins.snacks = {
     enable = true;
     package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
@@ -11,7 +12,7 @@
         owner = "folke";
         repo = "snacks.nvim";
         rev = "master";
-        sha256 = "B7I9OK7LW/EatL1CP5FyCU6Mj4MR5fEe7MCEqe4XEqU=";
+        sha256 = "fc72hrDcNn3RKGLMSaxCrkxgCQx/dmbemB8dGrhbcMk=";
       };
       nvimSkipModule =
         oldAttrs.nvimSkipModule
@@ -112,6 +113,7 @@
         ];
       };
       explorer.replace_netrw = true;
+      # image.enabled = true;
       indent = {
         enabled = true;
         scope.hl = [
