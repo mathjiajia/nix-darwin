@@ -5,7 +5,7 @@
     settings = {
       theme = "bamboo";
       font-family = "Sarasa Term SC";
-      font-size = 21;
+      font-size = 23;
       font-thicken = true;
       mouse-hide-while-typing = true;
       macos-icon = "custom-style";

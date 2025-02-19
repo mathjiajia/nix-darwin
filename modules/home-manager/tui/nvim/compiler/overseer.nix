@@ -46,12 +46,12 @@
           	end,
           	condition = { filetype = { "c", "cpp" } },
           	generator = function(_, cb)
+          		local file = vim.fn.expand("%:p")
+          		local exec_file = vim.fn.expand("%:p:r")
           		cb({
           			{
           				name = "C/C++: clang build active file",
           				builder = function()
-          					local file = vim.fn.expand("%:p")
-          					local exec_file = vim.fn.expand("%:p:r")
           					return {
           						cmd = { clang },
           						args = { "-fcolor-diagnostics", "-fansi-escape-codes", "-g", file, "-o", exec_file },
@@ -63,8 +63,6 @@
           			{
           				name = "Build and Run with " .. clang,
           				builder = function()
-          					local file = vim.fn.expand("%:p")
-          					local exec_file = vim.fn.expand("%:p:r")
           					return {
           						cmd = { clang },
           						args = { file, "-o", exec_file },
@@ -88,51 +86,20 @@
           	end,
           	condition = { filetype = { "swift" } },
           	generator = function(_, cb)
-          		local tasks = {}
-          		local file = vim.fn.expand("%:p")
-          		local file_basename = vim.fn.expand("%:t:r")
-
-          		table.insert(tasks, {
-          			name = "swiftc: Build Debug",
-          			builder = function()
-          				local file = vim.fn.expand("%:p")
-          				return {
-          					cmd = { "swiftc" },
-          					args = { "-g", file },
-          					cwd = vim.fn.expand("%:p:h"),
-          				}
-          			end,
-          			priority = 6,
-          		})
-
-          		local root = require("util.root")()
-          		local package_manifest = vim.fn.findfile("Package.swift", root)
-          		if package_manifest ~= "" then
-          			table.insert(tasks, {
-          				name = "swift: Build Debug",
+          		cb({
+          			{
+          				name = "swiftc: Build Debug",
           				builder = function()
+          					local file = vim.fn.expand("%:p")
           					return {
-          						cmd = { "swift", "build" },
-          						args = { "-c", "debug" },
-          						cwd = root,
+          						cmd = { "swiftc" },
+          						args = { "-g", file },
+          						cwd = vim.fn.expand("%:p:h"),
           					}
           				end,
           				priority = 6,
-          			})
-          			table.insert(tasks, {
-          				name = "Swift Package Run",
-          				builder = function()
-          					return {
-          						cmd = { "swift", "run" },
-          						cwd = root,
-          						components = { "open_output", "default" },
-          					}
-          				end,
-          				priority = 5,
-          			})
-          		end
-
-          		cb(tasks)
+          			},
+          		})
           	end,
           }
         '';

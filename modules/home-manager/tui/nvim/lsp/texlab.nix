@@ -77,12 +77,16 @@
       		end
 
       		local function dependency_graph()
-      			client:request("workspace/executeCommand", { command = "texlab.showDependencyGraph" }, function(err, result)
-      				if err then
-      					return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
+      			client:exec_cmd(
+      				{ title = "show dependency Graph", command = "texlab.showDependencyGraph" },
+      				{ bufnr = bufnr },
+      				function(err, result)
+      					if err then
+      						return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
+      					end
+      					vim.notify("The dependency graph has been generated:\n" .. result, vim.log.levels.INFO)
       				end
-      				vim.notify("The dependency graph has been generated:\n" .. result, vim.log.levels.INFO)
-      			end, 0)
+      			)
       		end
 
       		local function command_factory(cmd)
@@ -107,10 +111,11 @@
       		end
 
       		local function buf_find_envs()
-      			client:request("workspace/executeCommand", {
+      			client:exec_cmd({
+      				title = "find Environments",
       				command = "texlab.findEnvironments",
       				arguments = { params },
-      			}, function(err, result)
+      			}, { bufnr = bufnr }, function(err, result)
       				if err then
       					return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
       				end
@@ -131,7 +136,7 @@
       					border = "single",
       					title = "Environments",
       				})
-      			end, bufnr)
+      			end)
       		end
 
       		local function buf_change_env()
@@ -155,10 +160,11 @@
       		end
 
       		local function close_env()
-      			client:request("workspace/executeCommand", {
+      			client:exec_cmd({
+      				title = "find Environments",
       				command = "texlab.findEnvironments",
       				arguments = { params },
-      			}, function(err, result)
+      			}, { bufnr = bufnr }, function(err, result)
       				if err then
       					return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
       				end
@@ -168,14 +174,15 @@
 
       				local text = result[#result].name.text
       				vim.api.nvim_put({ "\\end{" .. text .. "}" }, "", false, true)
-      			end, bufnr)
+      			end)
       		end
 
       		local toggle_star = function()
-      			client:request("workspace/executeCommand", {
+      			client:exec_cmd({
+      				title = "find Environments",
       				command = "texlab.findEnvironments",
       				arguments = { params },
-      			}, function(err, result)
+      			}, { bufnr = bufnr }, function(err, result)
       				if err then
       					return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
       				end
@@ -197,7 +204,7 @@
       						},
       					},
       				}, { bufnr = bufnr })
-      			end, bufnr)
+      			end)
       		end
 
       		-- vim.api.nvim_buf_create_user_command(bufnr, "TexlabBuild", buf_build, { desc = "Build the current buffer" })
@@ -231,18 +238,18 @@
       			command_factory("Auxiliary"),
       			{ desc = "Clean the auxiliary files" }
       		)
-      		vim.api.nvim_buf_create_user_command(
-      			bufnr,
-      			"TexlabFindEnvironments",
-      			buf_find_envs,
-      			{ desc = "Find the environments at current position" }
-      		)
-      		vim.api.nvim_buf_create_user_command(
-      			bufnr,
-      			"TexlabChangeEnvironment",
-      			buf_change_env,
-      			{ desc = "Change the environment at current position" }
-      		)
+      		-- vim.api.nvim_buf_create_user_command(
+      		-- 	bufnr,
+      		-- 	"TexlabFindEnvironments",
+      		-- 	buf_find_envs,
+      		-- 	{ desc = "Find the environments at current position" }
+      		-- )
+      		-- vim.api.nvim_buf_create_user_command(
+      		-- 	bufnr,
+      		-- 	"TexlabChangeEnvironment",
+      		-- 	buf_change_env,
+      		-- 	{ desc = "Change the environment at current position" }
+      		-- )
 
       		vim.keymap.set("n", "<leader>ll", buf_build, { buffer = bufnr, desc = "Build the current buffer" })
       		vim.keymap.set("n", "<leader>lf", buf_search, { buffer = bufnr, desc = "Forward search from current position" })

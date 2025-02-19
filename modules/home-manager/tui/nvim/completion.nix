@@ -128,7 +128,6 @@
             ripgrep = {
               module = "blink-ripgrep";
               name = "Ripgrep";
-              opts.additional_rg_options = ["--glob=!*.pdf"];
             };
           };
         };

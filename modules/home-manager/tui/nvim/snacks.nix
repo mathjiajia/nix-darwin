@@ -1,5 +1,4 @@
 {pkgs, ...}: {
-  # programs.nixvim.extraPackages = [pkgs.mermaid-cli];
   programs.nixvim.plugins.snacks = {
     enable = true;
     package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
@@ -8,20 +7,6 @@
         or ""
         + # sh
         ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
-      src = pkgs.fetchFromGitHub {
-        owner = "folke";
-        repo = "snacks.nvim";
-        rev = "master";
-        sha256 = "fc72hrDcNn3RKGLMSaxCrkxgCQx/dmbemB8dGrhbcMk=";
-      };
-      nvimSkipModule =
-        oldAttrs.nvimSkipModule
-        ++ [
-          "snacks.image.init"
-          "snacks.image.placement"
-          "snacks.image.image"
-          "snacks.picker.core.list"
-        ];
     });
     settings = {
       dashboard = {
@@ -113,7 +98,7 @@
         ];
       };
       explorer.replace_netrw = true;
-      # image.enabled = true;
+      image.doc.math = false;
       indent = {
         enabled = true;
         scope.hl = [

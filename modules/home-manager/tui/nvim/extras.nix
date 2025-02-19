@@ -122,12 +122,6 @@ in {
       	end,
       }
 
-      local FileNameBlock = {
-      	init = function(self)
-      		self.filename = vim.api.nvim_buf_get_name(0)
-      	end,
-      }
-
       local FileIcon = {
       	init = function(self)
       		local filename = self.filename
@@ -154,34 +148,6 @@ in {
       	end,
       	hl = { fg = utils.get_highlight("Directory").fg },
       }
-
-      local FileFlags = {
-      	{
-      		condition = function()
-      			return vim.bo.modified
-      		end,
-      		provider = "[+]",
-      		hl = { fg = "green" },
-      	},
-      	{
-      		condition = function()
-      			return not vim.bo.modifiable or vim.bo.readonly
-      		end,
-      		provider = "",
-      		hl = { fg = "orange" },
-      	},
-      }
-
-      local FileNameModifer = {
-      	hl = function()
-      		if vim.bo.modified then
-      			return { fg = "cyan", force = true }
-      		end
-      	end,
-      }
-
-      FileNameBlock =
-      	utils.insert(FileNameBlock, FileIcon, utils.insert(FileNameModifer, FileName), FileFlags, { provider = "%<" })
 
       local WorkDir = {
       	provider = function()
@@ -354,7 +320,6 @@ in {
       	VimMode,
       	Space,
       	WorkDir,
-      	FileNameBlock,
       	Git,
       	Align,
       	Diagnostics,

@@ -1,16 +1,22 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.nixvim = {
+    extraPackages = [pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter];
     plugins = {
       dap-python.enable = true;
       dap-ui.enable = true;
       dap-virtual-text.enable = true;
       dap = {
         enable = true;
-        adapters.executables.lldb.command = "${config.home.homeDirectory}/.vscode/extensions/vadimcn.vscode-lldb-1.11.3/adapter/codelldb";
+        # adapters.executables.codelldb.command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter}/bin/codelldb";
+        adapters.executables.codelldb.command = "${config.home.homeDirectory}/.vscode/extensions/vadimcn.vscode-lldb-1.11.4/adapter/codelldb";
         configurations = rec {
           cpp = [
             {
-              type = "lldb";
+              type = "codelldb";
               request = "launch";
               name = "Debug";
               program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
@@ -22,27 +28,13 @@
           c = cpp;
           swift = [
             {
-              type = "lldb";
+              type = "codelldb";
               request = "launch";
               args = [];
               name = "Debug swiftc";
               program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
               cwd = "\${workspaceFolder}";
               preLaunchTask = "swiftc: Build Debug";
-            }
-            {
-              type = "lldb";
-              request = "launch";
-              args = [];
-              cwd = "\${workspaceFolder}";
-              name = "Debug swift Package";
-              program.__raw = ''
-                function()
-                	local root = require("util.root")()
-                	return root .. "/.build/debug/" .. vim.fn.fnamemodify(root, ":t")
-                end
-              '';
-              preLaunchTask = "swift: Build Debug";
             }
           ];
         };
