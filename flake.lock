@@ -204,11 +204,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740347597,
-        "narHash": "sha256-st5q9egkPGz8TUcVVlIQX7y6G3AzHob+6M963bwVq74=",
+        "lastModified": 1740432748,
+        "narHash": "sha256-BCeFtoJ/+LrZc03viRJWHfzAqqG8gPu/ikZeurv05xs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "12e26a74e5eb1a31e13daaa08858689e25ebd449",
+        "rev": "c12dcc9b61429b2ad437a7d4974399ad8f910319",
         "type": "github"
       },
       "original": {
@@ -220,11 +220,11 @@
     "homebrew-bundle": {
       "flake": false,
       "locked": {
-        "lastModified": 1740207039,
-        "narHash": "sha256-WRclQqchY+eVcje1HajQK5olAQtp3lwP8bXw+i35ZFY=",
+        "lastModified": 1740439747,
+        "narHash": "sha256-tuGKQO3KU+1oNYVjnBP7EXpTyOvDUYssmVEWjsZq8Ao=",
         "owner": "homebrew",
         "repo": "homebrew-bundle",
-        "rev": "937c6b86e8605e72315a3ccdb3f4f5c47fe9d56f",
+        "rev": "0059a0b9ec9d9ac557305a89d7c4b37fe0c9f70a",
         "type": "github"
       },
       "original": {
@@ -258,6 +258,22 @@
         "owner": "NuschtOS",
         "ref": "v0.0.6",
         "repo": "ixx",
+        "type": "github"
+      }
+    },
+    "mysnippets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739203874,
+        "narHash": "sha256-47wUkY7vJuJ7jYrb4t+rGssJv76R0UjYTKNPs6ghgmc=",
+        "owner": "mathjiajia",
+        "repo": "mySnippets",
+        "rev": "046b82bd134422db5571f1bcf33b51a1dfc09465",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mathjiajia",
+        "repo": "mySnippets",
         "type": "github"
       }
     },
@@ -406,11 +422,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1740303746,
-        "narHash": "sha256-XcdiWLEhjJkMxDLKQJ0CCivmYYCvA5MDxu9pMybM5kM=",
+        "lastModified": 1740396192,
+        "narHash": "sha256-ATMHHrg3sG1KgpQA5x8I+zcYpp5Sf17FaFj/fN+8OoQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2d068ae5c6516b2d04562de50a58c682540de9bf",
+        "rev": "d9b69c3ec2a2e2e971c534065bdd53374bd68b97",
         "type": "github"
       },
       "original": {
@@ -429,11 +445,11 @@
         "nuschtosSearch": "nuschtosSearch"
       },
       "locked": {
-        "lastModified": 1740331437,
-        "narHash": "sha256-fxL8WJ2RUFExNi4kR7tx3WHenHnjIZ3h1RlQnYxITTo=",
+        "lastModified": 1740432393,
+        "narHash": "sha256-uXlB7bTlrl0q2jryKMSRlU+GptkVJN7PTsqdKkaFg1M=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "6d10fc0c871a93164bd473fe7de9dbcc41439799",
+        "rev": "53f9d242ffdf0997109d0b5b8bbbcc67a4296077",
         "type": "github"
       },
       "original": {
@@ -465,15 +481,51 @@
         "type": "github"
       }
     },
+    "nvim-latex": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738663448,
+        "narHash": "sha256-hgwQfPNDJMLhqFW8XcZrwohMv0gjW4zTghu6Wz7GzFw=",
+        "owner": "mathjiajia",
+        "repo": "latex.nvim",
+        "rev": "bfc0ef809e30efa1b147f97fac0a321b3b6a2d27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mathjiajia",
+        "repo": "latex.nvim",
+        "type": "github"
+      }
+    },
+    "nvim-treesitter-pairs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737473190,
+        "narHash": "sha256-4kVZJd8KMX7YPNCz2m+FXCGAyOnde/OGkBx6tKy+eTA=",
+        "owner": "lewis6991",
+        "repo": "nvim-treesitter-pairs",
+        "rev": "dad8aaff2a7f43270493048274824e2c8c3c99be",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lewis6991",
+        "repo": "nvim-treesitter-pairs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "homebrew-bundle": "homebrew-bundle",
+        "mysnippets": "mysnippets",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_4",
-        "nixvim": "nixvim"
+        "nixvim": "nixvim",
+        "nvim-latex": "nvim-latex",
+        "nvim-treesitter-pairs": "nvim-treesitter-pairs",
+        "yazi-plugins": "yazi-plugins"
       }
     },
     "systems": {
@@ -509,6 +561,22 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "yazi-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740134867,
+        "narHash": "sha256-Cw5iMljJJkxOzAGjWGIlCa7gnItvBln60laFMf6PSPM=",
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "rev": "5186af7984aa8cb0550358aefe751201d7a6b5a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yazi-rs",
+        "repo": "plugins",
         "type": "github"
       }
     }

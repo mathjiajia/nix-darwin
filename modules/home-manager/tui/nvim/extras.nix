@@ -1,12 +1,11 @@
-{pkgs, ...}: let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   mysnippets = pkgs.vimUtils.buildVimPlugin {
     name = "mySnippets";
-    src = pkgs.fetchFromGitHub {
-      owner = "mathjiajia";
-      repo = "mySnippets";
-      rev = "master";
-      sha256 = "47wUkY7vJuJ7jYrb4t+rGssJv76R0UjYTKNPs6ghgmc=";
-    };
+    src = inputs.mysnippets;
     nvimSkipModule = [
       "mySnippets.position"
       "mySnippets.context"
@@ -16,22 +15,12 @@
 
   latex-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "latex";
-    src = pkgs.fetchFromGitHub {
-      owner = "mathjiajia";
-      repo = "latex.nvim";
-      rev = "master";
-      sha256 = "hgwQfPNDJMLhqFW8XcZrwohMv0gjW4zTghu6Wz7GzFw=";
-    };
+    src = inputs.nvim-latex;
   };
 
   nvim-treesitter-pairs = pkgs.vimUtils.buildVimPlugin {
     name = "treesitter-pairs";
-    src = pkgs.fetchFromGitHub {
-      owner = "lewis6991";
-      repo = "nvim-treesitter-pairs";
-      rev = "master";
-      sha256 = "4kVZJd8KMX7YPNCz2m+FXCGAyOnde/OGkBx6tKy+eTA=";
-    };
+    src = inputs.nvim-treesitter-pairs;
   };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [

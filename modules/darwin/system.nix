@@ -12,9 +12,7 @@
 
     dock = {
       autohide = true;
-      orientation = "bottom";
       tilesize = 48;
-
       persistent-apps = [
         "/System/Applications/Launchpad.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"
@@ -31,11 +29,14 @@
         # "${pkgs.ghostty}/Applications/Ghostty.app"
         "/Applications/Ghostty.app"
         "${pkgs.zotero}/Applications/Zotero.app"
+        "${pkgs.vscode}/Applications/Visual Studio Code.app"
         "/Applications/Publish or Perish.app"
         "/Applications/WeChat.app"
         "/Applications/Dictionaries.app"
+        "/Applications/Perplexity.app"
+        "/Applications/ChatGPT.app"
+        "/Applications/Cherry Studio.app"
         "/System/Applications/Music.app"
-        "/Applications/Surge.app"
         "/Applications/LaunchBar.app"
         "/System/Applications/App Store.app"
         "/System/Applications/System Settings.app"

@@ -1,10 +1,8 @@
-{pkgs, ...}: let
-  yaziPlugins = pkgs.fetchFromGitHub {
-    owner = "yazi-rs";
-    repo = "plugins";
-    rev = "master";
-    sha256 = "enIt79UvQnKJalBtzSEdUkjNHjNJuKUWC4L6QFb3Ou4=";
-  };
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   arrowPlugin = pkgs.writeTextFile {
     name = "arrow.yazi";
     destination = "/main.lua";
@@ -44,13 +42,13 @@
 in {
   programs.yazi.plugins = {
     arrow = arrowPlugin;
-    chmod = "${yaziPlugins}/chmod.yazi";
-    diff = "${yaziPlugins}/diff.yazi";
-    full-border = "${yaziPlugins}/full-border.yazi";
-    git = "${yaziPlugins}/git.yazi";
-    jump-to-char = "${yaziPlugins}/jump-to-char.yazi";
+    chmod = "${inputs.yazi-plugins}/chmod.yazi";
+    diff = "${inputs.yazi-plugins}/diff.yazi";
+    full-border = "${inputs.yazi-plugins}/full-border.yazi";
+    git = "${inputs.yazi-plugins}/git.yazi";
+    jump-to-char = "${inputs.yazi-plugins}/jump-to-char.yazi";
     parent-arrow = parentArrowPlugin;
-    smart-enter = "${yaziPlugins}/smart-enter.yazi";
-    smart-filter = "${yaziPlugins}/smart-filter.yazi";
+    smart-enter = "${inputs.yazi-plugins}/smart-enter.yazi";
+    smart-filter = "${inputs.yazi-plugins}/smart-filter.yazi";
   };
 }

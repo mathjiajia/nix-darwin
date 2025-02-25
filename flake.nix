@@ -17,6 +17,20 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    yazi-plugins.url = "github:yazi-rs/plugins";
+    yazi-plugins.flake = false;
+
+    mysnippets.url = "github:mathjiajia/mySnippets";
+    mysnippets.flake = false;
+    nvim-latex.url = "github:mathjiajia/latex.nvim";
+    nvim-latex.flake = false;
+    nvim-treesitter-pairs.url = "github:lewis6991/nvim-treesitter-pairs";
+    nvim-treesitter-pairs.flake = false;
+    # nvzone-showkeys.url = "github:nvzone/showkeys";
+    # nvzone-showkeys.flake = false;
+    # nvzone-timerly.url = "github:nvzone/timerly";
+    # nvzone-timerly.flake = false;
   };
 
   outputs = inputs @ {
@@ -25,9 +39,7 @@
     nix-darwin,
     home-manager,
     nix-homebrew,
-    homebrew-bundle,
     nixvim,
-    neovim-nightly-overlay,
     ...
   }: let
     system = "aarch64-darwin";
@@ -57,7 +69,7 @@
           enable = true;
           enableRosetta = true;
           user = "${username}";
-          taps = {"homebrew/homebrew-bundle" = homebrew-bundle;};
+          taps = {"homebrew/homebrew-bundle" = inputs.homebrew-bundle;};
           mutableTaps = false;
         };
       }
