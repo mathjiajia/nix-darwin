@@ -2,12 +2,11 @@
   imports = [
     ./homebrew/homebrew.nix
     ./mas/mas.nix
-    # ./system.nix
+    ./system.nix
   ];
 
   environment.systemPackages = with pkgs; [
     # CLI
-    gh
     ghostscript
     hugo
     mas
@@ -25,6 +24,8 @@
       ]))
 
     # GUI
+    chatgpt
+    # cherry-studio # linux
     # follow # x86_64-linux
     # github-copilot-cli
     # github-desktop # linux
@@ -32,7 +33,7 @@
     iina
     inkscape
     keka
-    # loopwm # with aerospace
+    loopwm
     # mathematica # x86_64-linux
     # mathpix-snipping-tool # x86_64-linux
     # microsoft-edge # x86_64-linux
@@ -43,6 +44,7 @@
     skimpdf
     # stats
     # sublime-merge # linux
+    warp-terminal
     zoom-us
     zotero
   ];
@@ -51,7 +53,7 @@
 
   fonts.packages = with pkgs; [
     lxgw-wenkai
-    maple-mono
+    maple-mono #-NF-CN
     sarasa-gothic
     smiley-sans
 

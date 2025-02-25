@@ -8,9 +8,9 @@
       cleanup = "zap";
       upgrade = true;
     };
+    # greedyCasks = true;
 
     casks = [
-      "chatgpt"
       "dash"
       "downie"
       "follow"

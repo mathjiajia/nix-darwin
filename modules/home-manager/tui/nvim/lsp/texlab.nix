@@ -35,7 +35,15 @@
       					"%p",
       				},
       			},
-      			diagnostics = { ignoredPatterns = { "^Overfull", "^Underfull" } },
+      			diagnostics = {
+      				ignoredPatterns = {
+      					"Overfull",
+      					"Underfull",
+      					"Package hyperref Warning",
+      					"Float too large for page",
+      					"contains only floats",
+      				},
+      			},
       		},
       	},
       	on_attach = function(client, bufnr)
@@ -110,35 +118,6 @@
       			end
       		end
 
-      		local function buf_find_envs()
-      			client:exec_cmd({
-      				title = "find Environments",
-      				command = "texlab.findEnvironments",
-      				arguments = { params },
-      			}, { bufnr = bufnr }, function(err, result)
-      				if err then
-      					return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
-      				end
-      				local env_names = {}
-      				local max_length = 1
-      				for _, env in ipairs(result) do
-      					table.insert(env_names, env.name.text)
-      					max_length = math.max(max_length, string.len(env.name.text))
-      				end
-      				for i, name in ipairs(env_names) do
-      					env_names[i] = string.rep(" ", i - 1) .. name
-      				end
-      				vim.lsp.util.open_floating_preview(env_names, "", {
-      					height = #env_names,
-      					width = math.max((max_length + #env_names - 1), (string.len("Environments"))),
-      					focusable = false,
-      					focus = false,
-      					border = "single",
-      					title = "Environments",
-      				})
-      			end)
-      		end
-
       		local function buf_change_env()
       			local new = vim.fn.input("Enter the new environment name: ")
       			if not new or new == "" then
@@ -207,19 +186,6 @@
       			end)
       		end
 
-      		-- vim.api.nvim_buf_create_user_command(bufnr, "TexlabBuild", buf_build, { desc = "Build the current buffer" })
-      		-- vim.api.nvim_buf_create_user_command(
-      		-- 	bufnr,
-      		-- 	"TexlabForward",
-      		-- 	buf_search,
-      		-- 	{ desc = "Forward search from current position" }
-      		-- )
-      		-- vim.api.nvim_buf_create_user_command(
-      		-- 	bufnr,
-      		-- 	"TexlabCancelBuild",
-      		-- 	buf_cancel_build,
-      		-- 	{ desc = "Cancel the current build" }
-      		-- )
       		vim.api.nvim_buf_create_user_command(
       			bufnr,
       			"TexlabDependencyGraph",
@@ -238,18 +204,6 @@
       			command_factory("Auxiliary"),
       			{ desc = "Clean the auxiliary files" }
       		)
-      		-- vim.api.nvim_buf_create_user_command(
-      		-- 	bufnr,
-      		-- 	"TexlabFindEnvironments",
-      		-- 	buf_find_envs,
-      		-- 	{ desc = "Find the environments at current position" }
-      		-- )
-      		-- vim.api.nvim_buf_create_user_command(
-      		-- 	bufnr,
-      		-- 	"TexlabChangeEnvironment",
-      		-- 	buf_change_env,
-      		-- 	{ desc = "Change the environment at current position" }
-      		-- )
 
       		vim.keymap.set("n", "<leader>ll", buf_build, { buffer = bufnr, desc = "Build the current buffer" })
       		vim.keymap.set("n", "<leader>lf", buf_search, { buffer = bufnr, desc = "Forward search from current position" })

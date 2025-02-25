@@ -7,30 +7,31 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Home-manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     homebrew-bundle.url = "github:homebrew/homebrew-bundle";
     homebrew-bundle.flake = false;
 
+    # Neovim (nixvim)
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    yazi-plugins.url = "github:yazi-rs/plugins";
-    yazi-plugins.flake = false;
-
-    mysnippets.url = "github:mathjiajia/mySnippets";
-    mysnippets.flake = false;
-    nvim-latex.url = "github:mathjiajia/latex.nvim";
-    nvim-latex.flake = false;
+    # Additional Neovim plugins
+    nvim-math-snippets.url = "github:mathjiajia/nvim-math-snippets";
+    nvim-math-snippets.flake = false;
+    nvim-latex-conceal.url = "github:mathjiajia/nvim-latex-conceal";
+    nvim-latex-conceal.flake = false;
     nvim-treesitter-pairs.url = "github:lewis6991/nvim-treesitter-pairs";
     nvim-treesitter-pairs.flake = false;
-    # nvzone-showkeys.url = "github:nvzone/showkeys";
-    # nvzone-showkeys.flake = false;
-    # nvzone-timerly.url = "github:nvzone/timerly";
-    # nvzone-timerly.flake = false;
+
+    # Yazi file manager plugins
+    yazi-plugins.url = "github:yazi-rs/plugins";
+    yazi-plugins.flake = false;
   };
 
   outputs = inputs @ {

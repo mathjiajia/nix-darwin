@@ -7,7 +7,6 @@
           fontSize = 18;
           minimap.enabled = false;
           minimap.renderCharacters = false;
-          formatOnSave = true;
           tabSize = 2;
         };
         files.autoSave = "onFocusChange";
@@ -29,8 +28,10 @@
           };
           ignorePaths = ["vscode-extension" ".git"];
         };
-        latex-workshop.intellisense.citation.backend = "biblatex";
-        latex-workshop.latex.recipe.default = "lastUsed";
+        latex-workshop = {
+          intellisense.citation.backend = "biblatex";
+          latex.recipe.default = "lastUsed";
+        };
         lldb.library = "/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/LLDB";
         highlight.regexes = {
           "((?:<!-- *)?(?:#|// @|//|./\\*+|<!--|--|\\* @|{!|{{!--|{{!) *TODO(?:\\s*\\([^)]+\\))?:?)((?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|(?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))" = {

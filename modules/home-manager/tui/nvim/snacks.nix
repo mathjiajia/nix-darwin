@@ -98,7 +98,18 @@
         ];
       };
       explorer.replace_netrw = true;
-      image.doc.math = false;
+      image = {
+        convert.notify = false;
+        doc.inline = false;
+        math = {
+          enabled = false;
+          latex = {
+            font_size = "normalsize";
+            package = ["amsmath" "amssymb" "mathtools" "xy"];
+          };
+        };
+      };
+
       indent = {
         enabled = true;
         scope.hl = [
@@ -116,10 +127,6 @@
       picker = {
         enabled = true;
         win.input.keys = {
-          "<M-c>" = {
-            __unkeyed-1 = "toggle_cwd";
-            mode = ["n" "i"];
-          };
           "<M-s>" = {
             __unkeyed-1 = "flash";
             mode = ["n" "i"];
@@ -149,17 +156,6 @@
               	})
               end
             '';
-          toggle_cwd.__raw =
-            # lua
-            ''
-              function(p)
-              	local root = require("util.root")({ buf = p.input.filter.current_buf })
-              	local cwd = vim.fs.normalize(vim.uv.cwd() or ".")
-              	local current = p:cwd()
-              	p:set_cwd(current == root and cwd or root)
-              	p:find()
-              end
-            '';
         };
         ui_select = true;
       };
@@ -176,135 +172,41 @@
         terminal.height = 12;
       };
     };
-    luaConfig.post =
-      # lua
-      ''
-        Snacks.toggle.zen():map("<leader>z")
-        Snacks.toggle.zoom():map("<leader>Z")
-      '';
   };
 
   programs.nixvim.keymaps = [
-    {
-      key = "<leader>.";
-      action.__raw = ''function() Snacks.scratch() end'';
-      options.desc = "Toggle Scratch Buffer";
-    }
-    {
-      key = "<leader>S";
-      action.__raw = ''function() Snacks.scratch.select() end'';
-      options.desc = "Select Scratch Buffer";
-    }
-
-    {
-      key = "<leader>un";
-      action.__raw = ''function() Snacks.notifier.hide() end'';
-      options.desc = "Dismiss All Notifications";
-    }
-
-    {
-      key = "<leader>bd";
-      action.__raw = ''function() Snacks.bufdelete() end'';
-      options.desc = "Delete Buffer";
-    }
-    {
-      key = "<leader>bD";
-      action.__raw = ''function() Snacks.bufdelete.other() end'';
-      options.desc = "Delete Other Buffers";
-    }
-
-    {
-      key = "<leader>gg";
-      action.__raw = ''function() Snacks.lazygit({ cwd = require("util.root").git() }) end'';
-      options.desc = "Lazygit (Root Dir)";
-    }
-    {
-      key = "<leader>gG";
-      action.__raw = ''function() Snacks.lazygit() end'';
-      options.desc = "Lazygit (cwd)";
-    }
-    {
-      key = "<leader>gf";
-      action.__raw = ''function() Snacks.picker.git_log_file() end'';
-      options.desc = "Git Current File History";
-    }
-    {
-      key = "<leader>gl";
-      action.__raw = ''function() Snacks.picker.git_log({ cwd = require("util.root").git() }) end'';
-      options.desc = "Git Log";
-    }
-    {
-      key = "<leader>gL";
-      action.__raw = ''function() Snacks.picker.git_log() end'';
-      options.desc = "Git Log (cwd)";
-    }
-
-    {
-      key = "<leader>cR";
-      action.__raw = ''function() Snacks.rename.rename_file() end'';
-      options.desc = "Rename File";
-    }
-
-    # Terminal
-    {
-      key = "<C-/>";
-      action.__raw = ''function() Snacks.terminal(nil, { cwd = require("util.root")() }) end'';
-      options.desc = "Terminal (Root Dir)";
-    }
-    {
-      mode = "t";
-      key = "<C-/>";
-      action = ''<Cmd>close<CR>'';
-      options.desc = "Hide Terminal";
-    }
-    {
-      key = "<leader>fT";
-      action.__raw = ''function() Snacks.terminal() end'';
-      options.desc = "Terminal (cwd)";
-    }
-
     # Picker
-    # Find
+    # Top
     {
       key = "<leader><space>";
       action.__raw = ''function() Snacks.picker.smart() end'';
       options.desc = "Smart Open";
     }
     {
+      key = "<leader>e";
+      action.__raw = ''function() Snacks.explorer() end'';
+      options.desc = "File Explorer";
+    }
+    {
       key = "<leader>n";
       action.__raw = ''function() Snacks.picker.notifications() end'';
       options.desc = "Notification History";
     }
-
+    # Find
     {
       key = "<leader>fb";
       action.__raw = ''function() Snacks.picker.buffers({ layout = "select" }) end'';
       options.desc = "Buffers";
     }
     {
-      key = "<leader>fe";
-      action.__raw = ''function() Snacks.explorer({ cwd = require("util.root")() }) end'';
-      options.desc = "File Explorer (Root Dir)";
-    }
-    {
-      key = "<leader>fE";
-      action.__raw = ''function() Snacks.explorer() end'';
-      options.desc = "File Explorer";
-    }
-    {
       key = "<leader>ff";
-      action.__raw = ''function() Snacks.picker.files({ cwd = require("util.root")() }) end'';
-      options.desc = "Find Files (Root Dir)";
-    }
-    {
-      key = "<leader>fF";
       action.__raw = ''function() Snacks.picker.files() end'';
-      options.desc = "Find Files (cwd)";
+      options.desc = "Find Files";
     }
     {
       key = "<leader>fg";
       action.__raw = ''function() Snacks.picker.git_files() end'';
-      options.desc = "Find Files (git-files)";
+      options.desc = "Find Git Files";
     }
     {
       key = "<leader>fm";
@@ -321,7 +223,27 @@
       action.__raw = ''function() Snacks.picker.recent() end'';
       options.desc = "Recent";
     }
-
+    # git
+    {
+      key = "<leader>gd";
+      action.__raw = ''function() Snacks.picker.git_diff() end'';
+      options.desc = "Git Diff (Hunks)";
+    }
+    {
+      key = "<leader>gf";
+      action.__raw = ''function() Snacks.picker.git_log_file() end'';
+      options.desc = "Git Log File";
+    }
+    {
+      key = "<leader>gl";
+      action.__raw = ''function() Snacks.picker.git_log() end'';
+      options.desc = "Git Log";
+    }
+    {
+      key = "<leader>gL";
+      action.__raw = ''function() Snacks.picker.git_log_line() end'';
+      options.desc = "Git Log Line";
+    }
     # Grep
     {
       key = "<leader>sb";
@@ -329,33 +251,31 @@
       options.desc = "Buffer Lines";
     }
     {
-      key = "<leader>sg";
-      action.__raw = ''function() Snacks.picker.grep({ dirs = { require("util.root")() } }) end'';
-      options.desc = "Grep (Root Dir)";
+      key = "<leader>sB";
+      action.__raw = ''function() Snacks.picker.grep_buffers() end'';
+      options.desc = "Grep Open BUffers";
     }
     {
-      key = "<leader>sG";
+      key = "<leader>sg";
       action.__raw = ''function() Snacks.picker.grep() end'';
-      options.desc = "Grep (cwd)";
+      options.desc = "Grep";
     }
     {
       mode = ["n" "x"];
       key = "<leader>sw";
-      action.__raw = ''function() Snacks.picker.grep_word({ dirs = { require("util.root")() } }) end'';
-      options.desc = "Word (Root Dir)";
-    }
-    {
-      mode = ["n" "x"];
-      key = "<leader>sW";
       action.__raw = ''function() Snacks.picker.grep_word() end'';
-      options.desc = "Word (cwd)";
+      options.desc = "Visual selection or word";
     }
-
     # Search
     {
       key = ''<leader>s"'';
       action.__raw = ''function() Snacks.picker.registers() end'';
       options.desc = "Registers";
+    }
+    {
+      key = "<leader>s/";
+      action.__raw = ''function() Snacks.picker.search_history() end'';
+      options.desc = "Search History";
     }
     {
       key = "<leader>sc";
@@ -372,7 +292,6 @@
       action.__raw = ''function() Snacks.picker.diagnostics() end'';
       options.desc = "Diagnostics";
     }
-
     {
       key = "<leader>sh";
       action.__raw = ''function() Snacks.picker.help() end'';
@@ -389,19 +308,14 @@
       options.desc = "Location List";
     }
     {
-      key = "<leader>sM";
-      action.__raw = ''function() Snacks.picker.man() end'';
-      options.desc = "Man Pages";
-    }
-    {
       key = "<leader>sm";
       action.__raw = ''function() Snacks.picker.marks() end'';
       options.desc = "Marks";
     }
     {
-      key = "<leader>sR";
-      action.__raw = ''function() Snacks.picker.resume() end'';
-      options.desc = "Resume";
+      key = "<leader>sM";
+      action.__raw = ''function() Snacks.picker.man() end'';
+      options.desc = "Man Pages";
     }
     {
       key = "<leader>sq";
@@ -409,9 +323,72 @@
       options.desc = "Quickfix List";
     }
     {
+      key = "<leader>sR";
+      action.__raw = ''function() Snacks.picker.resume() end'';
+      options.desc = "Resume";
+    }
+    {
+      key = "<leader>su";
+      action.__raw = ''function() Snacks.picker.undo() end'';
+      options.desc = "Unod History";
+    }
+    # LSP
+    {
       key = "<leader>ss";
       action.__raw = ''function() Snacks.picker.lsp_symbols() end'';
       options.desc = "Lsp Symbols";
+    }
+    # Others
+    {
+      key = "<leader>z";
+      action.__raw = ''function() Snacks.zen() end'';
+      options.desc = "Toggle Zen Mode";
+    }
+    {
+      key = "<leader>Z";
+      action.__raw = ''function() Snacks.zen.zoom() end'';
+      options.desc = "Toggle Zoom";
+    }
+    {
+      key = "<leader>.";
+      action.__raw = ''function() Snacks.scratch() end'';
+      options.desc = "Toggle Scratch Buffer";
+    }
+    {
+      key = "<leader>S";
+      action.__raw = ''function() Snacks.scratch.select() end'';
+      options.desc = "Select Scratch Buffer";
+    }
+    {
+      key = "<leader>bd";
+      action.__raw = ''function() Snacks.bufdelete() end'';
+      options.desc = "Delete Buffer";
+    }
+    {
+      key = "<leader>bD";
+      action.__raw = ''function() Snacks.bufdelete.other() end'';
+      options.desc = "Delete Other Buffers";
+    }
+    {
+      key = "<leader>cR";
+      action.__raw = ''function() Snacks.rename.rename_file() end'';
+      options.desc = "Rename File";
+    }
+    {
+      key = "<leader>gg";
+      action.__raw = ''function() Snacks.lazygit() end'';
+      options.desc = "Lazygit";
+    }
+    {
+      key = "<leader>un";
+      action.__raw = ''function() Snacks.notifier.hide() end'';
+      options.desc = "Dismiss All Notifications";
+    }
+    # Terminal
+    {
+      key = "<C-/>";
+      action.__raw = ''function() Snacks.terminal() end'';
+      options.desc = "Toggle Terminal";
     }
   ];
 }

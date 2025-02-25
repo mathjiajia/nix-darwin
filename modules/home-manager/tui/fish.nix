@@ -8,6 +8,7 @@
         if set -q GHOSTTY_RESOURCES_DIR
         	source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
         end
+        set -x ALIYUN_API_KEY $(security find-generic-password -s "ALIYUN_API_KEY" -w)
       '';
     shellAbbrs = {
       mkdir = "mkdir -p";

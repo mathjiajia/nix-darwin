@@ -46,7 +46,7 @@
     ./gui/neovide.nix
     ./gui/sioyek.nix
     ./gui/vscode.nix
-    ./gui/zed.nix
+    # ./gui/zed.nix
   ];
 
   xdg.enable = true;

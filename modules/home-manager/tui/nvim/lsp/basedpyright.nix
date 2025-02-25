@@ -41,7 +41,7 @@
       		vim.api.nvim_buf_create_user_command(
       			bufnr,
       			"PyrightSetPythonPath",
-      			{ set_python_path },
+      			set_python_path,
       			{ nargs = 1, complete = "file", desc = "Reconfigure basedpyright with the provided python path" }
       		)
       	end,

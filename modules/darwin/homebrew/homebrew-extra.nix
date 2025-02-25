@@ -2,7 +2,6 @@
   homebrew.casks = [
     "adobe-acrobat-pro"
     "adobe-creative-cloud"
-    "chatwise"
     "cherry-studio"
     "claude"
     "codeedit"
@@ -15,10 +14,9 @@
     "miaoyan"
     "neohtop"
     "openemu"
-    # "openra"
-    "openra-playtest"
+    "openra"
+    # "openra-playtest"
     "orbstack"
-    # "steam"
     "vimr"
   ];
 }

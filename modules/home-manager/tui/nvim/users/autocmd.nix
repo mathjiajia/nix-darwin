@@ -51,7 +51,7 @@
       {
         event = "BufReadPost";
         group = "OpenFile";
-        pattern = ["*.jpeg" "*.jpg" "*.pdf" "*.png"];
+        pattern = ["*.jpeg" "*.jpg" "*.mp4" "*.pdf" "*.png"];
         callback.__raw =
           # lua
           ''

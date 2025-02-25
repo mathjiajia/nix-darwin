@@ -9,7 +9,7 @@
 
     keymaps = [
       {
-        key = "<leader>ro";
+        key = "<leader>rl";
         action = "<Cmd>OverseerToggle<CR>";
         options.desc = "Task List";
       }
@@ -29,10 +29,7 @@
       "lua/overseer/template/user/builder.lua".text =
         # lua
         ''
-          return {
-          	"user.builder.clang",
-          	"user.builder.swift",
-          }
+          return { "user.builder.clang", "user.builder.swift" }
         '';
 
       "lua/overseer/template/user/builder/clang.lua".text =

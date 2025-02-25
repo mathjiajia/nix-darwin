@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults = {
     # firewall settings
@@ -34,7 +34,7 @@
         "/Applications/WeChat.app"
         "/Applications/Dictionaries.app"
         "/Applications/Perplexity.app"
-        "/Applications/ChatGPT.app"
+        "${pkgs.chatgpt}/Applications/ChatGPT.app"
         "/Applications/Cherry Studio.app"
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"

@@ -48,6 +48,5 @@
     ./ui.nix
 
     ./extras.nix
-    # ./nvzone.nix
   ];
 }

@@ -143,7 +143,7 @@
         {
           "if" = {
             app-id = "org.zotero.zotero";
-            window-title-regex-substring = "Zotero Settings";
+            window-title-regex-substring = "^(?!.* - Zotero$).*";
           };
           run = "layout floating";
         }
@@ -154,14 +154,7 @@
         {
           "if" = {
             app-id = "com.mitchellh.ghostty";
-            window-title-regex-substring = "Software Update";
-          };
-          run = "layout floating";
-        }
-        {
-          "if" = {
-            app-id = "com.mitchellh.ghostty";
-            window-title-regex-substring = "Updating Ghostty";
+            window-title-regex-substring = "(Software Update|Updating Ghostty)";
           };
           run = "layout floating";
         }
@@ -174,18 +167,8 @@
           run = "move-node-to-workspace 􀩼T";
         }
         {
-          "if" = {
-            app-id = "info.sioyek.sioyek";
-            window-title-regex-substring = "main.pdf";
-          };
+          "if".app-id = "info.sioyek.sioyek";
           run = "move-node-to-workspace 􀩼T";
-        }
-        {
-          "if" = {
-            app-id = "info.sioyek.sioyek";
-            window-title-regex-substring = "^(?!main\.pdf$).+";
-          };
-          run = "move-node-to-workspace 􁜾N";
         }
         {
           "if".app-id = "com.microsoft.Excel";

@@ -1,20 +1,6 @@
-{pkgs, ...}: {
+{
   programs.nixvim.plugins = {
-    markview = {
-      enable = true;
-      package = pkgs.vimPlugins.markview-nvim.overrideAttrs (oldAttrs: {
-        postInstall =
-          oldAttrs.postInstall
-          or ""
-          + # sh
-          ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
-      });
-      settings.preview = {
-        filetypes = ["markdown" "codecompanion"];
-        ignore_buftypes.__raw = "{}";
-        icon_provider = "mini";
-      };
-    };
+    render-markdown.enable = true;
     rainbow-delimiters.enable = true;
     dropbar = {
       enable = true;

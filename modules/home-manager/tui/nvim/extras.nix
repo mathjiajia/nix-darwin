@@ -3,21 +3,19 @@
   pkgs,
   ...
 }: let
-  mysnippets = pkgs.vimUtils.buildVimPlugin {
-    name = "mySnippets";
-    src = inputs.mysnippets;
+  nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {
+    name = "math-snippets";
+    src = inputs.nvim-math-snippets;
     nvimSkipModule = [
-      "mySnippets.position"
-      "mySnippets.context"
-      "mySnippets.latex"
+      "math-snippets.position"
+      "math-snippets.context"
+      "math-snippets.latex"
     ];
   };
-
-  latex-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "latex";
-    src = inputs.nvim-latex;
+  nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
+    name = "latex-conceal";
+    src = inputs.nvim-latex-conceal;
   };
-
   nvim-treesitter-pairs = pkgs.vimUtils.buildVimPlugin {
     name = "treesitter-pairs";
     src = inputs.nvim-treesitter-pairs;
@@ -27,8 +25,8 @@ in {
     heirline-nvim
     ultimate-autopair-nvim
 
-    latex-nvim
-    mysnippets
+    nvim-latex-conceal
+    nvim-math-snippets
     nvim-treesitter-pairs
   ];
 
