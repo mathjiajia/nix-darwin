@@ -316,7 +316,8 @@
         "type": "github"
       },
       "original": {
-        "owner": "LnL7",
+        "owner": "dwt",
+        "ref": "application-linking-done-right",
         "repo": "nix-darwin",
         "type": "github"
       }
