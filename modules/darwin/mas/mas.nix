@@ -1,4 +1,6 @@
 {
+  homebrew.brews = ["mas"];
+
   homebrew.masApps = {
     Craft = 1487937127;
     DevHub = 6476452351;

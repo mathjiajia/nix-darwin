@@ -17,6 +17,14 @@
       		local t = { objc = "objective-c", objcpp = "objective-cpp" }
       		return t[ftype] or ftype
       	end,
+      	capabilities = {
+      		textDocument = {
+      			diagnostic = {
+      				dynamicRegistration = true,
+      				relatedDocumentSupport = true,
+      			},
+      		},
+      	},
       })
     '';
 }

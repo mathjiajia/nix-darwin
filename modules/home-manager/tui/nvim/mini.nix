@@ -47,7 +47,6 @@
         };
       };
       icons.lsp = {
-        "function".glyph = "";
         object.glyph = "";
         value.glyph = "";
       };

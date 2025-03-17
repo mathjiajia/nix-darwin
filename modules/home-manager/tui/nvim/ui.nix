@@ -1,6 +1,9 @@
 {
   programs.nixvim.plugins = {
-    render-markdown.enable = true;
+    render-markdown = {
+      enable = true;
+      settings.latex.enabled = false;
+    };
     rainbow-delimiters.enable = true;
     dropbar = {
       enable = true;

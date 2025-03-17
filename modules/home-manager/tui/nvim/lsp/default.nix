@@ -4,7 +4,7 @@
     ./clangd.nix
     ./luals.nix
     ./matlabls.nix
-    ./nil.nix
+    ./nills.nix
     ./sourcekit.nix
     ./taplo.nix
     ./texlab.nix

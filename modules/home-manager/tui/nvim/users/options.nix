@@ -107,6 +107,7 @@
       # 24 various
       virtualedit = "block";
       signcolumn = "yes";
+      # winborder = "rounded";
     };
   };
 }

@@ -36,7 +36,7 @@
     ./tui/fzf.nix
     ./tui/ripgrep.nix
     ./tui/starship.nix
-    # ./tui/tex-fmt.nix
+    ./tui/tex-fmt.nix
     ./tui/texlive.nix
 
     ./gui/aerospace.nix
@@ -46,7 +46,7 @@
     ./gui/neovide.nix
     ./gui/sioyek.nix
     ./gui/vscode.nix
-    # ./gui/zed.nix
+    ./gui/zed.nix
   ];
 
   xdg.enable = true;

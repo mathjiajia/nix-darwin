@@ -13,8 +13,10 @@
 
     # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    homebrew-bundle.url = "github:homebrew/homebrew-bundle";
-    homebrew-bundle.flake = false;
+
+    # fcitx5 macos
+    fcitx.url = "github:fcitx-contrib/homebrew-tap";
+    fcitx.flake = false;
 
     # Neovim (nixvim)
     nixvim.url = "github:nix-community/nixvim";
@@ -70,7 +72,7 @@
           enable = true;
           enableRosetta = true;
           user = "${username}";
-          taps = {"homebrew/homebrew-bundle" = inputs.homebrew-bundle;};
+          taps = {"fcitx-contrib/homebrew-tap" = inputs.fcitx;};
           mutableTaps = false;
         };
       }

@@ -28,7 +28,7 @@
         alt-shift-minus = "resize smart -50";
         alt-shift-equal = "resize smart +50";
 
-        alt-1 = "workspace 􁓘1";
+        alt-1 = "workspace 􂮢A";
         alt-2 = "workspace 􀤆B";
         alt-3 = "workspace 􀌤C";
         alt-4 = "workspace 􀫊D";
@@ -39,7 +39,7 @@
         alt-9 = "workspace 􀈟W";
         alt-0 = "workspace 􁓘0";
 
-        alt-shift-1 = "move-node-to-workspace 􁓘1";
+        alt-shift-1 = "move-node-to-workspace 􂮢A";
         alt-shift-2 = "move-node-to-workspace 􀤆B";
         alt-shift-3 = "move-node-to-workspace 􀌤C";
         alt-shift-4 = "move-node-to-workspace 􀫊D";
@@ -67,6 +67,32 @@
         alt-shift-l = ["join-with right" "mode main"];
       };
       on-window-detected = [
+        # AI
+        {
+          "if".app-id = "com.openai.chat";
+          run = "move-node-to-workspace 􂮢A";
+        }
+        {
+          "if".app-id = " app.chatwise";
+          run = "move-node-to-workspace 􂮢A";
+        }
+        {
+          "if".app-id = "com.kangfenmao.CherryStudio";
+          run = "move-node-to-workspace 􂮢A";
+        }
+        {
+          "if".app-id = "com.anthropic.claudefordesktop";
+          run = "move-node-to-workspace 􂮢A";
+        }
+        {
+          "if".app-id = "wiki.qaq.flow";
+          run = "move-node-to-workspace 􂮢A";
+        }
+        {
+          "if".app-id = "ai.perplexity.mac";
+          run = "move-node-to-workspace 􂮢A";
+        }
+        # Browser
         {
           "if".app-id = "com.apple.Safari";
           run = "move-node-to-workspace 􀤆B";
@@ -75,8 +101,17 @@
           "if".app-id = "com.microsoft.edgemac";
           run = "move-node-to-workspace 􀤆B";
         }
+        # Chat
         {
-          "if".app-id = "com.tdesktop.Telegram";
+          "if".app-id = "com.apple.mail";
+          run = ["layout floating" "move-node-to-workspace 􀌤C"];
+        }
+        {
+          "if".app-id = "com.hnc.Discord";
+          run = ["layout floating" "move-node-to-workspace 􀌤C"];
+        }
+        {
+          "if".app-id = "ru.keepcoder.Telegram";
           run = ["layout floating" "move-node-to-workspace 􀌤C"];
         }
         {
@@ -84,17 +119,10 @@
           run = ["layout floating" "move-node-to-workspace 􀌤C"];
         }
         {
-          "if".app-id = "com.apple.mail";
-          run = ["layout floating" "move-node-to-workspace 􀌤C"];
-        }
-        {
           "if".app-id = "net.whatsapp.WhatsApp";
           run = ["layout floating" "move-node-to-workspace 􀌤C"];
         }
-        {
-          "if".app-id = "com.hnc.Discord";
-          run = ["layout floating" "move-node-to-workspace 􀌤C"];
-        }
+        # Developer
         {
           "if".app-id = "com.sublimemerge";
           run = "move-node-to-workspace 􀫊D";
@@ -104,7 +132,7 @@
           run = "move-node-to-workspace 􀫊D";
         }
         {
-          "if".app-id = "dev.kdrag0n.MacVirt";
+          "if".app-id = "dev.kdrag0n.MacVirt"; # OrbStack
           run = "move-node-to-workspace 􀫊D";
         }
         {
@@ -119,11 +147,12 @@
           "if".app-id = "dev.zed.Zed";
           run = "move-node-to-workspace 􀫊D";
         }
+        # Finder
         {
           "if".app-id = "com.apple.finder";
           run = ["layout floating" "move-node-to-workspace 􀈕F"];
         }
-
+        # Notes
         {
           "if".app-id = "com.apple.Notes";
           run = ["layout floating" "move-node-to-workspace 􁜾N"];
@@ -131,10 +160,6 @@
         {
           "if".app-id = "com.agiletortoise.Drafts-OSX";
           run = ["layout floating" "move-node-to-workspace 􁜾N"];
-        }
-        {
-          "if".app-id = "net.sourceforge.skim-app.skim";
-          run = "move-node-to-workspace 􁜾N";
         }
         {
           "if".app-id = "com.superace.updf.mac";
@@ -151,6 +176,7 @@
           "if".app-id = "org.zotero.zotero";
           run = "move-node-to-workspace 􁜾N";
         }
+        # Terminal
         {
           "if" = {
             app-id = "com.mitchellh.ghostty";
@@ -170,6 +196,11 @@
           "if".app-id = "info.sioyek.sioyek";
           run = "move-node-to-workspace 􀩼T";
         }
+        {
+          "if".app-id = "net.sourceforge.skim-app.skim";
+          run = "move-node-to-workspace 􀩼T";
+        }
+        # Work
         {
           "if".app-id = "com.microsoft.Excel";
           run = "move-node-to-workspace 􀈟W";
@@ -194,6 +225,7 @@
           "if".app-id = "com.apple.iWork.Pages";
           run = "move-node-to-workspace 􀈟W";
         }
+        # Video
         {
           "if".app-id = "us.zoom.xos";
           run = "move-node-to-workspace 􀍉V";
@@ -202,16 +234,13 @@
           "if".app-id = "com.tencent.tencentmeeting";
           run = "move-node-to-workspace 􀍉V";
         }
+        # Floating
         {
           "if".app-id = "com.nssurge.surge-mac";
           run = "layout floating";
         }
         {
           "if".app-id = "com.nssurge.surge-dashboard";
-          run = "layout floating";
-        }
-        {
-          "if".app-id = "com.openai.chat";
           run = "layout floating";
         }
         {

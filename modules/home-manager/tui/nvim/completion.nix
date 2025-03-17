@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  programs.nixvim.extraPackages = [pkgs.nodejs];
-
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
@@ -29,7 +27,6 @@
           ''find $out/doc -mindepth 1 ! -name "blink-cmp.txt" -delete'';
       });
       settings = {
-        fuzzy.implementation = "lua";
         keymap = {
           preset = "default";
           "<C-y>" = {

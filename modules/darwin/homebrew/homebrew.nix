@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   environment.variables.HOMEBREW_NO_ANALYTICS = "1";
 
   homebrew = {
@@ -10,9 +10,12 @@
     };
     # greedyCasks = true;
 
+    taps = builtins.attrNames config.nix-homebrew.taps;
+
     casks = [
       "dash"
       "downie"
+      "fcitx5"
       "follow"
       "ghostty"
       "hazel"

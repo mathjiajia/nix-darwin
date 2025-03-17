@@ -9,8 +9,11 @@
     # CLI
     ghostscript
     hugo
-    mas
     tree
+    wget
+    bun
+    nodejs
+    uv
 
     # PYTHON
     (python3.withPackages (ps:
@@ -26,6 +29,7 @@
     # GUI
     chatgpt
     # cherry-studio # linux
+    flashspace
     # follow # x86_64-linux
     # github-copilot-cli
     # github-desktop # linux
@@ -53,7 +57,7 @@
 
   fonts.packages = with pkgs; [
     lxgw-wenkai
-    maple-mono #-NF-CN
+    maple-mono.NF-CN
     sarasa-gothic
     smiley-sans
 
