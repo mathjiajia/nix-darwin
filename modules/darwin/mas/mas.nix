@@ -8,6 +8,7 @@
     Drafts = 1435957248;
     Dropover = 1355679052;
     Due = 524373870;
+    Folo = 6739802604;
     GarageBand = 682658836;
     Goodnotes = 1444383602;
     iMovie = 408981434;

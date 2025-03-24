@@ -20,6 +20,15 @@
     name = "treesitter-pairs";
     src = inputs.nvim-treesitter-pairs;
   };
+  mcphub-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "mcphub";
+    src = inputs.mcphub-nvim;
+    nvimSkipModule = [
+      "mcphub"
+      "mcphub.hub"
+      "mcphub.extensions.codecompanion"
+    ];
+  };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     heirline-nvim
@@ -28,12 +37,18 @@ in {
     nvim-latex-conceal
     nvim-math-snippets
     nvim-treesitter-pairs
+    mcphub-nvim
   ];
 
   programs.nixvim.extraConfigLua =
     # lua
     ''
       require("ultimate-autopair").setup()
+
+      require("mcphub").setup({
+      	port = 3000,
+      	config = vim.fn.expand("~/.config/mcp/mcpservers.json"),
+      })
 
       local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")

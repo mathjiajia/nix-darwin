@@ -1,6 +1,7 @@
 {
   programs.aerospace = {
     enable = true;
+    package = null;
     userSettings = {
       start-at-login = true;
       gaps = {
@@ -69,11 +70,18 @@
       on-window-detected = [
         # AI
         {
+          "if" = {
+            app-id = "com.openai.chat";
+            window-title-regex-substring = "Settings";
+          };
+          run = ["layout floating" "move-node-to-workspace 􂮢A"];
+        }
+        {
           "if".app-id = "com.openai.chat";
           run = "move-node-to-workspace 􂮢A";
         }
         {
-          "if".app-id = " app.chatwise";
+          "if".app-id = "app.chatwise";
           run = "move-node-to-workspace 􂮢A";
         }
         {
@@ -168,6 +176,17 @@
         {
           "if" = {
             app-id = "org.zotero.zotero";
+            window-title-regex-substring = "^(?!.* - Zotero$).*";
+          };
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "org.zotero.zotero-beta";
+          run = "move-node-to-workspace 􁜾N";
+        }
+        {
+          "if" = {
+            app-id = "org.zotero.zotero-beta";
             window-title-regex-substring = "^(?!.* - Zotero$).*";
           };
           run = "layout floating";

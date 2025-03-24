@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults = {
@@ -25,18 +25,17 @@
         "/Applications/Drafts.app"
         "/Applications/Goodnotes.app"
         "/Applications/UPDF.app"
-        "${pkgs.skimpdf}/Applications/skim.app"
-        # "${pkgs.kitty}/Applications/kitty.app"
-        # "${pkgs.sioyek}/Applications/sioyek.app"
-        # "${pkgs.ghostty}/Applications/Ghostty.app"
-        "/Applications/Ghostty.app"
-        "${pkgs.zotero}/Applications/Zotero.app"
-        "${pkgs.vscode}/Applications/Visual Studio Code.app"
+        "/Applications/Nix Apps/Visual Studio Code.app/"
+        "/Applications/Nix Apps/kitty.app/"
+        # "/Applications/Ghostty.app"
+        "/Applications/Nix Apps/Skim.app/"
+        # "/Applications/Nix Apps/sioyek.app/"
+        "/Applications/Nix Apps/Zotero.app/"
         "/Applications/Publish or Perish.app"
         "/Applications/WeChat.app"
         "/Applications/Dictionaries.app"
         "/Applications/Perplexity.app"
-        "${pkgs.chatgpt}/Applications/ChatGPT.app"
+        "/Applications/Nix Apps/ChatGPT.app"
         "/Applications/ChatWise.app"
         "/Applications/Cherry Studio.app"
         "/System/Applications/Music.app"

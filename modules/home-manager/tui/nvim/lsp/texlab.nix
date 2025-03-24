@@ -21,7 +21,7 @@
       				onSave = true,
       			},
       			forwardSearch = {
-      				executable = "${pkgs.skimpdf}/Applications/Skim.app/Contents/SharedSupport/displayline",
+      				executable = "/Applications/Nix Apps/Skim.app/Contents/SharedSupport/displayline",
       				args = { "-r", "%l", "%p", "%f" },
       				-- executable = "${pkgs.sioyek}/bin/sioyek",
       				-- args = {

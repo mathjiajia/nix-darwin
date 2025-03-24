@@ -7,13 +7,11 @@
     enable = true;
     userName = "Jia Jia";
     userEmail = "mathjiajia@outlook.com";
-    difftastic.enable = true;
+    difftastic = {
+      enable = true;
+      enableAsDifftool = true;
+    };
     extraConfig = {
-      diff.tool = "difftastic";
-      difftool = {
-        prompt = false;
-        difftastic.cmd = "${pkgs.difftastic}/bin/difft '$MERGED' '$LOCAL' 'abcdef1' '100644' '$REMOTE' 'abcdef2' '100644'";
-      };
       merge.conflictstyle = "zdiff3";
       pager.difftool = true;
       pull.rebase = true;

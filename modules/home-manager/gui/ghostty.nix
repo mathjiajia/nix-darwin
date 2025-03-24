@@ -4,6 +4,8 @@
     package = null;
     settings = {
       theme = "bamboo";
+      background-opacity = 0.9;
+      background-blur = true;
       font-family = "Sarasa Term SC";
       font-size = 23;
       font-thicken = true;

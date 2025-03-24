@@ -16,7 +16,6 @@
       "dash"
       "downie"
       "fcitx5"
-      "follow"
       "ghostty"
       "hazel"
       "hazeover"

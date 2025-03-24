@@ -1,10 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   programs.nixvim = {
-    extraPackages = [pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter];
+    # extraPackages = [pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter];
     plugins = {
       dap-python.enable = true;
       dap-ui.enable = true;

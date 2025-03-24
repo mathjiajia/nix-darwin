@@ -15,7 +15,7 @@
     # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
-    # fcitx5 macos
+    # fcitx5 macOS
     fcitx.url = "github:fcitx-contrib/homebrew-tap";
     fcitx.flake = false;
 
@@ -31,6 +31,8 @@
     nvim-latex-conceal.flake = false;
     nvim-treesitter-pairs.url = "github:lewis6991/nvim-treesitter-pairs";
     nvim-treesitter-pairs.flake = false;
+    mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
+    mcphub-nvim.flake = false;
 
     # Yazi file manager plugins
     yazi-plugins.url = "github:yazi-rs/plugins";

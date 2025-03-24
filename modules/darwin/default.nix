@@ -27,28 +27,34 @@
       ]))
 
     # GUI
+    aerospace
     chatgpt
     # cherry-studio # linux
+    emacs
     flashspace
-    # follow # x86_64-linux
     # github-copilot-cli
     # github-desktop # linux
     ice-bar
     iina
     inkscape
     keka
+    kitty
     loopwm
     # mathematica # x86_64-linux
     # mathpix-snipping-tool # x86_64-linux
     # microsoft-edge # x86_64-linux
+    neovide
     ollama
     openconnect
     # openra # x86_64-linux
     raycast
+    sioyek
     skimpdf
     # stats
     # sublime-merge # linux
+    vscode
     warp-terminal
+    zed-editor
     zoom-us
     zotero
   ];

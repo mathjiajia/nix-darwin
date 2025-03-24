@@ -38,6 +38,7 @@
     ./lsp
 
     ./compiler
+    ./ai.nix
     ./completion.nix
     ./dap.nix
     ./editor.nix
