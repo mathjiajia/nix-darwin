@@ -1,8 +1,23 @@
-{
+{pkgs, ...}: {
   programs.nixvim.plugins = {
     render-markdown = {
       enable = true;
-      settings.latex.enabled = false;
+      settings = {
+        code = {
+          min_width = 80;
+          width = "block";
+        };
+        heading = {
+          width = "block";
+          min_width = 120;
+        };
+        pipe_table.preset = "round";
+        latex.enabled = false;
+        win_options.colorcolumn = {
+          default.__raw = "120";
+          rendered = "";
+        };
+      };
     };
     rainbow-delimiters.enable = true;
     dropbar = {
@@ -67,7 +82,7 @@
           {
             filter = {
               event = "msg_show";
-              any = [{find = "vim.tbl_islist is deprecated";}];
+              any = [{find = "vim.tbl_islist is deprecated";} {find = "client.request is deprecated";} {find = "client.supports_method is deprecated";}];
             };
             opts.skip = true;
           }

@@ -2,6 +2,9 @@
   environment.systemPackages = with pkgs; [
     # corretto11 # Matlab Apple Sillicon
     discord
+    flashspace
+    # lmstudio # broken
+    warp-terminal
   ];
 
   imports = [

@@ -1,12 +1,11 @@
 {pkgs, ...}: {
-  programs.nixvim.extraConfigLua =
+  programs.nixvim.extraFiles."lsp/taplo.lua".text =
     # lua
     ''
-      vim.lsp.config("taplo", {
+      return {
       	cmd = { "${pkgs.taplo}/bin/taplo", "lsp", "stdio" },
       	filetypes = { "toml" },
       	root_markers = { ".git" },
-      	single_file_support = true,
-      })
+      }
     '';
 }

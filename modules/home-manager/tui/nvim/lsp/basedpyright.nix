@@ -1,8 +1,8 @@
 {pkgs, ...}: {
-  programs.nixvim.extraConfigLua =
+  programs.nixvim.extraFiles."lsp/basedpyright.lua".text =
     # lua
     ''
-      vim.lsp.config("basedpyright", {
+      return {
       	cmd = { "${pkgs.basedpyright}/bin/basedpyright-langserver", "--stdio" },
       	filetypes = { "python" },
       	root_markers = {
@@ -45,6 +45,6 @@
       			{ nargs = 1, complete = "file", desc = "Reconfigure basedpyright with the provided python path" }
       		)
       	end,
-      })
+      }
     '';
 }

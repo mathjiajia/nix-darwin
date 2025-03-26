@@ -1,38 +1,35 @@
-{config, ...}: {
+{
   programs.nixvim = {
-    # extraPackages = [pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter];
     plugins = {
       dap-python.enable = true;
       dap-ui.enable = true;
       dap-virtual-text.enable = true;
       dap = {
         enable = true;
-        # adapters.executables.codelldb.command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter}/bin/codelldb";
-        adapters.executables.codelldb.command = "${config.home.homeDirectory}/.vscode/extensions/vadimcn.vscode-lldb-1.11.4/adapter/codelldb";
-        configurations = rec {
-          cpp = [
-            {
-              type = "codelldb";
-              request = "launch";
-              name = "Debug";
-              program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
-              cwd = "\${workspaceFolder}";
-              args = [];
-              preLaunchTask = "C/C++: clang build active file";
-            }
-          ];
-          c = cpp;
-          swift = [
-            {
-              type = "codelldb";
-              request = "launch";
-              args = [];
-              name = "Debug swiftc";
-              program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
-              cwd = "\${workspaceFolder}";
-              preLaunchTask = "swiftc: Build Debug";
-            }
-          ];
+        adapters.executables.lldb-dap.command = "/Applications/Xcode.app/Contents/Developer/usr/bin/lldb-dap";
+        configurations = let
+          lldb-launch = {
+            name = "Debug";
+            type = "lldb-dap";
+            request = "launch";
+            cwd = "\${workspaceFolder}";
+            program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
+          };
+          lldb-attach = {
+            name = "Attach (wait)";
+            type = "lldb-dap";
+            request = "attach";
+            program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
+            waitFor = true;
+          };
+          cpp-launch = lldb-launch // {preLaunchTask = "C/C++: clang build active file";};
+          cpp-attach = lldb-attach // {preLaunchTask = "C/C++: clang build active file";};
+          swift-launch = lldb-launch // {preLaunchTask = "swiftc: Build Debug";};
+          swift-attach = lldb-attach // {preLaunchTask = "swiftc: Build Debug";};
+        in {
+          cpp = [cpp-launch cpp-attach];
+          c = [cpp-launch cpp-attach];
+          swift = [swift-launch swift-attach];
         };
         signs = {
           dapBreakpoint = {
@@ -74,7 +71,9 @@
         dap.listeners.before.launch.dapui_config = function()
         	dapui.open()
         end
-        -- dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+        dap.listeners.before.event_terminated.dapui_config = function()
+        	dapui.close()
+        end
         dap.listeners.before.event_exited.dapui_config = function()
         	dapui.close()
         end
@@ -88,7 +87,7 @@
       }
       {
         key = "<leader>dB";
-        action.__raw = ''function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end'';
+        action.__raw = ''function() require("dap").set_breakpoint(vim.ui.input("Breakpoint condition: ")) end'';
         options.desc = "Breakpoint Condition";
       }
       {

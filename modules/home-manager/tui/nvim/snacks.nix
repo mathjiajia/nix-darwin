@@ -127,6 +127,10 @@
       picker = {
         enabled = true;
         win.input.keys = {
+          "<M-d>" = {
+            __unkeyed-1 = "toggle_hidden";
+            mode = ["n" "i"];
+          };
           "<M-s>" = {
             __unkeyed-1 = "flash";
             mode = ["n" "i"];

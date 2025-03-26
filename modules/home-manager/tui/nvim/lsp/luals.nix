@@ -1,8 +1,8 @@
 {pkgs, ...}: {
-  programs.nixvim.extraConfigLua =
+  programs.nixvim.extraFiles."lsp/luals.lua".text =
     # lua
     ''
-      vim.lsp.config("luals", {
+      return {
       	cmd = { "${pkgs.lua-language-server}/bin/lua-language-server" },
       	filetypes = { "lua" },
       	root_markers = {
@@ -15,7 +15,6 @@
       		"selene.yml",
       		".git",
       	},
-      	single_file_support = true,
       	settings = {
       		Lua = {
       			runtime = { version = "LuaJIT" },
@@ -28,6 +27,6 @@
       			telemetry = { enable = false },
       		},
       	},
-      })
+      }
     '';
 }

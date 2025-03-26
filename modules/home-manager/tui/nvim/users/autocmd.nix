@@ -56,7 +56,7 @@
           # lua
           ''
             function(args)
-              vim.fn.jobstart("open '" .. vim.fn.expand("%") .. "'", { detach = true })
+              vim.system("open '" .. vim.fn.expand("%") .. "'", { detach = true })
               vim.api.nvim_buf_delete(args.buf, {})
             end
           '';

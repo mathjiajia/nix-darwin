@@ -1,8 +1,8 @@
 {
-  programs.nixvim.extraConfigLua =
+  programs.nixvim.extraFiles."lsp/sourcekit.lua".text =
     # lua
     ''
-      vim.lsp.config("sourcekit", {
+      return {
       	cmd = { "sourcekit-lsp" },
       	filetypes = { "swift", "objc", "objcpp" },
       	root_markers = {
@@ -18,6 +18,11 @@
       		return t[ftype] or ftype
       	end,
       	capabilities = {
+      		workspace = {
+      			didChangeWatchedFiles = {
+      				dynamicRegistration = true,
+      			},
+      		},
       		textDocument = {
       			diagnostic = {
       				dynamicRegistration = true,
@@ -25,6 +30,6 @@
       			},
       		},
       	},
-      })
+      }
     '';
 }

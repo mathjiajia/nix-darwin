@@ -5,19 +5,15 @@
 }: {
   programs.nixvim = {
     enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     defaultEditor = true;
     luaLoader.enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-    vimdiffAlias = true;
+    colorscheme = "bamboo";
   };
-
-  programs.nixvim.extraPackages = [pkgs.luajit];
 
   programs.nixvim.performance = {
     byteCompileLua = {
       enable = true;
-      configs = true;
-      initLua = true;
       nvimRuntime = true;
       plugins = true;
     };
@@ -25,16 +21,14 @@
     combinePlugins = {
       enable = true;
       pathsToLink = [
-        "/copilot"
-        "/luasnippets"
+        "/copilot" # copilot-lua
+        "/luasnippets" # luasnip
       ];
-      # standalonePlugins = ["nvim-treesitter"];
     };
   };
 
   imports = [
     ./users
-    ./highlight
     ./lsp
 
     ./compiler

@@ -7,6 +7,7 @@
         bibtex
         c
         commonlisp
+        css
         csv
         editorconfig
         diff
@@ -18,6 +19,7 @@
         gitcommit
         gitignore
         html
+        javascript
         json
         jsonc
         latex
@@ -36,6 +38,7 @@
         swift
         todotxt
         toml
+        tsx
         typst
         vim
         vimdoc

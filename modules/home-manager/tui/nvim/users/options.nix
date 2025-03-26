@@ -9,11 +9,13 @@
       loaded_matchit = 1;
       loaded_matchparen = 1;
       loaded_netrw = 1;
+      loaded_netrwPlugin = 1;
       loaded_remote_plugins = 1;
       loaded_shada_plugin = 1;
       loaded_spellfile_plugin = 1;
       loaded_tarPlugin = 1;
       loaded_tutor_mode_plugin = 1;
+      loaded_zip = 1;
       loaded_zipPlugin = 1;
     };
 

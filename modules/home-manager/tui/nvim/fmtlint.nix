@@ -37,15 +37,13 @@
             ''mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md'';
         });
         settings = {
-          formatters = {
-            bibtex-tidy.prepend_args = [
-              "--curly"
-              "--tab"
-              "--trailing-commas"
-              "--sort-fields=author,year,month,day,title,shorttitle"
-              "--remove-braces"
-            ];
-          };
+          formatters.bibtex-tidy.prepend_args = [
+            "--curly"
+            "--tab"
+            "--trailing-commas"
+            "--sort-fields=author,year,month,day,title,shorttitle"
+            "--remove-braces"
+          ];
           formatters_by_ft = {
             bib = ["bibtex-tidy"];
             css = ["prettierd"];

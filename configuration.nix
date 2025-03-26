@@ -1,22 +1,50 @@
-{pkgs, ...}: {
-  nixpkgs = {
-    config.allowUnfree = true;
-    hostPlatform = "aarch64-darwin";
-  };
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  nix.enable = true;
 
-  users.users.jia = {
+  nixpkgs.config.allowUnfree = true;
+
+  users.users."jia" = {
+    name = "jia";
     home = "/Users/jia";
     shell = pkgs.fish;
+  };
+
+  nix-homebrew = {
+    enable = true;
+    enableRosetta = true;
+    user = "jia";
+    taps = {"fcitx-contrib/homebrew-tap" = inputs.fcitx;};
+    mutableTaps = false;
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    extraSpecialArgs = {inherit inputs;};
+    users."jia".imports = [
+      inputs.nixvim.homeManagerModules.nixvim
+      ./modules/home-manager
+    ];
   };
 
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  # programs.zsh.enable = true;
+  # Enable alternative shell support in nix-darwin.
   programs.fish.enable = true;
+
+  # Set Git commit hash for darwin-version.
+  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
-  system.stateVersion = 5;
+  system.stateVersion = 6;
+
+  # The platform the configuration will be used on.
+  nixpkgs.hostPlatform = "aarch64-darwin";
 }

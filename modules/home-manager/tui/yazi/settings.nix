@@ -7,6 +7,7 @@
     ffmpeg
     imagemagick
     poppler
+    resvg
   ];
 
   programs.yazi.settings = {
@@ -28,19 +29,17 @@
       cache_dir = "${config.xdg.cacheHome}/yazi";
     };
 
-    plugin = {
-      prepend_fetchers = [
-        {
-          id = "git";
-          name = "*";
-          run = "git";
-        }
-        {
-          id = "git";
-          name = "*/";
-          run = "git";
-        }
-      ];
-    };
+    plugin.prepend_fetchers = [
+      {
+        id = "git";
+        name = "*";
+        run = "git";
+      }
+      {
+        id = "git";
+        name = "*/";
+        run = "git";
+      }
+    ];
   };
 }

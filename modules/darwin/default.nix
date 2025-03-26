@@ -26,16 +26,19 @@
         scipy
       ]))
 
+    # TeX
+    texliveFull
+
     # GUI
     aerospace
-    chatgpt
+    # chatgpt
     # cherry-studio # linux
     emacs
-    flashspace
-    # github-copilot-cli
+    # ghostty
     # github-desktop # linux
     ice-bar
     iina
+    istatmenus
     inkscape
     keka
     kitty
@@ -51,9 +54,7 @@
     sioyek
     skimpdf
     # stats
-    # sublime-merge # linux
-    vscode
-    warp-terminal
+    # vscode
     zed-editor
     zoom-us
     zotero

@@ -20,6 +20,7 @@
       settings = {
         panel.enabled = false;
         suggestion.enabled = false;
+        copilot_model = "gpt-4o-copilot";
       };
     };
     blink-copilot.enable = true;
@@ -40,7 +41,7 @@
             __unkeyed-1 = "select_and_accept";
             __unkeyed-2.__raw = ''
               vim.schedule_wrap(function()
-              	local ls = require('luasnip')
+              	local ls = require("luasnip")
               	if ls.expandable() then
               		ls.expand()
               	end
@@ -50,7 +51,7 @@
           "<C-l>" = {
             __unkeyed-1.__raw = ''
               vim.schedule_wrap(function()
-              	local ls = require('luasnip')
+              	local ls = require("luasnip")
               	if ls.choice_active() then
               		ls.change_choice(1)
               	end
@@ -100,23 +101,12 @@
         completion = {
           documentation = {
             auto_show = true;
-            auto_show_delay_ms = 200;
+            auto_show_delay_ms = 500;
             window.border = "rounded";
           };
           menu = {
             border = "rounded";
-            draw = {
-              columns = [
-                {
-                  __unkeyed-1 = "label";
-                  __unkeyed-2 = "label_description";
-                  gap = 1;
-                }
-                ["kind_icon" "kind"]
-                ["source_name"]
-              ];
-              treesitter = ["lsp"];
-            };
+            draw.treesitter = ["lsp"];
           };
         };
         snippets.preset = "luasnip";
@@ -128,7 +118,6 @@
               async = true;
               module = "blink-copilot";
               name = "Copilot";
-              score_offset = -5;
             };
             ripgrep = {
               module = "blink-ripgrep";

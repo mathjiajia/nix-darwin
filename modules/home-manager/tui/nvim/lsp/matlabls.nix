@@ -1,12 +1,11 @@
 {pkgs, ...}: {
-  programs.nixvim.extraConfigLua =
+  programs.nixvim.extraFiles."lsp/matlabls.lua".text =
     # lua
     ''
-      vim.lsp.config("matlabls", {
+      return {
       	cmd = { "${pkgs.matlab-language-server}/bin/matlab-language-server", "--stdio" },
       	filetypes = { "matlab" },
       	root_markers = { ".git" },
-      	single_file_support = false,
       	settings = {
       		MATLAB = {
       			indexWorkspace = true,
@@ -15,6 +14,6 @@
       			telemetry = false,
       		},
       	},
-      })
+      }
     '';
 }

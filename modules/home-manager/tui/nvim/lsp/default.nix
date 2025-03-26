@@ -22,7 +22,6 @@
     ];
 
     diagnostics = {
-      float.border = "rounded";
       severity_sort = true;
       signs.text = {
         "__rawKey__vim.diagnostic.severity.ERROR" = "";
@@ -31,10 +30,6 @@
         "__rawKey__vim.diagnostic.severity.INFO" = "";
       };
       virtual_lines.current_line = true;
-      # virtual_text = {
-      #   spacing = 2;
-      #   prefix = "●";
-      # };
     };
 
     extraConfigLua =
@@ -66,6 +61,11 @@
             		if client:supports_method(keys.method, ev.buf) then
             			vim.keymap.set("n", keys[1], keys[2], { buffer = ev.buf, desc = keys.method })
             		end
+            	end
+
+            	if client:supports_method(methods.textDocument_foldingRange, ev.buf) then
+            		local win = vim.api.nvim_get_current_win()
+            		vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
             	end
 
             	if client:supports_method(methods.textDocument_inlayHint, ev.buf) then

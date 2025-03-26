@@ -1,16 +1,18 @@
-{
+let
+  padding = 5;
+in {
   programs.aerospace = {
     enable = true;
     package = null;
     userSettings = {
       start-at-login = true;
       gaps = {
-        inner.horizontal = 8;
-        inner.vertical = 8;
-        outer.left = 8;
-        outer.bottom = 8;
-        outer.top = 8;
-        outer.right = 8;
+        inner.horizontal = padding;
+        inner.vertical = padding;
+        outer.left = padding;
+        outer.bottom = padding;
+        outer.top = padding;
+        outer.right = padding;
       };
       mode.main.binding = {
         alt-slash = "layout tiles horizontal vertical";
@@ -131,10 +133,6 @@
           run = ["layout floating" "move-node-to-workspace 􀌤C"];
         }
         # Developer
-        {
-          "if".app-id = "com.sublimemerge";
-          run = "move-node-to-workspace 􀫊D";
-        }
         {
           "if".app-id = "com.wangchujiang.DevHub";
           run = "move-node-to-workspace 􀫊D";

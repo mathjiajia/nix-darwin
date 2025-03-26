@@ -7,7 +7,6 @@
 
   programs.yazi = {
     enable = true;
-    enableFishIntegration = true;
     shellWrapperName = "lf";
     initLua =
       # lua

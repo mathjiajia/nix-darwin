@@ -1,8 +1,13 @@
-{lib, ...}: {
+{
   programs.yazi.keymap = {
     manager.prepend_keymap = [
       {
-        on = lib.strings.stringToCharacters "git";
+        on = ["g" "f"];
+        run = "plugin vcs-files";
+        desc = "Show Git file changes";
+      }
+      {
+        on = ["g" "i"];
         run = "shell --block --confirm 'lazygit'";
         desc = "Open lazygit";
       }
@@ -32,22 +37,22 @@
 
       # Goto
       {
-        on = lib.strings.stringToCharacters "gm";
+        on = ["g" "m"];
         run = "cd ~/Documents/Projects/moduli2";
         desc = "Go to the current project dir";
       }
       {
-        on = lib.strings.stringToCharacters "gn";
+        on = ["g" "n"];
         run = "cd ~/.config/nix-darwin";
         desc = "Go to the nix-darwin config directory";
       }
       {
-        on = lib.strings.stringToCharacters "gr";
+        on = ["g" "r"];
         run = "cd ~/Documents/Review";
         desc = "Go to the review directory";
       }
       {
-        on = lib.strings.stringToCharacters "gt";
+        on = ["g" "t"];
         run = "cd ~/Documents/Talks";
         desc = "Go to the talks directory";
       }
@@ -59,16 +64,25 @@
         desc = "Move the files to the trash";
       }
 
-      # { on = "f"; run = "plugin jump-to-char"; desc = "Jump to char"; }
+      {
+        on = "f";
+        run = "plugin jump-to-char";
+        desc = "Jump to char";
+      }
       {
         on = "F";
         run = "plugin smart-filter";
         desc = "Smart filter";
       }
       {
-        on = lib.strings.stringToCharacters "cm";
+        on = ["c" "m"];
         run = "plugin chmod";
         desc = "Chmod selected files";
+      }
+      {
+        on = "<C-d>";
+        run = "plugin diff";
+        desc = "Diff the selected with the hovered file";
       }
     ];
 

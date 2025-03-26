@@ -13,6 +13,8 @@
     taps = builtins.attrNames config.nix-homebrew.taps;
 
     casks = [
+      "corretto@11"
+      "chatgpt"
       "dash"
       "downie"
       "fcitx5"
@@ -20,7 +22,6 @@
       "hazel"
       "hazeover"
       "hookmark"
-      "istat-menus"
       "keyboard-maestro"
       "keyboardcleantool"
       "launchbar"
@@ -33,9 +34,9 @@
       "qlmarkdown"
       "sf-symbols"
       "soulver"
-      "sublime-merge"
       "surge"
       "syntax-highlight"
+      "visual-studio-code"
     ];
   };
 }

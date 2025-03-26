@@ -4,8 +4,8 @@
     package = null;
     settings = {
       theme = "bamboo";
-      background-opacity = 0.9;
-      background-blur = true;
+      # background-opacity = 0.9;
+      # background-blur = true;
       font-family = "Sarasa Term SC";
       font-size = 23;
       font-thicken = true;
@@ -15,7 +15,7 @@
       macos-icon-screen-color = "purple,maroon";
       keybind = "global:cmd+grave_accent=toggle_quick_terminal";
       window-colorspace = "display-p3";
-      window-title-font-family = "Maple Mono CN";
+      window-title-font-family = "Maple Mono NF CN";
       auto-update = "off";
     };
     themes = {
@@ -82,6 +82,34 @@
 
           "7=#ebdbb2"
           "15=#ebdbb2"
+        ];
+      };
+      vscode = {
+        background = "1F1F1F";
+        foreground = "D4D4D4";
+        cursor-color = "D4D4D4";
+
+        selection-background = "264F78";
+        selection-foreground = "ffffff";
+
+        palette = [
+          "0=#1F1F1F"
+          "1=#F44747"
+          "2=#6A9955"
+          "3=#DCDCAA"
+          "4=#569CD6"
+          "5=#C586C0"
+          "6=#56B6C2"
+          "7=#D4D4D4"
+
+          "8=#808080"
+          "9=#F44747"
+          "10=#6A9955"
+          "11=#DCDCAA"
+          "12=#569CD6"
+          "13=#C586C0"
+          "14=#56B6C2"
+          "15=#D4D4D4"
         ];
       };
     };

@@ -1,8 +1,8 @@
 {pkgs, ...}: {
-  programs.nixvim.extraConfigLua =
+  programs.nixvim.extraFiles."lsp/texlab.lua".text =
     # lua
     ''
-      vim.lsp.config("texlab", {
+      return {
       	cmd = { "${pkgs.texlab}/bin/texlab" },
       	filetypes = { "tex", "plaintex", "bib" },
       	root_markers = {
@@ -12,7 +12,6 @@
       		"texlabroot",
       		"Tectonic.toml",
       	},
-      	single_file_support = true,
       	settings = {
       		texlab = {
       			build = {
@@ -29,7 +28,7 @@
       				-- 	"--execute-command",
       				-- 	"turn_on_synctex",
       				-- 	"--inverse-search",
-      				-- 	"${pkgs.texlab}/bin/texlab inverse-search -i %%1 -l %%2",
+      				-- 	"${pkgs.texlab}/bin/texlab inverse-search -i %%1 --line1 %%2",
       				-- 	"--forward-search-file",
       				-- 	"%f",
       				-- 	"--forward-search-line",
@@ -49,10 +48,9 @@
       		},
       	},
       	on_attach = function(client, bufnr)
-      		local win = vim.api.nvim_get_current_win()
-      		local params = vim.lsp.util.make_position_params(win, client.offset_encoding)
-
       		local function buf_build()
+      			local win = vim.api.nvim_get_current_win()
+      			local params = vim.lsp.util.make_position_params(win, client.offset_encoding)
       			client:request("textDocument/build", params, function(err, result)
       				if err then
       					error(tostring(err))
@@ -68,6 +66,8 @@
       		end
 
       		local function buf_search()
+      			local win = vim.api.nvim_get_current_win()
+      			local params = vim.lsp.util.make_position_params(win, client.offset_encoding)
       			client:request("textDocument/forwardSearch", params, function(err, result)
       				if err then
       					error(tostring(err))
@@ -83,20 +83,7 @@
       		end
 
       		local function buf_cancel_build()
-      			client:exec_cmd({ title = "cancel", command = "texlab.cancelBuild" }, { bufnr = bufnr })
-      		end
-
-      		local function dependency_graph()
-      			client:exec_cmd(
-      				{ title = "show dependency Graph", command = "texlab.showDependencyGraph" },
-      				{ bufnr = bufnr },
-      				function(err, result)
-      					if err then
-      						return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
-      					end
-      					vim.notify("The dependency graph has been generated:\n" .. result, vim.log.levels.INFO)
-      				end
-      			)
+      			client:exec_cmd({ title = "cancel Build", command = "texlab.cancelBuild" }, { bufnr = bufnr })
       		end
 
       		local function command_factory(cmd)
@@ -141,10 +128,11 @@
       		end
 
       		local function close_env()
+      			local win = vim.api.nvim_get_current_win()
       			client:exec_cmd({
       				title = "find Environments",
       				command = "texlab.findEnvironments",
-      				arguments = { params },
+      				arguments = { vim.lsp.util.make_position_params(win, client.offset_encoding) },
       			}, { bufnr = bufnr }, function(err, result)
       				if err then
       					return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
@@ -159,10 +147,11 @@
       		end
 
       		local toggle_star = function()
+      			local win = vim.api.nvim_get_current_win()
       			client:exec_cmd({
       				title = "find Environments",
       				command = "texlab.findEnvironments",
-      				arguments = { params },
+      				arguments = { vim.lsp.util.make_position_params(win, client.offset_encoding) },
       			}, { bufnr = bufnr }, function(err, result)
       				if err then
       					return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
@@ -188,21 +177,65 @@
       			end)
       		end
 
-      		vim.api.nvim_buf_create_user_command(
-      			bufnr,
-      			"TexlabDependencyGraph",
+      		local function parse_dot(dot_str)
+      			local graph = { nodes = {}, edges = {} }
+      			for id, label in dot_str:gmatch('(%S-)%s*%[label="(.-)"%s*,?%s*shape=%S-%]') do
+      				graph.nodes[id] = label:match(".*/(.-)$") or label -- Extract filename from full path
+      			end
+
+      			for from, to, edge_label in dot_str:gmatch('(%S-)%s*%->%s*(%S-)%s*%[label="(.-)"%]') do
+      				table.insert(graph.edges, {
+      					from = from,
+      					to = to,
+      					label = edge_label or "",
+      				})
+      			end
+
+      			return graph
+      		end
+
+      		local function render_graph(graph)
+      			local output = { "ASCII Representation of DOT Graph:" }
+
+      			for _, edge in ipairs(graph.edges) do
+      				local from_label = graph.nodes[edge.from] or edge.from
+      				table.insert(output, string.format("%s --> %s", from_label, edge.label))
+      			end
+
+      			return table.concat(output, "\n")
+      		end
+
+      		local function dependency_graph()
+      			client:exec_cmd({
+      				title = "Dependency Graph",
+      				command = "texlab.showDependencyGraph",
+      				arguments = { { uri = vim.uri_from_bufnr(bufnr) } },
+      			}, { bufnr = bufnr }, function(err, result)
+      				if err then
+      					return vim.notify(err.code .. ": " .. err.message, vim.log.levels.ERROR)
+      				end
+
+      				local graph = parse_dot(result)
+      				local rendered_graph = render_graph(graph)
+      				vim.notify(rendered_graph, vim.log.levels.INFO)
+      			end)
+      		end
+
+      		vim.api.nvim_create_user_command(
+      			"TXShowDependencyGraph",
       			dependency_graph,
-      			{ desc = "Show the dependency graph" }
+      			{ desc = "Show LaTeX dependency graph" }
       		)
+
       		vim.api.nvim_buf_create_user_command(
       			bufnr,
-      			"TexlabCleanArtifacts",
+      			"TXCleanArtifacts",
       			command_factory("Artifacts"),
       			{ desc = "Clean the artifacts" }
       		)
       		vim.api.nvim_buf_create_user_command(
       			bufnr,
-      			"TexlabCleanAuxiliary",
+      			"TXCleanAuxiliary",
       			command_factory("Auxiliary"),
       			{ desc = "Clean the auxiliary files" }
       		)
@@ -214,6 +247,6 @@
       		vim.keymap.set("i", ";]", close_env, { buffer = bufnr, desc = "Close the current environment" })
       		vim.keymap.set("n", "tss", toggle_star, { buffer = bufnr, desc = "Toggle starred environment" })
       	end,
-      })
+      }
     '';
 }

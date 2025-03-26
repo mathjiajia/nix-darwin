@@ -1,28 +1,36 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: let
-  arrowPlugin = pkgs.writeTextFile {
-    name = "arrow.yazi";
-    destination = "/main.lua";
-    text =
+{pkgs, ...}: let
+  writePlugin = text:
+    pkgs.writeTextFile rec {
+      inherit text;
+      name = "main.lua";
+      destination = "/${name}";
+    };
+in {
+  programs.yazi.plugins = {
+    chmod = pkgs.yaziPlugins.chmod;
+    diff = pkgs.yaziPlugins.diff;
+    full-border = pkgs.yaziPlugins.full-border;
+    git = pkgs.yaziPlugins.git;
+    jump-to-char = pkgs.yaziPlugins.jump-to-char;
+    smart-enter = pkgs.yaziPlugins.smart-enter;
+    smart-filter = pkgs.yaziPlugins.smart-filter;
+    vcs-files = pkgs.yaziPlugins.vcs-files;
+
+    arrow =
+      writePlugin
       # lua
       ''
         --- @sync entry
         return {
-        	entry = function(_, job)
-        		local current = cx.active.current
-        		local new = (current.cursor + job.args[1]) % #current.files
-        		ya.manager_emit("arrow", { new - current.cursor })
-        	end,
+          entry = function(_, job)
+            local current = cx.active.current
+            local new = (current.cursor + job.args[1]) % #current.files
+            ya.manager_emit("arrow", { new - current.cursor })
+          end,
         }
       '';
-  };
-  parentArrowPlugin = pkgs.writeTextFile {
-    name = "parent-arrow.yazi";
-    destination = "/main.lua";
-    text =
+    parent-arrow =
+      writePlugin
       # lua
       ''
         --- @sync entry
@@ -38,17 +46,5 @@
 
         return { entry = entry }
       '';
-  };
-in {
-  programs.yazi.plugins = {
-    arrow = arrowPlugin;
-    chmod = "${inputs.yazi-plugins}/chmod.yazi";
-    diff = "${inputs.yazi-plugins}/diff.yazi";
-    full-border = "${inputs.yazi-plugins}/full-border.yazi";
-    git = "${inputs.yazi-plugins}/git.yazi";
-    jump-to-char = "${inputs.yazi-plugins}/jump-to-char.yazi";
-    parent-arrow = parentArrowPlugin;
-    smart-enter = "${inputs.yazi-plugins}/smart-enter.yazi";
-    smart-filter = "${inputs.yazi-plugins}/smart-filter.yazi";
   };
 }

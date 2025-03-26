@@ -1,8 +1,8 @@
 {pkgs, ...}: {
-  programs.nixvim.extraConfigLua =
+  programs.nixvim.extraFiles."lsp/clangd.lua".text =
     # lua
     ''
-      vim.lsp.config("clangd", {
+      return {
       	cmd = { "${pkgs.clang-tools}/bin/clangd" },
       	filetypes = { "c", "cpp" },
       	root_markers = {
@@ -14,7 +14,6 @@
       		"configure.ac",
       		".git",
       	},
-      	single_file_support = true,
       	capabilities = {
       		textDocument = { completion = { editsNearCursor = true } },
       		offsetEncoding = { "utf-8", "utf-16" },
@@ -51,7 +50,6 @@
       					width = math.max(string.len(name), string.len(container)),
       					focusable = false,
       					focus = false,
-      					border = "single",
       					title = "Symbol Info",
       				})
       			end, bufnr)
@@ -65,6 +63,6 @@
       		)
       		vim.api.nvim_buf_create_user_command(bufnr, "ClangdSymbolInfo", symbol_info, { desc = "Show symbol info" })
       	end,
-      })
+      }
     '';
 }

@@ -4,11 +4,9 @@
     Codye = 1516894961;
     DevHub = 6476452351;
     FileFillet = 6443969762;
-    HorizonChase2 = 1534920947;
     "Plain Text Editor" = 1572202501;
     "Pro Snooker & Pool 2024" = 1586517737;
     Readest = 6738622779;
-    Reeder = 6475002485;
     ScanScan = 1249901692;
     Solitaire = 1534193824;
     TestFlight = 899247664;
