@@ -18,11 +18,7 @@
       		return t[ftype] or ftype
       	end,
       	capabilities = {
-      		workspace = {
-      			didChangeWatchedFiles = {
-      				dynamicRegistration = true,
-      			},
-      		},
+      		workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
       		textDocument = {
       			diagnostic = {
       				dynamicRegistration = true,

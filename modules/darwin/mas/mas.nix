@@ -1,10 +1,5 @@
 {
-  homebrew.brews = [
-    {
-      name = "mas";
-      args = ["HEAD"];
-    }
-  ];
+  homebrew.brews = ["mas"];
 
   homebrew.masApps = {
     Craft = 1487937127;

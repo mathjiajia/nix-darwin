@@ -3,17 +3,14 @@
     username = "jia";
     homeDirectory = "/Users/jia";
     stateVersion = "25.05";
-    sessionVariables = {
-      VISUAL = "nvim";
-      MANPAGER = "nvim +Man!";
-    };
   };
 
   programs = {
     home-manager.enable = true; # manage itslef
     atuin.enable = true;
+    bun.enable = true;
     pandoc.enable = true;
-    sagemath.enable = true;
+    # sagemath.enable = true;
     zoxide.enable = true;
   };
 
@@ -36,11 +33,11 @@
 
     # manage their configs only
     ./gui/aerospace.nix
-    # ./gui/emacs.nix
-    # ./gui/kitty.nix
+    ./gui/kitty.nix
     ./gui/ghostty.nix
     ./gui/neovide.nix
-    # ./gui/sioyek.nix
-    # ./gui/zed.nix
+    ./gui/sage.nix
+    ./gui/sioyek.nix
+    ./gui/zed.nix
   ];
 }

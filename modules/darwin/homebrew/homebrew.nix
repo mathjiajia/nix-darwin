@@ -22,6 +22,7 @@
       "hazel"
       "hazeover"
       "hookmark"
+      "kekaexternalhelper"
       "keyboard-maestro"
       "keyboardcleantool"
       "launchbar"

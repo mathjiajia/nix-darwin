@@ -9,11 +9,10 @@
     # CLI
     ghostscript
     hugo
+    nodejs # npx
     tree
     wget
-    bun
-    nodejs
-    uv
+    uv # uvx
 
     # PYTHON
     (python3.withPackages (ps:
@@ -27,40 +26,35 @@
       ]))
 
     # TeX
-    texliveFull
+    # texliveFull
 
     # GUI
-    aerospace
     # chatgpt
-    # cherry-studio # linux
-    emacs
-    # ghostty
-    # github-desktop # linux
+    # ghostty # broken
     ice-bar
     iina
     istatmenus
     inkscape
     keka
-    kitty
     loopwm
-    # mathematica # x86_64-linux
-    # mathpix-snipping-tool # x86_64-linux
-    # microsoft-edge # x86_64-linux
-    neovide
     ollama
     openconnect
-    # openra # x86_64-linux
     raycast
-    sioyek
     skimpdf
     # stats
     # vscode
-    zed-editor
     zoom-us
     zotero
   ];
 
-  environment.shells = [pkgs.fish];
+  environment = {
+    shells = [pkgs.fish];
+    variables = {
+      VISUAL = "nvim";
+      MANPAGER = "nvim +Man!";
+    };
+    systemPath = ["/Library/TeX/texbin"];
+  };
 
   fonts.packages = with pkgs; [
     lxgw-wenkai

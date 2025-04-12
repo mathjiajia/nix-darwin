@@ -12,9 +12,14 @@
       "math-snippets.latex"
     ];
   };
-  nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
-    name = "latex-conceal";
-    src = inputs.nvim-latex-conceal;
+  # nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
+  #   name = "latex-conceal";
+  #   src = inputs.nvim-latex-conceal;
+  # };
+  latex_concealer-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "latex_concealer";
+    src = inputs.latex_concealer-nvim;
+    nvimSkipModules = ["latex_concealer"];
   };
   nvim-treesitter-pairs = pkgs.vimUtils.buildVimPlugin {
     name = "treesitter-pairs";
@@ -25,7 +30,8 @@ in {
     heirline-nvim
     ultimate-autopair-nvim
 
-    nvim-latex-conceal
+    # nvim-latex-conceal
+    latex_concealer-nvim
     nvim-math-snippets
     nvim-treesitter-pairs
   ];

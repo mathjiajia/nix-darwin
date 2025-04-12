@@ -85,7 +85,7 @@
         ];
       };
       vscode = {
-        background = "1F1F1F";
+        background = "1E1E1E";
         foreground = "D4D4D4";
         cursor-color = "D4D4D4";
 
@@ -93,8 +93,8 @@
         selection-foreground = "ffffff";
 
         palette = [
-          "0=#1F1F1F"
-          "1=#F44747"
+          "0=#1E1E1E"
+          "1=#e75a7c"
           "2=#6A9955"
           "3=#DCDCAA"
           "4=#569CD6"
@@ -103,7 +103,7 @@
           "7=#D4D4D4"
 
           "8=#808080"
-          "9=#F44747"
+          "9=#e75a7c"
           "10=#6A9955"
           "11=#DCDCAA"
           "12=#569CD6"

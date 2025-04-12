@@ -63,8 +63,6 @@
         appearance = {
           nerd_font_variant = "normal";
           kind_icons = {
-            Copilot = "";
-
             Text = "";
             Method = "";
             Function = "";
@@ -106,7 +104,15 @@
           };
           menu = {
             border = "rounded";
-            draw.treesitter = ["lsp"];
+            draw = {
+              components.kind_icon.text.__raw = ''
+                function(ctx)
+                	local kind_icon, _, _ = MiniIcons.get("lsp", ctx.kind)
+                	return kind_icon
+                end
+              '';
+              treesitter = ["lsp"];
+            };
           };
         };
         snippets.preset = "luasnip";

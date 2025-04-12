@@ -3,7 +3,6 @@ let
 in {
   programs.aerospace = {
     enable = true;
-    package = null;
     userSettings = {
       start-at-login = true;
       gaps = {

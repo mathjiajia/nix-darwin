@@ -47,6 +47,8 @@
         };
       };
       icons.lsp = {
+        copilot.glyph = "";
+        function.glyph = "";
         object.glyph = "";
         value.glyph = "";
       };

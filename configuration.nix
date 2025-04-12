@@ -27,6 +27,7 @@
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs;};
     users."jia".imports = [
+      inputs.mac-app-util.homeManagerModules.default
       inputs.nixvim.homeManagerModules.nixvim
       ./modules/home-manager
     ];

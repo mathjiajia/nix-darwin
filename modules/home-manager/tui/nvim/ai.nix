@@ -82,7 +82,9 @@
       action.__raw = ''
         function()
         	local prompt = vim.fn.input("Inline Assistant: ")
-        	vim.cmd.CodeCompanion(prompt)
+        	if prompt ~= "" then
+        		vim.cmd.CodeCompanion(prompt)
+        	end
         end
       '';
       options.desc = "CodeCompanion Inline Assistant";

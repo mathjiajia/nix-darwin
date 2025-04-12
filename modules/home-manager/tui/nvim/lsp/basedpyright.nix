@@ -14,7 +14,15 @@
       		"pyrightconfig.json",
       		".git",
       	},
-      	settings = { basedpyright = { analysis = { typeCheckingMode = "strict" } } },
+      	settings = {
+      		basedpyright = {
+      			analysis = {
+      				autoSearchPaths = true,
+      				useLibraryCodeForTypes = true,
+      				diagnosticMode = "openFilesOnly",
+      			},
+      		},
+      	},
       	on_attach = function(client, bufnr)
       		local function organize_imports()
       			local params = { command = "basedpyright.organizeimports", arguments = { vim.uri_from_bufnr(0) } }
