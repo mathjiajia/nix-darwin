@@ -10,7 +10,6 @@
     atuin.enable = true;
     bun.enable = true;
     pandoc.enable = true;
-    # sagemath.enable = true;
     zoxide.enable = true;
   };
 
@@ -31,13 +30,12 @@
     ./tui/starship.nix
     ./tui/tex-fmt.nix
 
-    # manage their configs only
     ./gui/aerospace.nix
-    ./gui/kitty.nix
+    # ./gui/kitty.nix
     ./gui/ghostty.nix
     ./gui/neovide.nix
     ./gui/sage.nix
     ./gui/sioyek.nix
-    ./gui/zed.nix
+    # ./gui/zed.nix
   ];
 }

@@ -2,17 +2,16 @@
   imports = [
     ./homebrew/homebrew.nix
     ./mas/mas.nix
-    ./system.nix
+    # ./system.nix
   ];
 
   environment.systemPackages = with pkgs; [
     # CLI
-    ghostscript
     hugo
     nodejs # npx
     tree
-    wget
     uv # uvx
+    openconnect
 
     # PYTHON
     (python3.withPackages (ps:
@@ -31,20 +30,19 @@
     # GUI
     # chatgpt
     # ghostty # broken
-    ice-bar
-    iina
-    istatmenus
-    inkscape
-    keka
-    loopwm
-    ollama
-    openconnect
-    raycast
-    skimpdf
+    # ice-bar
+    # iina
+    # istatmenus
+    # keka
+    # loopwm
+    # ollama
+    # openconnect
+    # raycast
+    # skimpdf
     # stats
     # vscode
-    zoom-us
-    zotero
+    # zoom-us
+    # zotero
   ];
 
   environment = {

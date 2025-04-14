@@ -17,7 +17,10 @@
     enable = true;
     enableRosetta = true;
     user = "jia";
-    taps = {"fcitx-contrib/homebrew-tap" = inputs.fcitx;};
+    taps = {
+      "fcitx-contrib/homebrew-tap" = inputs.fcitx;
+      "nikitabobko/homebrew-tap" = inputs.aerospace;
+    };
     mutableTaps = false;
   };
 
@@ -27,7 +30,7 @@
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs;};
     users."jia".imports = [
-      inputs.mac-app-util.homeManagerModules.default
+      # inputs.mac-app-util.homeManagerModules.default
       inputs.nixvim.homeManagerModules.nixvim
       ./modules/home-manager
     ];

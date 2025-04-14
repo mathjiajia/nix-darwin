@@ -15,11 +15,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mac-app-util.url = "github:hraban/mac-app-util/link-contents";
+    # mac-app-util.url = "github:hraban/mac-app-util/link-contents";
 
     # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
+    # aerospace
+    aerospace = {
+      url = "github:nikitabobko/homebrew-tap";
+      flake = false;
+    };
     # fcitx5
     fcitx = {
       url = "github:fcitx-contrib/homebrew-tap";
@@ -49,7 +54,7 @@
     nixpkgs,
     nix-darwin,
     home-manager,
-    mac-app-util,
+    # mac-app-util,
     nix-homebrew,
     ...
   } @ inputs: let
@@ -58,7 +63,7 @@
     shared-modules = [
       ./configuration.nix
       ./modules/darwin
-      mac-app-util.darwinModules.default
+      # mac-app-util.darwinModules.default
       home-manager.darwinModules.home-manager
       nix-homebrew.darwinModules.nix-homebrew
     ];
