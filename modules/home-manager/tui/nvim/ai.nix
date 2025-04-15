@@ -6,7 +6,7 @@
         copilot.__raw = ''
           function()
           	return require("codecompanion.adapters").extend("copilot", {
-          		schema = { model = { default = "claude-3.7-sonnet" } },
+          		schema = { model = { default = "o4-mini" } },
           	})
           end
         '';
@@ -46,6 +46,7 @@
         '';
       };
       display = {
+        action_palette.provider = "default";
         diff.provider = "mini_diff";
         chat.window.opts = {
           conceallevel = 2;

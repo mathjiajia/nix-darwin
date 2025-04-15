@@ -2,7 +2,8 @@
   description = "Jia's Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
@@ -14,8 +15,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # mac-app-util.url = "github:hraban/mac-app-util/link-contents";
 
     # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
@@ -41,10 +40,10 @@
     # Additional Neovim plugins
     nvim-math-snippets.url = "github:mathjiajia/nvim-math-snippets";
     nvim-math-snippets.flake = false;
-    # nvim-latex-conceal.url = "github:mathjiajia/nvim-latex-conceal";
-    # nvim-latex-conceal.flake = false;
-    latex_concealer-nvim.url = "github:mathjiajia/latex_concealer.nvim";
-    latex_concealer-nvim.flake = false;
+    nvim-latex-conceal.url = "github:mathjiajia/nvim-latex-conceal";
+    nvim-latex-conceal.flake = false;
+    # latex_concealer-nvim.url = "github:mathjiajia/latex_concealer.nvim";
+    # latex_concealer-nvim.flake = false;
     nvim-treesitter-pairs.url = "github:lewis6991/nvim-treesitter-pairs";
     nvim-treesitter-pairs.flake = false;
   };
@@ -54,7 +53,6 @@
     nixpkgs,
     nix-darwin,
     home-manager,
-    # mac-app-util,
     nix-homebrew,
     ...
   } @ inputs: let
@@ -63,7 +61,6 @@
     shared-modules = [
       ./configuration.nix
       ./modules/darwin
-      # mac-app-util.darwinModules.default
       home-manager.darwinModules.home-manager
       nix-homebrew.darwinModules.nix-homebrew
     ];

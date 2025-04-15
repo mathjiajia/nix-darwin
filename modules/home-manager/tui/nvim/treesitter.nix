@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  programs.nixvim.extraPackages = [pkgs.tree-sitter];
   programs.nixvim.plugins = {
     treesitter = {
       enable = true;

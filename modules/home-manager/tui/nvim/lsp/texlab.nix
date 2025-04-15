@@ -20,7 +20,7 @@
       				onSave = true,
       			},
       			forwardSearch = {
-      				executable = "/Applications/Nix Apps/Skim.app/Contents/SharedSupport/displayline",
+      				executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
       				args = { "-r", "%l", "%p", "%f" },
       				-- executable = "${pkgs.sioyek}/bin/sioyek",
       				-- args = {

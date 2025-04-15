@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   programs.nixvim.plugins = {
     render-markdown = {
       enable = true;
@@ -14,7 +14,7 @@
         pipe_table.preset = "round";
         latex.enabled = false;
         win_options.colorcolumn = {
-          default.__raw = "120";
+          default = "120";
           rendered = "";
         };
       };

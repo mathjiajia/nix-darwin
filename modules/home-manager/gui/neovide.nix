@@ -6,7 +6,7 @@
       frame = "transparent";
       font = {
         normal = ["Sarasa Term SC" "Symbols Nerd Font"];
-        size = 21;
+        size = 22;
       };
     };
   };

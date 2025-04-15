@@ -25,12 +25,12 @@
         "/Applications/Drafts.app"
         "/Applications/Goodnotes.app"
         "/Applications/UPDF.app"
-        "/Applications/Visual Studio Code.app/"
-        # "/Applications/Nix Trampolines/kitty.app/"
+        "/Applications/Visual Studio Code.app"
+        # "/Applications/kitty.app"
         "/Applications/Ghostty.app"
-        "/Applications/Nix Trampolines/Skim.app/"
-        # "/Applications/Nix Trampolines/sioyek.app/"
-        "/Applications/Nix Trampolines/Zotero.app/"
+        "/Applications/Skim.app/"
+        # "/Applications/sioyek.app"
+        "/Applications/Zotero.app"
         "/Applications/Publish or Perish.app"
         "/Applications/WeChat.app"
         "/Applications/Dictionaries.app"
@@ -92,15 +92,15 @@
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
 
     CustomUserPreferences = {
-      "com.apple.mail" = {
-        DisableInlineAttachmentViewing = true;
-        AddLinkPreviews = 0;
-        SwipeAction = 1; # discard mail to archive
-        NewMessagesSoundName = "Funk";
-        NSFontSize = 14;
-        NSFixedPitchFont = "MapleMono-NF-CN-Regular";
-        NSFixedPitchFontSize = 15;
-      };
+      # "com.apple.mail" = {
+      #   DisableInlineAttachmentViewing = true;
+      #   AddLinkPreviews = 0;
+      #   SwipeAction = 1; # discard mail to archive
+      #   NewMessagesSoundName = "Funk";
+      #   NSFontSize = 14;
+      #   NSFixedPitchFont = "MapleMono-NF-CN-Regular";
+      #   NSFixedPitchFontSize = 15;
+      # };
 
       # "com.apple.controlcenter" = {
       #   "NSStatusItem Visible Battery" = 0;

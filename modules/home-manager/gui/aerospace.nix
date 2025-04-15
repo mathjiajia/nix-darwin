@@ -174,24 +174,13 @@ in {
         {
           "if" = {
             app-id = "org.zotero.zotero";
-            window-title-regex-substring = "^(?!.* - Zotero$).*";
+            window-title-regex-substring = "^(.+?) - Zotero$";
           };
-          run = "layout floating";
-        }
-        {
-          "if".app-id = "org.zotero.zotero-beta";
           run = "move-node-to-workspace 􁜾N";
-        }
-        {
-          "if" = {
-            app-id = "org.zotero.zotero-beta";
-            window-title-regex-substring = "^(?!.* - Zotero$).*";
-          };
-          run = "layout floating";
         }
         {
           "if".app-id = "org.zotero.zotero";
-          run = "move-node-to-workspace 􁜾N";
+          run = "layout floating";
         }
         # Terminal
         {
@@ -282,6 +271,10 @@ in {
         }
         {
           "if".app-id = "org.fcitx.inputmethod.Fcitx5";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.mathworks.matlab";
           run = "layout floating";
         }
         {

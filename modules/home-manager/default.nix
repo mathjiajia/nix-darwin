@@ -10,6 +10,7 @@
     atuin.enable = true;
     bun.enable = true;
     pandoc.enable = true;
+    uv.enable = true;
     zoxide.enable = true;
   };
 

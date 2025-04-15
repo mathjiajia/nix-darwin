@@ -6,6 +6,7 @@
       	cmd = { "${pkgs.matlab-language-server}/bin/matlab-language-server", "--stdio" },
       	filetypes = { "matlab" },
       	root_markers = { ".git" },
+      	workspace_required = true,
       	settings = {
       		MATLAB = {
       			indexWorkspace = true,

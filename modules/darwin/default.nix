@@ -2,16 +2,15 @@
   imports = [
     ./homebrew/homebrew.nix
     ./mas/mas.nix
-    # ./system.nix
+    ./system.nix
   ];
 
   environment.systemPackages = with pkgs; [
     # CLI
     hugo
     nodejs # npx
-    tree
-    uv # uvx
     openconnect
+    tree
 
     # PYTHON
     (python3.withPackages (ps:

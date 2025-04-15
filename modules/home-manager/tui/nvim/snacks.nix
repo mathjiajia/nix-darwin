@@ -10,7 +10,6 @@
     });
     settings = {
       dashboard = {
-        enabled = true;
         preset = {
           header = ''
             ██████████████████████████████████████████████████
@@ -97,35 +96,20 @@
           }
         ];
       };
-      explorer.replace_netrw = true;
-      image = {
-        convert.notify = false;
-        doc.inline = false;
-        math = {
-          enabled = false;
-          latex = {
-            font_size = "normalsize";
-            package = ["amsmath" "amssymb" "mathtools" "xy"];
-          };
-        };
-      };
-
-      indent = {
-        enabled = true;
-        scope.hl = [
-          "RainbowDelimiterRed"
-          "RainbowDelimiterYellow"
-          "RainbowDelimiterBlue"
-          "RainbowDelimiterOrange"
-          "RainbowDelimiterGreen"
-          "RainbowDelimiterViolet"
-          "RainbowDelimiterCyan"
-        ];
-      };
+      explorer.enabled = true;
+      image.math.enabled = false;
+      indent.scope.hl = [
+        "RainbowDelimiterRed"
+        "RainbowDelimiterYellow"
+        "RainbowDelimiterBlue"
+        "RainbowDelimiterOrange"
+        "RainbowDelimiterGreen"
+        "RainbowDelimiterViolet"
+        "RainbowDelimiterCyan"
+      ];
       input.enabled = true;
       notifier.enabled = true;
       picker = {
-        enabled = true;
         win.input.keys = {
           "<M-d>" = {
             __unkeyed-1 = "toggle_hidden";
@@ -161,7 +145,6 @@
               end
             '';
         };
-        ui_select = true;
       };
       scroll.enabled.__raw = ''not vim.g.neovide'';
       scope.enabled = true;
