@@ -1,17 +1,16 @@
 {pkgs, ...}: {
   programs.fzf = {
     enable = true;
-    changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type directory --hidden";
+    changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d --hidden";
     changeDirWidgetOptions = ["--preview 'tree -C {} | head -200'"];
-    defaultCommand = "${pkgs.fd}/bin/fd --type file --hidden";
+    defaultCommand = "${pkgs.fd}/bin/fd --type f --hidden";
     defaultOptions = [
       "--border"
-      "--height 40%"
       "--layout=reverse"
-      "--preview 'bat -n --color=always {} --line-range :400 {}'"
+      "--preview 'bat --color=always --line-range :500 {}'"
       "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
     ];
-    fileWidgetCommand = "${pkgs.fd}/bin/fd --type file --hidden --follow";
+    fileWidgetCommand = "${pkgs.fd}/bin/fd --type f --hidden --follow";
     historyWidgetOptions = ["--reverse"];
   };
 }

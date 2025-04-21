@@ -20,6 +20,7 @@
     "openra"
     "orbstack"
     "publish-or-perish"
+    "quickrecorder"
     "sage"
     "sf-symbols"
     "soulver"

@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults = {
@@ -23,13 +23,14 @@
         "/Applications/Due.app"
         "/System/Applications/Notes.app"
         "/Applications/Drafts.app"
+        "/Applications/MarkEdit.app"
         "/Applications/Goodnotes.app"
         "/Applications/UPDF.app"
         "/Applications/Visual Studio Code.app"
         # "/Applications/kitty.app"
         "/Applications/Ghostty.app"
-        "/Applications/Skim.app/"
-        # "/Applications/sioyek.app"
+        # "/Applications/Skim.app/"
+        "${pkgs.sioyek}/Applications/sioyek.app"
         "/Applications/Zotero.app"
         "/Applications/Publish or Perish.app"
         "/Applications/WeChat.app"

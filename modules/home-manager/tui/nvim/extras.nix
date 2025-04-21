@@ -21,6 +21,10 @@
   #   src = inputs.latex_concealer-nvim;
   #   nvimSkipModules = ["latex_concealer"];
   # };
+  copilot-lsp = pkgs.vimUtils.buildVimPlugin {
+    name = "copilot-lsp";
+    src = inputs.copilot-lsp;
+  };
   nvim-treesitter-pairs = pkgs.vimUtils.buildVimPlugin {
     name = "treesitter-pairs";
     src = inputs.nvim-treesitter-pairs;
@@ -30,6 +34,8 @@ in {
     heirline-nvim
     ultimate-autopair-nvim
 
+    bamboo-nvim
+    copilot-lsp
     # latex_concealer-nvim
     nvim-latex-conceal
     nvim-math-snippets
@@ -39,6 +45,8 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
+      require("bamboo").setup({})
+      require("bamboo").load()
       require("ultimate-autopair").setup()
 
       local conditions = require("heirline.conditions")

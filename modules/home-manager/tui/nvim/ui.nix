@@ -1,5 +1,18 @@
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.nixvim.plugins = {
+    nui = {
+      enable = true;
+      package = pkgs.vimUtils.buildVimPlugin {
+        pname = "nui.nvim";
+        name = "nui";
+        version = "0.3.0-1";
+        src = inputs.nui-nvim;
+      };
+    };
     render-markdown = {
       enable = true;
       settings = {
@@ -61,6 +74,24 @@
     };
     noice = {
       enable = true;
+      package = pkgs.vimPlugins.noice-nvim.overrideAttrs {
+        dependencies = [];
+        nvimSkipModules = [
+          "noice.ui.cmdline"
+          "noice.util.nui"
+          "noice.message.init"
+          "noice.view.init"
+          "noice.view.backend.notify_send"
+          "noice.view.backend.notify"
+          "noice.view.backend.snacks"
+          "noice.view.backend.mini"
+          "noice.view.backend.virtualtext"
+          "noice.view.nui"
+          "noice.view.scrollbar"
+          "noice.text.init"
+          "noice.text.block"
+        ];
+      };
       settings = {
         lsp.override = {
           "vim.lsp.util.convert_input_to_markdown_lines" = true;
@@ -69,7 +100,6 @@
         presets = {
           bottom_search = true;
           long_message_to_split = true;
-          lsp_doc_border = true;
         };
         routes = [
           {
@@ -82,7 +112,7 @@
           {
             filter = {
               event = "msg_show";
-              any = [{find = "vim.tbl_islist is deprecated";} {find = "client.request is deprecated";} {find = "client.supports_method is deprecated";}];
+              any = [{find = "client.supports_method is deprecated";}];
             };
             opts.skip = true;
           }

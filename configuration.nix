@@ -15,13 +15,14 @@
 
   nix-homebrew = {
     enable = true;
-    enableRosetta = true;
     user = "jia";
     taps = {
-      "fcitx-contrib/homebrew-tap" = inputs.fcitx;
       "nikitabobko/homebrew-tap" = inputs.aerospace;
+      "fcitx-contrib/homebrew-tap" = inputs.fcitx;
+      "lihaoyun6/homebrew-tap" = inputs.lihaoyun6;
     };
     mutableTaps = false;
+    extraEnv.HOMEBREW_NO_ANALYTICS = "1";
   };
 
   home-manager = {

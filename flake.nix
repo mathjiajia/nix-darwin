@@ -2,8 +2,7 @@
   description = "Jia's Darwin system flake";
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
@@ -19,14 +18,17 @@
     # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
-    # aerospace
+    # homebrew-tap
     aerospace = {
       url = "github:nikitabobko/homebrew-tap";
       flake = false;
     };
-    # fcitx5
     fcitx = {
       url = "github:fcitx-contrib/homebrew-tap";
+      flake = false;
+    };
+    lihaoyun6 = {
+      url = "github:lihaoyun6/homebrew-tap"; # quickrecorder
       flake = false;
     };
 
@@ -46,6 +48,13 @@
     # latex_concealer-nvim.flake = false;
     nvim-treesitter-pairs.url = "github:lewis6991/nvim-treesitter-pairs";
     nvim-treesitter-pairs.flake = false;
+
+    copilot-lsp.url = "github:copilotlsp-nvim/copilot-lsp";
+    copilot-lsp.flake = false;
+    luasnip.url = "github:L3MON4D3/LuaSnip";
+    luasnip.flake = false;
+    nui-nvim.url = "github:MunifTanjim/nui.nvim";
+    nui-nvim.flake = false;
   };
 
   outputs = {
@@ -72,8 +81,7 @@
       };
 
       "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        modules =
-          shared-modules ++ [./modules/darwin/extra.nix];
+        modules = shared-modules ++ [./modules/darwin/extra.nix];
         specialArgs = special_args;
       };
     };

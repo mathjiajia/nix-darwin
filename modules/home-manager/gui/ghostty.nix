@@ -16,7 +16,7 @@
       macos-icon-screen-color = "purple,maroon";
       keybind = "global:cmd+grave_accent=toggle_quick_terminal";
       window-colorspace = "display-p3";
-      window-title-font-family = "Maple Mono NF CN";
+      window-title-font-family = "Sarasa Term SC";
       auto-update = "off";
     };
     themes = {
@@ -51,6 +51,40 @@
 
           "7=#f1e9dc"
           "15=#fff8f0"
+        ];
+      };
+      bamboo-light = {
+        cursor-color = "0f0800";
+        cursor-text = "fff8f0";
+        foreground = "3a4238";
+        background = "fafae0";
+        selection-foreground = "3a4238";
+        selection-background = "a1a7a0";
+
+        palette = [
+          "0=#dadac2"
+          "8=#c7c7af"
+
+          "1=#c72a3c"
+          "9=#c72a3c"
+
+          "2=#27850b"
+          "10=#27850b"
+
+          "3=#a77b00"
+          "11=#a77b00"
+
+          "4=#458588"
+          "12=#458588"
+
+          "5=#8a4adf"
+          "13=#8a4adf"
+
+          "6=#188a9e"
+          "14=#188a9e"
+
+          "7=#3a4238"
+          "15=#252623"
         ];
       };
       gruvbox = {

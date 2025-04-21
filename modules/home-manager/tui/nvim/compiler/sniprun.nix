@@ -4,7 +4,7 @@
       enable = true;
       settings = {
         display = ["VirtualTextOk" "VirtualTextErr" "Terminal"];
-        selected_interpreters = ["Generic" "Lua_nvim" "Python3_fifo"];
+        selected_interpreters = ["Lua_nvim" "Python3_fifo"];
         repl_enable = ["Bash_original" "Lua_nvim" "Python3_fifo" "R_original" "Swift_original"];
       };
     };

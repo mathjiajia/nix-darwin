@@ -1,7 +1,19 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  programs.nixvim.extraPackages = [pkgs.luajitPackages.jsregexp];
+
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
+      package = pkgs.vimUtils.buildVimPlugin {
+        pname = "luasnip";
+        name = "luasnip";
+        version = "2.3.0-1";
+        src = inputs.luasnip;
+      };
       fromLua = [{}];
       settings = {
         update_events = ["TextChanged" "TextChangedI"];
@@ -15,15 +27,22 @@
       };
     };
 
-    copilot-lua = {
+    copilot-lua.enable = false;
+    blink-copilot = {
       enable = true;
-      settings = {
-        panel.enabled = false;
-        suggestion.enabled = false;
-        copilot_model = "gpt-4o-copilot";
+      package = pkgs.vimUtils.buildVimPlugin {
+        pname = "blink-copilot";
+        version = "2025-04-24";
+        src = pkgs.fetchFromGitHub {
+          owner = "fang2hou";
+          repo = "blink-copilot";
+          rev = "bdc45bbbed2ec252b3a29f4adecf031e157b5573";
+          sha256 = "7P4CUg4ryfQnrc15/4dCMYEDP0u+L2QrI/GPI/r1/zM=";
+        };
+        meta.homepage = "https://github.com/fang2hou/blink-copilot/";
+        meta.hydraPlatforms = [];
       };
     };
-    blink-copilot.enable = true;
     blink-ripgrep.enable = true;
     blink-cmp = {
       enable = true;
@@ -48,7 +67,7 @@
               end),
             '';
           };
-          "<C-l>" = {
+          "<C-;>" = {
             __unkeyed-1.__raw = ''
               vim.schedule_wrap(function()
               	local ls = require("luasnip")
@@ -59,60 +78,20 @@
             '';
           };
         };
-        signature.window.border = "rounded";
-        appearance = {
-          nerd_font_variant = "normal";
-          kind_icons = {
-            Text = "";
-            Method = "";
-            Function = "";
-            Constructor = "";
-
-            Field = "";
-            Variable = "";
-            Property = "";
-
-            Class = "";
-            Interface = "";
-            Struct = "";
-            Module = "";
-
-            Unit = "";
-            Value = "";
-            Enum = "";
-            Enummember = "";
-
-            Keyword = "";
-            Constant = "";
-
-            Snippet = "";
-            Color = "";
-            File = "";
-            Reference = "";
-            Folder = "";
-
-            Event = "";
-            Operator = "";
-            Typeparameter = "";
-          };
-        };
+        appearance.nerd_font_variant = "normal";
         completion = {
           documentation = {
             auto_show = true;
             auto_show_delay_ms = 500;
-            window.border = "rounded";
           };
-          menu = {
-            border = "rounded";
-            draw = {
-              components.kind_icon.text.__raw = ''
-                function(ctx)
-                	local kind_icon, _, _ = MiniIcons.get("lsp", ctx.kind)
-                	return kind_icon
-                end
-              '';
-              treesitter = ["lsp"];
-            };
+          menu.draw = {
+            components.kind_icon.text.__raw = ''
+              function(ctx)
+              	local kind_icon, _, _ = MiniIcons.get("lsp", ctx.kind)
+              	return kind_icon
+              end
+            '';
+            treesitter = ["lsp"];
           };
         };
         snippets.preset = "luasnip";
@@ -128,6 +107,7 @@
             ripgrep = {
               module = "blink-ripgrep";
               name = "Ripgrep";
+              opts.future_features.issue185_workaround = true;
             };
           };
         };

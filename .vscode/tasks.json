@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "flake update",
+      "type": "shell",
+      "command": "nix flake update --flake /etc/nix-darwin/",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "nix-darwin rebuild",
+      "type": "shell",
+      "command": "darwin-rebuild switch",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

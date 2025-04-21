@@ -16,6 +16,13 @@
     }
 
     {
+      mode = "x";
+      key = "/";
+      action = "<Esc>/\\%V";
+      options.desc = "search within visual selection";
+    }
+
+    {
       key = "<leader>qq";
       action.__raw = ''function() vim.diagnostic.setqflist() end'';
       options.desc = "Set Quickfix";

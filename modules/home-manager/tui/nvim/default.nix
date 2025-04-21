@@ -20,10 +20,7 @@
 
     combinePlugins = {
       enable = true;
-      pathsToLink = [
-        "/copilot" # copilot-lua
-        "/luasnippets" # luasnip
-      ];
+      pathsToLink = ["/luasnippets"];
     };
   };
 

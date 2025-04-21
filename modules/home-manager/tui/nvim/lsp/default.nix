@@ -1,27 +1,18 @@
-{pkgs, ...}: {
+{
   imports = [
     ./basedpyright.nix
+    ./copilot_ls.nix
     ./clangd.nix
-    ./luals.nix
-    ./matlabls.nix
-    ./nills.nix
+    ./lua_ls.nix
+    ./matlab_ls.nix
+    ./nil_ls.nix
     ./sourcekit.nix
     ./taplo.nix
     ./texlab.nix
   ];
 
   programs.nixvim = {
-    extraPackages = with pkgs; [
-      basedpyright
-      clang-tools
-      lua-language-server
-      matlab-language-server
-      nil
-      taplo
-      texlab
-    ];
-
-    diagnostics = {
+    diagnostic.config = {
       severity_sort = true;
       signs.text = {
         "__rawKey__vim.diagnostic.severity.ERROR" = "";
@@ -32,12 +23,6 @@
       virtual_lines.current_line = true;
     };
 
-    extraConfigLua =
-      # lua
-      ''
-        vim.lsp.enable({ "basedpyright", "clangd", "luals", "matlabls", "nills", "sourcekit", "taplo", "texlab" })
-      '';
-
     autoGroups.UserLspConfig = {};
     autoCmd = [
       {
@@ -46,33 +31,36 @@
         callback.__raw =
           # lua
           ''
-            function(ev)
-            	local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
-            	local methods = vim.lsp.protocol.Methods
+            function(args)
+            	local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
             	local keymaps = {
-            		{ "gD", vim.lsp.buf.declaration, method = methods.textDocument_declaration },
-            		{ "gd", vim.lsp.buf.definition, method = methods.textDocument_definition },
-            		{ "<C-k>", vim.lsp.buf.signature_help, method = methods.textDocument_signatureHelp },
-            		{ "gt", vim.lsp.buf.type_definition, method = methods.textDocument_typeDefinition },
+            		{ "gD", vim.lsp.buf.declaration, method = "textDocument/declaration" },
+            		{ "gd", vim.lsp.buf.definition, method = "textDocument/definition" },
+            		{ "<C-k>", vim.lsp.buf.signature_help, method = "textDocument/signatureHelp" },
+            		{ "gt", vim.lsp.buf.type_definition, method = "textDocument/typeDefinition" },
             	}
 
             	for _, keys in ipairs(keymaps) do
-            		if client:supports_method(keys.method, ev.buf) then
-            			vim.keymap.set("n", keys[1], keys[2], { buffer = ev.buf, desc = keys.method })
+            		if client:supports_method(keys.method, args.buf) then
+            			vim.keymap.set("n", keys[1], keys[2], { buffer = args.buf, desc = keys.method })
             		end
             	end
 
-            	if client:supports_method(methods.textDocument_foldingRange, ev.buf) then
+            	if client:supports_method("textDocument/foldingRange", args.buf) then
             		local win = vim.api.nvim_get_current_win()
             		vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
             	end
 
-            	if client:supports_method(methods.textDocument_inlayHint, ev.buf) then
-            		vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+            	if client:supports_method("textDocument/documentColor", args.buf) then
+            		vim.lsp.document_color.enable(true, args.buf)
+            	end
+
+            	if client:supports_method("textDocument/inlayHint", args.buf) then
+            		vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
             		vim.keymap.set("n", "<M-i>", function()
-            			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
-            		end, { buffer = ev.buf, desc = "Inlay Hint Toggle" })
+            			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }), { bufnr = args.buf })
+            		end, { buffer = args.buf, desc = "Inlay Hint Toggle" })
             	end
             end
           '';

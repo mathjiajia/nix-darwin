@@ -65,11 +65,6 @@
       }
 
       {
-        on = "f";
-        run = "plugin jump-to-char";
-        desc = "Jump to char";
-      }
-      {
         on = "F";
         run = "plugin smart-filter";
         desc = "Smart filter";

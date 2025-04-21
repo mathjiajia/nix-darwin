@@ -8,7 +8,7 @@
 
       startup_commands = "fit_to_page_width_smart";
 
-      ui_font = "Sarasa Term SC";
+      ui_font = "Mozilla Text";
       status_font = "Sarasa Term SC";
 
       should_launch_new_window = "1";
