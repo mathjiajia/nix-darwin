@@ -16,16 +16,9 @@
     render-markdown = {
       enable = true;
       settings = {
-        code = {
-          min_width = 80;
-          width = "block";
-        };
-        heading = {
-          width = "block";
-          min_width = 120;
-        };
-        pipe_table.preset = "round";
+        code.width = "block";
         latex.enabled = false;
+        pipe_table.preset = "round";
         win_options.colorcolumn = {
           default = "120";
           rendered = "";

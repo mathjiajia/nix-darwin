@@ -1,8 +1,9 @@
 {
   programs.nixvim.lsp.servers.sourcekit = {
     enable = true;
-    config = {
-      cmd = ["sourcekit-lsp"];
+    package = null;
+    settings = {
+      cmd = ["/usr/bin/sourcekit-lsp"];
       filetypes = ["swift" "objc" "objcpp"];
       root_markers = [
         "buildServer.json"

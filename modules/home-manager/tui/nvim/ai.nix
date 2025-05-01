@@ -1,6 +1,13 @@
-{
+{pkgs, ...}: {
   programs.nixvim.plugins.codecompanion = {
     enable = true;
+    package = pkgs.vimPlugins.codecompanion-nvim.overrideAttrs (oldAttrs: {
+      postInstall =
+        oldAttrs.postInstall
+          or ""
+        + # sh
+        ''find $out/doc -mindepth 1 ! -name "codecompanion.txt" -delete'';
+    });
     settings = {
       adapters = {
         copilot.__raw = ''

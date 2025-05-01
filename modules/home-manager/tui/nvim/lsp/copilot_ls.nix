@@ -18,6 +18,6 @@
   programs.nixvim.lsp.servers.copilot_ls = {
     enable = true;
     package = pkgs.copilot-language-server;
-    config.cmd = ["${pkgs.copilot-language-server}/bin/copilot-language-server" "--stdio"];
+    settings.cmd = ["${pkgs.copilot-language-server}/bin/copilot-language-server" "--stdio"];
   };
 }

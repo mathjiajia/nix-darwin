@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.lua_ls = {
     enable = true;
-    package = pkgs.lua-language-server;
-    config = {
+    settings = {
       cmd = ["${pkgs.lua-language-server}/bin/lua-language-server"];
       filetypes = ["lua"];
       root_markers = [

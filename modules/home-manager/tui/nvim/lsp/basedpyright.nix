@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.basedpyright = {
     enable = true;
-    package = pkgs.basedpyright;
-    config = {
+    settings = {
       cmd = ["${pkgs.basedpyright}/bin/basedpyright-langserver" "--stdio"];
       filetypes = ["python"];
       root_markers = [

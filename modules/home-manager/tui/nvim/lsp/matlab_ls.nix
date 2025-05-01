@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.matlab_ls = {
     enable = true;
-    package = pkgs.matlab-language-server;
-    config = {
+    settings = {
       cmd = ["${pkgs.matlab-language-server}/bin/matlab-language-server" "--stdio"];
       filetypes = ["matlab"];
       root_markers = [".git"];

@@ -46,11 +46,9 @@
     nvim-latex-conceal.flake = false;
     # latex_concealer-nvim.url = "github:mathjiajia/latex_concealer.nvim";
     # latex_concealer-nvim.flake = false;
-    nvim-treesitter-pairs.url = "github:lewis6991/nvim-treesitter-pairs";
-    nvim-treesitter-pairs.flake = false;
+    nvim-tree-pairs.url = "github:yorickpeterse/nvim-tree-pairs";
+    nvim-tree-pairs.flake = false;
 
-    copilot-lsp.url = "github:copilotlsp-nvim/copilot-lsp";
-    copilot-lsp.flake = false;
     luasnip.url = "github:L3MON4D3/LuaSnip";
     luasnip.flake = false;
     nui-nvim.url = "github:MunifTanjim/nui.nvim";

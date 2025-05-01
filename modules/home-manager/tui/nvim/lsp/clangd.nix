@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.clangd = {
     enable = true;
-    package = pkgs.clang-tools;
-    config = {
+    settings = {
       cmd = ["${pkgs.clang-tools}/bin/clangd"];
       filetypes = ["c" "cpp"];
       root_markers = [

@@ -28,21 +28,7 @@
     };
 
     copilot-lua.enable = false;
-    blink-copilot = {
-      enable = true;
-      package = pkgs.vimUtils.buildVimPlugin {
-        pname = "blink-copilot";
-        version = "2025-04-24";
-        src = pkgs.fetchFromGitHub {
-          owner = "fang2hou";
-          repo = "blink-copilot";
-          rev = "bdc45bbbed2ec252b3a29f4adecf031e157b5573";
-          sha256 = "7P4CUg4ryfQnrc15/4dCMYEDP0u+L2QrI/GPI/r1/zM=";
-        };
-        meta.homepage = "https://github.com/fang2hou/blink-copilot/";
-        meta.hydraPlatforms = [];
-      };
-    };
+    blink-copilot.enable = true;
     blink-ripgrep.enable = true;
     blink-cmp = {
       enable = true;
@@ -107,7 +93,6 @@
             ripgrep = {
               module = "blink-ripgrep";
               name = "Ripgrep";
-              opts.future_features.issue185_workaround = true;
             };
           };
         };

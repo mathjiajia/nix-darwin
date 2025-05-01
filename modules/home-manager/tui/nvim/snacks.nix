@@ -96,7 +96,6 @@
           }
         ];
       };
-      explorer.enabled = true;
       image.math.enabled = false;
       indent.scope.hl = [
         "RainbowDelimiterRed"
@@ -168,11 +167,6 @@
       key = "<leader><space>";
       action.__raw = ''function() Snacks.picker.smart() end'';
       options.desc = "Smart Open";
-    }
-    {
-      key = "<leader>e";
-      action.__raw = ''function() Snacks.explorer() end'';
-      options.desc = "File Explorer";
     }
     {
       key = "<leader>n";

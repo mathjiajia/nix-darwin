@@ -12,7 +12,7 @@
   ];
 
   programs.nixvim = {
-    diagnostic.config = {
+    diagnostic.settings = {
       severity_sort = true;
       signs.text = {
         "__rawKey__vim.diagnostic.severity.ERROR" = "";

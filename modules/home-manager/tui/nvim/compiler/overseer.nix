@@ -4,6 +4,13 @@
 
     plugins.overseer = {
       enable = true;
+      package = pkgs.vimPlugins.overseer-nvim.overrideAttrs (oldAttrs: {
+        postInstall =
+          oldAttrs.postInstall
+            or ""
+          + # sh
+          ''mv $out/doc/recipes.md $out/doc/overseer-nvim_recipes.md'';
+      });
       settings.templates = ["builtin" "user.builder" "user.runner"];
     };
 

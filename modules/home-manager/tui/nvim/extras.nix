@@ -21,33 +21,43 @@
   #   src = inputs.latex_concealer-nvim;
   #   nvimSkipModules = ["latex_concealer"];
   # };
-  copilot-lsp = pkgs.vimUtils.buildVimPlugin {
-    name = "copilot-lsp";
-    src = inputs.copilot-lsp;
-  };
-  nvim-treesitter-pairs = pkgs.vimUtils.buildVimPlugin {
-    name = "treesitter-pairs";
-    src = inputs.nvim-treesitter-pairs;
+  nvim-tree-pairs = pkgs.vimUtils.buildVimPlugin {
+    name = "tree-pairs";
+    src = inputs.nvim-tree-pairs;
   };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+    # bamboo-nvim
+    blink-pairs
+    copilot-lsp
     heirline-nvim
     ultimate-autopair-nvim
 
-    bamboo-nvim
-    copilot-lsp
     # latex_concealer-nvim
     nvim-latex-conceal
     nvim-math-snippets
-    nvim-treesitter-pairs
+    nvim-tree-pairs
   ];
 
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      require("bamboo").setup({})
-      require("bamboo").load()
+      -- require("vim._extui").enable({ msg = { pos = "box" } })
+      require("tree-pairs").setup()
       require("ultimate-autopair").setup()
+      -- require("blink.pairs").setup({
+      -- 	highlights = {
+      -- 		groups = {
+      -- 			"RainbowDelimiterRed",
+      -- 			"RainbowDelimiterYellow",
+      -- 			"RainbowDelimiterBlue",
+      -- 			"RainbowDelimiterOrange",
+      -- 			"RainbowDelimiterGreen",
+      -- 			"RainbowDelimiterViolet",
+      -- 			"RainbowDelimiterCyan",
+      -- 		},
+      -- 	},
+      -- })
 
       local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")
@@ -87,7 +97,7 @@ in {
       			i = "INSERT",
       			R = "RPLACE",
       			c = "CMMAND",
-      			r = " ...  ",
+      			r = "PROMPT",
       			["!"] = "SHELL ",
       			t = " TERM ",
       		},

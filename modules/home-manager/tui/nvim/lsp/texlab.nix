@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.texlab = {
     enable = true;
-    package = pkgs.texlab;
-    config = {
+    settings = {
       cmd = ["${pkgs.texlab}/bin/texlab"];
       filetypes = ["tex" "plaintex" "bib"];
       root_markers = [

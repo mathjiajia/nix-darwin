@@ -3,7 +3,7 @@
     enable = true;
     package = null;
     settings = {
-      theme = "bamboo";
+      theme = "light:kanagawa-paper-canvas,dark:kanagawabones";
       # background-opacity = 0.9;
       # background-blur = true;
       # custom-shader = "shaders/bloom040.glsl";
@@ -117,6 +117,32 @@
 
           "7=#ebdbb2"
           "15=#ebdbb2"
+        ];
+      };
+      kanagawa-paper-canvas = {
+        background = "e1e1de";
+        foreground = "595b62";
+        cursor-color = "618bb6";
+        selection-background = "c4cbdc";
+        selection-foreground = "858479";
+
+        palette = [
+          "0=#4c4c65"
+          "1=#b35560"
+          "2=#57786c"
+          "3=#a67337"
+          "4=#719ac2"
+          "5=#ac7085"
+          "6=#526c79"
+          "7=#858479"
+          "8=#5c5c75"
+          "9=#c75f6b"
+          "10=#618679"
+          "11=#b67e3d"
+          "12=#86aed7"
+          "13=#b57e91"
+          "14=#5d7a89"
+          "15=#919084"
         ];
       };
       vscode = {

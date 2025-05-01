@@ -8,7 +8,6 @@
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     defaultEditor = true;
     luaLoader.enable = true;
-    colorscheme = "bamboo";
   };
 
   programs.nixvim.performance = {
@@ -28,6 +27,7 @@
     ./users
     ./lsp
 
+    ./colorscheme.nix
     ./compiler
     ./ai.nix
     ./completion.nix
