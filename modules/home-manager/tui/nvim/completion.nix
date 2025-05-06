@@ -1,19 +1,7 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
-  programs.nixvim.extraPackages = [pkgs.luajitPackages.jsregexp];
-
+{pkgs, ...}: {
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
-      package = pkgs.vimUtils.buildVimPlugin {
-        pname = "luasnip";
-        name = "luasnip";
-        version = "2.3.0-1";
-        src = inputs.luasnip;
-      };
       fromLua = [{}];
       settings = {
         update_events = ["TextChanged" "TextChangedI"];

@@ -42,7 +42,7 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      -- require("vim._extui").enable({ msg = { pos = "box" } })
+      require("vim._extui").enable({ msg = { pos = "box" } })
       require("tree-pairs").setup()
       require("ultimate-autopair").setup()
       -- require("blink.pairs").setup({

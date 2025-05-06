@@ -36,7 +36,7 @@
         neo_tree = false;
         neogit = false;
         neotest = false;
-        noice = true;
+        noice = false;
         nvim_cmp = false;
         nvim_dap_ui = true;
         nvim_navic = false;

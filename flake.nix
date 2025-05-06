@@ -48,11 +48,6 @@
     # latex_concealer-nvim.flake = false;
     nvim-tree-pairs.url = "github:yorickpeterse/nvim-tree-pairs";
     nvim-tree-pairs.flake = false;
-
-    luasnip.url = "github:L3MON4D3/LuaSnip";
-    luasnip.flake = false;
-    nui-nvim.url = "github:MunifTanjim/nui.nvim";
-    nui-nvim.flake = false;
   };
 
   outputs = {
