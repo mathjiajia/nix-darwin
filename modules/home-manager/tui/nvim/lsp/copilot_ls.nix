@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.keymaps = [
     {
+      mode = "n";
       key = "<Tab>";
       action.__raw = ''
         function()

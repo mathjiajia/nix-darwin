@@ -21,61 +21,46 @@
         "__rawKey__vim.diagnostic.severity.INFO" = "";
       };
       virtual_lines.current_line = true;
+      virtual_text.current_line = false;
     };
 
-    autoGroups.UserLspConfig = {};
-    autoCmd = [
-      {
-        event = "LspAttach";
-        group = "UserLspConfig";
-        callback.__raw =
-          # lua
-          ''
-            function(args)
-             local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    lsp.onAttach =
+      #lua
+      ''
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go Declaration" })
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go Definition" })
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
+        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Go Type Definition" })
 
-             local keymaps = {
-            	 { "gD", vim.lsp.buf.declaration, method = "textDocument/declaration" },
-            	 { "gd", vim.lsp.buf.definition, method = "textDocument/definition" },
-            	 { "<C-k>", vim.lsp.buf.signature_help, method = "textDocument/signatureHelp" },
-            	 { "gt", vim.lsp.buf.type_definition, method = "textDocument/typeDefinition" },
-             }
+        if client:supports_method("textDocument/foldingRange", bufnr) then
+        	local win = vim.api.nvim_get_current_win()
+        	vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+        end
 
-             for _, keys in ipairs(keymaps) do
-            	 if client:supports_method(keys.method, args.buf) then
-            		 vim.keymap.set("n", keys[1], keys[2], { buffer = args.buf, desc = keys.method })
-            	 end
-             end
+        if client:supports_method("textDocument/documentHighlight") then
+        	local highlight_augroup = vim.api.nvim_create_augroup("lsp_document_highlight", {})
+        	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        		buffer = bufnr,
+        		group = highlight_augroup,
+        		callback = vim.lsp.buf.document_highlight,
+        	})
 
-             if client:supports_method("textDocument/foldingRange", args.buf) then
-            	 local win = vim.api.nvim_get_current_win()
-            	 vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
-             end
+        	vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+        		buffer = bufnr,
+        		group = highlight_augroup,
+        		callback = vim.lsp.buf.clear_references,
+        	})
+        end
 
-             if client:supports_method("textDocument/documentHighlight") then
-            	 local highlight_augroup = vim.api.nvim_create_augroup("lsp_document_highlight", {})
-            	 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-            		 buffer = args.buf,
-            		 group = highlight_augroup,
-            		 callback = vim.lsp.buf.document_highlight,
-            	 })
-
-            	 vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-            		 buffer = args.buf,
-            		 group = highlight_augroup,
-            		 callback = vim.lsp.buf.clear_references,
-            	 })
-             end
-
-             if client:supports_method("textDocument/inlayHint", args.buf) then
-            	 vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-            	 vim.keymap.set("n", "<M-i>", function()
-            		 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }), { bufnr = args.buf })
-            	 end, { buffer = args.buf, desc = "Inlay Hint Toggle" })
-             end
-            end
-          '';
-      }
-    ];
+        if client:supports_method("textDocument/inlayHint", bufnr) then
+        	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        	vim.keymap.set("n", "<M-i>", function()
+        		vim.lsp.inlay_hint.enable(
+        			not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }),
+        			{ bufnr = bufnr }
+        		)
+        	end, { buffer = bufnr, desc = "Inlay Hint Toggle" })
+        end
+      '';
   };
 }

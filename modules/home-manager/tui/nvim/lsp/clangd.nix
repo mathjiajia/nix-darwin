@@ -57,11 +57,11 @@
 
         	vim.api.nvim_buf_create_user_command(
         		bufnr,
-        		"ClangdSwitchSourceHeader",
+        		"LspClangdSwitchSourceHeader",
         		switch_source_header,
         		{ desc = "Switch between source/header" }
         	)
-        	vim.api.nvim_buf_create_user_command(bufnr, "ClangdSymbolInfo", symbol_info, { desc = "Show symbol info" })
+        	vim.api.nvim_buf_create_user_command(bufnr, "LspClangdSymbolInfo", symbol_info, { desc = "Show symbol info" })
         end
       '';
     };

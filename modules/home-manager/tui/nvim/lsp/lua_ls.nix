@@ -7,6 +7,7 @@
       root_markers = [
         ".luarc.json"
         ".luarc.jsonc"
+        ".luacheckrc"
         "tylua.toml"
         "stylua.toml"
         "selene.toml"
@@ -16,11 +17,14 @@
       settting.Lua = {
         completion.callSnippet = "Replace";
         hint.enable = true;
-        runtime.version = "LuaJIT";
+        runtime = {
+          version = "LuaJIT";
+          path = ["lua/?.lua" "lua/?/init.lua"];
+        };
         telemetry.enable = false;
         workspace = {
           checkThirdParty = false;
-          library = ["vim.env.VIMRUNTIME"];
+          library.__unkeyed-1.__raw = "vim.env.VIMRUNTIME";
         };
       };
     };

@@ -7,6 +7,7 @@
       root_markers = [
         ".git"
         ".latexmkrc"
+        "latexmkrc"
         ".texlabroot"
         "texlabroot"
         "Tectonic.toml"
@@ -217,20 +218,20 @@
         	end
 
         	vim.api.nvim_create_user_command(
-        		"TXShowDependencyGraph",
+        		"LspTexlabDependencyGraph",
         		dependency_graph,
         		{ desc = "Show LaTeX dependency graph" }
         	)
 
         	vim.api.nvim_buf_create_user_command(
         		bufnr,
-        		"TXCleanArtifacts",
+        		"LspTXCleanArtifacts",
         		command_factory("Artifacts"),
         		{ desc = "Clean the artifacts" }
         	)
         	vim.api.nvim_buf_create_user_command(
         		bufnr,
-        		"TXCleanAuxiliary",
+        		"LspTXCleanAuxiliary",
         		command_factory("Auxiliary"),
         		{ desc = "Clean the auxiliary files" }
         	)

@@ -3,7 +3,7 @@
     enable = true;
     package = null;
     settings = {
-      theme = "light:kanagawa-paper-canvas,dark:kanagawabones";
+      theme = "bamboo";
       # background-opacity = 0.9;
       # background-blur = true;
       # custom-shader = "shaders/bloom040.glsl";
@@ -117,6 +117,32 @@
 
           "7=#ebdbb2"
           "15=#ebdbb2"
+        ];
+      };
+      kanagawa-paper-ink = {
+        background = "1F1F28";
+        foreground = "DCD&BA";
+        cursor-color = "c4b28a";
+        selection-background = "363646";
+        selection-foreground = "9e9b93";
+
+        palette = [
+          "0=#393836"
+          "1=#c4746e"
+          "2=#699469"
+          "3=#c4b28a"
+          "4=#7eb3c9"
+          "5=#a292a3"
+          "6=#8ea49e"
+          "7=#C8C093"
+          "8=#aca9a4"
+          "9=#cc928e"
+          "10=#72a072"
+          "11=#d4c196"
+          "12=#698a9b"
+          "13=#b4a7b5"
+          "14=#96ada7"
+          "15=#d5cd9d"
         ];
       };
       kanagawa-paper-canvas = {

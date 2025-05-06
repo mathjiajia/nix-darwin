@@ -17,6 +17,7 @@
         autoSearchPaths = true;
         useLibraryCodeForTypes = true;
         diagnosticMode = "openFilesOnly";
+        # inlayHints.genericTypes = true;
       };
       on_attach.__raw = ''
         function(client, bufnr)
@@ -38,13 +39,13 @@
 
         	vim.api.nvim_buf_create_user_command(
         		bufnr,
-        		"PyrightOrganizeImports",
+        		"LspPyrightOrganizeImports",
         		organize_imports,
         		{ desc = "Organize Imports" }
         	)
         	vim.api.nvim_buf_create_user_command(
         		bufnr,
-        		"PyrightSetPythonPath",
+        		"LspPyrightSetPythonPath",
         		set_python_path,
         		{ nargs = 1, complete = "file", desc = "Reconfigure basedpyright with the provided python path" }
         	)

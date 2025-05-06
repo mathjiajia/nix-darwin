@@ -18,6 +18,7 @@
         options.desc = "Snip Run";
       }
       {
+        mode = "n";
         key = "<leader>rf";
         action = ":let b:caret=winsaveview() <CR> | :%SnipRun <CR>| :call winrestview(b:caret) <CR>";
         options.silent = true;

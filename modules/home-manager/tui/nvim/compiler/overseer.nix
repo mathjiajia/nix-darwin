@@ -16,16 +16,19 @@
 
     keymaps = [
       {
+        mode = "n";
         key = "<leader>rl";
         action = "<Cmd>OverseerToggle<CR>";
         options.desc = "Task List";
       }
       {
+        mode = "n";
         key = "<leader>rr";
         action = "<Cmd>OverseerRun<CR>";
         options.desc = "Run Task";
       }
       {
+        mode = "n";
         key = "<leader>rb";
         action = "<Cmd>OverseerBuild<CR>";
         options.desc = "Task Builder";

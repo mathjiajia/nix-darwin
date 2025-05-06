@@ -48,8 +48,36 @@
       });
       settings = {
         backends = ["lsp" "treesitter" "markdown" "man"];
-        filter_kind = false;
+        layout.default_direction = "prefer_left";
         show_guides = true;
+        filter_kind = [
+          "Array"
+          "Boolean"
+          "Class"
+          # "Constant"
+          "Constructor"
+          "Enum"
+          "EnumMember"
+          "Event"
+          "Field"
+          "File"
+          "Function"
+          "Interface"
+          "Key"
+          "Method"
+          "Module"
+          "Namespace"
+          "Null"
+          "Number"
+          "Object"
+          "Operator"
+          # "Package"
+          "Property"
+          "String"
+          "Struct"
+          "TypeParameter"
+          "Variable"
+        ];
       };
     };
 
@@ -68,11 +96,19 @@
           	end
 
           	map("n", "]c", function()
-          		if vim.wo.diff then vim.cmd.normal({ "]c", bang = true }) else gitsigns.nav_hunk("next") end
+          		if vim.wo.diff then
+          			vim.cmd.normal({ "]c", bang = true })
+          		else
+          			gitsigns.nav_hunk("next")
+          		end
           	end)
 
           	map("n", "[c", function()
-          		if vim.wo.diff then vim.cmd.normal({ "[c", bang = true }) else gitsigns.nav_hunk("prev") end
+          		if vim.wo.diff then
+          			vim.cmd.normal({ "[c", bang = true })
+          		else
+          			gitsigns.nav_hunk("prev")
+          		end
           	end)
 
           	map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "Stage Hunk" })
@@ -89,7 +125,7 @@
           	map("n", "<leader>hQ", function() gitsigns.setqflist("all") end, { desc = "Set qflist (all)" })
           	map("n", "<leader>hq", gitsigns.setqflist, { desc = "Set qflist" })
           	map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle Current Line Blame" })
-          	map("n", '<leader>tw', gitsigns.toggle_word_diff, { desc = "Toggle Word Diff" })
+          	map("n", "<leader>tw", gitsigns.toggle_word_diff, { desc = "Toggle Word Diff" })
           	map({ "o", "x" }, "ih", gitsigns.select_hunk)
           end
         '';
@@ -98,6 +134,7 @@
 
   programs.nixvim.keymaps = [
     {
+      mode = "n";
       key = "-";
       action = "<Cmd>Oil<CR>";
       options.desc = "Open parent directory";
@@ -119,6 +156,7 @@
     }
 
     {
+      mode = "n";
       key = "<leader>cs";
       action = "<Cmd>AerialToggle<CR>";
       options.desc = "Aerial (Symbols)";

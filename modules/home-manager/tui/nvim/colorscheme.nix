@@ -3,6 +3,7 @@
     enable = true;
     settings = {
       dim_inactive = true;
+      terminal_colors = false;
       cache = true;
       styles = {
         functions.italic = true;

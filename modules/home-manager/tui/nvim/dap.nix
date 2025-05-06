@@ -81,46 +81,55 @@
 
     keymaps = [
       {
+        mode = "n";
         key = "<leader>db";
         action = "<Cmd>DapToggleBreakpoint<CR>";
         options.desc = "Toggle Breakpoint";
       }
       {
+        mode = "n";
         key = "<leader>dB";
         action.__raw = ''function() require("dap").set_breakpoint(vim.ui.input("Breakpoint condition: ")) end'';
         options.desc = "Breakpoint Condition";
       }
       {
+        mode = "n";
         key = "<leader>dc";
         action = "<Cmd>DapContinue<CR>";
         options.desc = "Continue";
       }
       {
+        mode = "n";
         key = "<leader>dg";
         action.__raw = ''function() require("dap").goto_() end'';
         options.desc = "Go to Line (No Execute)";
       }
       {
+        mode = "n";
         key = "<leader>di";
         action = "<Cmd>DapStepInto<CR>";
         options.desc = "Step Into";
       }
       {
+        mode = "n";
         key = "<leader>dl";
         action.__raw = ''function() require("dap").run_last() end'';
         options.desc = "Run Last";
       }
       {
+        mode = "n";
         key = "<leader>do";
         action = "<Cmd>DapStepOut<CR>";
         options.desc = "Step Out";
       }
       {
+        mode = "n";
         key = "<leader>dO";
         action = "<Cmd>DapStepOver<CR>";
         options.desc = "Step Over";
       }
       {
+        mode = "n";
         key = "<leader>dr";
         action = "<Cmd>DapToggleRepl<CR>";
         options.desc = "Toggle REPL";
@@ -132,6 +141,7 @@
         options.desc = "Widgets";
       }
       {
+        mode = "n";
         key = "<leader>du";
         action.__raw = ''function() require("dapui").toggle() end'';
         options.desc = "Dap UI";
