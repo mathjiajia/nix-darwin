@@ -7,6 +7,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  system.primaryUser = "jia";
   users.users."jia" = {
     name = "jia";
     home = "/Users/jia";

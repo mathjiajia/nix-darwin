@@ -71,6 +71,7 @@
 
       # 12 editing text
       undofile = true;
+      undolevels = 200;
       formatoptions = "tcroqnlj";
       pumheight = 10;
 

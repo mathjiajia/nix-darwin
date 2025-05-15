@@ -27,7 +27,7 @@
             "--execute-command"
             "turn_on_synctex"
             "--inverse-search"
-            "${pkgs.texlab}/bin/texlab inverse-search -i %%1 --line %%2" # line1
+            "${pkgs.texlab}/bin/texlab inverse-search -i %%1 -l %%2" # --line1
             "--forward-search-file"
             "%f"
             "--forward-search-line"

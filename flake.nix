@@ -2,41 +2,26 @@
   description = "Jia's Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Home-manager
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     # homebrew-tap
-    aerospace = {
-      url = "github:nikitabobko/homebrew-tap";
-      flake = false;
-    };
-    fcitx = {
-      url = "github:fcitx-contrib/homebrew-tap";
-      flake = false;
-    };
-    lihaoyun6 = {
-      url = "github:lihaoyun6/homebrew-tap"; # quickrecorder
-      flake = false;
-    };
+    aerospace.url = "github:nikitabobko/homebrew-tap";
+    aerospace.flake = false;
+    fcitx.url = "github:fcitx-contrib/homebrew-tap";
+    fcitx.flake = false;
+    lihaoyun6.url = "github:lihaoyun6/homebrew-tap"; # quickrecorder
+    lihaoyun6.flake = false;
 
     # Neovim (nixvim)
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # Additional Neovim plugins

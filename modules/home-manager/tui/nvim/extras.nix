@@ -28,7 +28,7 @@
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     # bamboo-nvim
-    blink-pairs
+    # blink-pairs
     copilot-lsp
     heirline-nvim
     ultimate-autopair-nvim
@@ -594,9 +594,10 @@ in {
       })
 
       vim.api.nvim_create_autocmd({ "FileType" }, {
-      	callback = function()
-      		if vim.list_contains({ "wipe", "delete" }, vim.api.nvim_get_option_value("bufhidden", {})) then
-      			vim.opt_local.buflisted = false
+      	callback = function(ev)
+      		local bufnr = ev.buf
+      		if vim.list_contains({ "wipe", "delete" }, vim.api.nvim_get_option_value("bufhidden", { buf = bufnr })) then
+      			vim.bo[bufnr].buflisted = false
       		end
       	end,
       	group = vim.api.nvim_create_augroup("Heirline", {}),

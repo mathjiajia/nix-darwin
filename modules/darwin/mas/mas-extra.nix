@@ -18,7 +18,7 @@
     Solitaire = 1534193824;
     Telegram = 747648890;
     TestFlight = 899247664;
-    Ulysses = 1225570693;
+    # Ulysses = 1225570693;
     VidHub = 1659622164;
     Xcode = 497799835;
     xcz = 912139104;

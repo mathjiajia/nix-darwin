@@ -55,10 +55,7 @@
         if client:supports_method("textDocument/inlayHint", bufnr) then
         	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
         	vim.keymap.set("n", "<M-i>", function()
-        		vim.lsp.inlay_hint.enable(
-        			not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }),
-        			{ bufnr = bufnr }
-        		)
+        		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
         	end, { buffer = bufnr, desc = "Inlay Hint Toggle" })
         end
       '';

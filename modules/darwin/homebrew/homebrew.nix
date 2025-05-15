@@ -34,6 +34,7 @@
       "ollama"
       "permute"
       "prettyclean"
+      "pronotes"
       "qlmarkdown"
       "raycast"
       "skim"

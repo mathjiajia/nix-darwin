@@ -11,9 +11,9 @@
       }
     },
     {
-      "label": "nix-darwin rebuild",
+      "label": "nix-darwin rebuild (sudo)",
       "type": "shell",
-      "command": "darwin-rebuild switch",
+      "command": "sudo darwin-rebuild switch",
       "presentation": {
         "reveal": "always",
         "panel": "shared"
