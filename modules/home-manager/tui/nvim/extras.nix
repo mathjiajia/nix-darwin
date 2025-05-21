@@ -42,7 +42,7 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      require("vim._extui").enable({ msg = { pos = "box" } })
+      require("vim._extui").enable({})
       require("tree-pairs").setup()
       require("ultimate-autopair").setup()
       -- require("blink.pairs").setup({
@@ -61,6 +61,7 @@ in {
 
       local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")
+
       local colors = {
       	bright_bg = utils.get_highlight("Folded").bg,
       	bright_fg = utils.get_highlight("Folded").fg,
@@ -83,40 +84,9 @@ in {
 
       local VimMode = {
       	init = function(self)
-      		self.mode = vim.fn.mode()
+      		self.mode = vim.fn.mode(1)
+      		self.mode_color = self.mode_colors[self.mode:sub(1, 1)]
       	end,
-      	static = {
-      		modes = {
-      			n = "NORMAL",
-      			v = "VISUAL",
-      			V = "V-LINE",
-      			["\22"] = "V-BLCK",
-      			s = "SELECT",
-      			S = "S-LINE",
-      			["\19"] = "S-BLCK",
-      			i = "INSERT",
-      			R = "RPLACE",
-      			c = "CMMAND",
-      			r = "PROMPT",
-      			["!"] = "SHELL ",
-      			t = " TERM ",
-      		},
-      		mode_colors = {
-      			n = "gray",
-      			i = "green",
-      			v = "cyan",
-      			V = "cyan",
-      			["\22"] = "cyan",
-      			c = "orange",
-      			s = "purple",
-      			S = "purple",
-      			["\19"] = "purple",
-      			R = "orange",
-      			r = "orange",
-      			["!"] = "red",
-      			t = "red",
-      		},
-      	},
       	update = {
       		"ModeChanged",
       		pattern = "*:*",
@@ -124,13 +94,73 @@ in {
       			vim.cmd.redrawstatus()
       		end),
       	},
-      	provider = function(self)
-      		return "  %2(" .. self.modes[self.mode] .. "%)"
-      	end,
-      	hl = function(self)
-      		local mode = self.mode
-      		return { fg = self.mode_colors[mode] }
-      	end,
+      	static = {
+      		mode_names = {
+      			n = "NORMAL",
+      			no = "NORMAL",
+      			nov = "NORMAL",
+      			noV = "NORMAL",
+      			["no\22"] = "NORMAL",
+      			niI = "NORMAL",
+      			niR = "NORMAL",
+      			niV = "NORMAL",
+      			nt = "NORMAL",
+      			v = "VISUAL",
+      			vs = "VISUAL",
+      			V = "VISUAL",
+      			Vs = "VISUAL",
+      			["\22"] = "VISUAL",
+      			["\22s"] = "VISUAL",
+      			s = "SELECT",
+      			S = "SELECT",
+      			["\19"] = "SELECT",
+      			i = "INSERT",
+      			ic = "INSERT",
+      			ix = "INSERT",
+      			R = "REPLACE",
+      			Rc = "REPLACE",
+      			Rx = "REPLACE",
+      			Rv = "REPLACE",
+      			Rvc = "REPLACE",
+      			Rvx = "REPLACE",
+      			c = "COMMAND",
+      			cv = "Ex",
+      			r = "...",
+      			rm = "M",
+      			["r?"] = "?",
+      			["!"] = "!",
+      			t = "TERM ",
+      		},
+      		mode_colors = {
+      			n = "purple",
+      			i = "green",
+      			v = "orange",
+      			V = "orange",
+      			["\22"] = "orange",
+      			c = "orange",
+      			s = "yellow",
+      			S = "yellow",
+      			["\19"] = "yellow",
+      			r = "green",
+      			R = "green",
+      			["!"] = "red",
+      			t = "red",
+      		},
+      	},
+      	{
+      		provider = function(self)
+      			return "  %2(" .. self.mode_names[self.mode] .. "%)"
+      		end,
+      		hl = function(self)
+      			return { fg = "bg", bg = self.mode_color }
+      		end,
+      	},
+      	{
+      		provider = "",
+      		hl = function(self)
+      			return { fg = self.mode_color }
+      		end,
+      	},
       }
 
       local FileIcon = {
@@ -181,7 +211,7 @@ in {
       	hl = { fg = "orange" },
       	{
       		provider = function(self)
-      			return "  " .. self.status_dict.head
+      			return "  " .. self.status_dict.head
       		end,
       	},
       	{
@@ -253,40 +283,14 @@ in {
       		for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
       			table.insert(names, server.name)
       		end
-      		return " ◍ [" .. table.concat(names, ",") .. "]"
+      		return "[" .. table.concat(names, ",") .. "]"
       	end,
       	hl = { fg = "green" },
       }
 
-      local Ruler = { provider = "%7(%l/%3L%):%2c %P" }
-
-      local ScrollBar = {
-      	static = {
-      		sbar = {
-      			"\238\143\149",
-      			"\238\143\148",
-      			"\238\143\147",
-      			"\238\143\146",
-      			"\238\143\145",
-      			"\238\143\144",
-      			"\238\143\143",
-      			"\238\143\142",
-      			"\238\143\141",
-      			"\238\143\140",
-      			"\238\143\139",
-      			"\238\143\138",
-      			"\238\143\137",
-      			"\238\143\136",
-      			"\238\143\163",
-      		},
-      	},
-      	provider = function(self)
-      		local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-      		local lines = vim.api.nvim_buf_line_count(0)
-      		local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
-      		return self.sbar[i]
-      	end,
-      	hl = { fg = "blue" },
+      local Ruler = {
+      	{ provider = "", hl = { fg = "gray" } },
+      	{ provider = " %7(%l/%3L%):%2c ", hl = { bg = "gray" } },
       }
 
       local FileType = {
@@ -296,12 +300,38 @@ in {
       	hl = { fg = "yellow", bold = true },
       }
 
-      local Spell = {
+      local SearchCount = {
       	condition = function()
-      		return vim.wo.spell
+      		return vim.v.hlsearch ~= 0 and vim.o.cmdheight == 0
       	end,
-      	provider = " 󰓆 Spell ",
-      	hl = { fg = "orange" },
+      	init = function(self)
+      		local ok, search = pcall(vim.fn.searchcount)
+      		if ok and search.total then
+      			self.search = search
+      		end
+      	end,
+      	provider = function(self)
+      		local search = self.search
+      		return string.format("[%d/%d]", search.current, math.min(search.total, search.maxcount))
+      	end,
+      }
+
+      local MacroRec = {
+      	condition = function()
+      		return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0
+      	end,
+      	provider = " ",
+      	hl = { fg = "orange", bold = true },
+      	utils.surround({ "[", "]" }, nil, {
+      		provider = function()
+      			return vim.fn.reg_recording()
+      		end,
+      		hl = { fg = "green", bold = true },
+      	}),
+      	update = {
+      		"RecordingEnter",
+      		"RecordingLeave",
+      	},
       }
 
       local TerminalName = {
@@ -333,14 +363,17 @@ in {
       	WorkDir,
       	Git,
       	Align,
+      	SearchCount,
+      	MacroRec,
+      	Align,
       	Diagnostics,
       	LSPActive,
       	Space,
       	Ruler,
-      	Space,
-      	ScrollBar,
-      	Space,
-      	Spell,
+      	-- Space,
+      	-- ScrollBar,
+      	-- Space,
+      	-- Spell,
       }
 
       local InactiveStatusline = {
@@ -588,9 +621,9 @@ in {
       local TabLine = { TabLineOffset, BufferLine, TabPages }
 
       require("heirline").setup({
+      	opts = { colors = colors },
       	statusline = StatusLine,
       	tabline = TabLine,
-      	opts = { colors = colors },
       })
 
       vim.api.nvim_create_autocmd({ "FileType" }, {

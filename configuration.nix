@@ -32,7 +32,7 @@
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs;};
     users."jia".imports = [
-      inputs.nixvim.homeManagerModules.nixvim
+      inputs.nixvim.homeModules.nixvim
       ./modules/home-manager
     ];
   };
