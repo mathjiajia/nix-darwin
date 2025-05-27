@@ -2,7 +2,7 @@
   description = "Jia's Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
@@ -31,8 +31,8 @@
     nvim-latex-conceal.flake = false;
     # latex_concealer-nvim.url = "github:mathjiajia/latex_concealer.nvim";
     # latex_concealer-nvim.flake = false;
-    nvim-tree-pairs.url = "github:yorickpeterse/nvim-tree-pairs";
-    nvim-tree-pairs.flake = false;
+    nvim-treesitter-pairs.url = "github:lewis6991/nvim-treesitter-pairs";
+    nvim-treesitter-pairs.flake = false;
   };
 
   outputs = {

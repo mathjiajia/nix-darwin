@@ -217,12 +217,12 @@
         			end)
         	end
 
-        	vim.api.nvim_create_user_command(
+        	vim.api.nvim_buf_create_user_command(
+        		bufnr,
         		"LspTexlabDependencyGraph",
         		dependency_graph,
         		{ desc = "Show LaTeX dependency graph" }
         	)
-
         	vim.api.nvim_buf_create_user_command(
         		bufnr,
         		"LspTXCleanArtifacts",

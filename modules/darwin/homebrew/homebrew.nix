@@ -42,7 +42,7 @@
       "syntax-highlight"
       "visual-studio-code"
       "zoom"
-      "zotero"
+      "zotero@beta"
     ];
   };
 }

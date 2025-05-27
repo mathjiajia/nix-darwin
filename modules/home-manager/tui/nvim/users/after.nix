@@ -15,7 +15,7 @@
       # lua
       ''
         vim.opt_local.spell = true
-        vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Crect Last Spelling" })
+        vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Correct Last Spelling" })
       '';
 
     "after/ftplugin/qf.lua".text =
@@ -32,7 +32,8 @@
       ''
         vim.opt_local.spell = true
         vim.opt_local.conceallevel = 2
-        vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Crect Last Spelling" })
+
+        vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Correct Last Spelling" })
 
         require("nvim-surround").buffer_setup({
         	surrounds = {

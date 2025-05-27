@@ -19,7 +19,7 @@
     Taio = 1527036273;
     Things = 904280696;
     "uBlacklist for Safari" = 1547912640;
-    UPDF = 1619925971;
+    # UPDF = 1619925971;
     VooV = 1497685373;
     WeChat = 836500024;
     WhatsApp = 310633997;

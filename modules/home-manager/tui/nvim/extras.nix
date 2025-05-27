@@ -21,9 +21,9 @@
   #   src = inputs.latex_concealer-nvim;
   #   nvimSkipModules = ["latex_concealer"];
   # };
-  nvim-tree-pairs = pkgs.vimUtils.buildVimPlugin {
-    name = "tree-pairs";
-    src = inputs.nvim-tree-pairs;
+  nvim-treesitter-pairs = pkgs.vimUtils.buildVimPlugin {
+    name = "treesitter-pairs";
+    src = inputs.nvim-treesitter-pairs;
   };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
@@ -36,14 +36,13 @@ in {
     # latex_concealer-nvim
     nvim-latex-conceal
     nvim-math-snippets
-    nvim-tree-pairs
+    nvim-treesitter-pairs
   ];
 
   programs.nixvim.extraConfigLua =
     # lua
     ''
       require("vim._extui").enable({})
-      require("tree-pairs").setup()
       require("ultimate-autopair").setup()
       -- require("blink.pairs").setup({
       -- 	highlights = {

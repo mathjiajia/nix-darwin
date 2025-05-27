@@ -82,7 +82,6 @@
 
       # 14 folding
       foldmethod = "expr";
-      foldexpr = "v:lua.vim.treesitter.foldexpr()";
       foldlevel = 99;
       foldtext = "";
 

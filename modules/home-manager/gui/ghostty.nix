@@ -3,12 +3,12 @@
     enable = true;
     package = null;
     settings = {
-      theme = "bamboo";
+      theme = "tokyonight_moon";
       # background-opacity = 0.9;
       # background-blur = true;
       # custom-shader = "shaders/bloom040.glsl";
       font-family = "Sarasa Term SC";
-      font-size = 23;
+      font-size = 19;
       font-thicken = true;
       mouse-hide-while-typing = true;
       macos-icon = "custom-style";

@@ -3,11 +3,12 @@
     ./keymap.nix
     ./plugins.nix
     ./settings.nix
+    ./theme.nix
   ];
 
   programs.yazi = {
     enable = true;
-    shellWrapperName = "lf";
+    shellWrapperName = "y";
     initLua =
       # lua
       ''

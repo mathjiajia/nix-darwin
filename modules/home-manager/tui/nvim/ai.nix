@@ -27,9 +27,9 @@
           		},
           		schema = {
           			model = {
-          				default = "qwen-max-0125",
+          				default = "qwen-max-latest",
           				choices = {
-          					"qwen-max-0125",
+          					"qwen-max-latest",
           					["qwq-plus-2025-03-05"] = { opts = { can_reason = true } },
           				},
           			},
@@ -52,8 +52,9 @@
           end
         '';
       };
+      strategies.chat.opt.completion_provider = "blink";
       display = {
-        action_palette.provider = "default";
+        action_palette.provider = "snacks";
         diff.provider = "mini_diff";
         chat.window.opts = {
           conceallevel = 2;

@@ -18,6 +18,7 @@
       push.autoSetupRemote = true;
       rebase.autoSquash = true;
       github.user = "mathjiajia";
+      log.date = "iso";
     };
     ignores = lib.splitString "\n" (builtins.readFile ./global_ignore);
   };

@@ -3,10 +3,11 @@
     enable = true;
     font = {
       name = "Sarasa Term SC";
-      size = 20;
+      size = 17;
     };
     settings = {
-      include = "./themes/bamboo.conf";
+      # include = "./themes/bamboo.conf";
+      themeFile = "tokyo_night_moon";
       cursor_trail = 3;
       detect_urls = false;
       disable_ligatures = "cursor";

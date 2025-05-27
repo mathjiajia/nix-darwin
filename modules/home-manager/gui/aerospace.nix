@@ -173,13 +173,13 @@ in {
         }
         {
           "if" = {
-            app-id = "org.zotero.zotero";
+            app-id = "org.zotero.zotero-beta";
             window-title-regex-substring = "^(.+?) - Zotero$";
           };
           run = "move-node-to-workspace 􁜾N";
         }
         {
-          "if".app-id = "org.zotero.zotero";
+          "if".app-id = "org.zotero.zotero-beta";
           run = "layout floating";
         }
         # Terminal
@@ -192,6 +192,10 @@ in {
         }
         {
           "if".app-id = "com.mitchellh.ghostty";
+          run = "move-node-to-workspace 􀩼T";
+        }
+        {
+          "if".app-id = "com.neovide.neovide";
           run = "move-node-to-workspace 􀩼T";
         }
         {

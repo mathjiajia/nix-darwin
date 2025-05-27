@@ -1,6 +1,7 @@
 {
   programs.zed-editor = {
     enable = true;
+    package = null;
     userSettings = {
       telemetry.metrics = false;
       vim_mode = true;

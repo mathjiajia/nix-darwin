@@ -16,19 +16,6 @@ in {
     smart-filter = pkgs.yaziPlugins.smart-filter;
     vcs-files = pkgs.yaziPlugins.vcs-files;
 
-    arrow =
-      writePlugin
-      # lua
-      ''
-        --- @sync entry
-        return {
-          entry = function(_, job)
-            local current = cx.active.current
-            local new = (current.cursor + job.args[1]) % #current.files
-            ya.manager_emit("arrow", { new - current.cursor })
-          end,
-        }
-      '';
     parent-arrow =
       writePlugin
       # lua
@@ -38,9 +25,17 @@ in {
         	local parent = cx.active.parent
         	if not parent then return end
 
-        	local target = parent.files[parent.cursor + 1 + job.args[1]]
-        	if target and target.cha.is_dir then
-        		ya.manager_emit("cd", { target.url })
+        	local offset = tonumber(job.args[1])
+        	if not offset then return ya.err(job.args[1], 'is not a number') end
+
+        	local start = parent.cursor + 1 + offset
+        	local end_ = offset < 0 and 1 or #parent.files
+        	local step = offset < 0 and -1 or 1
+        	for i = start, end_, step do
+        		local target = parent.files[i]
+        		if target and target.cha.is_dir then
+        			return ya.emit("cd", { target.url })
+        		end
         	end
         end
 

@@ -17,6 +17,13 @@
         textDocument.completion.editsNearCursor = true;
         offsetEncoding = ["utf-8" "utf-16"];
       };
+      on_init.__raw = ''
+        function(client, init_result)
+        	if init_result.offsetEncoding then
+        		client.offset_encoding = init_result.offsetEncoding
+        	end
+        end
+      '';
       on_attach.__raw = ''
         function(client, bufnr)
         	local win = vim.api.nvim_get_current_win()

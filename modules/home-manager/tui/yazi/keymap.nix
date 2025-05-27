@@ -1,6 +1,6 @@
 {
   programs.yazi.keymap = {
-    manager.prepend_keymap = [
+    mgr.prepend_keymap = [
       {
         on = ["g" "f"];
         run = "plugin vcs-files";
@@ -10,14 +10,6 @@
         on = ["g" "i"];
         run = "shell --block --confirm 'lazygit'";
         desc = "Open lazygit";
-      }
-      {
-        on = "j";
-        run = "plugin arrow 1";
-      }
-      {
-        on = "k";
-        run = "plugin arrow -1";
       }
 
       {
