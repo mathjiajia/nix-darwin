@@ -4,6 +4,7 @@
     grug-far.enable = true;
     nvim-bqf.enable = true;
     nvim-surround.enable = true;
+
     oil = {
       enable = true;
       luaConfig.pre = ''

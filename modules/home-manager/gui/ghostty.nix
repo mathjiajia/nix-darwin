@@ -8,7 +8,7 @@
       # background-blur = true;
       # custom-shader = "shaders/bloom040.glsl";
       font-family = "Sarasa Term SC";
-      font-size = 19;
+      font-size = 16;
       font-thicken = true;
       mouse-hide-while-typing = true;
       macos-icon = "custom-style";

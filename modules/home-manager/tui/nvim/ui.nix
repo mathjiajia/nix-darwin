@@ -1,7 +1,5 @@
 {
   programs.nixvim.plugins = {
-    rainbow-delimiters.enable = true;
-
     render-markdown = {
       enable = true;
       settings = {

@@ -150,14 +150,12 @@
       };
       scroll.enabled.__raw = ''not vim.g.neovide'';
       scope.enabled = true;
-      terminal.win.wo.winbar = "";
       styles = {
         lazygit = {
           width = 0;
           height = 0;
         };
         notification.wo.wrap = true;
-        terminal.height = 12;
       };
     };
   };
@@ -404,13 +402,6 @@
       key = "<leader>un";
       action.__raw = ''function() Snacks.notifier.hide() end'';
       options.desc = "Dismiss All Notifications";
-    }
-    # Terminal
-    {
-      mode = "n";
-      key = "<C-/>";
-      action.__raw = ''function() Snacks.terminal() end'';
-      options.desc = "Toggle Terminal";
     }
   ];
 }

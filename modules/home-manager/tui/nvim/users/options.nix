@@ -83,7 +83,7 @@
       # 14 folding
       foldmethod = "expr";
       foldlevel = 99;
-      foldtext = "";
+      foldtext = "v:lua.custom_foldtext()";
 
       # 15 diff mode
 

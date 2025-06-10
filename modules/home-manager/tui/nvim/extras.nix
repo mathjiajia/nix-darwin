@@ -16,47 +16,85 @@
     name = "latex-conceal";
     src = inputs.nvim-latex-conceal;
   };
-  # latex_concealer-nvim = pkgs.vimUtils.buildVimPlugin {
-  #   name = "latex_concealer";
-  #   src = inputs.latex_concealer-nvim;
-  #   nvimSkipModules = ["latex_concealer"];
-  # };
-  nvim-treesitter-pairs = pkgs.vimUtils.buildVimPlugin {
-    name = "treesitter-pairs";
-    src = inputs.nvim-treesitter-pairs;
-  };
+  blink-pairs = inputs.blink-pairs.packages.${pkgs.system}.default;
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
-    # bamboo-nvim
-    # blink-pairs
     copilot-lsp
     heirline-nvim
-    ultimate-autopair-nvim
 
-    # latex_concealer-nvim
+    blink-pairs
     nvim-latex-conceal
     nvim-math-snippets
-    nvim-treesitter-pairs
   ];
 
   programs.nixvim.extraConfigLua =
     # lua
     ''
       require("vim._extui").enable({})
-      require("ultimate-autopair").setup()
-      -- require("blink.pairs").setup({
-      -- 	highlights = {
-      -- 		groups = {
-      -- 			"RainbowDelimiterRed",
-      -- 			"RainbowDelimiterYellow",
-      -- 			"RainbowDelimiterBlue",
-      -- 			"RainbowDelimiterOrange",
-      -- 			"RainbowDelimiterGreen",
-      -- 			"RainbowDelimiterViolet",
-      -- 			"RainbowDelimiterCyan",
-      -- 		},
-      -- 	},
-      -- })
+      require("blink.pairs").setup({
+      	mappings = {
+      		pairs = {
+      			["`"] = {
+      				{
+      					"```",
+      					"```",
+      					when = function()
+      						local cursor = vim.api.nvim_win_get_cursor(0)
+      						local line = vim.api.nvim_get_current_line()
+      						return line:sub(cursor[2] - 1, cursor[2]) == "``"
+      					end,
+      					filetypes = { "markdown", "vimwiki", "rmarkdown", "rmd", "pandoc", "quarto", "typst" },
+      				},
+      				{ "`", "'", filetypes = { "bib", "latex", "tex" } },
+      				{ "`", enter = false, space = false },
+      			},
+      		},
+      	},
+      	highlights = {
+      		groups = {
+      			"RainbowDelimiterRed",
+      			"RainbowDelimiterYellow",
+      			"RainbowDelimiterBlue",
+      			"RainbowDelimiterOrange",
+      			"RainbowDelimiterGreen",
+      			"RainbowDelimiterViolet",
+      			"RainbowDelimiterCyan",
+      		},
+      		matchparen = { enabled = true, group = "MatchParen" },
+      	},
+      })
+
+      local function fold_virt_text(result, start_text, lnum)
+      	local text = ""
+      	local hl
+      	for i = 1, #start_text do
+      		local char = start_text:sub(i, i)
+      		local captured_highlights = vim.treesitter.get_captures_at_pos(0, lnum, i - 1)
+      		local outmost_highlight = captured_highlights[#captured_highlights]
+      		if outmost_highlight then
+      			local new_hl = "@" .. outmost_highlight.capture
+      			if new_hl ~= hl then
+      				table.insert(result, { text, hl })
+      				text = ""
+      				hl = nil
+      			end
+      			text = text .. char
+      			hl = new_hl
+      		else
+      			text = text .. char
+      		end
+      	end
+      	table.insert(result, { text, hl })
+      end
+      function _G.custom_foldtext()
+      	local start_text = vim.fn.getline(vim.v.foldstart):gsub("\t", string.rep(" ", vim.o.tabstop))
+      	local nline = vim.v.foldend - vim.v.foldstart
+      	local result = {}
+      	fold_virt_text(result, start_text, vim.v.foldstart - 1)
+      	table.insert(result, { "    ", nil })
+      	table.insert(result, { " ↙ " .. nline .. " lines ", "Search" })
+      	return result
+      end
 
       local conditions = require("heirline.conditions")
       local utils = require("heirline.utils")

@@ -37,6 +37,5 @@
     ./gui/neovide.nix
     ./gui/sage.nix
     ./gui/sioyek.nix
-    ./gui/zed.nix
   ];
 }

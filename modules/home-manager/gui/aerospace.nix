@@ -174,14 +174,17 @@ in {
         {
           "if" = {
             app-id = "org.zotero.zotero-beta";
-            window-title-regex-substring = "^(.+?) - Zotero$";
+            # window-title-regex-substring = " - Zotero$";
           };
           run = "move-node-to-workspace 􁜾N";
         }
-        {
-          "if".app-id = "org.zotero.zotero-beta";
-          run = "layout floating";
-        }
+        # {
+        #   "if" = {
+        #     app-id = "org.zotero.zotero-beta";
+        #     window-title-regex-substring = "^Zotero ";
+        #   };
+        #   run = "layout floating";
+        # }
         # Terminal
         {
           "if" = {
