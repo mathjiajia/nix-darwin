@@ -16,13 +16,12 @@
     name = "latex-conceal";
     src = inputs.nvim-latex-conceal;
   };
-  blink-pairs = inputs.blink-pairs.packages.${pkgs.system}.default;
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+    blink-pairs
     copilot-lsp
     heirline-nvim
 
-    blink-pairs
     nvim-latex-conceal
     nvim-math-snippets
   ];
@@ -52,15 +51,14 @@ in {
       	},
       	highlights = {
       		groups = {
-      			"RainbowDelimiterRed",
-      			"RainbowDelimiterYellow",
-      			"RainbowDelimiterBlue",
-      			"RainbowDelimiterOrange",
-      			"RainbowDelimiterGreen",
-      			"RainbowDelimiterViolet",
-      			"RainbowDelimiterCyan",
+      			"BlinkPairsBlue",
+      			"BlinkPairsYellow",
+      			"BlinkPairsGreen",
+      			"BlinkPairsTeal",
+      			"BlinkPairsMagenta",
+      			"BlinkPairsPurple",
+      			"BlinkPairsOrange",
       		},
-      		matchparen = { enabled = true, group = "MatchParen" },
       	},
       })
 

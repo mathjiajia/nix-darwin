@@ -19,55 +19,65 @@
             ██  █       ██ ██    █        ██
             ██  ███   █   ██ ██ █   █  █ █  ██
             ███████ ██    █    ███ █  █████ ██
-            ██████████████████████████████████████████████████
-          '';
+            ██████████████████████████████████████████████████'';
           keys = [
             {
-              icon = " ";
               key = "f";
-              desc = "Find File";
               action = ":lua Snacks.picker.files()";
+              hidden = true;
             }
             {
-              icon = " ";
               key = "n";
-              desc = "New File";
               action = ":ene | startinsert";
+              hidden = true;
             }
             {
-              icon = " ";
               key = "g";
-              desc = "Find Text";
               action = ":lua Snacks.picker.grep()";
+              hidden = true;
             }
             {
-              icon = " ";
               key = "r";
-              desc = "Recent Files";
               action = ":lua Snacks.picker.recent()";
+              hidden = true;
             }
             {
-              icon = " ";
               key = "q";
-              desc = "Quit";
               action = ":qa";
+              hidden = true;
             }
           ];
         };
-        formats.key.__raw =
-          # lua
-          ''
-            function(item) return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } } end
-          '';
         sections = [
           {section = "header";}
+          {section = "keys";}
           {
-            section = "keys";
-            gap = 1;
-            padding = 1;
+            padding = 2;
+            align = "center";
+            text = [
+              {
+                __unkeyed-1 = " [f]ile  ";
+                hl = "BlinkPairsBlue";
+              }
+              {
+                __unkeyed-1 = " [n]ew  ";
+                hl = "BlinkPairsYellow";
+              }
+              {
+                __unkeyed-1 = " [g]rep  ";
+                hl = "BlinkPairsGreen";
+              }
+              {
+                __unkeyed-1 = " [r]ecent  ";
+                hl = "BlinkPairsTeal";
+              }
+              {
+                __unkeyed-1 = " [q]uit";
+                hl = "BlinkPairsPurple";
+              }
+            ];
           }
           {
-            pane = 2;
             icon = " ";
             title = "Recent Files";
             section = "recent_files";
@@ -75,24 +85,11 @@
             padding = 1;
           }
           {
-            pane = 2;
             icon = " ";
             title = "Projects";
             section = "projects";
             indent = 2;
             padding = 1;
-          }
-          {
-            pane = 2;
-            icon = " ";
-            title = "Git Status";
-            section = "terminal";
-            enabled.__raw = ''function() return Snacks.git.get_root() ~= nil end'';
-            cmd = "git status --short --branch --renames";
-            height = 5;
-            padding = 1;
-            ttl = 5 * 60;
-            indent = 2;
           }
         ];
       };
@@ -101,13 +98,13 @@
         math.enabled = false;
       };
       indent.scope.hl = [
-        "RainbowDelimiterRed"
-        "RainbowDelimiterYellow"
-        "RainbowDelimiterBlue"
-        "RainbowDelimiterOrange"
-        "RainbowDelimiterGreen"
-        "RainbowDelimiterViolet"
-        "RainbowDelimiterCyan"
+        "BlinkPairsBlue"
+        "BlinkPairsYellow"
+        "BlinkPairsGreen"
+        "BlinkPairsTeal"
+        "BlinkPairsMagenta"
+        "BlinkPairsPurple"
+        "BlinkPairsOrange"
       ];
       input.enabled = true;
       notifier.enabled = true;

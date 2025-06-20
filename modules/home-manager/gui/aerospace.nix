@@ -1,5 +1,5 @@
 let
-  padding = 5;
+  padding = 8;
 in {
   programs.aerospace = {
     enable = true;

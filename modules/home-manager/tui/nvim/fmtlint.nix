@@ -62,10 +62,16 @@
             tex = ["tex-fmt"];
             # typst = ["typstyle"];
           };
-          format_on_save = {
-            lsp_format = "fallback";
-            timeout_ms = 2000;
-          };
+          format_on_save.__raw =
+            # lua
+            ''
+              function(bufnr)
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                  return
+                end
+                return { timeout_ms = 500, lsp_format = "fallback" }
+              end
+            '';
         };
       };
     };
@@ -78,5 +84,31 @@
         options.desc = "Format Injected Langs";
       }
     ];
+
+    userCommands = {
+      FormatDisable = {
+        bang = true;
+        desc = "Disable autoformat-on-save";
+        command.__raw = ''
+          function(args)
+          	if args.bang then
+          		-- FormatDisable! will disable formatting just for this buffer
+          		vim.b.disable_autoformat = true
+          	else
+          		vim.g.disable_autoformat = true
+          	end
+          end
+        '';
+      };
+      FormatEnable = {
+        desc = "Re-enable autoformat-on-save";
+        command.__raw = ''
+          function()
+          	vim.b.disable_autoformat = false
+          	vim.g.disable_autoformat = false
+          end
+        '';
+      };
+    };
   };
 }

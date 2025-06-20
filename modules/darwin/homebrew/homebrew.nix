@@ -6,7 +6,7 @@
       cleanup = "zap";
       upgrade = true;
     };
-    # greedyCasks = true;
+    greedyCasks = true;
 
     taps = builtins.attrNames config.nix-homebrew.taps;
 
@@ -31,7 +31,7 @@
       "mathpix-snipping-tool"
       "microsoft-edge"
       # "neovide"
-      "ollama"
+      "ollama-app"
       "permute"
       "prettyclean"
       "pronotes"

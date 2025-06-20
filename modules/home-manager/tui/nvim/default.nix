@@ -8,7 +8,7 @@
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     defaultEditor = true;
     luaLoader.enable = true;
-    # colorscheme = "bamboo";
+    # colorscheme = "tokyonight";
   };
 
   programs.nixvim.performance = {

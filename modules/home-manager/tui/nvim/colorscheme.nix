@@ -19,13 +19,27 @@
           mini_diff = true;
           mini_hipatterns = true;
           mini_icons = true;
-          rainbow = true;
           render-markdown = true;
           snacks = true;
           treesitter_context = true;
         };
+        on_highlights =
+          # lua
+          ''
+            function(hl, c)
+            	hl.BlinkPairsBlue = { fg = c.blue }
+            	hl.BlinkPairsYellow = { fg = c.yellow }
+            	hl.BlinkPairsGreen = { fg = c.green }
+            	hl.BlinkPairsTeal = { fg = c.teal }
+            	hl.BlinkPairsMagenta = { fg = c.magenta }
+            	hl.BlinkPairsPurple = { fg = c.purple }
+            	hl.BlinkPairsOrange = { fg = c.orange }
+            	-- hl.BlinkPairsRed = { fg = c.red }
+            end
+          '';
       };
     };
+
     kanagawa-paper = {
       # enable = true;
       settings = {

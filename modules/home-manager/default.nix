@@ -34,7 +34,7 @@
     ./gui/aerospace.nix
     # ./gui/kitty.nix
     ./gui/ghostty.nix
-    ./gui/neovide.nix
+    # ./gui/neovide.nix
     ./gui/sage.nix
     ./gui/sioyek.nix
   ];

@@ -29,8 +29,6 @@
     nvim-math-snippets.flake = false;
     nvim-latex-conceal.url = "github:mathjiajia/nvim-latex-conceal";
     nvim-latex-conceal.flake = false;
-    blink-pairs.url = "github:Saghen/blink.pairs";
-    blink-pairs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
