@@ -21,6 +21,7 @@
         pandas
         plotly
         scipy
+        tqdm
       ]))
 
     # TeX

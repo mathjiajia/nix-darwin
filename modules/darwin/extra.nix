@@ -1,10 +1,11 @@
-{
-  # environment.systemPackages = with pkgs; [
-  #   discord
-  #   flashspace
-  #   lmstudio
-  #   warp-terminal
-  # ];
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    # discord
+    # flashspace
+    gemini-cli
+    # lmstudio
+    # warp-terminal
+  ];
 
   imports = [
     ./homebrew/homebrew-extra.nix

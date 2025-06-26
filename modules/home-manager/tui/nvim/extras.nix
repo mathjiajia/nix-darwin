@@ -33,6 +33,30 @@ in {
       require("blink.pairs").setup({
       	mappings = {
       		pairs = {
+      			["'"] = {
+      				{
+      					"\'\'\'",
+      					"\'\'\'",
+      					when = function()
+      						local cursor = vim.api.nvim_win_get_cursor(0)
+      						local line = vim.api.nvim_get_current_line()
+      						return line:sub(cursor[2] - 1, cursor[2]) == "\'\'"
+      					end,
+      					filetypes = { "python" },
+      				},
+      				{
+      					"'",
+      					enter = false,
+      					space = false,
+      					when = function()
+      						local cursor = vim.api.nvim_win_get_cursor(0)
+      						local char = vim.api.nvim_get_current_line():sub(cursor[2], cursor[2])
+      						return not char:match("%w")
+      							and (vim.bo.filetype ~= "rust" or char:match("[&<]"))
+      							and not vim.list_contains({ "bib", "tex", "plaintex" }, vim.bo.filetype)
+      					end,
+      				},
+      			},
       			["`"] = {
       				{
       					"```",

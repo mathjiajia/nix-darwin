@@ -11,6 +11,7 @@
     taps = builtins.attrNames config.nix-homebrew.taps;
 
     casks = [
+      "adguard"
       "aerospace"
       "corretto@11"
       "chatgpt"
