@@ -46,12 +46,6 @@
           hex_color.__raw = ''require("mini.hipatterns").gen_highlighter.hex_color()'';
         };
       };
-      icons.lsp = {
-        copilot.glyph = "";
-        function.glyph = "";
-        object.glyph = "";
-        value.glyph = "";
-      };
     };
   };
 }

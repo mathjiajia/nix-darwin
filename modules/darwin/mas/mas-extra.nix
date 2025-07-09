@@ -9,7 +9,6 @@
     Folo = 6739802604;
     iMovie = 408981434;
     Infuse = 1136220934;
-    # MarkMark = 6475077023;
     "Plain Text Editor" = 1572202501;
     Playgrounds = 1496833156;
     "Pro Snooker & Pool 2024" = 1586517737;
@@ -19,9 +18,8 @@
     Solitaire = 1534193824;
     Telegram = 747648890;
     TestFlight = 899247664;
-    # Ulysses = 1225570693;
     VidHub = 1659622164;
-    Xcode = 497799835;
+    # Xcode = 497799835;
     xcz = 912139104;
 
     # Compressor = 424390742;

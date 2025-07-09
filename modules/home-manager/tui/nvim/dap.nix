@@ -6,7 +6,7 @@
       dap-virtual-text.enable = true;
       dap = {
         enable = true;
-        adapters.executables.lldb-dap.command = "/Applications/Xcode.app/Contents/Developer/usr/bin/lldb-dap";
+        adapters.executables.lldb-dap.command = "/Applications/Xcode-beta.app/Contents/Developer/usr/bin/lldb-dap";
         configurations = let
           lldb-launch = {
             name = "Debug";

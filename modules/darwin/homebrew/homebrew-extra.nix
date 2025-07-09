@@ -18,6 +18,7 @@
     "kitty"
     "lm-studio"
     "miaoyan"
+    # "opencode"
     "openra"
     "orbstack"
     "publish-or-perish"

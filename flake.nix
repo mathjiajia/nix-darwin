@@ -27,8 +27,8 @@
     # Additional Neovim plugins
     nvim-math-snippets.url = "github:mathjiajia/nvim-math-snippets";
     nvim-math-snippets.flake = false;
-    nvim-latex-conceal.url = "github:mathjiajia/nvim-latex-conceal";
-    nvim-latex-conceal.flake = false;
+    math-conceal-nvim.url = "github:mathjiajia/math-conceal.nvim";
+    math-conceal-nvim.flake = false;
   };
 
   outputs = {

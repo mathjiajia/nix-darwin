@@ -1,21 +1,21 @@
 {pkgs, ...}: {
-  programs.nixvim.keymaps = [
-    {
-      mode = "n";
-      key = "<Tab>";
-      action.__raw = ''
-        function()
-        	local _ = require("copilot-lsp.nes").walk_cursor_start_edit()
-        	or (require("copilot-lsp.nes").apply_pending_nes() and require("copilot-lsp.nes").walk_cursor_end_edit())
-        end
-      '';
-      options.desc = "Next Edit Suggestion";
-    }
-  ];
-
   programs.nixvim.lsp.servers.copilot_ls = {
     enable = true;
     package = pkgs.copilot-language-server;
-    settings.cmd = ["${pkgs.copilot-language-server}/bin/copilot-language-server" "--stdio"];
+    settings = {
+      name = "copilot_ls";
+      cmd = ["${pkgs.copilot-language-server}/bin/copilot-language-server" "--stdio"];
+      init_options = {
+        editorInfo = {
+          name = "neovim";
+          version = "0.12.0";
+        };
+        editorPluginInfo = {
+          name = "Github Copilot LSP for Neovim";
+          version = "0.0.1";
+        };
+      };
+      root_dir.__raw = ''vim.uv.cwd()'';
+    };
   };
 }

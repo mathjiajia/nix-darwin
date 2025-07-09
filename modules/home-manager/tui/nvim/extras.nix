@@ -12,17 +12,16 @@
       "math-snippets.latex"
     ];
   };
-  nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
-    name = "latex-conceal";
-    src = inputs.nvim-latex-conceal;
+  math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "math-conceal";
+    src = inputs.math-conceal-nvim;
   };
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     blink-pairs
-    copilot-lsp
     heirline-nvim
 
-    nvim-latex-conceal
+    math-conceal-nvim
     nvim-math-snippets
   ];
 
@@ -30,6 +29,7 @@ in {
     # lua
     ''
       require("vim._extui").enable({})
+      require("math-conceal").setup()
       require("blink.pairs").setup({
       	mappings = {
       		pairs = {
@@ -225,7 +225,7 @@ in {
       local FileIcon = {
       	init = function(self)
       		local filename = self.filename
-      		self.icon, self.icon_hl = MiniIcons.get("file", filename)
+      		self.icon, self.icon_hl = require("mini.icons").get("file", filename)
       	end,
       	provider = function(self)
       		return self.icon and (self.icon .. " ")

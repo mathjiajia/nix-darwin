@@ -7,7 +7,9 @@
 
   environment.systemPackages = with pkgs; [
     # CLI
+    cargo
     hugo
+    luajit
     nodejs # npx
     openconnect
     tree
@@ -23,26 +25,6 @@
         scipy
         tqdm
       ]))
-
-    # TeX
-    # texliveFull
-
-    # GUI
-    # chatgpt
-    # ghostty # broken
-    # ice-bar
-    # iina
-    # istatmenus
-    # keka
-    # loopwm
-    # ollama
-    # openconnect
-    # raycast
-    # skimpdf
-    # stats
-    # vscode
-    # zoom-us
-    # zotero
   ];
 
   environment = {

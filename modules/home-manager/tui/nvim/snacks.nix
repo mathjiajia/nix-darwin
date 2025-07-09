@@ -145,7 +145,7 @@
             '';
         };
       };
-      scroll.enabled.__raw = ''not vim.g.neovide'';
+      # scroll.enabled.__raw = ''not vim.g.neovide'';
       scope.enabled = true;
       styles = {
         lazygit = {

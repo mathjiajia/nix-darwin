@@ -23,7 +23,7 @@
               local file_icon = "󰈔 "
               local file_icon_hl = "DropBarIconKindFile"
 
-              local mini_icon, mini_icon_hl = MiniIcons.get("file", vim.fs.basename(path))
+              local mini_icon, mini_icon_hl = require("mini.icons").get("file", vim.fs.basename(path))
 
               if not mini_icon then
                 local buf = vim.iter(vim.api.nvim_list_bufs()):find(function(buf)
@@ -31,7 +31,7 @@
                 end)
                 if buf then
                   local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
-                  mini_icon, mini_icon_hl = MiniIcons.get("filetype", filetype)
+                  mini_icon, mini_icon_hl = require("mini.icons").get("filetype", filetype)
                 end
               end
 

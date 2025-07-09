@@ -20,7 +20,7 @@
 
     combinePlugins = {
       enable = true;
-      pathsToLink = ["/luasnippets"];
+      pathsToLink = ["/luasnippets" "/queries_config"];
     };
   };
 

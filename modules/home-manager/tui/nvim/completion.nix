@@ -52,21 +52,12 @@
             '';
           };
         };
-        appearance.nerd_font_variant = "normal";
         completion = {
           documentation = {
             auto_show = true;
             auto_show_delay_ms = 500;
           };
-          menu.draw = {
-            components.kind_icon.text.__raw = ''
-              function(ctx)
-              	local kind_icon, _, _ = MiniIcons.get("lsp", ctx.kind)
-              	return kind_icon
-              end
-            '';
-            treesitter = ["lsp"];
-          };
+          menu.draw.treesitter = ["lsp"];
         };
         snippets.preset = "luasnip";
         sources = {
