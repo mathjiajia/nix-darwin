@@ -29,6 +29,8 @@
     nvim-math-snippets.flake = false;
     math-conceal-nvim.url = "github:mathjiajia/math-conceal.nvim";
     math-conceal-nvim.flake = false;
+    slimline-nvim.url = "github:sschleemilch/slimline.nvim";
+    slimline-nvim.flake = false;
   };
 
   outputs = {

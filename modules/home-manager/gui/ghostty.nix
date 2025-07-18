@@ -3,21 +3,20 @@
     enable = true;
     package = null;
     settings = {
-      theme = "tokyonight_moon";
+      auto-update = "off";
       # background-opacity = 0.9;
       # background-blur = true;
-      custom-shader = "shaders/cursor_smear_fade.glsl";
+      cursor-style = "block";
+      custom-shader = "shaders/cursor_smear.glsl";
       font-family = "Sarasa Term SC";
       font-size = 21;
       font-thicken = true;
-      mouse-hide-while-typing = true;
-      # macos-icon = "custom-style";
-      # macos-icon-ghost-color = "yellow";
-      # macos-icon-screen-color = "purple,maroon";
       keybind = "global:cmd+grave_accent=toggle_quick_terminal";
+      mouse-hide-while-typing = true;
+      shell-integration-features = "no-cursor";
+      theme = "tokyonight_moon";
       window-colorspace = "display-p3";
       window-title-font-family = "Sarasa Term SC";
-      auto-update = "off";
     };
     themes = {
       bamboo = {
