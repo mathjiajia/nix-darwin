@@ -10,6 +10,7 @@
 
     atuin.enable = true;
     bun.enable = true;
+    opencode.enable = true;
     pandoc.enable = true;
     uv.enable = true;
 

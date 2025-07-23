@@ -25,10 +25,12 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     # Additional Neovim plugins
+    fff-nvim.url = "github:dmtrKovalenko/fff.nvim";
+    fff-nvim.flake = false;
+    math-conceal-nvim.url = "github:pxwg/math-conceal.nvim";
+    math-conceal-nvim.flake = false;
     nvim-math-snippets.url = "github:mathjiajia/nvim-math-snippets";
     nvim-math-snippets.flake = false;
-    math-conceal-nvim.url = "github:mathjiajia/math-conceal.nvim";
-    math-conceal-nvim.flake = false;
     slimline-nvim.url = "github:sschleemilch/slimline.nvim";
     slimline-nvim.flake = false;
   };

@@ -1,0 +1,33 @@
+diff --git a/lua/utils/latex_conceal.lua b/lua/utils/latex_conceal.lua
+index e2c0975..c56db28 100644
+--- a/lua/utils/latex_conceal.lua
++++ b/lua/utils/latex_conceal.lua
+@@ -6,16 +6,6 @@ local state = {
+   lookup_conceal = nil,
+ }
+ 
+--- Helper function to get the plugin root directory
+-local function get_plugin_root()
+-  local source = debug.getinfo(2, "S").source
+-  local file = string.sub(source, 2) -- Remove the '@' prefix
+-  local dir = string.match(file, "(.*/)")
+-
+-  -- Navigate up two directories: from lua/utils/ to the plugin root
+-  return string.gsub(dir, "lua/utils/$", "")
+-end
+-
+ -- Try to load a dynamic library
+ local function try_load(path)
+   local success, result = pcall(function()
+@@ -35,7 +25,7 @@ function M.initialize()
+     return state.lookup_conceal ~= nil
+   end
+ 
+-  local plugin_root = get_plugin_root()
++  local plugin_root = vim.fn.stdpath("config")
+ 
+   -- Try with different extensions based on the platform
+   local lib_paths = {
+-- 
+2.50.0
+

@@ -23,7 +23,7 @@
           keys = [
             {
               key = "f";
-              action = ":lua Snacks.picker.files()";
+              action = ":FFFFind";
               hidden = true;
             }
             {
@@ -179,18 +179,18 @@
       action.__raw = ''function() Snacks.picker.buffers({ layout = "select" }) end'';
       options.desc = "Buffers";
     }
-    {
-      mode = "n";
-      key = "<leader>ff";
-      action.__raw = ''function() Snacks.picker.files() end'';
-      options.desc = "Find Files";
-    }
-    {
-      mode = "n";
-      key = "<leader>fg";
-      action.__raw = ''function() Snacks.picker.git_files() end'';
-      options.desc = "Find Git Files";
-    }
+    # {
+    #   mode = "n";
+    #   key = "<leader>ff";
+    #   action.__raw = ''function() Snacks.picker.files() end'';
+    #   options.desc = "Find Files";
+    # }
+    # {
+    #   mode = "n";
+    #   key = "<leader>fg";
+    #   action.__raw = ''function() Snacks.picker.git_files() end'';
+    #   options.desc = "Find Git Files";
+    # }
     {
       mode = "n";
       key = "<leader>fm";

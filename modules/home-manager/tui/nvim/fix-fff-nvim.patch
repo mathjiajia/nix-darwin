@@ -1,0 +1,22 @@
+diff --git a/lua/fff/rust/init.lua b/lua/fff/rust/init.lua
+index 0bdeaa2..57fe61a 100644
+--- a/lua/fff/rust/init.lua
++++ b/lua/fff/rust/init.lua
+@@ -7,11 +7,11 @@ end
+ 
+ -- search for the lib in the /target/release directory with and without the lib prefix
+ -- since MSVC doesn't include the prefix
+-local base_path = debug.getinfo(1).source:match('@?(.*/)')
++local base_path = vim.fn.stdpath("config")
+ 
+ local paths = {
+-  base_path .. '../../../target/release/lib?' .. get_lib_extension(),
+-  base_path .. '../../../target/release/?' .. get_lib_extension(),
++  base_path .. '/target/release/lib?' .. get_lib_extension(),
++  base_path .. '/target/release/?' .. get_lib_extension(),
+ }
+ 
+ local cargo_target_dir = os.getenv('CARGO_TARGET_DIR')
+-- 
+2.50.1
+

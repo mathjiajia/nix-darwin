@@ -3,6 +3,29 @@
   pkgs,
   ...
 }: let
+  fff-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "fff";
+    src = inputs.fff-nvim;
+    nvimSkipModules = [
+      "fff"
+      "fff.fuzzy"
+      "fff.main"
+      "fff.picker_ui"
+      "fff.rust.init"
+      "fff.git_utils"
+      "fff.utils"
+      "fff.file_picker.init"
+      "fff.file_picker.preview"
+      "fff.file_picker.icons"
+      "fff.file_picker.image"
+    ];
+    patches = [./fix-fff-nvim.patch];
+  };
+  math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "math-conceal";
+    src = inputs.math-conceal-nvim;
+    patches = [./fix-math-conceal.patch];
+  };
   nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {
     name = "math-snippets";
     src = inputs.nvim-math-snippets;
@@ -11,10 +34,6 @@
       "math-snippets.context"
       "math-snippets.latex"
     ];
-  };
-  math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "math-conceal";
-    src = inputs.math-conceal-nvim;
   };
   slimline-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "slimline";
@@ -34,15 +53,32 @@ in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     blink-pairs
 
+    fff-nvim
     math-conceal-nvim
     nvim-math-snippets
     slimline-nvim
+  ];
+
+  programs.nixvim.keymaps = [
+    {
+      mode = "n";
+      key = "<leader>ff";
+      action.__raw = ''function() require("fff").find_files() end'';
+      options.desc = "Open File Picker";
+    }
+    {
+      mode = "n";
+      key = "<leader>fg";
+      action.__raw = ''function() require("fff").find_in_git_root() end'';
+      options.desc = "Find Git Files";
+    }
   ];
 
   programs.nixvim.extraConfigLua =
     # lua
     ''
       require("vim._extui").enable({ msg = { target = "msg" } })
+      require("fff").setup()
       require("math-conceal").setup()
       require("blink.pairs").setup({
        mappings = {

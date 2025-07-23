@@ -1,11 +1,11 @@
 {
   imports = [
-    ./basedpyright.nix
     ./copilot_ls.nix
     ./clangd.nix
     ./lua_ls.nix
     ./matlab_ls.nix
     ./nil_ls.nix
+    ./pyrefly.nix
     ./sourcekit.nix
     ./taplo.nix
     ./texlab.nix

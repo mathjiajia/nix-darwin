@@ -99,6 +99,10 @@ in {
           run = "move-node-to-workspace 􂮢A";
         }
         {
+          "if".app-id = "com.electron.ollama";
+          run = "move-node-to-workspace 􂮢A";
+        }
+        {
           "if".app-id = "ai.perplexity.mac";
           run = "move-node-to-workspace 􂮢A";
         }
