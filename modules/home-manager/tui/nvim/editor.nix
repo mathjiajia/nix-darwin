@@ -2,7 +2,6 @@
   programs.nixvim.plugins = {
     flash.enable = true;
     grug-far.enable = true;
-    nvim-bqf.enable = true;
     nvim-surround.enable = true;
 
     oil = {

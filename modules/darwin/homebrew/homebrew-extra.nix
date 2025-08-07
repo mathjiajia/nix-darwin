@@ -1,4 +1,11 @@
 {
+  homebrew.brews = [
+    {
+      name = "rustup";
+      args = ["HEAD"];
+    }
+  ];
+
   homebrew.casks = [
     "adobe-acrobat-pro"
     "adobe-creative-cloud"

@@ -2,6 +2,12 @@
   programs.nixvim.plugins.codecompanion = {
     enable = true;
     package = pkgs.vimPlugins.codecompanion-nvim.overrideAttrs (oldAttrs: {
+      src = pkgs.fetchFromGitHub {
+        owner = "olimorris";
+        repo = "codecompanion.nvim";
+        rev = "19d665a9b13c0b05652c359c4302465b8b2543be";
+        sha256 = "zY9uWB11mr/XDAw/l4HLAy3ZHaIhUiYlzUFbiKVFSvg=";
+      };
       postInstall =
         oldAttrs.postInstall
           or ""
@@ -10,13 +16,6 @@
     });
     settings = {
       adapters = {
-        copilot.__raw = ''
-          function()
-          	return require("codecompanion.adapters").extend("copilot", {
-          		schema = { model = { default = "o4-mini" } },
-          	})
-          end
-        '';
         aliyun_qwen.__raw = ''
           function()
           	return require("codecompanion.adapters").extend("openai_compatible", {
@@ -27,25 +26,12 @@
           		},
           		schema = {
           			model = {
-          				default = "qwen-max-latest",
+          				default = "qwen-max",
           				choices = {
-          					"qwen-max-latest",
-          					["qwq-plus-2025-03-05"] = { opts = { can_reason = true } },
+          					"qwen-max",
+          					"qwen3-235b-a22b",
+          					"qwen3-coder-480b-a35b-instruct",
           				},
-          			},
-          		},
-          	})
-          end
-        '';
-        deepseek.__raw = ''
-          function()
-          	return require("codecompanion.adapters").extend("deepseek", {
-          		url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
-          		env = { api_key = "ALIYUN_API_KEY" },
-          		schema = {
-          			model = {
-          				default = "deepseek-r1",
-          				choices = { ["deepseek-r1"] = { opts = { can_reason = true } } },
           			},
           		},
           	})
@@ -59,6 +45,8 @@
         chat.window.opts = {
           conceallevel = 2;
           colorcolumn = "";
+          number = false;
+          relativenumber = false;
         };
       };
     };

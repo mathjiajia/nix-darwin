@@ -55,8 +55,11 @@
         completion = {
           documentation = {
             auto_show = true;
-            auto_show_delay_ms = 500;
+            auto_show_delay_ms = 50;
+            update_delay_ms = 50;
+            treesitter_highlighting = true;
           };
+          list.max_items = 20;
           menu.draw.treesitter = ["lsp"];
         };
         snippets.preset = "luasnip";

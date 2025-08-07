@@ -1,17 +1,20 @@
 {
   homebrew.masApps = {
+    "Apple Configurator" = 1037126344;
     Bear = 1091189122;
     Codye = 1516894961;
+    Copilot = 6738511300;
     Craft = 1487937127;
     DevHub = 6476452351;
     FileFillet = 6443969762;
     FlowDown = 6740553198;
     Folo = 6739802604;
+    "GeoGebra Classic 6" = 1182481622;
     iMovie = 408981434;
     Infuse = 1136220934;
     "Plain Text Editor" = 1572202501;
     Playgrounds = 1496833156;
-    "Pro Snooker & Pool 2024" = 1586517737;
+    "Pro Snooker & Pool 2025" = 1586517737;
     Readest = 6738622779;
     ScanScan = 1249901692;
     SnippetsLab = 1006087419;

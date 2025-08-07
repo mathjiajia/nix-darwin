@@ -97,15 +97,6 @@
         enabled.__raw = ''not vim.g.neovide'';
         math.enabled = false;
       };
-      indent.scope.hl = [
-        "BlinkPairsBlue"
-        "BlinkPairsYellow"
-        "BlinkPairsGreen"
-        "BlinkPairsTeal"
-        "BlinkPairsMagenta"
-        "BlinkPairsPurple"
-        "BlinkPairsOrange"
-      ];
       input.enabled = true;
       notifier.enabled = true;
       picker = {
@@ -145,8 +136,6 @@
             '';
         };
       };
-      # scroll.enabled.__raw = ''not vim.g.neovide'';
-      scope.enabled = true;
       styles = {
         lazygit = {
           width = 0;

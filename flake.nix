@@ -26,7 +26,10 @@
 
     # Additional Neovim plugins
     fff-nvim.url = "github:dmtrKovalenko/fff.nvim";
-    fff-nvim.flake = false;
+    fff-nvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    blink-indent.url = "github:saghen/blink.indent";
+    blink-indent.flake = false;
     math-conceal-nvim.url = "github:pxwg/math-conceal.nvim";
     math-conceal-nvim.flake = false;
     nvim-math-snippets.url = "github:mathjiajia/nvim-math-snippets";

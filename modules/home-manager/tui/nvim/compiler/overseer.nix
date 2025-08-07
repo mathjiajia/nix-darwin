@@ -18,14 +18,14 @@
       {
         mode = "n";
         key = "<leader>rl";
-        action = "<Cmd>OverseerToggle<CR>";
-        options.desc = "Task List";
+        action = "<Cmd>OverseerRun<CR>";
+        options.desc = "Run Templates";
       }
       {
         mode = "n";
-        key = "<leader>rr";
-        action = "<Cmd>OverseerRun<CR>";
-        options.desc = "Run Task";
+        key = "<leader>rt";
+        action = "<Cmd>OverseerToggle<CR>";
+        options.desc = "Toggle Task List";
       }
       {
         mode = "n";

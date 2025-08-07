@@ -20,7 +20,11 @@
 
     combinePlugins = {
       enable = true;
-      pathsToLink = ["/luasnippets" "/queries_config"];
+      pathsToLink = [
+        "/luasnippets" # luasnip
+        "/queries_config" # math-conceal.nvim
+        "target" # fff.nvim
+      ];
     };
   };
 

@@ -62,6 +62,8 @@
       "FXEnableExtensionChangeWarning" = false;
       # Use list view in all Finder windows by default
       "FXPreferredViewStyle" = "Nlsv";
+      # defaults write com.apple.finder RelativeDates -bool false
+      # "RelativeDates" = false;
     };
 
     loginwindow = {
@@ -76,6 +78,12 @@
     };
 
     NSGlobalDomain = {
+      # AppleICUDateFormatStrings = {
+      #   "1" = "yyyy-MM-dd HH:mm";
+      #   "2" = "yyyy-MM-dd HH:mm:ss";
+      #   "3" = "yyyy-MM-dd HH:mm:ss";
+      #   "4" = "yyyy-MM-dd HH:mm:ss";
+      # };
       # AppleICUForce24HourTime = false;
       # AppleInterfaceStyle = "Dark";
       AppleInterfaceStyleSwitchesAutomatically = true;
