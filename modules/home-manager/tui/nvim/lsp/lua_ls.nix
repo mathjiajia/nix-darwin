@@ -14,7 +14,7 @@
         "selene.yml"
         ".git"
       ];
-      settting.Lua = {
+      setttings.Lua = {
         completion.callSnippet = "Replace";
         hint.enable = true;
         runtime = {

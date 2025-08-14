@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{inputs, ...}: {
   nix.enable = true;
 
   nixpkgs.config.allowUnfree = true;
@@ -11,7 +7,6 @@
   users.users."jia" = {
     name = "jia";
     home = "/Users/jia";
-    shell = pkgs.fish;
   };
 
   nix-homebrew = {
@@ -41,7 +36,7 @@
   nix.settings.experimental-features = "nix-command flakes";
 
   # Enable alternative shell support in nix-darwin.
-  programs.fish.enable = true;
+  # programs.fish.enable = true;
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;

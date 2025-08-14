@@ -1,11 +1,4 @@
 {
-  homebrew.brews = [
-    {
-      name = "rustup";
-      args = ["HEAD"];
-    }
-  ];
-
   homebrew.casks = [
     "adobe-acrobat-pro"
     "adobe-creative-cloud"
@@ -22,7 +15,6 @@
     "hazeover"
     "hookmark"
     "inkscape"
-    "kitty"
     "lm-studio"
     "miaoyan"
     "neteasemusic"
@@ -35,6 +27,7 @@
     "sf-symbols"
     "sfm"
     "soulver"
+    # "voiceink"
     "unite"
     "warp"
     "zed"

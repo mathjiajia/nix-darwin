@@ -206,10 +206,6 @@ in {
           run = "move-node-to-workspace 􀩼T";
         }
         {
-          "if".app-id = "net.kovidgoyal.kitty";
-          run = "move-node-to-workspace 􀩼T";
-        }
-        {
           "if".app-id = "info.sioyek.sioyek";
           run = "move-node-to-workspace 􀩼T";
         }

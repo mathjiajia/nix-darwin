@@ -3,11 +3,10 @@
     enable = true;
     arguments = [
       # Exclude directories.
-      "--glob=!{System,Volumes,bin,cores,dev,etc,opt,private,sbin,tmp,usr,var,Shared}"
       "--glob=!{.cache,.cpan,.git,.local,.Trash}"
-      "--glob=!{.docker,.gem,.npm,.ollama,.orbstack,.prettierd,.pretty-clean,.swiftpm,.vscode}"
+      "--glob=!{.docker,.npm,.ollama,.orbstack,.swiftpm,.vscode}"
       "--glob=!{Applications,Library,Movies,Music,Pictures,public,Public,Zotero}"
-      "--glob=!{MySite/public,MySite/static,MySite/resources,MySite/themes}"
+      "--glob=!{MySite/public,MySite/resources,MySite/themes}"
 
       # Exclude file types.
       "--glob=!tags"

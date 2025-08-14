@@ -72,16 +72,31 @@ in {
     # lua
     ''
       require("vim._extui").enable({ msg = { target = "msg" } })
-      require("fff").setup()
+
+      vim.g.fff = {
+      	lazy_sync = true,
+      	layout = { prompt_position = "top" },
+      }
+
+      local hl_groups = {
+      	"BlinkPairsBlue",
+      	"BlinkPairsYellow",
+      	"BlinkPairsGreen",
+      	"BlinkPairsTeal",
+      	"BlinkPairsMagenta",
+      	"BlinkPairsPurple",
+      	"BlinkPairsOrange",
+      }
+
       require("math-conceal").setup()
       require("blink.pairs").setup({
       	mappings = {
       		pairs = {
       			["'"] = {
-              {
-                "\'\'\'",
-                "\'\'\'",
-                when = function()
+      				{
+      					"\'\'\'",
+      					"\'\'\'",
+      					when = function()
       						local cursor = vim.api.nvim_win_get_cursor(0)
       						local line = vim.api.nvim_get_current_line()
       						return line:sub(cursor[2] - 1, cursor[2]) == "\'\'"
@@ -117,74 +132,35 @@ in {
       			},
       		},
       	},
-      	highlights = {
-      		groups = {
-      			"BlinkPairsBlue",
-      			"BlinkPairsYellow",
-      			"BlinkPairsGreen",
-      			"BlinkPairsTeal",
-      			"BlinkPairsMagenta",
-      			"BlinkPairsPurple",
-      			"BlinkPairsOrange",
-      		},
-      	},
+      	highlights = { groups = hl_groups },
       })
 
-      require("blink.indent").setup({
-      	scope = {
-      		highlights = {
-      			"BlinkPairsBlue",
-      			"BlinkPairsYellow",
-      			"BlinkPairsGreen",
-      			"BlinkPairsTeal",
-      			"BlinkPairsMagenta",
-      			"BlinkPairsPurple",
-      			"BlinkPairsOrange",
-      		},
-      	},
-      })
-
-      local function fold_virt_text(result, start_text, lnum)
-      	local text = ""
-      	local hl
-      	for i = 1, #start_text do
-      		local char = start_text:sub(i, i)
-      		local captured_highlights = vim.treesitter.get_captures_at_pos(0, lnum, i - 1)
-      		local outmost_highlight = captured_highlights[#captured_highlights]
-      		if outmost_highlight then
-      			local new_hl = "@" .. outmost_highlight.capture
-      			if new_hl ~= hl then
-      				table.insert(result, { text, hl })
-      				text = ""
-      				hl = nil
-      			end
-      			text = text .. char
-      			hl = new_hl
-      		else
-      			text = text .. char
-      		end
-      	end
-      	table.insert(result, { text, hl })
-      end
-      function _G.custom_foldtext()
-      	local start_text = vim.fn.getline(vim.v.foldstart):gsub("\t", string.rep(" ", vim.o.tabstop))
-      	local nline = vim.v.foldend - vim.v.foldstart
-      	local result = {}
-      	fold_virt_text(result, start_text, vim.v.foldstart - 1)
-      	table.insert(result, { "    ", nil })
-      	table.insert(result, { " ↙ " .. nline .. " lines ", "Search" })
-      	return result
-      end
+      require("blink.indent").setup({ scope = { highlights = hl_groups } })
 
       require("slimline").setup({
-      	style = "bg",
+      	components = { center = { "searchcount", "selectioncount" } },
       	configs = {
+      		mode = {
+      			format = {
+      				["n"] = { short = "NOR" },
+      				["v"] = { short = "VIS" },
+      				["V"] = { short = "V-L" },
+      				["\22"] = { short = "V-B" },
+      				["s"] = { short = "SEL" },
+      				["S"] = { short = "S-L" },
+      				["\19"] = { short = "S-B" },
+      				["i"] = { short = "INS" },
+      				["R"] = { short = "REP" },
+      				["c"] = { short = "CMD" },
+      				["r"] = { short = "PRO" },
+      				["!"] = { short = "SHE" },
+      				["t"] = { short = "TER" },
+      				["U"] = { short = "UNK" },
+      			},
+      		},
       		path = { hl = { primary = "Define" } },
       		git = { hl = { primary = "Function" } },
-      		filetype_lsp = {
-      			hl = { primary = "String" },
-      			map_lsps = { ["copilot_ls"] = "copilot" },
-      		},
+      		filetype_lsp = { hl = { primary = "String" } },
       	},
       })
     '';

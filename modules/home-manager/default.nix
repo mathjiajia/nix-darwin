@@ -1,8 +1,20 @@
 {
   home = {
-    username = "jia";
     homeDirectory = "/Users/jia";
+    sessionPath = ["/Library/TeX/texbin"];
+    sessionVariables = {
+      MANPAGER = "nvim +Man!";
+      GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
+    };
+    shellAliases = {
+      gd = "git diff";
+      gP = "git push";
+      gp = "git pull";
+      lg = "lazygit";
+      nv = "nvim";
+    };
     stateVersion = "25.11";
+    username = "jia";
   };
 
   programs = {
@@ -10,6 +22,8 @@
 
     atuin.enable = true;
     bun.enable = true;
+    fastfetch.enable = true;
+    # gemini-cli.enable = true;
     opencode.enable = true;
     pandoc.enable = true;
     uv.enable = true;
@@ -27,6 +41,9 @@
       vim_keys = true;
     };
 
+    nushell.enable = true;
+    nushell.settings.show_banner = false;
+
     tex-fmt.enable = true;
     tex-fmt.settings = {
       tabchar = "tab";
@@ -36,6 +53,10 @@
 
     zoxide.enable = true;
     zoxide.options = ["--cmd" "cd"];
+
+    zsh.enable = true;
+    zsh.autosuggestion.enable = true;
+    zsh.syntaxHighlighting.enable = true;
   };
 
   xdg.enable = true;
@@ -45,15 +66,12 @@
     ./tui/nvim
     ./tui/yazi
 
-    ./tui/fastfetch.nix
     ./tui/fd.nix
-    ./tui/fish.nix
     ./tui/fzf.nix
     ./tui/ripgrep.nix
     ./tui/starship.nix
 
     ./gui/aerospace.nix
-    # ./gui/kitty.nix
     ./gui/ghostty.nix
     ./gui/sage.nix
     ./gui/sioyek.nix

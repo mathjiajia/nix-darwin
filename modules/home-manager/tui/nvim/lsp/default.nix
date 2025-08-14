@@ -1,6 +1,6 @@
 {
   imports = [
-    ./copilot_ls.nix
+    ./copilot.nix
     ./clangd.nix
     ./lua_ls.nix
     ./matlab_ls.nix

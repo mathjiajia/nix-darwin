@@ -1,6 +1,11 @@
 {pkgs, ...}: {
   programs.nixvim = {
     extraPackages = with pkgs; [
+      # linters
+      commitlint
+      markdownlint-cli2
+      shellcheck
+      # formatters
       alejandra
       bibtex-tidy
       black
@@ -8,11 +13,6 @@
       shfmt
       stylua
       tex-fmt
-      # typstyle
-
-      commitlint
-      markdownlint-cli2
-      shellcheck
     ];
 
     plugins = {
@@ -20,7 +20,6 @@
         enable = true;
         lintersByFt = {
           bash = ["shellcheck"];
-          fish = ["fish"];
           gitcommit = ["commitlint"];
           markdown = ["markdownlint-cli2"];
           zsh = ["shellcheck"];
@@ -51,7 +50,6 @@
             javascript = ["prettierd"];
             json = ["prettierd"];
             jsonc = ["prettierd"];
-            fish = ["fish_indent"];
             markdown = ["prettierd"];
             "markdown.mdx" = ["prettierd"];
             yaml = ["prettierd"];
@@ -60,7 +58,6 @@
             python = ["black"];
             sh = ["shfmt"];
             tex = ["tex-fmt"];
-            # typst = ["typstyle"];
           };
           format_on_save.__raw =
             # lua

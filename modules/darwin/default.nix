@@ -5,13 +5,14 @@
     ./system.nix
   ];
 
+  environment.pathsToLink = ["/share/zsh"];
+
   environment.systemPackages = with pkgs; [
     # CLI
     cargo
     hugo
     luajit
     nodejs # npx
-    openconnect
     tree
 
     # PYTHON
@@ -27,14 +28,7 @@
       ]))
   ];
 
-  environment = {
-    shells = [pkgs.fish];
-    variables = {
-      VISUAL = "nvim";
-      MANPAGER = "nvim +Man!";
-    };
-    systemPath = ["/Library/TeX/texbin"];
-  };
+  environment.shells = [pkgs.nushell];
 
   fonts.packages = with pkgs; [
     lxgw-wenkai

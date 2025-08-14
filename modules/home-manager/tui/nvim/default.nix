@@ -9,6 +9,10 @@
     defaultEditor = true;
     luaLoader.enable = true;
     # colorscheme = "tokyonight";
+    env = {
+      ALIYUN_API_KEY = "$(security find-generic-password -s 'ALIYUN_API_KEY' -w)";
+      GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
+    };
   };
 
   programs.nixvim.performance = {
@@ -23,7 +27,6 @@
       pathsToLink = [
         "/luasnippets" # luasnip
         "/queries_config" # math-conceal.nvim
-        "target" # fff.nvim
       ];
     };
   };

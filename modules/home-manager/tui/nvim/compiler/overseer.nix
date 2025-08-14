@@ -118,7 +118,6 @@
           	sh = { name = "Shell", cmd = "sh", repl = "sh" },
           	bash = { name = "Bash", cmd = "bash", repl = "bash" },
           	zsh = { name = "Zsh", cmd = "zsh", repl = "zsh" },
-          	fish = { name = "Fish", cmd = "fish", repl = "fish" },
           	m2 = { name = "Macaulay2", cmd = "M2", repl = "M2" },
           	python = { name = "Python", cmd = "python", repl = "ipython" },
           	r = { name = "R", cmd = "Rscript", repl = "R" },

@@ -25,7 +25,6 @@
       # 1 important
 
       # 2 moving around, seaching patterns
-      whichwrap = "b,s,[,]";
       ignorecase = true;
       smartcase = true;
 
@@ -33,7 +32,7 @@
 
       # 4 displaying text
       smoothscroll = true;
-      scrolloff = 12;
+      scrolloff = 10;
       linebreak = true;
       breakindent = true;
       showbreak = "> ";
@@ -64,7 +63,6 @@
       # 9 using the mouse
 
       # 10 messages and info
-      shortmess = "ltToOCFWIc";
       confirm = true;
 
       # 11 selecting text
@@ -83,12 +81,11 @@
       # 14 folding
       foldmethod = "expr";
       foldlevel = 99;
-      foldtext = "v:lua.custom_foldtext()";
 
       # 15 diff mode
 
       # 16 mapping
-      timeoutlen = 500;
+      timeoutlen = 300;
 
       # 17 reading and writng files
 

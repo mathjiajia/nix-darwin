@@ -6,7 +6,6 @@
       aws.disabled = true;
       battery.disabled = true;
       buf.disabled = true;
-      bun.disabled = true;
       cobol.disabled = true;
       conda.disabled = true;
       crystal.disabled = true;
@@ -42,7 +41,6 @@
       pijul_channel.disabled = true;
       pulumi.disabled = true;
       purescript.disabled = true;
-      quarto.disabled = true;
       raku.disabled = true;
       red.disabled = true;
       scala.disabled = true;

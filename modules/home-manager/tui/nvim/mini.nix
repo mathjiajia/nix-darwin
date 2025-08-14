@@ -43,7 +43,6 @@
               sign_hl_group = "DiagnosticHint";
             };
           };
-          hex_color.__raw = ''require("mini.hipatterns").gen_highlighter.hex_color()'';
         };
       };
     };

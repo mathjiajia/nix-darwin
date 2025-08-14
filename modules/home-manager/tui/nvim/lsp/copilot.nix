@@ -1,21 +1,21 @@
 {pkgs, ...}: {
-  programs.nixvim.lsp.servers.copilot_ls = {
+  programs.nixvim.lsp.servers.copilot = {
     enable = true;
     package = pkgs.copilot-language-server;
     settings = {
-      name = "copilot_ls";
       cmd = ["${pkgs.copilot-language-server}/bin/copilot-language-server" "--stdio"];
+      root_markers = [".git"];
       init_options = {
         editorInfo = {
-          name = "neovim";
-          version = "0.12.0";
+          name = "Neovim";
+          version.__raw = ''tostring(vim.version())'';
         };
         editorPluginInfo = {
-          name = "Github Copilot LSP for Neovim";
-          version = "0.0.1";
+          name = "Neovim";
+          version.__raw = ''tostring(vim.version())'';
         };
       };
-      root_dir.__raw = ''vim.uv.cwd()'';
+      settings.telemetry.telemetryLevel = "off";
     };
   };
 }
