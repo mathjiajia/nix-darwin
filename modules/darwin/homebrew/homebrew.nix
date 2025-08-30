@@ -13,6 +13,7 @@
     casks = [
       "adguard"
       "aerospace"
+      "brave-browser"
       "corretto@11"
       "chatgpt"
       "downie"
@@ -30,7 +31,6 @@
       "loop"
       "markedit"
       "mathpix-snipping-tool"
-      "microsoft-edge"
       # "neovide"
       "ollama-app"
       "permute"

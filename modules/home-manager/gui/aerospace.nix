@@ -112,7 +112,7 @@ in {
           run = "move-node-to-workspace 􀤆B";
         }
         {
-          "if".app-id = "com.microsoft.edgemac";
+          "if".app-id = "com.brave.Browser";
           run = "move-node-to-workspace 􀤆B";
         }
         # Chat
