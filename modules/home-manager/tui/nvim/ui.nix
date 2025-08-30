@@ -1,15 +1,36 @@
 {
+  # programs.nixvim.extraPython3Packages = p: [p.pylatexenc];
   programs.nixvim.plugins = {
     render-markdown = {
       enable = true;
       settings = {
-        code.width = "block";
-        latex.enabled = false;
-        pipe_table.preset = "round";
-        win_options.colorcolumn = {
-          default = "120";
-          rendered = "";
+        file_types = ["markdown" "codecompanion" "quarto"];
+        sign.enabled = false;
+        code = {
+          position = "right";
+          min_width = 80;
+          width = "block";
+          border = "thin";
         };
+        heading = {
+          icons = [" 󰼏 " " 󰎨 " " 󰼑 " " 󰎲 " " 󰼓 " " 󰎴 "];
+          border = true;
+          render_modes = true;
+        };
+        pipe_table = {
+          alignment_indicator = "─";
+          border = ["╭" "┬" "╮" "├" "┼" "┤" "╰" "┴" "╯" "│" "─"];
+        };
+        anti_conceal = {
+          disabled_modes = ["n"];
+          ignore = {
+            bullet = true;
+            head_border = true;
+            head_background = true;
+          };
+        };
+        win_options.concealcursor.rendered = "nvc";
+        completions.lsp.enabled = true;
       };
     };
 

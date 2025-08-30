@@ -9,11 +9,10 @@
 
   environment.systemPackages = with pkgs; [
     # CLI
-    cargo
+    # cargo
     hugo
     luajit
     nodejs # npx
-    tree
 
     # PYTHON
     (python3.withPackages (ps:
@@ -23,6 +22,7 @@
         numpy
         pandas
         plotly
+        pylatexenc
         scipy
         tqdm
       ]))

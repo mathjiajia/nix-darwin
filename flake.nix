@@ -30,8 +30,10 @@
 
     blink-indent.url = "github:saghen/blink.indent";
     blink-indent.flake = false;
-    math-conceal-nvim.url = "github:pxwg/math-conceal.nvim";
-    math-conceal-nvim.flake = false;
+    # math-conceal-nvim.url = "github:pxwg/math-conceal.nvim";
+    # math-conceal-nvim.flake = false;
+    nvim-latex-conceal.url = "github:mathjiajia/nvim-latex-conceal";
+    nvim-latex-conceal.flake = false;
     nvim-math-snippets.url = "github:mathjiajia/nvim-math-snippets";
     nvim-math-snippets.flake = false;
     slimline-nvim.url = "github:sschleemilch/slimline.nvim";
@@ -51,8 +53,8 @@
     shared-modules = [
       ./configuration.nix
       ./modules/darwin
-      home-manager.darwinModules.home-manager
       nix-homebrew.darwinModules.nix-homebrew
+      home-manager.darwinModules.home-manager
     ];
   in {
     darwinConfigurations = {

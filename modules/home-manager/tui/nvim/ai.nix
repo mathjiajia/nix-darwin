@@ -2,12 +2,6 @@
   programs.nixvim.plugins.codecompanion = {
     enable = true;
     package = pkgs.vimPlugins.codecompanion-nvim.overrideAttrs (oldAttrs: {
-      src = pkgs.fetchFromGitHub {
-        owner = "olimorris";
-        repo = "codecompanion.nvim";
-        rev = "19d665a9b13c0b05652c359c4302465b8b2543be";
-        sha256 = "zY9uWB11mr/XDAw/l4HLAy3ZHaIhUiYlzUFbiKVFSvg=";
-      };
       postInstall =
         oldAttrs.postInstall
           or ""
@@ -15,7 +9,7 @@
         ''find $out/doc -mindepth 1 ! -name "codecompanion.txt" -delete'';
     });
     settings = {
-      adapters = {
+      adapters.http = {
         aliyun_qwen.__raw = ''
           function()
           	return require("codecompanion.adapters").extend("openai_compatible", {
@@ -50,14 +44,6 @@
         };
       };
     };
-  };
-
-  programs.nixvim.extraFiles = {
-    "lua/util/template/user/builder.lua".text =
-      # lua
-      ''
-        return { "user.builder.clang", "user.builder.swift" }
-      '';
   };
 
   programs.nixvim.keymaps = [

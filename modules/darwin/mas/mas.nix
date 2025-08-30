@@ -13,9 +13,9 @@
     "Microsoft PowerPoint" = 462062816;
     "Microsoft Word" = 462054704;
     Numbers = 409203825;
-    OpenCat = 6445999201;
     Pages = 409201541;
-    "Perplexity: Ask Anything" = 6714467650;
+    Perplexity = 6714467650;
+    ScanScan = 1249901692;
     Taio = 1527036273;
     Things = 904280696;
     "uBlacklist for Safari" = 1547912640;

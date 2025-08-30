@@ -1,20 +1,11 @@
 {
   home = {
-    homeDirectory = "/Users/jia";
+    stateVersion = "25.11";
     sessionPath = ["/Library/TeX/texbin"];
     sessionVariables = {
-      MANPAGER = "nvim +Man!";
+      ALIYUN_API_KEY = "$(security find-generic-password -s 'ALIYUN_API_KEY' -w)";
       GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
     };
-    shellAliases = {
-      gd = "git diff";
-      gP = "git push";
-      gp = "git pull";
-      lg = "lazygit";
-      nv = "nvim";
-    };
-    stateVersion = "25.11";
-    username = "jia";
   };
 
   programs = {
@@ -22,8 +13,9 @@
 
     atuin.enable = true;
     bun.enable = true;
+    eza.enable = true;
     fastfetch.enable = true;
-    # gemini-cli.enable = true;
+    gemini-cli.enable = true;
     opencode.enable = true;
     pandoc.enable = true;
     uv.enable = true;

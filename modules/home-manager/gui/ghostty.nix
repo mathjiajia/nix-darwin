@@ -86,88 +86,72 @@
           "15=#252623"
         ];
       };
-      gruvbox = {
-        cursor-color = "ebdbb2";
-        background = "1d2021";
-        foreground = "ebdbb2";
-        selection-background = "665c54";
-        selection-foreground = "ebdbb2";
+      gruvdark-dark = {
+        foreground = "#d6cfc4";
+        background = "#1e1e1e";
+        selection-background = "#303030";
+        selection-foreground = "#D6CFC4";
+        cursor-color = "#E6E3DE";
+        cursor-text = "#1e1e1e";
+        split-divider-color = "#404040";
         palette = [
-          "0=#595959"
-          "8=#928374"
+          "0=#4F4F4F"
+          "8=#4F4F4F"
 
-          "1=#ea6962"
-          "9=#ea6962"
+          "1=#E16464"
+          "9=#E16464"
 
-          "2=#a9b665"
-          "10=#a9b665"
+          "2=#72BA62"
+          "10=#72BA62"
 
-          "3=#d8a657"
-          "11=#d8a657"
+          "3=#D19F66"
+          "11=#D19F66"
 
-          "4=#7daea3"
-          "12=#7daea3"
+          "4=#579DD4"
+          "12=#579DD4"
 
-          "5=#d3869b"
-          "13=#d3869b"
+          "5=#D159B6"
+          "13=#D159B6"
 
-          "6=#89b482"
-          "14=#89b482"
+          "6=#00A596"
+          "14=#00A596"
 
-          "7=#ebdbb2"
-          "15=#ebdbb2"
+          "7=#D6CFC4"
+          "15=#D6CFC4"
         ];
       };
-      kanagawa-paper-ink = {
-        background = "1F1F28";
-        foreground = "DCD&BA";
-        cursor-color = "c4b28a";
-        selection-background = "363646";
-        selection-foreground = "9e9b93";
-
+      gruvdark-light = {
+        foreground = "#111111";
+        background = "#F7F5EA";
+        selection-background = "#B0B0A6";
+        selection-foreground = "#101010";
+        cursor-color = "#404040";
+        cursor-text = "#EAE7E1";
+        split-divider-color = "#4F4F4F";
         palette = [
-          "0=#393836"
-          "1=#c4746e"
-          "2=#699469"
-          "3=#c4b28a"
-          "4=#7eb3c9"
-          "5=#a292a3"
-          "6=#8ea49e"
-          "7=#C8C093"
-          "8=#aca9a4"
-          "9=#cc928e"
-          "10=#72a072"
-          "11=#d4c196"
-          "12=#698a9b"
-          "13=#b4a7b5"
-          "14=#96ada7"
-          "15=#d5cd9d"
-        ];
-      };
-      kanagawa-paper-canvas = {
-        background = "e1e1de";
-        foreground = "595b62";
-        cursor-color = "618bb6";
-        selection-background = "c4cbdc";
-        selection-foreground = "858479";
+          "0=#1B1B1B"
+          "8=#111111"
 
-        palette = [
-          "0=#4c4c65"
-          "1=#b35560"
-          "2=#57786c"
-          "3=#a67337"
-          "4=#719ac2"
-          "5=#ac7085"
-          "6=#526c79"
-          "7=#858479"
-          "8=#5c5c75"
-          "9=#c75f6b"
-          "10=#618679"
-          "11=#b67e3d"
-          "12=#86aed7"
-          "13=#b57e91"
-          "14=#5d7a89"
-          "15=#919084"
+          "1=#9F0202"
+          "9=#9F0202"
+
+          "2=#006C00"
+          "10=#006C00"
+
+          "3=#AE5F05"
+          "11=#AE5F05"
+
+          "4=#1E5A8B"
+          "12=#1E5A8B"
+
+          "5=#910E79"
+          "13=#910E79"
+
+          "6=#008B7F"
+          "14=#008B7F"
+
+          "7=#111111"
+          "15=#111111"
         ];
       };
       vscode = {

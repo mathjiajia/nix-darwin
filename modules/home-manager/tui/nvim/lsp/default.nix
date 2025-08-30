@@ -3,6 +3,7 @@
     ./copilot.nix
     ./clangd.nix
     ./lua_ls.nix
+    ./marksman.nix
     ./matlab_ls.nix
     ./nil_ls.nix
     ./pyrefly.nix

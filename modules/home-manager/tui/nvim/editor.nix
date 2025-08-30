@@ -19,22 +19,7 @@
 
         local detail = false
       '';
-      settings = {
-        win_options.winbar = "%!v:lua.get_oil_winbar()";
-        keymaps.gd.__raw = ''
-          {
-          	desc = "Toggle file detail view",
-          	callback = function()
-          		detail = not detail
-          		if detail then
-          			require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
-          		else
-          			require("oil").set_columns({ "icon" })
-          		end
-          	end,
-          }
-        '';
-      };
+      settings.win_options.winbar = "%!v:lua.get_oil_winbar()";
     };
 
     aerial = {
@@ -48,7 +33,6 @@
       });
       settings = {
         backends = ["lsp" "treesitter" "markdown" "man"];
-        layout.default_direction = "prefer_left";
         show_guides = true;
         filter_kind = [
           "Array"

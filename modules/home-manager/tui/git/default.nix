@@ -3,6 +3,13 @@
   pkgs,
   ...
 }: {
+  home.shellAliases = {
+    gd = "git diff";
+    gP = "git push";
+    gp = "git pull";
+    lg = "lazygit";
+  };
+
   programs.git = {
     enable = true;
     userName = "Jia Jia";

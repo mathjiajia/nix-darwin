@@ -2,14 +2,6 @@
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults = {
-    # firewall settings
-    alf = {
-      # 0 = disabled 1 = enabled 2 = blocks all connections except for essential services
-      # globalstate = 1;
-      # loggingenabled = 0;
-      # stealthenabled = 1;
-    };
-
     dock = {
       autohide = true;
       tilesize = 48;
@@ -46,34 +38,20 @@
     };
 
     finder = {
-      # Always show hidden files
-      "AppleShowAllFiles" = true;
-      # Always show file extensions
       "AppleShowAllExtensions" = true;
-      # Show status bar at bottom of finder windows with item/disk space stats
-      "ShowStatusBar" = true;
-      # Show path breadcrumbs in finder windows
+      # "AppleShowAllFiles" = true;
       "ShowPathbar" = true;
-      # Show the full POSIX filepath in the window title
-      "_FXShowPosixPathInTitle" = false;
-      # When performing a search, search the current folder by default
+      "ShowStatusBar" = true;
+      # "_FXShowPosixPathInTitle" = false;
       "FXDefaultSearchScope" = "SCcf";
-      # Disable the warning when changing a file extension
       "FXEnableExtensionChangeWarning" = false;
-      # Use list view in all Finder windows by default
       "FXPreferredViewStyle" = "Nlsv";
-      # defaults write com.apple.finder RelativeDates -bool false
-      # "RelativeDates" = false;
     };
 
-    loginwindow = {
-      GuestEnabled = false;
-    };
+    loginwindow.GuestEnabled = false;
 
     trackpad = {
-      # Enable tap to click
       Clicking = true;
-      # Enable three finger drag
       TrackpadThreeFingerDrag = true;
     };
 
@@ -90,25 +68,11 @@
       AppleMeasurementUnits = "Centimeters";
       AppleMetricUnits = 1;
       AppleTemperatureUnit = "Celsius";
-      # delay before repeating keystrokes
       # InitialKeyRepeat = 10;
-      # delay between repeated keystrokes upon holding a key
       # KeyRepeat = 1;
     };
 
-    SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
-
     CustomUserPreferences = {
-      # "com.apple.mail" = {
-      #   DisableInlineAttachmentViewing = true;
-      #   AddLinkPreviews = 0;
-      #   SwipeAction = 1; # discard mail to archive
-      #   NewMessagesSoundName = "Funk";
-      #   NSFontSize = 14;
-      #   NSFixedPitchFont = "MapleMono-NF-CN-Regular";
-      #   NSFixedPitchFontSize = 15;
-      # };
-
       # "com.apple.controlcenter" = {
       #   "NSStatusItem Visible Battery" = 0;
       #   "NSStatusItem Visible BentoBox" = 1;
@@ -119,19 +83,32 @@
       #   "NSStatusItem Visible WiFi" = 1;
       # };
 
+      "com.apple.desktopservices" = {
+        DSDontWriteNetworkStores = true;
+        DSDontWriteUSBStores = true;
+      };
+
+      "com.apple.finder" = {
+        RelativeDates = false;
+      };
+
+      # "com.apple.mail" = {
+      #   DisableInlineAttachmentViewing = true;
+      #   AddLinkPreviews = 0;
+      #   SwipeAction = 1; # discard mail to archive
+      #   NewMessagesSoundName = "Funk";
+      #   NSFontSize = 14;
+      #   NSFixedPitchFont = "MapleMono-NF-CN-Regular";
+      #   NSFixedPitchFontSize = 15;
+      # };
+
       "com.apple.SoftwareUpdate" = {
-        # Enable the automatic update check
         AutomaticCheckEnabled = true;
-        # Download newly available updates in background
         AutomaticDownload = 1;
-        # Install System data files & security updates
         CriticalUpdateInstall = 1;
       };
 
-      "com.apple.TimeMachine" = {
-        # Prevent Time Machine from prompting to use new hard drives as backup volume
-        DoNotOfferNewDisksForBackup = true;
-      };
+      "com.apple.TimeMachine".DoNotOfferNewDisksForBackup = true;
 
       "com.jordanbaird.Ice" = {
         AutoRehide = true;
@@ -149,6 +126,8 @@
         UseIceBar = false;
       };
     };
+
+    SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
   };
 
   system.keyboard = {

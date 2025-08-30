@@ -35,7 +35,6 @@
       "ollama-app"
       "permute"
       "prettyclean"
-      "pronotes"
       "qlmarkdown"
       "raycast"
       "skim"

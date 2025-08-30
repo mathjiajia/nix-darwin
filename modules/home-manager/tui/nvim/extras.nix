@@ -14,10 +14,14 @@
       "blink.indent.utils"
     ];
   };
-  math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "math-conceal";
-    src = inputs.math-conceal-nvim;
-    patches = [./fix-math-conceal.patch];
+  # math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
+  #   name = "math-conceal";
+  #   src = inputs.math-conceal-nvim;
+  #   patches = [./fix-math-conceal.patch];
+  # };
+  nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
+    name = "latex-conceal";
+    src = inputs.nvim-latex-conceal;
   };
   nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {
     name = "math-snippets";
@@ -32,14 +36,14 @@
     name = "slimline";
     src = inputs.slimline-nvim;
     nvimSkipModules = [
-      "slimline.components.progress"
-      "slimline.components.mode"
-      "slimline.components.selectioncount"
-      "slimline.components.recording"
-      "slimline.components.path"
-      "slimline.components.filetype_lsp"
       "slimline.components.diagnostics"
+      "slimline.components.filetype_lsp"
+      "slimline.components.mode"
+      "slimline.components.path"
+      "slimline.components.progress"
+      "slimline.components.recording"
       "slimline.components.searchcount"
+      "slimline.components.selectioncount"
     ];
   };
 in {
@@ -48,7 +52,8 @@ in {
 
     fff-nvim
     blink-indent
-    math-conceal-nvim
+    # math-conceal-nvim
+    nvim-latex-conceal
     nvim-math-snippets
     slimline-nvim
   ];
@@ -88,7 +93,15 @@ in {
       	"BlinkPairsOrange",
       }
 
-      require("math-conceal").setup()
+      -- require("math-conceal").setup({
+      -- 	conceal = {
+      -- 		"greek",
+      -- 		"script",
+      -- 		"math",
+      -- 		"font",
+      -- 		"delim",
+      -- 	},
+      -- })
       require("blink.pairs").setup({
       	mappings = {
       		pairs = {
@@ -158,9 +171,8 @@ in {
       				["U"] = { short = "UNK" },
       			},
       		},
-      		path = { hl = { primary = "Define" } },
       		git = { hl = { primary = "Function" } },
-      		filetype_lsp = { hl = { primary = "String" } },
+          progress = { column = true },
       	},
       })
     '';
