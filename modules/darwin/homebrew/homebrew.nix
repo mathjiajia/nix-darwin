@@ -33,6 +33,7 @@
       "mathpix-snipping-tool"
       # "neovide"
       "ollama-app"
+      "onyx"
       "permute"
       "prettyclean"
       "qlmarkdown"
@@ -42,7 +43,7 @@
       "syntax-highlight"
       "visual-studio-code"
       "zoom"
-      "zotero@beta"
+      "zotero"
     ];
   };
 }

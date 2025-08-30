@@ -8,6 +8,7 @@
       persistent-apps = [
         "/System/Applications/Apps.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"
+        "/Applications/Brave Browser.app"
         "/System/Applications/Mail.app"
         "/System/Applications/Calendar.app"
         "/System/Applications/Reminders.app"
@@ -27,8 +28,7 @@
         "/Applications/Dictionaries.app"
         "/Applications/Perplexity.app"
         "/Applications/ChatGPT.app"
-        "/Applications/ChatWise.app"
-        "/Applications/Cherry Studio.app"
+        "/Applications/Ollama.app"
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"
         "/System/Applications/App Store.app"
@@ -117,7 +117,7 @@
         HideApplicationMenus = true;
         RehideInterval = 15;
         RehideStrategy = 0;
-        ShowIceIcon = false;
+        ShowIceIcon = true;
         ShowOnClick = true;
         ShowOnHover = false;
         ShowOnHoverDelay = "0.2";

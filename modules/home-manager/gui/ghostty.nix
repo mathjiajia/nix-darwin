@@ -4,17 +4,17 @@
     package = null;
     settings = {
       auto-update = "off";
-      # background-opacity = 0.9;
-      # background-blur = true;
+      background-opacity = 0.95;
+      background-blur = true;
       cursor-style = "block";
-      custom-shader = "shaders/cursor_smear.glsl";
+      custom-shader = "shaders/cursor_smear_gradient.glsl";
       font-family = "Sarasa Term SC";
       font-size = 21;
       font-thicken = true;
       keybind = "global:cmd+grave_accent=toggle_quick_terminal";
       mouse-hide-while-typing = true;
       shell-integration-features = "no-cursor";
-      theme = "tokyonight_moon";
+      theme = "TokyoNight Moon";
       window-colorspace = "display-p3";
       window-title-font-family = "Sarasa Term SC";
     };

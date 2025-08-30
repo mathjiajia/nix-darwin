@@ -23,7 +23,7 @@
   #         	if not pcall(vim.treesitter.start, ev.buf) then
   #         		return
   #         	end
-  #         	vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+  #         	vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
   #         	vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   #         end
   #       '';

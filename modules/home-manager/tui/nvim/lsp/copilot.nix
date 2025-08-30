@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.copilot = {
     enable = true;
-    package = pkgs.copilot-language-server;
     settings = {
       cmd = ["${pkgs.copilot-language-server}/bin/copilot-language-server" "--stdio"];
       root_markers = [".git"];

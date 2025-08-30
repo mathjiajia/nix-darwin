@@ -9,90 +9,6 @@
         ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
     });
     settings = {
-      # dashboard = {
-      #   preset = {
-      #     header = ''
-      #       ██████████████████████████████████████████████████
-      #       █████ ████████████████████████████████████████
-      #       ████   ███  ████████████████  █ ███████████
-      #       ███     █     █     ██  ████ █ ███
-      #       ██  █       ██ ██    █        ██
-      #       ██  ███   █   ██ ██ █   █  █ █  ██
-      #       ███████ ██    █    ███ █  █████ ██
-      #       ██████████████████████████████████████████████████'';
-      #     keys = [
-      #       {
-      #         key = "f";
-      #         action = ":FFFFind";
-      #         hidden = true;
-      #       }
-      #       {
-      #         key = "n";
-      #         action = ":ene | startinsert";
-      #         hidden = true;
-      #       }
-      #       {
-      #         key = "g";
-      #         action = ":lua Snacks.picker.grep()";
-      #         hidden = true;
-      #       }
-      #       {
-      #         key = "r";
-      #         action = ":lua Snacks.picker.recent()";
-      #         hidden = true;
-      #       }
-      #       {
-      #         key = "q";
-      #         action = ":qa";
-      #         hidden = true;
-      #       }
-      #     ];
-      #   };
-      #   sections = [
-      #     {section = "header";}
-      #     {section = "keys";}
-      #     {
-      #       padding = 2;
-      #       align = "center";
-      #       text = [
-      #         {
-      #           __unkeyed-1 = " [f]ile  ";
-      #           hl = "BlinkPairsBlue";
-      #         }
-      #         {
-      #           __unkeyed-1 = " [n]ew  ";
-      #           hl = "BlinkPairsYellow";
-      #         }
-      #         {
-      #           __unkeyed-1 = " [g]rep  ";
-      #           hl = "BlinkPairsGreen";
-      #         }
-      #         {
-      #           __unkeyed-1 = " [r]ecent  ";
-      #           hl = "BlinkPairsTeal";
-      #         }
-      #         {
-      #           __unkeyed-1 = " [q]uit";
-      #           hl = "BlinkPairsPurple";
-      #         }
-      #       ];
-      #     }
-      #     {
-      #       icon = " ";
-      #       title = "Recent Files";
-      #       section = "recent_files";
-      #       indent = 2;
-      #       padding = 1;
-      #     }
-      #     {
-      #       icon = " ";
-      #       title = "Projects";
-      #       section = "projects";
-      #       indent = 2;
-      #       padding = 1;
-      #     }
-      #   ];
-      # };
       image = {
         enabled.__raw = ''not vim.g.neovide'';
         math.enabled = false;
@@ -168,18 +84,6 @@
       action.__raw = ''function() Snacks.picker.buffers({ layout = "select" }) end'';
       options.desc = "Buffers";
     }
-    # {
-    #   mode = "n";
-    #   key = "<leader>ff";
-    #   action.__raw = ''function() Snacks.picker.files() end'';
-    #   options.desc = "Find Files";
-    # }
-    # {
-    #   mode = "n";
-    #   key = "<leader>fg";
-    #   action.__raw = ''function() Snacks.picker.git_files() end'';
-    #   options.desc = "Find Git Files";
-    # }
     {
       mode = "n";
       key = "<leader>fm";

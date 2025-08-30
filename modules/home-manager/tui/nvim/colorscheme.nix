@@ -27,9 +27,9 @@
           # lua
           ''
             function(hl, c)
-            	hl["@module.latex"] = { fg = "#DCDCAF" }
-            	hl["@label.latex"] = { fg = "#AADAFA" }
-            	hl["@function.latex"] = { fg = "#71C6B1" }
+            	hl["@module.latex"] = { fg = c.yellow }
+            	hl["@label.latex"] = { fg = c.blue }
+            	hl["@function.latex"] = { fg = c.magenta }
 
             	hl.BlinkPairsBlue = { fg = c.blue }
             	hl.BlinkPairsYellow = { fg = c.yellow }

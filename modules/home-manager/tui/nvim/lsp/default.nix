@@ -1,12 +1,14 @@
 {
   imports = [
-    ./copilot.nix
     ./clangd.nix
+    ./copilot.nix
+    ./leanls.nix
     ./lua_ls.nix
     ./marksman.nix
     ./matlab_ls.nix
     ./nil_ls.nix
     ./pyrefly.nix
+    # ./ruff.nix
     ./sourcekit.nix
     ./taplo.nix
     ./texlab.nix

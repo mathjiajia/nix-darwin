@@ -49,9 +49,10 @@
 in {
   programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
     blink-pairs
+    fyler-nvim
 
-    fff-nvim
     blink-indent
+    fff-nvim
     # math-conceal-nvim
     nvim-latex-conceal
     nvim-math-snippets
@@ -61,8 +62,15 @@ in {
   programs.nixvim.keymaps = [
     {
       mode = "n";
+      key = "<leader>e";
+      action = "<Cmd>Fyler<CR>";
+      options.desc = "Open File Picker";
+    }
+
+    {
+      mode = "n";
       key = "<leader>ff";
-      action.__raw = ''function() require("fff").find_files() end'';
+      action = "<Cmd>FFFFind<CR>";
       options.desc = "Open File Picker";
     }
     {
@@ -76,7 +84,7 @@ in {
   programs.nixvim.extraConfigLua =
     # lua
     ''
-      require("vim._extui").enable({ msg = { target = "msg" } })
+      require("vim._extui").enable({})
 
       vim.g.fff = {
       	lazy_sync = true,
@@ -92,6 +100,24 @@ in {
       	"BlinkPairsPurple",
       	"BlinkPairsOrange",
       }
+
+      require("fyler").setup({
+      	default_explorer = true,
+      	hooks = {
+      		on_rename = function(src_path, destination_path)
+      			Snacks.rename.on_rename_file(src_path, destination_path)
+      		end,
+      	},
+      	icon = {
+      		directory_collapsed = "",
+      		directory_expanded = "",
+      		directory_empty = "󰜌",
+      	},
+      	win = {
+      		kind = "split_left",
+      		kind_presets = { split_left = { width = "0.2rel" } },
+      	},
+      })
 
       -- require("math-conceal").setup({
       -- 	conceal = {
@@ -172,8 +198,9 @@ in {
       			},
       		},
       		git = { hl = { primary = "Function" } },
-          progress = { column = true },
+      		progress = { column = true },
       	},
       })
+
     '';
 }

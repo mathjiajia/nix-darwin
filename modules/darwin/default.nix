@@ -1,18 +1,15 @@
 {pkgs, ...}: {
-  imports = [
-    ./homebrew/homebrew.nix
-    ./mas/mas.nix
-    ./system.nix
-  ];
-
   environment.pathsToLink = ["/share/zsh"];
 
   environment.systemPackages = with pkgs; [
     # CLI
-    # cargo
+    cargo
+    crush
     hugo
+    go
+    lean4
     luajit
-    nodejs # npx
+    # nodejs # npx
 
     # PYTHON
     (python3.withPackages (ps:
@@ -28,8 +25,6 @@
       ]))
   ];
 
-  environment.shells = [pkgs.nushell];
-
   fonts.packages = with pkgs; [
     lxgw-wenkai
     maple-mono.NF-CN
@@ -38,5 +33,11 @@
 
     nerd-fonts.iosevka-term
     nerd-fonts.symbols-only
+  ];
+
+  imports = [
+    ./homebrew/homebrew.nix
+    ./mas/mas.nix
+    ./system.nix
   ];
 }

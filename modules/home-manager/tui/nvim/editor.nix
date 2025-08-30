@@ -1,69 +1,8 @@
-{pkgs, ...}: {
+{
   programs.nixvim.plugins = {
     flash.enable = true;
     grug-far.enable = true;
     nvim-surround.enable = true;
-
-    oil = {
-      enable = true;
-      luaConfig.pre = ''
-        function _G.get_oil_winbar()
-        	local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-        	local dir = require("oil").get_current_dir(bufnr)
-        	if dir then
-        		return vim.fn.fnamemodify(dir, ":~")
-        	else
-        		return vim.api.nvim_buf_get_name(0)
-        	end
-        end
-
-        local detail = false
-      '';
-      settings.win_options.winbar = "%!v:lua.get_oil_winbar()";
-    };
-
-    aerial = {
-      enable = true;
-      package = pkgs.vimPlugins.aerial-nvim.overrideAttrs (oldAttrs: {
-        postInstall =
-          oldAttrs.postInstall
-            or ""
-          + # sh
-          ''mv $out/doc/api.md $out/doc/aerial-nvim_api.md'';
-      });
-      settings = {
-        backends = ["lsp" "treesitter" "markdown" "man"];
-        show_guides = true;
-        filter_kind = [
-          "Array"
-          "Boolean"
-          "Class"
-          # "Constant"
-          "Constructor"
-          "Enum"
-          "EnumMember"
-          "Event"
-          "Field"
-          "File"
-          "Function"
-          "Interface"
-          "Key"
-          "Method"
-          "Module"
-          "Namespace"
-          "Null"
-          "Number"
-          "Object"
-          "Operator"
-          # "Package"
-          "Property"
-          "String"
-          "Struct"
-          "TypeParameter"
-          "Variable"
-        ];
-      };
-    };
 
     gitsigns = {
       enable = true;
@@ -118,13 +57,6 @@
 
   programs.nixvim.keymaps = [
     {
-      mode = "n";
-      key = "-";
-      action = "<Cmd>Oil<CR>";
-      options.desc = "Open parent directory";
-    }
-
-    {
       mode = ["n" "v"];
       key = "<leader>sr";
       action.__raw =
@@ -137,13 +69,6 @@
           end
         '';
       options.desc = "Search and Replace";
-    }
-
-    {
-      mode = "n";
-      key = "<leader>cs";
-      action = "<Cmd>AerialToggle<CR>";
-      options.desc = "Aerial (Symbols)";
     }
 
     {

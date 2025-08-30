@@ -3,7 +3,7 @@
     stateVersion = "25.11";
     sessionPath = ["/Library/TeX/texbin"];
     sessionVariables = {
-      ALIYUN_API_KEY = "$(security find-generic-password -s 'ALIYUN_API_KEY' -w)";
+      # ALIYUN_API_KEY = "$(security find-generic-password -s 'ALIYUN_API_KEY' -w)";
       GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
     };
   };
@@ -15,8 +15,6 @@
     bun.enable = true;
     eza.enable = true;
     fastfetch.enable = true;
-    gemini-cli.enable = true;
-    opencode.enable = true;
     pandoc.enable = true;
     uv.enable = true;
 

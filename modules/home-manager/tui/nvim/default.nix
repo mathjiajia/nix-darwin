@@ -13,6 +13,7 @@
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     defaultEditor = true;
     luaLoader.enable = true;
+    nixpkgs.config.allowUnfree = true;
     # colorscheme = "tokyonight";
   };
 
@@ -27,7 +28,7 @@
       enable = true;
       pathsToLink = [
         "/luasnippets" # luasnip
-        "/queries_config" # math-conceal.nvim
+        # "/queries_config" # math-conceal.nvim
       ];
     };
   };

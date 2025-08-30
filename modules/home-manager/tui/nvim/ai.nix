@@ -1,76 +1,49 @@
-{pkgs, ...}: {
-  programs.nixvim.plugins.codecompanion = {
-    enable = true;
-    package = pkgs.vimPlugins.codecompanion-nvim.overrideAttrs (oldAttrs: {
-      postInstall =
-        oldAttrs.postInstall
-          or ""
-        + # sh
-        ''find $out/doc -mindepth 1 ! -name "codecompanion.txt" -delete'';
-    });
-    settings = {
-      adapters.http = {
-        aliyun_qwen.__raw = ''
-          function()
-          	return require("codecompanion.adapters").extend("openai_compatible", {
-          		name = "aliyun_qwen",
-          		env = {
-          			url = "https://dashscope.aliyuncs.com/compatible-mode",
-          			api_key = "ALIYUN_API_KEY",
-          		},
-          		schema = {
-          			model = {
-          				default = "qwen-max",
-          				choices = {
-          					"qwen-max",
-          					"qwen3-235b-a22b",
-          					"qwen3-coder-480b-a35b-instruct",
-          				},
-          			},
-          		},
-          	})
-          end
-        '';
-      };
-      strategies.chat.opt.completion_provider = "blink";
-      display = {
-        action_palette.provider = "snacks";
-        diff.provider = "mini_diff";
-        chat.window.opts = {
-          conceallevel = 2;
-          colorcolumn = "";
-          number = false;
-          relativenumber = false;
-        };
-      };
-    };
-  };
+{
+  programs.nixvim.plugins.sidekick.enable = true;
 
   programs.nixvim.keymaps = [
     {
-      mode = ["n" "v"];
+      mode = "n";
+      key = "<Tab>";
+      action.__raw = ''function() if not require("sidekick").nes_jump_or_apply() then return "<Tab>" end end'';
+      options.expr = true;
+      options.desc = "Sidekick Toggle CLI";
+    }
+    {
+      mode = "n";
       key = "<leader>aa";
-      action = "<Cmd>CodeCompanionActions<CR>";
-      options.desc = "CodeCompanion Actions";
+      action.__raw = ''function() require("sidekick.cli").toggle() end'';
+      options.desc = "Sidekick Toggle CLI";
     }
     {
-      mode = ["n" "v"];
-      key = "<leader>ac";
-      action = "<Cmd>CodeCompanionChat<CR>";
-      options.desc = "CodeCompanion Chat";
+      mode = "n";
+      key = "<leader>as";
+      action.__raw = ''function() require("sidekick.cli").select({ filter = { installed = true } }) end'';
+      options.desc = "Sidekick Select CLI";
     }
     {
-      mode = ["n" "v"];
-      key = "<leader>ae";
-      action.__raw = ''
-        function()
-        	local prompt = vim.fn.input("Inline Assistant: ")
-        	if prompt ~= "" then
-        		vim.cmd.CodeCompanion(prompt)
-        	end
-        end
-      '';
-      options.desc = "CodeCompanion Inline Assistant";
+      mode = ["x" "n"];
+      key = "<leader>at";
+      action.__raw = ''function() require("sidekick.cli").send({ msg = "{this}" }) end'';
+      options.desc = "Send This";
+    }
+    {
+      mode = "x";
+      key = "<leader>av";
+      action.__raw = ''function() require("sidekick.cli").send({ msg = "{selection}" }) end'';
+      options.desc = "Send Visual Selection";
+    }
+    {
+      mode = ["n" "x"];
+      key = "<leader>ap";
+      action.__raw = ''function() require("sidekick.cli").select_prompt() end'';
+      options.desc = "Sidekick Prompt Picker";
+    }
+    {
+      mode = ["n" "x" "i" "t"];
+      key = "<C-.>";
+      action.__raw = ''function() require("sidekick.cli").focus() end'';
+      options.desc = "Sidekick Switch Focus";
     }
   ];
 }

@@ -18,6 +18,7 @@
     "neteasemusic"
     "openra"
     "orbstack"
+    "osaurus"
     "publish-or-perish"
     "quarto"
     "quickrecorder"

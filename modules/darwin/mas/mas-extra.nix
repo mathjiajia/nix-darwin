@@ -22,7 +22,7 @@
     TestFlight = 899247664;
     TTPrompter = 6746564039;
     VidHub = 1659622164;
-    # Xcode = 497799835;
+    Xcode = 497799835;
     xcz = 912139104;
 
     # Compressor = 424390742;
