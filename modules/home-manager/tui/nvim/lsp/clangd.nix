@@ -2,7 +2,7 @@
   programs.nixvim.lsp.servers.clangd = {
     enable = true;
     package = null;
-    settings = {
+    config = {
       cmd = ["/usr/bin/clangd"];
       filetypes = ["c" "cpp"];
       root_markers = [

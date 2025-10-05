@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.leanls = {
     enable = true;
-    settings = {
+    config = {
       cmd.__raw = ''
         function(dispatchers, config)
         	local local_cmd = { "${pkgs.lean4}/bin/lake", "serve", "--", config.root_dir }

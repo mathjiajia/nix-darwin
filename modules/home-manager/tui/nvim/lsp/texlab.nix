@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.texlab = {
     enable = true;
-    settings = {
+    config = {
       cmd = ["${pkgs.texlab}/bin/texlab"];
       filetypes = ["tex" "plaintex" "bib"];
       root_markers = [
@@ -116,19 +116,18 @@
         	end
 
         	local function buf_change_env()
-            local pos = vim.api.nvim_win_get_cursor(0)
-            local uri = vim.uri_from_bufnr(bufnr)
         		vim.ui.input({ prompt = "New environment name: " }, function(input)
         			if not input or input == "" then
         				return vim.notify("No environment name provided", vim.log.levels.WARN)
         			end
 
+              local pos = vim.api.nvim_win_get_cursor(0)
         			return client:exec_cmd({
         				title = "change_environment",
         				command = "texlab.changeEnvironment",
         				arguments = {
         					{
-        						textDocument = { uri = uri },
+        						textDocument = { uri = vim.uri_from_bufnr(bufnr) },
         						position = { line = pos[1] - 1, character = pos[2] },
         						newName = input,
         					},

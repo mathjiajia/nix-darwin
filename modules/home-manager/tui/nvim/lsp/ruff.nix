@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.ruff = {
     enable = true;
-    settings = {
+    config = {
       cmd = ["${pkgs.ruff}/bin/ruff" "server"];
       filetypes = ["python"];
       root_markers = [

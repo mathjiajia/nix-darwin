@@ -26,13 +26,13 @@
 
       conform-nvim = {
         enable = true;
-        # package = pkgs.vimPlugins.conform-nvim.overrideAttrs (oldAttrs: {
-        #   postInstall =
-        #     oldAttrs.postInstall
-        #     or ""
-        #     + # sh
-        #     ''mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md'';
-        # });
+        package = pkgs.vimPlugins.conform-nvim.overrideAttrs (oldAttrs: {
+          postInstall =
+            oldAttrs.postInstall
+            or ""
+            + # sh
+            ''mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md'';
+        });
         settings = {
           formatters.bibtex-tidy.prepend_args = [
             "--curly"
@@ -56,16 +56,14 @@
             lua = ["stylua"];
             tex = ["tex-fmt"];
           };
-          format_on_save.__raw =
-            # lua
-            ''
-              function(bufnr)
-                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-                  return
-                end
-                return { timeout_ms = 500, lsp_format = "fallback" }
+          format_on_save.__raw = ''
+            function(bufnr)
+              if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                return
               end
-            '';
+              return { timeout_ms = 500, lsp_format = "fallback" }
+            end
+          '';
         };
       };
     };

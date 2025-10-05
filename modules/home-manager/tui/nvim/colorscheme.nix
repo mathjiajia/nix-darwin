@@ -5,18 +5,16 @@
       settings = {
         style = "moon";
         dim_inactive = true;
-        transparent = false;
+        transparent = true;
         terminal_colors = false;
         plugins = {
           all = false;
           auto = false;
-          aerial = true;
           blink = true;
           dap = true;
           flash = true;
           gitsigns = true;
           grug-far = true;
-          mini_diff = true;
           mini_hipatterns = true;
           mini_icons = true;
           render-markdown = true;
@@ -30,7 +28,6 @@
             	hl["@module.latex"] = { fg = c.yellow }
             	hl["@label.latex"] = { fg = c.blue }
             	hl["@function.latex"] = { fg = c.magenta }
-
             	hl.BlinkPairsBlue = { fg = c.blue }
             	hl.BlinkPairsYellow = { fg = c.yellow }
             	hl.BlinkPairsGreen = { fg = c.green }

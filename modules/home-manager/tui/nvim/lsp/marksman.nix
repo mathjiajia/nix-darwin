@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.lsp.servers.marksman = {
     enable = true;
-    settings = {
+    config = {
       cmd = ["${pkgs.marksman}/bin/marksman" "server"];
       filetypes = ["markdown" "markdown.mdx"];
       root_markers = [".marksman.toml" ".git"];

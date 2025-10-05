@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
@@ -20,45 +20,9 @@
     blink-ripgrep.enable = true;
     blink-cmp = {
       enable = true;
-      package = pkgs.vimPlugins.blink-cmp.overrideAttrs (oldAttrs: {
-        postInstall =
-          oldAttrs.postInstall
-          or ""
-          + # sh
-          ''find $out/doc -mindepth 1 ! -name "blink-cmp.txt" -delete'';
-      });
       settings = {
-        keymap = {
-          preset = "default";
-          "<C-y>" = {
-            __unkeyed-1 = "select_and_accept";
-            __unkeyed-2.__raw = ''
-              vim.schedule_wrap(function()
-              	local ls = require("luasnip")
-              	if ls.expandable() then
-              		ls.expand()
-              	end
-              end),
-            '';
-          };
-          "<C-;>" = {
-            __unkeyed-1.__raw = ''
-              vim.schedule_wrap(function()
-              	local ls = require("luasnip")
-              	if ls.choice_active() then
-              		ls.change_choice(1)
-              	end
-              end),
-            '';
-          };
-        };
         completion = {
-          documentation = {
-            auto_show = true;
-            auto_show_delay_ms = 50;
-            update_delay_ms = 50;
-            treesitter_highlighting = true;
-          };
+          documentation.auto_show = true;
           list.max_items = 20;
           menu.draw.treesitter = ["lsp"];
         };
@@ -81,4 +45,14 @@
       };
     };
   };
+
+  programs.nixvim.keymaps = [
+    {
+      mode = ["i" "s"];
+      key = "<C-;>";
+      action.__raw = ''function() if require("luasnip").choice_active() then require("luasnip").change_choice(1) end end'';
+      options.silent = true;
+      options.desc = "LuaSnip";
+    }
+  ];
 }

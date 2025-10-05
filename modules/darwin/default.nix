@@ -5,11 +5,12 @@
     # CLI
     cargo
     crush
+    elan # lean
     hugo
-    go
-    lean4
+    # go
     luajit
     # nodejs # npx
+    scooter
 
     # PYTHON
     (python3.withPackages (ps:

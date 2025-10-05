@@ -14,7 +14,6 @@
     defaultEditor = true;
     luaLoader.enable = true;
     nixpkgs.config.allowUnfree = true;
-    # colorscheme = "tokyonight";
   };
 
   programs.nixvim.performance = {
@@ -44,8 +43,7 @@
     ./dap.nix
     ./editor.nix
     ./fmtlint.nix
-    ./mini.nix
-    ./snacks.nix
+    ./lang.nix
     ./treesitter.nix
     ./ui.nix
 

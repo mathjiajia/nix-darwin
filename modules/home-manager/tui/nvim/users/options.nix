@@ -25,17 +25,17 @@
       # 1 important
 
       # 2 moving around, seaching patterns
-      ignorecase = true;
-      smartcase = true;
+      ignorecase = true; # ignore case when using a search pattern
+      smartcase = true; # override 'ignorecase' when pattern has upper case characters
 
       # 3 tags
 
       # 4 displaying text
-      smoothscroll = true;
-      scrolloff = 10;
-      linebreak = true;
-      breakindent = true;
-      showbreak = "> ";
+      smoothscroll = true; # smoothscroll	scroll by screen line
+      scrolloff = 10; # number of screen lines to show around the cursor
+      linebreak = true; # wrap long lines at a character in 'breakat'
+      breakindent = true; # preserve indentation in wrapped text
+      showbreak = "> "; # string to put before wrapped screen lines
       fillchars = {
         diff = "╱";
         eob = " ";
@@ -46,7 +46,7 @@
       relativenumber = true;
 
       # 5 syntax, highlighting and spelling
-      colorcolumn = "120";
+      # colorcolumn = "120";
       cursorline = true;
       spelllang = "en_gb";
 
