@@ -10,6 +10,9 @@ in {
   nixpkgs = {
     hostPlatform = system;
     config.allowUnfree = true;
+    overlays = [
+      (import ./overlays/assimp.nix)
+    ];
   };
 
   system = {

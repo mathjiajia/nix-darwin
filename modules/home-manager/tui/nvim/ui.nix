@@ -55,28 +55,7 @@ in {
   programs.nixvim.extraConfigLua = ''
     require("slimline").setup({
     	components = { center = { "searchcount", "selectioncount" } },
-    	configs = {
-    		mode = {
-    			format = {
-    				["n"] = { short = "NOR" },
-    				["v"] = { short = "VIS" },
-    				["V"] = { short = "V-L" },
-    				["\22"] = { short = "V-B" },
-    				["s"] = { short = "SEL" },
-    				["S"] = { short = "S-L" },
-    				["\19"] = { short = "S-B" },
-    				["i"] = { short = "INS" },
-    				["R"] = { short = "REP" },
-    				["c"] = { short = "CMD" },
-    				["r"] = { short = "PRO" },
-    				["!"] = { short = "SHE" },
-    				["t"] = { short = "TER" },
-    				["U"] = { short = "UNK" },
-    			},
-    		},
-    		git = { hl = { primary = "Function" } },
-    		progress = { column = true },
-    	},
+    	configs = { git = { hl = { primary = "Function" } } },
     })
 
     require("mini.hipatterns").setup({

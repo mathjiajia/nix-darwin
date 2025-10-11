@@ -58,13 +58,13 @@
     ];
   in {
     darwinConfigurations = {
-      "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {
-        modules = shared-modules;
+      "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        modules = shared-modules ++ [./modules/darwin/extra.nix];
         specialArgs = special_args;
       };
 
-      "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        modules = shared-modules ++ [./modules/darwin/extra.nix];
+      "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {
+        modules = shared-modules;
         specialArgs = special_args;
       };
     };
