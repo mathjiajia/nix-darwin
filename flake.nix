@@ -24,10 +24,6 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    # Additional Neovim plugins
-    fff-nvim.url = "github:dmtrKovalenko/fff.nvim";
-    fff-nvim.inputs.nixpkgs.follows = "nixpkgs";
-
     blink-indent.url = "github:saghen/blink.indent";
     blink-indent.flake = false;
     # math-conceal-nvim.url = "github:pxwg/math-conceal.nvim";
@@ -40,33 +36,36 @@
     slimline-nvim.flake = false;
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nix-darwin,
-    home-manager,
-    nix-homebrew,
-    ...
-  } @ inputs: let
-    special_args = {inherit inputs;};
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      nix-homebrew,
+      ...
+    }@inputs:
+    let
+      special_args = { inherit inputs; };
 
-    shared-modules = [
-      ./configuration.nix
-      ./modules/darwin
-      nix-homebrew.darwinModules.nix-homebrew
-      home-manager.darwinModules.home-manager
-    ];
-  in {
-    darwinConfigurations = {
-      "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-        modules = shared-modules ++ [./modules/darwin/extra.nix];
-        specialArgs = special_args;
-      };
+      shared-modules = [
+        ./configuration.nix
+        ./modules/darwin
+        nix-homebrew.darwinModules.nix-homebrew
+        home-manager.darwinModules.home-manager
+      ];
+    in
+    {
+      darwinConfigurations = {
+        "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+          modules = shared-modules ++ [ ./modules/darwin/extra.nix ];
+          specialArgs = special_args;
+        };
 
-      "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {
-        modules = shared-modules;
-        specialArgs = special_args;
+        "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {
+          modules = shared-modules;
+          specialArgs = special_args;
+        };
       };
     };
-  };
 }

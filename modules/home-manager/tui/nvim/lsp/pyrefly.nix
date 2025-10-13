@@ -1,9 +1,13 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim.lsp.servers.pyrefly = {
     enable = true;
     config = {
-      cmd = ["${pkgs.pyrefly}/bin/pyrefly" "lsp"];
-      filetypes = ["python"];
+      cmd = [
+        "${pkgs.pyrefly}/bin/pyrefly"
+        "lsp"
+      ];
+      filetypes = [ "python" ];
       root_markers = [
         "pyrefly.toml"
         "pyproject.toml"

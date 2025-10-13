@@ -1,9 +1,13 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim.lsp.servers.matlab_ls = {
     enable = true;
     config = {
-      cmd = ["${pkgs.matlab-language-server}/bin/matlab-language-server" "--stdio"];
-      filetypes = ["matlab"];
+      cmd = [
+        "${pkgs.matlab-language-server}/bin/matlab-language-server"
+        "--stdio"
+      ];
+      filetypes = [ "matlab" ];
       root_dir.__raw = ''
         function(bufnr, on_dir)
         	local root_dir = vim.fs.root(bufnr, '.git')

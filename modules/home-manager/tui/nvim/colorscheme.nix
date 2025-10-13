@@ -1,7 +1,29 @@
 {
   programs.nixvim.colorschemes = {
-    tokyonight = {
+    bamboo = {
       enable = true;
+      settings = {
+        transparent = true;
+        dim_inactive = true;
+        code_style.comments = {
+          italic = true;
+          fg = "#5b5e5a";
+        };
+        highlights = {
+          CursorLine.bg = "$bg2";
+          StatusLine.bg = "$none";
+          BlinkPairsBlue.fg = "$blue";
+          BlinkPairsYellow.fg = "$yellow";
+          BlinkPairsGreen.fg = "$green";
+          BlinkPairsTeal.fg = "$cyan";
+          BlinkPairsMagenta.fg = "$coral";
+          BlinkPairsPurple.fg = "$purple";
+          BlinkPairsOrange.fg = "$orange";
+        };
+      };
+    };
+    tokyonight = {
+      # enable = true;
       settings = {
         style = "moon";
         dim_inactive = true;

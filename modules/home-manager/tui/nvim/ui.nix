@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   slimline-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "slimline";
     src = inputs.slimline-nvim;
@@ -17,9 +18,11 @@
       "slimline.components.selectioncount"
     ];
   };
-in {
+in
+{
   programs.nixvim.extraPlugins = [
     slimline-nvim
+    # pkgs.vimPlugins.mini-diff
     pkgs.vimPlugins.mini-hipatterns
   ];
 
@@ -52,11 +55,28 @@ in {
     };
   };
 
+  # programs.nixvim.keymaps = [
+  #   {
+  #     mode = "n";
+  #     key = "<leader>hp";
+  #     action.__raw = ''function() MiniDiff.toggle_overlay() end'';
+  #     options.desc = "Hunk Diff Overlay";
+  #   }
+  # ];
+
   programs.nixvim.extraConfigLua = ''
     require("slimline").setup({
-    	components = { center = { "searchcount", "selectioncount" } },
+    	style = "fg",
+    	components = { center = { "searchcount" } },
     	configs = { git = { hl = { primary = "Function" } } },
     })
+
+    -- require("mini.diff").setup({
+    --   view = {
+    --     style = "sign",
+    --     signs = { add = "┃", change = "┃", delete = "_" },
+    --   },
+    -- })
 
     require("mini.hipatterns").setup({
     	highlighters = {

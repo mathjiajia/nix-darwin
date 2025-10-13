@@ -3,15 +3,31 @@
     plugins.sniprun = {
       enable = true;
       settings = {
-        display = ["VirtualTextOk" "VirtualTextErr" "Terminal"];
-        selected_interpreters = ["Lua_nvim" "Python3_fifo"];
-        repl_enable = ["Bash_original" "Lua_nvim" "Python3_fifo" "R_original" "Swift_original"];
+        display = [
+          "VirtualTextOk"
+          "VirtualTextErr"
+          "Terminal"
+        ];
+        selected_interpreters = [
+          "Lua_nvim"
+          "Python3_fifo"
+        ];
+        repl_enable = [
+          "Bash_original"
+          "Lua_nvim"
+          "Python3_fifo"
+          "R_original"
+          "Swift_original"
+        ];
       };
     };
 
     keymaps = [
       {
-        mode = ["n" "v"];
+        mode = [
+          "n"
+          "v"
+        ];
         key = "<leader>rs";
         action = "<Plug>SnipRun";
         options.silent = true;

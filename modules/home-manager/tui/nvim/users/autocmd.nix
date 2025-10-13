@@ -1,15 +1,19 @@
 {
   programs.nixvim = {
     autoGroups = {
-      CheckTime = {};
-      HighlightYank = {};
-      LastPlace = {};
-      OpenFile = {};
+      CheckTime = { };
+      HighlightYank = { };
+      LastPlace = { };
+      OpenFile = { };
     };
 
     autoCmd = [
       {
-        event = ["FocusGained" "TermClose" "TermLeave"];
+        event = [
+          "FocusGained"
+          "TermClose"
+          "TermLeave"
+        ];
         group = "CheckTime";
         callback.__raw = ''function() if vim.o.buftype ~= "nofile" then vim.cmd.checktime() end end'';
       }
@@ -66,7 +70,13 @@
       {
         event = "BufReadPost";
         group = "OpenFile";
-        pattern = ["*.jpeg" "*.jpg" "*.mp4" "*.pdf" "*.png"];
+        pattern = [
+          "*.jpeg"
+          "*.jpg"
+          "*.mp4"
+          "*.pdf"
+          "*.png"
+        ];
         callback.__raw = ''
           function(ev)
             vim.system("open '" .. vim.fn.expand("%") .. "'", { detach = true })

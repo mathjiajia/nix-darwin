@@ -1,9 +1,10 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim.lsp.servers.lua_ls = {
     enable = true;
     config = {
-      cmd = ["${pkgs.lua-language-server}/bin/lua-language-server"];
-      filetypes = ["lua"];
+      cmd = [ "${pkgs.lua-language-server}/bin/lua-language-server" ];
+      filetypes = [ "lua" ];
       root_markers = [
         ".luarc.json"
         ".luarc.jsonc"
@@ -19,7 +20,10 @@
         hint.enable = true;
         runtime = {
           version = "LuaJIT";
-          path = ["lua/?.lua" "lua/?/init.lua"];
+          path = [
+            "lua/?.lua"
+            "lua/?/init.lua"
+          ];
         };
         telemetry.enable = false;
         workspace = {

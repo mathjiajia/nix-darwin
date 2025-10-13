@@ -3,8 +3,11 @@
     enable = true;
     package = null;
     config = {
-      cmd = ["/usr/bin/clangd"];
-      filetypes = ["c" "cpp"];
+      cmd = [ "/usr/bin/clangd" ];
+      filetypes = [
+        "c"
+        "cpp"
+      ];
       root_markers = [
         ".clangd"
         ".clang-tidy"
@@ -16,7 +19,10 @@
       ];
       capabilities = {
         textDocument.completion.editsNearCursor = true;
-        offsetEncoding = ["utf-8" "utf-16"];
+        offsetEncoding = [
+          "utf-8"
+          "utf-16"
+        ];
       };
       on_init.__raw = ''
         function(client, init_result)

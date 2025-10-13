@@ -1,7 +1,7 @@
 {
   home = {
     stateVersion = "25.11";
-    sessionPath = ["/Library/TeX/texbin"];
+    sessionPath = [ "/Library/TeX/texbin" ];
     sessionVariables = {
       # ALIYUN_API_KEY = "$(security find-generic-password -s 'ALIYUN_API_KEY' -w)";
       GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
@@ -42,7 +42,10 @@
     };
 
     zoxide.enable = true;
-    zoxide.options = ["--cmd" "cd"];
+    zoxide.options = [
+      "--cmd"
+      "cd"
+    ];
 
     zsh.enable = true;
     zsh.autosuggestion.enable = true;

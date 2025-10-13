@@ -1,17 +1,19 @@
+{ pkgs, ... }:
 {
-  inputs,
-  pkgs,
-  ...
-}: {
-  programs.nixvim.extraPlugins = [
-    inputs.fff-nvim.packages.${pkgs.system}.fff-nvim
-    pkgs.vimPlugins.fyler-nvim
-  ];
+  programs.nixvim.extraPlugins = [ pkgs.vimPlugins.fyler-nvim ];
 
   programs.nixvim.plugins = {
     flash.enable = true;
     grug-far.enable = true;
     nvim-surround.enable = true;
+
+    fff = {
+      enable = true;
+      settings = {
+        lazy_sync = true;
+        layout.prompt_position = "top";
+      };
+    };
 
     gitsigns = {
       enable = true;
@@ -67,16 +69,18 @@
       enable = true;
       package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
         postInstall =
-          oldAttrs.postInstall
-        or ""
-          + # sh
-          ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
+          oldAttrs.postInstall or ""
+          # sh
+          + ''mkdir --parents $out/after/; mv $out/queries/ $out/after/queries/'';
       });
       settings = {
         input.enabled = true;
         picker.win.input.keys."<M-d>" = {
           __unkeyed-1 = "toggle_hidden";
-          mode = ["n" "i"];
+          mode = [
+            "n"
+            "i"
+          ];
         };
         styles.lazygit = {
           width = 0;
@@ -87,11 +91,6 @@
   };
 
   programs.nixvim.extraConfigLua = ''
-    vim.g.fff = {
-    	lazy_sync = true,
-    	layout = { prompt_position = "top" },
-    }
-
     require("fyler").setup({
     	default_explorer = true,
     	hooks = {
@@ -107,13 +106,20 @@
     	win = {
     		kind = "split_left",
     		kind_presets = { split_left = { width = "0.2rel" } },
+        win_opts = {
+          number = false,
+          relativenumber = false,
+        },
     	},
     })
   '';
 
   programs.nixvim.keymaps = [
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>sr";
       action.__raw = ''
         function()
@@ -146,13 +152,21 @@
     }
 
     {
-      mode = ["n" "x" "o"];
+      mode = [
+        "n"
+        "x"
+        "o"
+      ];
       key = "s";
       action.__raw = ''function() require("flash").jump() end'';
       options.desc = "Flash";
     }
     {
-      mode = ["n" "x" "o"];
+      mode = [
+        "n"
+        "x"
+        "o"
+      ];
       key = "S";
       action.__raw = ''function() require("flash").treesitter() end'';
       options.desc = "Flash Treesitter";
@@ -164,7 +178,10 @@
       options.desc = "Remote Flash";
     }
     {
-      mode = ["x" "o"];
+      mode = [
+        "x"
+        "o"
+      ];
       key = "R";
       action.__raw = ''function() require("flash").treesitter_search() end'';
       options.desc = "Treesitter Search";
@@ -260,7 +277,10 @@
       options.desc = "Grep";
     }
     {
-      mode = ["n" "x"];
+      mode = [
+        "n"
+        "x"
+      ];
       key = "<leader>sw";
       action.__raw = ''function() Snacks.picker.grep_word() end'';
       options.desc = "Visual selection or word";

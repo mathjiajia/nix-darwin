@@ -1,6 +1,7 @@
 let
   padding = 8;
-in {
+in
+{
   programs.aerospace = {
     enable = true;
     package = null;
@@ -59,15 +60,39 @@ in {
         alt-shift-semicolon = "mode service";
       };
       mode.service.binding = {
-        esc = ["reload-config" "mode main"];
-        r = ["flatten-workspace-tree" "mode main"];
-        f = ["layout floating tiling" "mode main"];
-        backspace = ["close-all-windows-but-current" "mode main"];
+        esc = [
+          "reload-config"
+          "mode main"
+        ];
+        r = [
+          "flatten-workspace-tree"
+          "mode main"
+        ];
+        f = [
+          "layout floating tiling"
+          "mode main"
+        ];
+        backspace = [
+          "close-all-windows-but-current"
+          "mode main"
+        ];
 
-        alt-shift-h = ["join-with left" "mode main"];
-        alt-shift-j = ["join-with down" "mode main"];
-        alt-shift-k = ["join-with up" "mode main"];
-        alt-shift-l = ["join-with right" "mode main"];
+        alt-shift-h = [
+          "join-with left"
+          "mode main"
+        ];
+        alt-shift-j = [
+          "join-with down"
+          "mode main"
+        ];
+        alt-shift-k = [
+          "join-with up"
+          "mode main"
+        ];
+        alt-shift-l = [
+          "join-with right"
+          "mode main"
+        ];
       };
       on-window-detected = [
         # AI
@@ -76,7 +101,10 @@ in {
             app-id = "com.openai.chat";
             window-title-regex-substring = "Settings";
           };
-          run = ["layout floating" "move-node-to-workspace 􂮢A"];
+          run = [
+            "layout floating"
+            "move-node-to-workspace 􂮢A"
+          ];
         }
         {
           "if".app-id = "com.openai.chat";
@@ -118,23 +146,38 @@ in {
         # Chat
         {
           "if".app-id = "com.apple.mail";
-          run = ["layout floating" "move-node-to-workspace 􀌤C"];
+          run = [
+            "layout floating"
+            "move-node-to-workspace 􀌤C"
+          ];
         }
         {
           "if".app-id = "com.hnc.Discord";
-          run = ["layout floating" "move-node-to-workspace 􀌤C"];
+          run = [
+            "layout floating"
+            "move-node-to-workspace 􀌤C"
+          ];
         }
         {
           "if".app-id = "ru.keepcoder.Telegram";
-          run = ["layout floating" "move-node-to-workspace 􀌤C"];
+          run = [
+            "layout floating"
+            "move-node-to-workspace 􀌤C"
+          ];
         }
         {
           "if".app-id = "com.tencent.xinWeChat";
-          run = ["layout floating" "move-node-to-workspace 􀌤C"];
+          run = [
+            "layout floating"
+            "move-node-to-workspace 􀌤C"
+          ];
         }
         {
           "if".app-id = "net.whatsapp.WhatsApp";
-          run = ["layout floating" "move-node-to-workspace 􀌤C"];
+          run = [
+            "layout floating"
+            "move-node-to-workspace 􀌤C"
+          ];
         }
         # Developer
         {
@@ -160,26 +203,28 @@ in {
         # Finder
         {
           "if".app-id = "com.apple.finder";
-          run = ["layout floating" "move-node-to-workspace 􀈕F"];
+          run = [
+            "layout floating"
+            "move-node-to-workspace 􀈕F"
+          ];
         }
         # Notes
         {
           "if".app-id = "com.apple.Notes";
-          run = ["layout floating" "move-node-to-workspace 􁜾N"];
+          run = [
+            "layout floating"
+            "move-node-to-workspace 􁜾N"
+          ];
         }
         {
           "if".app-id = "com.agiletortoise.Drafts-OSX";
-          run = ["layout floating" "move-node-to-workspace 􁜾N"];
+          run = [
+            "layout floating"
+            "move-node-to-workspace 􁜾N"
+          ];
         }
         {
           "if".app-id = "com.superace.updf.mac";
-          run = "move-node-to-workspace 􁜾N";
-        }
-        {
-          "if" = {
-            app-id = "org.zotero.zotero";
-            window-title-regex-substring = " - Zotero$";
-          };
           run = "move-node-to-workspace 􁜾N";
         }
         {
@@ -189,14 +234,14 @@ in {
           };
           run = "layout floating";
         }
-        # Terminal
         {
           "if" = {
-            app-id = "com.mitchellh.ghostty";
-            window-title-regex-substring = "(Software Update|Updating Ghostty)";
+            app-id = "org.zotero.zotero";
+            window-title-regex-substring = " - Zotero$";
           };
-          run = "layout floating";
+          run = "move-node-to-workspace 􁜾N";
         }
+        # Terminal
         {
           "if".app-id = "com.mitchellh.ghostty";
           run = "move-node-to-workspace 􀩼T";

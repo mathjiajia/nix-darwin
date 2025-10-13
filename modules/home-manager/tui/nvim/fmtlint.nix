@@ -1,26 +1,19 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     extraPackages = with pkgs; [
       # linters
       commitlint
       shellcheck
-      # formatters
-      alejandra
-      bibtex-tidy
-      prettierd
-      ruff
-      shfmt
-      stylua
-      tex-fmt
     ];
 
     plugins = {
       lint = {
         enable = true;
         lintersByFt = {
-          bash = ["shellcheck"];
-          gitcommit = ["commitlint"];
-          zsh = ["zsh"];
+          bash = [ "shellcheck" ];
+          gitcommit = [ "commitlint" ];
+          zsh = [ "zsh" ];
         };
       };
 
@@ -28,11 +21,11 @@
         enable = true;
         package = pkgs.vimPlugins.conform-nvim.overrideAttrs (oldAttrs: {
           postInstall =
-            oldAttrs.postInstall
-            or ""
-            + # sh
-            ''mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md'';
+            oldAttrs.postInstall or ""
+            # sh
+            + ''mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md'';
         });
+        autoInstall.enable = true;
         settings = {
           formatters.bibtex-tidy.prepend_args = [
             "--curly"
@@ -42,19 +35,19 @@
             "--remove-braces"
           ];
           formatters_by_ft = {
-            nix = ["alejandra"];
-            bib = ["bibtex-tidy"];
-            css = ["prettierd"];
-            html = ["prettierd"];
-            javascript = ["prettierd"];
-            json = ["prettierd"];
-            jsonc = ["prettierd"];
-            markdown = ["prettierd"];
-            yaml = ["prettierd"];
-            python = ["ruff_format"];
-            sh = ["shfmt"];
-            lua = ["stylua"];
-            tex = ["tex-fmt"];
+            bib = [ "bibtex-tidy" ];
+            css = [ "prettierd" ];
+            html = [ "prettierd" ];
+            javascript = [ "prettierd" ];
+            json = [ "prettierd" ];
+            jsonc = [ "prettierd" ];
+            markdown = [ "prettierd" ];
+            yaml = [ "prettierd" ];
+            lua = [ "stylua" ];
+            nix = [ "nixfmt" ];
+            python = [ "ruff_format" ];
+            sh = [ "shfmt" ];
+            tex = [ "tex-fmt" ];
           };
           format_on_save.__raw = ''
             function(bufnr)
@@ -70,7 +63,10 @@
 
     keymaps = [
       {
-        mode = ["n" "v"];
+        mode = [
+          "n"
+          "v"
+        ];
         key = "<leader>cF";
         action.__raw = ''function() require("conform").format({ formatters = { "injected" }, timeout_ms = 2000 }) end'';
         options.desc = "Format Injected Langs";

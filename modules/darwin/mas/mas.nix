@@ -1,5 +1,5 @@
 {
-  homebrew.brews = ["mas"];
+  homebrew.brews = [ "mas" ];
 
   homebrew.masApps = {
     Dictionaries = 1380563956;

@@ -1,9 +1,14 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim.lsp.servers.texlab = {
     enable = true;
     config = {
-      cmd = ["${pkgs.texlab}/bin/texlab"];
-      filetypes = ["tex" "plaintex" "bib"];
+      cmd = [ "${pkgs.texlab}/bin/texlab" ];
+      filetypes = [
+        "tex"
+        "plaintex"
+        "bib"
+      ];
       root_markers = [
         ".git"
         ".latexmkrc"
@@ -14,7 +19,11 @@
       ];
       settings.texlab = {
         build = {
-          args = ["-interaction=nonstopmode" "-synctex=1" "%f"];
+          args = [
+            "-interaction=nonstopmode"
+            "-synctex=1"
+            "%f"
+          ];
           forwardSearchAfter = false;
           onSave = true;
         };

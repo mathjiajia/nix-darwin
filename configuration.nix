@@ -1,7 +1,9 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   user = "jia";
   system = "aarch64-darwin";
-in {
+in
+{
   nix = {
     enable = true;
     settings.experimental-features = "nix-command flakes";
@@ -10,9 +12,6 @@ in {
   nixpkgs = {
     hostPlatform = system;
     config.allowUnfree = true;
-    overlays = [
-      (import ./overlays/assimp.nix)
-    ];
   };
 
   system = {
@@ -42,7 +41,7 @@ in {
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = { inherit inputs; };
     users.${user}.imports = [
       inputs.nixvim.homeModules.nixvim
       ./modules/home-manager

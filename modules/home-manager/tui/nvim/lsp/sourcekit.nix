@@ -3,8 +3,12 @@
     enable = true;
     package = null;
     config = {
-      cmd = ["/usr/bin/sourcekit-lsp"];
-      filetypes = ["swift" "objc" "objcpp"];
+      cmd = [ "/usr/bin/sourcekit-lsp" ];
+      filetypes = [
+        "swift"
+        "objc"
+        "objcpp"
+      ];
       root_markers = [
         "buildServer.json"
         "*.xcodeproj"

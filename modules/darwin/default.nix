@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  environment.pathsToLink = ["/share/zsh"];
+{ pkgs, ... }:
+{
+  environment.pathsToLink = [ "/share/zsh" ];
 
   environment.systemPackages = with pkgs; [
     # CLI
@@ -13,8 +14,8 @@
     scooter
 
     # PYTHON
-    (python3.withPackages (ps:
-      with ps; [
+    (python3.withPackages (
+      ps: with ps; [
         jupyter
         matplotlib
         numpy
@@ -23,7 +24,8 @@
         pylatexenc
         scipy
         tqdm
-      ]))
+      ]
+    ))
   ];
 
   fonts.packages = with pkgs; [

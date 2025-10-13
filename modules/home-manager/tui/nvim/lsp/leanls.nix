@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim.lsp.servers.leanls = {
     enable = true;
     config = {
@@ -8,7 +9,7 @@
         	return vim.lsp.rpc.start(local_cmd, dispatchers)
         end
       '';
-      filetypes = ["lean"];
+      filetypes = [ "lean" ];
       root_dir.__raw = ''
         function(bufnr, on_dir)
         	local fname = vim.api.nvim_buf_get_name(bufnr)

@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   home.shellAliases = {
     gd = "git diff";
     gP = "git push";
@@ -12,13 +13,11 @@
 
   programs.git = {
     enable = true;
-    userName = "Jia Jia";
-    userEmail = "mathjiajia@outlook.com";
-    difftastic = {
-      enable = true;
-      enableAsDifftool = true;
-    };
-    extraConfig = {
+    settings = {
+      user = {
+        email = "mathjiajia@outlook.com";
+        name = "Jia Jia";
+      };
       merge.conflictstyle = "zdiff3";
       pager.difftool = true;
       pull.rebase = true;
@@ -28,6 +27,11 @@
       log.date = "iso";
     };
     ignores = lib.splitString "\n" (builtins.readFile ./global_ignore);
+  };
+
+  programs.difftastic.git = {
+    enable = true;
+    diffToolMode = true;
   };
 
   programs.lazygit = {

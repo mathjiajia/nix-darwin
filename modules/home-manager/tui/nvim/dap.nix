@@ -6,30 +6,49 @@
     dap = {
       enable = true;
       adapters.executables.lldb-dap.command = "/Applications/Xcode.app/Contents/Developer/usr/bin/lldb-dap";
-      configurations = let
-        lldb-launch = {
-          name = "Debug";
-          type = "lldb-dap";
-          request = "launch";
-          cwd = "\${workspaceFolder}";
-          program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
+      configurations =
+        let
+          lldb-launch = {
+            name = "Debug";
+            type = "lldb-dap";
+            request = "launch";
+            cwd = "\${workspaceFolder}";
+            program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
+          };
+          lldb-attach = {
+            name = "Attach (wait)";
+            type = "lldb-dap";
+            request = "attach";
+            program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
+            waitFor = true;
+          };
+          cpp-launch = lldb-launch // {
+            preLaunchTask = "C/C++: clang build active file";
+          };
+          cpp-attach = lldb-attach // {
+            preLaunchTask = "C/C++: clang build active file";
+          };
+          swift-launch = lldb-launch // {
+            preLaunchTask = "swiftc: Build Debug";
+          };
+          swift-attach = lldb-attach // {
+            preLaunchTask = "swiftc: Build Debug";
+          };
+        in
+        {
+          cpp = [
+            cpp-launch
+            cpp-attach
+          ];
+          c = [
+            cpp-launch
+            cpp-attach
+          ];
+          swift = [
+            swift-launch
+            swift-attach
+          ];
         };
-        lldb-attach = {
-          name = "Attach (wait)";
-          type = "lldb-dap";
-          request = "attach";
-          program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
-          waitFor = true;
-        };
-        cpp-launch = lldb-launch // {preLaunchTask = "C/C++: clang build active file";};
-        cpp-attach = lldb-attach // {preLaunchTask = "C/C++: clang build active file";};
-        swift-launch = lldb-launch // {preLaunchTask = "swiftc: Build Debug";};
-        swift-attach = lldb-attach // {preLaunchTask = "swiftc: Build Debug";};
-      in {
-        cpp = [cpp-launch cpp-attach];
-        c = [cpp-launch cpp-attach];
-        swift = [swift-launch swift-attach];
-      };
       signs = {
         dapBreakpoint = {
           numhl = "";
@@ -124,7 +143,10 @@
       options.desc = "Toggle REPL";
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>dw";
       action.__raw = ''function() require("dap.ui.widgets").hover() end'';
       options.desc = "Widgets";
@@ -136,7 +158,10 @@
       options.desc = "Dap UI";
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<leader>de";
       action.__raw = ''function() require("dapui").eval() end'';
       options.desc = "Eval";

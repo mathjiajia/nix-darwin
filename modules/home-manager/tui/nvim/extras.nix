@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   blink-indent = pkgs.vimUtils.buildVimPlugin {
     name = "blink.indent";
     src = inputs.blink-indent;
@@ -12,10 +13,11 @@
       "blink.indent.utils"
     ];
   };
-in {
-  programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
+in
+{
+  programs.nixvim.extraPlugins = [
     blink-indent
-    blink-pairs
+    pkgs.vimPlugins.blink-pairs
   ];
 
   programs.nixvim.extraConfigLua = ''

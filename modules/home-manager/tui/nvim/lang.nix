@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   # math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
   #   name = "math-conceal";
   #   src = inputs.math-conceal-nvim;
@@ -21,7 +22,8 @@
       "math-snippets.latex"
     ];
   };
-in {
+in
+{
   programs.nixvim.extraPlugins = [
     # math-conceal-nvim
     nvim-latex-conceal
@@ -34,7 +36,11 @@ in {
   programs.nixvim.plugins.render-markdown = {
     enable = true;
     settings = {
-      file_types = ["markdown" "codecompanion" "quarto"];
+      file_types = [
+        "markdown"
+        "codecompanion"
+        "quarto"
+      ];
       sign.enabled = false;
       code = {
         position = "right";
@@ -43,16 +49,35 @@ in {
         border = "thin";
       };
       heading = {
-        icons = [" 󰼏 " " 󰎨 " " 󰼑 " " 󰎲 " " 󰼓 " " 󰎴 "];
+        icons = [
+          " 󰼏 "
+          " 󰎨 "
+          " 󰼑 "
+          " 󰎲 "
+          " 󰼓 "
+          " 󰎴 "
+        ];
         border = true;
         render_modes = true;
       };
       pipe_table = {
         alignment_indicator = "─";
-        border = ["╭" "┬" "╮" "├" "┼" "┤" "╰" "┴" "╯" "│" "─"];
+        border = [
+          "╭"
+          "┬"
+          "╮"
+          "├"
+          "┼"
+          "┤"
+          "╰"
+          "┴"
+          "╯"
+          "│"
+          "─"
+        ];
       };
       anti_conceal = {
-        disabled_modes = ["n"];
+        disabled_modes = [ "n" ];
         ignore = {
           bullet = true;
           head_border = true;

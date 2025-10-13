@@ -10,7 +10,12 @@
       options.desc = "Sidekick Toggle CLI";
     }
     {
-      mode = ["n" "x" "i" "t"];
+      mode = [
+        "n"
+        "x"
+        "i"
+        "t"
+      ];
       key = "<C-.>";
       action.__raw = ''function() require("sidekick.cli").toggle() end'';
       options.desc = "Sidekick Switch Focus";
@@ -34,7 +39,10 @@
       options.desc = "Detach a CLI Session";
     }
     {
-      mode = ["x" "n"];
+      mode = [
+        "x"
+        "n"
+      ];
       key = "<leader>at";
       action.__raw = ''function() require("sidekick.cli").send({ msg = "{this}" }) end'';
       options.desc = "Send This";
@@ -52,7 +60,10 @@
       options.desc = "Send Visual Selection";
     }
     {
-      mode = ["n" "x"];
+      mode = [
+        "n"
+        "x"
+      ];
       key = "<leader>ap";
       action.__raw = ''function() require("sidekick.cli").select_prompt() end'';
       options.desc = "Sidekick Prompt Picker";

@@ -1,9 +1,13 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim.lsp.servers.copilot = {
     enable = true;
     config = {
-      cmd = ["${pkgs.copilot-language-server}/bin/copilot-language-server" "--stdio"];
-      root_markers = [".git"];
+      cmd = [
+        "${pkgs.copilot-language-server}/bin/copilot-language-server"
+        "--stdio"
+      ];
+      root_markers = [ ".git" ];
       init_options = {
         editorInfo = {
           name = "Neovim";

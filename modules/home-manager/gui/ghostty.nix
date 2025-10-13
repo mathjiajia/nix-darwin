@@ -14,7 +14,7 @@
       keybind = "global:cmd+grave_accent=toggle_quick_terminal";
       mouse-hide-while-typing = true;
       shell-integration-features = "no-cursor";
-      theme = "TokyoNight Moon";
+      theme = "bamboo";
       window-colorspace = "display-p3";
       window-title-font-family = "Sarasa Term SC";
     };
