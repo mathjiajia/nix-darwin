@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 let
   blink-indent = pkgs.vimUtils.buildVimPlugin {
     name = "blink.indent";

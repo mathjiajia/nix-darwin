@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 {
   home = {
     sessionVariables.MANPAGER = "nvim +Man!";

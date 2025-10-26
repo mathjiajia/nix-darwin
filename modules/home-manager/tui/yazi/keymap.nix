@@ -2,12 +2,18 @@
   programs.yazi.keymap = {
     mgr.prepend_keymap = [
       {
-        on = ["g" "f"];
+        on = [
+          "g"
+          "f"
+        ];
         run = "plugin vcs-files";
         desc = "Show Git file changes";
       }
       {
-        on = ["g" "i"];
+        on = [
+          "g"
+          "i"
+        ];
         run = "shell --block --confirm 'lazygit'";
         desc = "Open lazygit";
       }
@@ -29,22 +35,34 @@
 
       # Goto
       {
-        on = ["g" "m"];
+        on = [
+          "g"
+          "m"
+        ];
         run = "cd ~/Documents/Projects/moduli2";
         desc = "Go to the current project dir";
       }
       {
-        on = ["g" "n"];
+        on = [
+          "g"
+          "n"
+        ];
         run = "cd ~/.config/nix-darwin";
         desc = "Go to the nix-darwin config directory";
       }
       {
-        on = ["g" "r"];
+        on = [
+          "g"
+          "r"
+        ];
         run = "cd ~/Documents/Review";
         desc = "Go to the review directory";
       }
       {
-        on = ["g" "t"];
+        on = [
+          "g"
+          "t"
+        ];
         run = "cd ~/Documents/Talks";
         desc = "Go to the talks directory";
       }
@@ -62,7 +80,10 @@
         desc = "Smart filter";
       }
       {
-        on = ["c" "m"];
+        on = [
+          "c"
+          "m"
+        ];
         run = "plugin chmod";
         desc = "Chmod selected files";
       }

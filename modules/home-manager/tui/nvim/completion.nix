@@ -33,6 +33,24 @@
     blink-ripgrep.enable = true;
     blink-cmp = {
       enable = true;
+      luaConfig.pre = ''
+        local source_dedup_priority = { "lsp", "path", "snippets", "buffer", "ripgrep" }
+
+        local show_orig = require("blink.cmp.completion.list").show
+        require("blink.cmp.completion.list").show = function(ctx, items_by_source)
+        	local seen = {}
+        	for _, source in ipairs(source_dedup_priority) do
+        		if items_by_source[source] then
+        			items_by_source[source] = vim.tbl_filter(function(item)
+        				local did_seen = seen[item.label]
+        				seen[item.label] = true
+        				return not did_seen
+        			end, items_by_source[source])
+        		end
+        	end
+        	return show_orig(ctx, items_by_source)
+        end
+      '';
       settings = {
         completion = {
           documentation.auto_show = true;

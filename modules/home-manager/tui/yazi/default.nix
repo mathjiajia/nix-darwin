@@ -3,7 +3,7 @@
     ./keymap.nix
     ./plugins.nix
     ./settings.nix
-    ./theme.nix
+    # ./theme.nix
   ];
 
   programs.yazi = {

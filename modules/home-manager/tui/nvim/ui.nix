@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 let
   slimline-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "slimline";
@@ -26,34 +22,7 @@ in
     pkgs.vimPlugins.mini-hipatterns
   ];
 
-  programs.nixvim.plugins = {
-    mini-icons.enable = true;
-    dropbar = {
-      enable = true;
-      settings.icons.kinds.file_icon.__raw = ''
-        function(path)
-          local file_icon = "󰈔 "
-          local file_icon_hl = "DropBarIconKindFile"
-
-          local mini_icon, mini_icon_hl = require("mini.icons").get("file", vim.fs.basename(path))
-
-          if not mini_icon then
-            local buf = vim.iter(vim.api.nvim_list_bufs()):find(function(buf)
-              return vim.api.nvim_buf_get_name(buf) == path
-            end)
-            if buf then
-              local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
-              mini_icon, mini_icon_hl = require("mini.icons").get("filetype", filetype)
-            end
-          end
-
-          file_icon = mini_icon and mini_icon .. " " or file_icon
-          file_icon_hl = mini_icon_hl
-          return file_icon, file_icon_hl
-        end
-      '';
-    };
-  };
+  programs.nixvim.plugins.mini-icons.enable = true;
 
   # programs.nixvim.keymaps = [
   #   {

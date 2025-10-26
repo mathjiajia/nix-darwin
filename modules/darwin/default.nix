@@ -20,7 +20,7 @@
         matplotlib
         numpy
         pandas
-        plotly
+        # plotly
         pylatexenc
         scipy
         tqdm

@@ -175,11 +175,14 @@
     confirm = {
       border.fg = "#0db9d7";
       title.fg = "#589ed7";
-      content = {};
-      list = {};
+      content = { };
+      list = { };
       btn_yes.bg = "#2d3f76";
-      btn_no = {};
-      btn_labels = ["  [Y]es  " "  (N)o  "];
+      btn_no = { };
+      btn_labels = [
+        "  [Y]es  "
+        "  (N)o  "
+      ];
     };
 
     spot = {

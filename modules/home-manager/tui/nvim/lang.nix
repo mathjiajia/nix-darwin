@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 let
   # math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
   #   name = "math-conceal";
