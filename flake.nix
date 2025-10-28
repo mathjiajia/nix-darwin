@@ -12,8 +12,10 @@
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     # homebrew-tap
-    aerospace.url = "github:nikitabobko/homebrew-tap";
-    aerospace.flake = false;
+    # aerospace.url = "github:nikitabobko/homebrew-tap";
+    # aerospace.flake = false;
+    hyprspace.url = "github:BarutSRB/homebrew-tap";
+    hyprspace.flake = false;
     fcitx.url = "github:fcitx-contrib/homebrew-tap";
     fcitx.flake = false;
     lihaoyun6.url = "github:lihaoyun6/homebrew-tap"; # quickrecorder
@@ -32,6 +34,8 @@
     nvim-latex-conceal.flake = false;
     nvim-math-snippets.url = "github:mathjiajia/nvim-math-snippets";
     nvim-math-snippets.flake = false;
+    nvim-treesitter.url = "github:nvim-treesitter/nvim-treesitter/main";
+    nvim-treesitter.flake = false;
     slimline-nvim.url = "github:sschleemilch/slimline.nvim";
     slimline-nvim.flake = false;
   };
@@ -59,7 +63,6 @@
           modules = shared-modules ++ [ ./modules/darwin/extra.nix ];
           specialArgs = special_args;
         };
-
         "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {
           modules = shared-modules;
           specialArgs = special_args;

@@ -4,7 +4,6 @@
     gd = "git diff";
     gP = "git push";
     gp = "git pull";
-    lg = "lazygit";
   };
 
   programs.git = {
@@ -14,26 +13,28 @@
         email = "mathjiajia@outlook.com";
         name = "Jia Jia";
       };
-      merge.conflictstyle = "zdiff3";
-      pager.difftool = true;
-      pull.rebase = true;
-      push.autoSetupRemote = true;
-      rebase.autoSquash = true;
       github.user = "mathjiajia";
       log.date = "iso";
+      merge.conflictstyle = "zdiff3";
+      pager.difftool = true;
+      push.autoSetupRemote = true;
+      rebase.autoSquash = true;
     };
     ignores = lib.splitString "\n" (builtins.readFile ./global_ignore);
   };
 
-  programs.difftastic.git = {
+  programs.difftastic = {
     enable = true;
-    diffToolMode = true;
+    git = {
+      enable = true;
+      diffToolMode = true;
+    };
   };
 
   programs.lazygit = {
     enable = true;
     settings = {
-      git.paging.externalDiffCommand = "${pkgs.difftastic}/bin/difft --color=always";
+      git.pagers = [ { externalDiffCommand = "${pkgs.difftastic}/bin/difft --color=always"; } ];
       gui = {
         nerdFontsVersion = "3";
         sidePanelWidth = 0.25;

@@ -39,15 +39,18 @@
             css = [ "prettierd" ];
             html = [ "prettierd" ];
             javascript = [ "prettierd" ];
-            json = [ "prettierd" ];
-            jsonc = [ "prettierd" ];
             markdown = [ "prettierd" ];
-            yaml = [ "prettierd" ];
+            json = [ "jq" ];
             lua = [ "stylua" ];
             nix = [ "nixfmt" ];
-            python = [ "ruff_format" ];
+            python = [
+              "ruff_fix"
+              "ruff_format"
+              "ruff_organize_imports"
+            ];
             sh = [ "shfmt" ];
             tex = [ "tex-fmt" ];
+            yaml = [ "yamlfmt" ];
           };
           format_on_save.__raw = ''
             function(bufnr)

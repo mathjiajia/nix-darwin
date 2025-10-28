@@ -1,5 +1,8 @@
 {
-  programs.nixvim.plugins.sidekick.enable = true;
+  programs.nixvim.plugins.sidekick = {
+    enable = true;
+    settings.nes.enabled = false;
+  };
 
   programs.nixvim.keymaps = [
     {

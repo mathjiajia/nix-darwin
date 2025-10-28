@@ -1,8 +1,20 @@
-{
-  programs.nixvim.plugins = {
-    treesitter.enable = true;
-    treesitter-context.enable = true;
+{ inputs, pkgs, ... }:
+let
+  nvim-treesitter = pkgs.vimUtils.buildVimPlugin {
+    name = "nvim-treesitter";
+    src = inputs.nvim-treesitter;
+    nvimSkipModules = [ "nvim-treesitter._meta.parsers" ];
   };
+in
+{
+
+  programs.nixvim.dependencies.tree-sitter.enable = true;
+  programs.nixvim.extraPlugins = [ nvim-treesitter ];
+
+  # programs.nixvim.plugins = {
+  # treesitter.enable = true;
+  # treesitter-context.enable = true;
+  # };
 
   programs.nixvim.autoCmd = [
     {

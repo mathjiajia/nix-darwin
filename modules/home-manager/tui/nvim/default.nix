@@ -11,6 +11,7 @@
     defaultEditor = true;
     luaLoader.enable = true;
     nixpkgs.config.allowUnfree = true;
+    colorscheme = "bamboo";
   };
 
   programs.nixvim.performance = {
@@ -24,6 +25,7 @@
       enable = true;
       pathsToLink = [
         "/luasnippets" # luasnip
+        "/runtime/queries" # nvim-treesitter
         # "/queries_config" # math-conceal.nvim
       ];
     };
@@ -33,7 +35,7 @@
     ./users
     ./lsp
 
-    ./colorscheme.nix
+    # ./colorscheme.nix
     ./compiler
     ./ai.nix
     ./completion.nix

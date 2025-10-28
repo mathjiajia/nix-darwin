@@ -9,7 +9,7 @@
         ".luarc.json"
         ".luarc.jsonc"
         ".luacheckrc"
-        "tylua.toml"
+        ".stylua.toml"
         "stylua.toml"
         "selene.toml"
         "selene.yml"
@@ -28,7 +28,11 @@
         telemetry.enable = false;
         workspace = {
           checkThirdParty = false;
-          library.__unkeyed-1.__raw = "vim.env.VIMRUNTIME";
+          library = {
+            __unkeyed-1.__raw = "vim.env.VIMRUNTIME";
+            __unkeyed-2 = "\${3rd}/luv/library";
+            __unkeyed-3 = "\${3rd}/busted/library";
+          };
         };
       };
     };

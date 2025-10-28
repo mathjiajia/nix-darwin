@@ -2,12 +2,12 @@
   homebrew.casks = [
     "adobe-acrobat-pro"
     "adobe-creative-cloud"
+    "ayugram"
     "chatgpt-atlas"
     "chatwise"
     "cherry-studio"
     "claude"
     "codeedit"
-    "container"
     "dash"
     "discord"
     "flashspace"

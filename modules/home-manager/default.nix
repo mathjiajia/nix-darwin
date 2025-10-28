@@ -66,6 +66,7 @@
 
     ./gui/aerospace.nix
     ./gui/ghostty.nix
+    ./gui/neovide.nix
     ./gui/sage.nix
     ./gui/sioyek.nix
   ];

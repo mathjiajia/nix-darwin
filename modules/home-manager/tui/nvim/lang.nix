@@ -28,7 +28,6 @@ in
 
   # programs.nixvim.plugins.lean.enable = true;
 
-  # programs.nixvim.extraPython3Packages = p: [p.pylatexenc];
   programs.nixvim.plugins.render-markdown = {
     enable = true;
     settings = {

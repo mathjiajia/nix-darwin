@@ -18,7 +18,6 @@
     Readest = 6738622779;
     SnippetsLab = 1006087419;
     "Swift Playground" = 1496833156;
-    Telegram = 747648890;
     TestFlight = 899247664;
     TTPrompter = 6746564039;
     VidHub = 1659622164;

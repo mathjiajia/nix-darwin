@@ -4,14 +4,10 @@
 
   environment.systemPackages = with pkgs; [
     # CLI
-    cargo
+    container
     crush
     elan # lean
     hugo
-    # go
-    luajit
-    # nodejs # npx
-    scooter
 
     # PYTHON
     (python3.withPackages (
@@ -20,7 +16,7 @@
         matplotlib
         numpy
         pandas
-        # plotly
+        plotly
         pylatexenc
         scipy
         tqdm

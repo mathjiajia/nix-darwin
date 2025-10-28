@@ -9,7 +9,6 @@
       persistent-apps = [
         "/System/Applications/Apps.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"
-        "/Applications/Brave Browser.app"
         "/System/Applications/Mail.app"
         "/System/Applications/Calendar.app"
         "/System/Applications/Reminders.app"

@@ -6,6 +6,7 @@
       aws.disabled = true;
       battery.disabled = true;
       buf.disabled = true;
+      cpp.disabled = false;
       cobol.disabled = true;
       conda.disabled = true;
       crystal.disabled = true;
@@ -26,7 +27,6 @@
       haxe.disabled = true;
       helm.disabled = true;
       hostname.disabled = true;
-      java.disabled = true;
       julia.disabled = true;
       kotlin.disabled = true;
       meson.disabled = true;
@@ -54,14 +54,10 @@
       vcsh.disabled = true;
 
       c.symbol = " ";
-      # directory.read_only = " 󰌾";
-      # docker_context.symbol = " ";
-      # git_branch.symbol = " ";
-      golang.symbol = " ";
-      lua.symbol = " ";
-      # nix_shell.symbol = " ";
-      python.symbol = " ";
-      swift.symbol = " ";
+      cpp.symbol = " ";
+      git_branch.symbol = " ";
+      # typst.symbol = " ";
+      # zig.symbol = " ";
     };
   };
 }

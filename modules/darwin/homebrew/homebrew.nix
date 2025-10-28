@@ -13,14 +13,14 @@
 
     casks = [
       "adguard"
-      "aerospace"
-      "brave-browser"
+      # "aerospace"
       "corretto@11"
       "chatgpt"
       "downie"
       "fcitx5"
       "ghostty"
       "hazel"
+      "hyprspace"
       "iina"
       "istat-menus"
       "jordanbaird-ice"
