@@ -1,5 +1,14 @@
 { inputs, pkgs, ... }:
 let
+  # lean-nvim = pkgs.vimUtils.buildVimPlugin {
+  #   pname = "lean.nvim";
+  #   version = "2025-11-20";
+  #   name = "lean-nvim";
+  #   src = inputs.lean-nvim;
+  #   dependencies = [ pkgs.vimPlugins.plenary-nvim ];
+  #   meta.homepage = "https://github.com/Julian/lean.nvim/";
+  #   meta.hydraPlatforms = [ ];
+  # };
   # math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
   #   name = "math-conceal";
   #   src = inputs.math-conceal-nvim;
@@ -20,67 +29,73 @@ let
   };
 in
 {
+  programs.nixvim.extraPython3Packages = p: [ p.pylatexenc ];
   programs.nixvim.extraPlugins = [
     # math-conceal-nvim
     nvim-latex-conceal
     nvim-math-snippets
   ];
 
-  # programs.nixvim.plugins.lean.enable = true;
-
-  programs.nixvim.plugins.render-markdown = {
-    enable = true;
-    settings = {
-      file_types = [
-        "markdown"
-        "codecompanion"
-        "quarto"
-      ];
-      sign.enabled = false;
-      code = {
-        position = "right";
-        min_width = 80;
-        width = "block";
-        border = "thin";
-      };
-      heading = {
-        icons = [
-          " 󰼏 "
-          " 󰎨 "
-          " 󰼑 "
-          " 󰎲 "
-          " 󰼓 "
-          " 󰎴 "
+  programs.nixvim.plugins = {
+    # lean = {
+    #   enable = true;
+    #   package = lean-nvim;
+    #   settings.mappings = true;
+    # };
+    render-markdown = {
+      enable = true;
+      settings = {
+        file_types = [
+          "markdown"
+          "codecompanion"
+          "quarto"
         ];
-        border = true;
-        render_modes = true;
-      };
-      pipe_table = {
-        alignment_indicator = "─";
-        border = [
-          "╭"
-          "┬"
-          "╮"
-          "├"
-          "┼"
-          "┤"
-          "╰"
-          "┴"
-          "╯"
-          "│"
-          "─"
-        ];
-      };
-      anti_conceal = {
-        disabled_modes = [ "n" ];
-        ignore = {
-          bullet = true;
-          head_border = true;
-          head_background = true;
+        sign.enabled = false;
+        code = {
+          position = "right";
+          min_width = 80;
+          width = "block";
+          border = "thin";
         };
+        heading = {
+          icons = [
+            " 󰼏 "
+            " 󰎨 "
+            " 󰼑 "
+            " 󰎲 "
+            " 󰼓 "
+            " 󰎴 "
+          ];
+          border = true;
+          render_modes = true;
+        };
+        pipe_table = {
+          alignment_indicator = "─";
+          border = [
+            "╭"
+            "┬"
+            "╮"
+            "├"
+            "┼"
+            "┤"
+            "╰"
+            "┴"
+            "╯"
+            "│"
+            "─"
+          ];
+        };
+        anti_conceal = {
+          disabled_modes = [ "n" ];
+          ignore = {
+            bullet = true;
+            head_border = true;
+            head_background = true;
+          };
+        };
+        win_options.concealcursor.rendered = "nvc";
+        completions.lsp.enabled = true;
       };
-      win_options.concealcursor.rendered = "nvc";
-      completions.lsp.enabled = true;
     };
   };
 

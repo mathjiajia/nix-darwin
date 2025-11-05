@@ -8,15 +8,9 @@
           "VirtualTextErr"
           "Terminal"
         ];
-        selected_interpreters = [
-          "Lua_nvim"
-          "Python3_fifo"
-        ];
+        selected_interpreters = [ "Python3_fifo" ];
         repl_enable = [
-          "Bash_original"
-          "Lua_nvim"
           "Python3_fifo"
-          "R_original"
           "Swift_original"
         ];
       };
@@ -28,17 +22,29 @@
           "n"
           "v"
         ];
-        key = "<leader>rs";
+        key = "<leader>rr";
         action = "<Plug>SnipRun";
         options.silent = true;
-        options.desc = "Snip Run";
+        options.desc = "[R]un Snip";
       }
       {
         mode = "n";
         key = "<leader>rf";
-        action = ":let b:caret=winsaveview() <CR> | :%SnipRun <CR>| :call winrestview(b:caret) <CR>";
+        action.__raw = ''
+          function()
+          	local caret = vim.fn.winsaveview()
+          	vim.cmd("%SnipRun")
+          	vim.fn.winrestview(caret)
+          end
+        '';
         options.silent = true;
-        options.desc = "Run File";
+        options.desc = "[R]un [F]ile";
+      }
+      {
+        mode = "n";
+        key = "<leader>rm";
+        action = "<Plug>SnipReplMemoryClean";
+        options.desc = "[R]EPL [M]emory Clean";
       }
     ];
   };

@@ -1,175 +1,179 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.nixvim = {
-    extraPackages = [ pkgs.python3Packages.ipython ];
-
     plugins.overseer = {
       enable = true;
+      luaConfig.content = lib.mkForce "";
       package = pkgs.vimPlugins.overseer-nvim.overrideAttrs (oldAttrs: {
+        nvimSkipModules = (oldAttrs.nvimSkipModules or [ ]) ++ [
+          "resession.extensions.overseer"
+          "neotest.consumers.overseer"
+          "neotest.client.strategies.overseer"
+          "cmp_overseer"
+        ];
         postInstall =
-          oldAttrs.postInstall or ""
+          (oldAttrs.postInstall or "")
           # sh
-          + ''mv $out/doc/recipes.md $out/doc/overseer-nvim_recipes.md'';
+          + ''
+            mv $out/doc/{recipes.md,overseer-nvim_recipes.md}
+            rm -r $out/lua/{cmp_overseer,lualine,neotest,resession}
+          '';
       });
-      settings.templates = [
-        "builtin"
-        "user.builder"
-        "user.runner"
-      ];
     };
 
     keymaps = [
       {
         mode = "n";
-        key = "<leader>rl";
+        key = "<leader>or";
         action = "<Cmd>OverseerRun<CR>";
-        options.desc = "Run Templates";
+        options.desc = "[O]verseer [R]un";
       }
       {
         mode = "n";
-        key = "<leader>rt";
-        action = "<Cmd>OverseerToggle<CR>";
-        options.desc = "Toggle Task List";
+        key = "<leader>os";
+        action = "<Cmd>OverseerShell<CR>";
+        options.desc = "[O]verseer [S]hell";
       }
       {
         mode = "n";
-        key = "<leader>rb";
-        action = "<Cmd>OverseerBuild<CR>";
-        options.desc = "Task Builder";
+        key = "<leader>oo";
+        action = "<Cmd>OverseerToggle!<CR>";
+        options.desc = "[O]verseer [O]pen";
       }
     ];
 
     extraFiles = {
-      "lua/overseer/template/user/builder.lua".text =
+      "lua/overseer/template/user/gcc_debug.lua".text =
         # lua
         ''
-          return { "user.builder.clang", "user.builder.swift" }
-        '';
-
-      "lua/overseer/template/user/builder/clang.lua".text =
-        # lua
-        ''
-          local clang = "clang"
-
           return {
-          	cached_key = function()
-          		return vim.fn.expand("%:p")
-          	end,
+          	name = "clang: debug build",
           	condition = { filetype = { "c", "cpp" } },
-          	generator = function(_, cb)
+          	builder = function()
           		local file = vim.fn.expand("%:p")
-          		local exec_file = vim.fn.expand("%:p:r")
-          		cb({
-          			{
-          				name = "C/C++: clang build active file",
-          				builder = function()
-          					return {
-          						cmd = { clang },
-          						args = { "-fcolor-diagnostics", "-fansi-escape-codes", "-g", file, "-o", exec_file },
-          						cwd = vim.fn.expand("%:p:h"),
-          					}
-          				end,
-          				priority = 6,
+          		local outfile = vim.fn.expand("%:p:r") .. ".out"
+          		local compiler = vim.bo.filetype == "c" and "clang" or "clang++"
+          		return {
+          			cmd = { compiler },
+          			args = { "-fcolor-diagnostics", "-fansi-escape-codes", "-g", file, "-o", outfile },
+          			components = {
+          				{
+          					"on_output_quickfix",
+          					open_on_exit = "failure",
+          				},
+          				"on_complete_notify",
+          				"default",
           			},
-          			{
-          				name = "Build and Run with " .. clang,
-          				builder = function()
-          					return {
-          						cmd = { clang },
-          						args = { file, "-o", exec_file },
-          						cwd = vim.fn.expand("%:p:h"),
-          						components = { "open_output", "default", { "run_after", task_names = { { cmd = exec_file } } } },
-          					}
-          				end,
-          				priority = 2,
-          			},
-          		})
+          		}
           	end,
           }
         '';
 
-      "lua/overseer/template/user/builder/swift.lua".text =
+      "lua/overseer/template/user/clang_build.lua".text =
         # lua
         ''
           return {
-          	cached_key = function()
-          		return vim.fn.expand("%:p")
+          	name = "clang: build",
+          	builder = function()
+          		local file = vim.fn.expand("%:p")
+          		local outfile = vim.fn.expand("%:p:r") .. ".out"
+          		local compiler = vim.bo.filetype == "c" and "clang" or "clang++"
+          		return {
+          			cmd = { compiler },
+          			args = { file, "-o", outfile },
+          			components = {
+          				{
+          					"on_output_quickfix",
+          					open_on_exit = "failure",
+          				},
+          				"on_complete_notify",
+          				"default",
+          			},
+          		}
           	end,
+          	condition = {
+          		filetype = { "c", "cpp" },
+          	},
+          }
+        '';
+      "lua/overseer/template/user/clang_build_run.lua".text =
+        # lua
+        ''
+          return {
+          	name = "clang: build and run",
+          	condition = { filetype = { "c", "cpp" } },
+          	builder = function()
+          		local outfile = vim.fn.expand("%:p:r") .. ".out"
+          		return {
+          			cwd = vim.fn.expand("%:p:h"),
+          			cmd = { outfile },
+          			components = {
+          				{
+          					"dependencies",
+          					task_names = { "clang: build" },
+          				},
+          				{ "open_output", focus = true },
+          				"default",
+          			},
+          		}
+          	end,
+          }
+        '';
+
+      "lua/overseer/template/user/swiftc_debug.lua".text =
+        # lua
+        ''
+          return {
+          	name = "swiftc: debug build",
           	condition = { filetype = { "swift" } },
-          	generator = function(_, cb)
-          		cb({
-          			{
-          				name = "swiftc: Build Debug",
-          				builder = function()
-          					local file = vim.fn.expand("%:p")
-          					return {
-          						cmd = { "swiftc" },
-          						args = { "-g", file },
-          						cwd = vim.fn.expand("%:p:h"),
-          					}
-          				end,
-          				priority = 6,
-          			},
-          		})
+          	builder = function()
+          		local file = vim.fn.expand("%:p")
+          		return {
+          			cmd = { "swiftc" },
+          			args = { "-g", file },
+          		}
           	end,
           }
         '';
 
-      "lua/overseer/template/user/runner.lua".text =
+      "lua/overseer/template/user/run_script.lua".text =
         # lua
         ''
-          local filerunners = {
-          	sh = { name = "Shell", cmd = "sh", repl = "sh" },
-          	bash = { name = "Bash", cmd = "bash", repl = "bash" },
-          	zsh = { name = "Zsh", cmd = "zsh", repl = "zsh" },
-          	m2 = { name = "Macaulay2", cmd = "M2", repl = "M2" },
-          	python = { name = "Python", cmd = "python", repl = "ipython" },
-          	r = { name = "R", cmd = "Rscript", repl = "R" },
-          	lua = { name = "Lua", cmd = { "nvim", "-l" }, repl = "lua" },
-          	swift = { name = "Swift", cmd = "swift", repl = { "swift", "repl" } },
-          }
-
-          local repl_counters = {}
-
           return {
-          	condition = { filetype = vim.tbl_keys(filerunners) },
-          	generator = function(_, cb)
-          		local ft = filerunners[vim.bo.filetype]
-          		if not ft then
-          			return
-          		end
-
+          	name = "run script",
+          	condition = { filetype = { "lua", "python", "sh" } },
+          	builder = function()
           		local file = vim.fn.expand("%:p")
-          		local file_basename = vim.fn.expand("%:t:r")
-          		local tasks = {}
+          		local cmd = { file }
+          		if vim.bo.filetype == "lua" then
+          			cmd = { "nvim", "-l", file }
+          		elseif vim.bo.filetype == "python" then
+          			cmd = { "python", file }
+          		end
+          		return { cmd = cmd }
+          	end,
+          }
+        '';
 
-          		tasks[#tasks + 1] = {
-          			name = "RunFile",
-          			builder = function()
-          				return {
-          					cmd = ft.cmd,
-          					args = { file },
-          					name = "Running " .. file_basename,
-          					components = { "open_output", "default", "unique" },
-          				}
-          			end,
-          			priority = 4,
+      "lua/overseer/template/user/latexmk.lua".text =
+        # lua
+        ''
+          return {
+          	name = "latexmk",
+          	condition = { filetype = { "tex" } },
+          	builder = function()
+          		return {
+          			cmd = { "latexmk" },
+          			args = {
+          				"-pdf",
+          				"-interaction=nonstopmode",
+          				"-synctex=1",
+          			},
+          			components = {
+          				{ "on_output_quickfix", open = true },
+          				{ "default" },
+          			},
           		}
-
-          		tasks[#tasks + 1] = {
-          			name = "OpenREPL",
-          			builder = function()
-          				repl_counters[vim.bo.filetype] = (repl_counters[vim.bo.filetype] or 0) + 1
-          				return {
-          					cmd = ft.repl,
-          					name = ft.name .. " REPL " .. repl_counters[vim.bo.filetype],
-          					components = { "open_output", "default" },
-          				}
-          			end,
-          			priority = 5,
-          		}
-
-          		cb(tasks)
           	end,
           }
         '';

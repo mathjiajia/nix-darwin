@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.nixvim.lsp.servers.texlab = {
     enable = true;
     config = {
-      cmd = [ "${pkgs.texlab}/bin/texlab" ];
+      cmd = [ "${lib.getExe pkgs.texlab}" ];
       filetypes = [
         "tex"
         "plaintex"
@@ -30,13 +30,13 @@
         forwardSearch = {
           # executable = "/Applications/Skim.app/Contents/SharedSupport/displayline";
           # args = ["-r" "%l" "%p" "%f"];
-          executable = "${pkgs.sioyek}/bin/sioyek";
+          executable = "${lib.getExe pkgs.sioyek}";
           args = [
             "--reuse-window"
             "--execute-command"
             "turn_on_synctex"
             "--inverse-search"
-            "${pkgs.texlab}/bin/texlab inverse-search --input %%1 --line1 %%2"
+            "${lib.getExe pkgs.texlab} inverse-search --input %%1 --line1 %%2"
             "--forward-search-file"
             "%f"
             "--forward-search-line"
@@ -211,9 +211,9 @@
         		{ desc = "Clean the auxiliary files" }
         	)
 
-        	vim.keymap.set("n", "<leader>ll", buf_build, { buffer = bufnr, desc = "Build the current buffer" })
-        	vim.keymap.set("n", "<leader>lf", buf_search, { buffer = bufnr, desc = "Forward search from current position" })
-        	vim.keymap.set("n", "<leader>lc", buf_cancel_build, { buffer = bufnr, desc = "Cancel the current build" })
+        	vim.keymap.set("n", "<localleader>ll", buf_build, { buffer = bufnr, desc = "Build the current buffer" })
+        	vim.keymap.set("n", "<localleader>lf", buf_search, { buffer = bufnr, desc = "Forward search from current position" })
+        	vim.keymap.set("n", "<localleader>lc", buf_cancel_build, { buffer = bufnr, desc = "Cancel the current build" })
         	vim.keymap.set("n", "cse", buf_change_env, { buffer = bufnr, desc = "Change the current environment" })
         	vim.keymap.set("i", ";]", close_env, { buffer = bufnr, desc = "Close the current environment" })
         	vim.keymap.set("n", "tss", toggle_star, { buffer = bufnr, desc = "Toggle starred environment" })

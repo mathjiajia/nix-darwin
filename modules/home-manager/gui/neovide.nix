@@ -4,12 +4,13 @@
     package = null;
     settings = {
       frame = "transparent";
+      icon = "/Users/jia/bin/neovide.icns";
       font = {
         normal = [
           "Sarasa Term SC"
           "Symbols Nerd Font"
         ];
-        size = 19;
+        size = 20;
       };
     };
   };

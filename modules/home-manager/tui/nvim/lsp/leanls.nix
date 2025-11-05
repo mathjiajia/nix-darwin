@@ -1,12 +1,21 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.nixvim.lsp.servers.leanls = {
     enable = true;
+    package = null;
     config = {
       cmd.__raw = ''
         function(dispatchers, config)
-        	local local_cmd = { "${pkgs.lean4}/bin/lake", "serve", "--", config.root_dir }
-        	return vim.lsp.rpc.start(local_cmd, dispatchers)
+        	local cmd_cwd = config.cmd_cwd
+        	if not cmd_cwd and config.root_dir and vim.uv.fs_realpath(config.root_dir) then
+        		cmd_cwd = config.root_dir
+        	end
+        	local local_cmd = { "${lib.getExe' pkgs.elan "lake"}", "serve", "--", config.root_dir }
+        	return vim.lsp.rpc.start(local_cmd, dispatchers, {
+        		cwd = cmd_cwd,
+        		env = config.cmd_env,
+        		detached = config.detached,
+        	})
         end
       '';
       filetypes = [ "lean" ];
@@ -36,6 +45,8 @@
         	)
         end
       '';
+      capabilities.lean.silentDiagnosticSupport = true;
+      init_options.hasWidgets = true;
     };
   };
 }

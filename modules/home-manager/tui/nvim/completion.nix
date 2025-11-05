@@ -1,4 +1,21 @@
+{ pkgs, ... }:
 {
+  programs.nixvim.extraPlugins = [ pkgs.vimPlugins.blink-pairs ];
+  programs.nixvim.extraConfigLua = ''
+    require("blink.pairs").setup({
+    	highlights = {
+    		groups = {
+    			"BlinkPairsOrange",
+    			"BlinkPairsPurple",
+    			"BlinkPairsBlue",
+    			"BlinkPairsCyan",
+    			"BlinkPairsYellow",
+    			"BlinkPairsGreen",
+    		},
+    	},
+    })
+  '';
+
   programs.nixvim.plugins = {
     luasnip = {
       enable = true;
@@ -28,8 +45,8 @@
       };
     };
 
-    copilot-lua.enable = false;
-    blink-copilot.enable = true;
+    # copilot-lua.enable = false;
+    # blink-copilot.enable = true;
     blink-ripgrep.enable = true;
     blink-cmp = {
       enable = true;
@@ -65,15 +82,15 @@
             "snippets"
             "buffer"
             "ripgrep"
-            "copilot"
+            # "copilot"
           ];
           providers = {
             snippets.opts.show_autosnippets = false;
-            copilot = {
-              async = true;
-              module = "blink-copilot";
-              name = "Copilot";
-            };
+            # copilot = {
+            #   async = true;
+            #   module = "blink-copilot";
+            #   name = "Copilot";
+            # };
             ripgrep = {
               module = "blink-ripgrep";
               name = "Ripgrep";
@@ -93,7 +110,7 @@
       key = "<C-;>";
       action.__raw = ''function() if require("luasnip").choice_active() then require("luasnip").change_choice(1) end end'';
       options.silent = true;
-      options.desc = "LuaSnip";
+      options.desc = "Change Choice";
     }
   ];
 }

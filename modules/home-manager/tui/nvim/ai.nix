@@ -3,15 +3,14 @@
     enable = true;
     settings.nes.enabled = false;
   };
-
   programs.nixvim.keymaps = [
-    {
-      mode = "n";
-      key = "<Tab>";
-      action.__raw = ''function() if not require("sidekick").nes_jump_or_apply() then return "<Tab>" end end'';
-      options.expr = true;
-      options.desc = "Sidekick Toggle CLI";
-    }
+    # {
+    #   mode = "n";
+    #   key = "<Tab>";
+    #   action.__raw = ''function() if not require("sidekick").nes_jump_or_apply() then return "<Tab>" end end'';
+    #   options.expr = true;
+    #   options.desc = "Sidekick Toggle CLI";
+    # }
     {
       mode = [
         "n"

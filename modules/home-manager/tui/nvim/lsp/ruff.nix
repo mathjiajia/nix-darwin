@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.nixvim.lsp.servers.ruff = {
     enable = true;
     config = {
       cmd = [
-        "${pkgs.ruff}/bin/ruff"
+        "${lib.getExe pkgs.ruff}"
         "server"
       ];
       filetypes = [ "python" ];

@@ -1,29 +1,54 @@
+{ lib, pkgs, ... }:
 {
-  programs.nixvim.globals.fff.lazy_sync = true;
-
   programs.nixvim.plugins = {
-    fff.enable = true;
     flash.enable = true;
-    grug-far.enable = true;
     nvim-surround.enable = true;
+
+    grug-far = {
+      enable = true;
+      luaConfig.content = lib.mkForce "";
+    };
+    blink-indent = {
+      enable = true;
+      luaConfig.content = lib.mkForce "";
+    };
+    fff = {
+      enable = true;
+      luaConfig.content = lib.mkForce "";
+    };
 
     snacks = {
       enable = true;
+      package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
+        nvimSkipModules = (oldAttrs.nvimSkipModules or [ ]) ++ [ "trouble.sources.profiler" ];
+        postInstall =
+          (oldAttrs.postInstall or "")
+          # sh
+          + ''
+            mkdir $out/after
+            mv $out/{queries,after/queries}
+            rm -r $out/lua/trouble
+          '';
+      });
       settings = {
         explorer.enabled = true;
         input.enabled = true;
-        picker.win.input.keys."<M-d>" = {
-          __unkeyed-1 = "toggle_hidden";
-          mode = [
-            "n"
-            "i"
-          ];
-        };
+        notifier.enabled = true;
+        picker.enabled = true;
         styles.lazygit = {
           width = 0;
           height = 0;
         };
       };
+    };
+  };
+
+  programs.nixvim.globals = {
+    grug-far.icons.fileIconsProvider = "mini.icons";
+    fff = {
+      layout.prompt_position = "top";
+      lazy_sync = true;
+      prompt = "   ";
     };
   };
 
@@ -41,20 +66,20 @@
           grug.open({ prefills = { filesFilter = ext and ext ~= "" and "*." .. ext or nil } })
         end
       '';
-      options.desc = "Search and Replace";
+      options.desc = "[S]earch and [R]eplace";
     }
 
     {
       mode = "n";
       key = "<leader>ff";
       action = "<Cmd>FFFFind<CR>";
-      options.desc = "Open File Picker";
+      options.desc = "[F]ile [F]inder";
     }
     {
       mode = "n";
       key = "<leader>fg";
       action.__raw = ''function() require("fff").find_in_git_root() end'';
-      options.desc = "Find Git Files";
+      options.desc = "[F]ind [G]it Files";
     }
 
     {
@@ -81,7 +106,7 @@
       mode = "o";
       key = "r";
       action.__raw = ''function() require("flash").remote() end'';
-      options.desc = "Remote Flash";
+      options.desc = "[R]emote Flash";
     }
     {
       mode = [
@@ -111,82 +136,82 @@
       mode = "n";
       key = "<leader>n";
       action.__raw = ''function() Snacks.picker.notifications() end'';
-      options.desc = "Notification History";
+      options.desc = "[N]otification History";
     }
     {
       mode = "n";
       key = "<leader>e";
       action.__raw = ''function() Snacks.picker.explorer() end'';
-      options.desc = "Explorer";
+      options.desc = "[E]xplorer";
     }
     # Find
     {
       mode = "n";
       key = "<leader>fb";
       action.__raw = ''function() Snacks.picker.buffers({ layout = "select" }) end'';
-      options.desc = "Buffers";
+      options.desc = "[F]ind [B]uffers";
     }
     {
       mode = "n";
       key = "<leader>fm";
       action.__raw = ''function() Snacks.picker({ layout = "select" }) end'';
-      options.desc = "Snacks Picker";
+      options.desc = "[F]ind [M]eta";
     }
     {
       mode = "n";
       key = "<leader>fp";
       action.__raw = ''function() Snacks.picker.projects() end'';
-      options.desc = "Projects";
+      options.desc = "[F]ind [P]rojects";
     }
     {
       mode = "n";
       key = "<leader>fr";
       action.__raw = ''function() Snacks.picker.recent() end'';
-      options.desc = "Recent";
+      options.desc = "[F]ind [R]ecent";
     }
     # git
     {
       mode = "n";
       key = "<leader>gd";
       action.__raw = ''function() Snacks.picker.git_diff() end'';
-      options.desc = "Git Diff (Hunks)";
+      options.desc = "[G]it [D]iff (Hunks)";
     }
     {
       mode = "n";
       key = "<leader>gf";
       action.__raw = ''function() Snacks.picker.git_log_file() end'';
-      options.desc = "Git Log File";
+      options.desc = "[G]it Log [F]ile";
     }
     {
       mode = "n";
       key = "<leader>gl";
       action.__raw = ''function() Snacks.picker.git_log() end'';
-      options.desc = "Git Log";
+      options.desc = "[G]it [L]og";
     }
     {
       mode = "n";
       key = "<leader>gL";
       action.__raw = ''function() Snacks.picker.git_log_line() end'';
-      options.desc = "Git Log Line";
+      options.desc = "[G]it Log [L]ine";
     }
     # Grep
     {
       mode = "n";
       key = "<leader>sb";
       action.__raw = ''function() Snacks.picker.lines() end'';
-      options.desc = "Buffer Lines";
+      options.desc = "[B]uffer Lines";
     }
     {
       mode = "n";
       key = "<leader>sB";
       action.__raw = ''function() Snacks.picker.grep_buffers() end'';
-      options.desc = "Grep Open Buffers";
+      options.desc = "Grep Open [B]uffers";
     }
     {
       mode = "n";
       key = "<leader>sg";
       action.__raw = ''function() Snacks.picker.grep() end'';
-      options.desc = "Grep";
+      options.desc = "[G]rep";
     }
     {
       mode = [
@@ -195,7 +220,7 @@
       ];
       key = "<leader>sw";
       action.__raw = ''function() Snacks.picker.grep_word() end'';
-      options.desc = "Visual selection or word";
+      options.desc = "Visual selection or [W]ord";
     }
     # Search
     {
@@ -214,81 +239,81 @@
       mode = "n";
       key = "<leader>sc";
       action.__raw = ''function() Snacks.picker.command_history() end'';
-      options.desc = "Command History";
+      options.desc = "[C]ommand History";
     }
     {
       mode = "n";
       key = "<leader>sC";
       action.__raw = ''function() Snacks.picker.commands() end'';
-      options.desc = "Commands";
+      options.desc = "[C]ommands";
     }
     {
       mode = "n";
       key = "<leader>sd";
       action.__raw = ''function() Snacks.picker.diagnostics() end'';
-      options.desc = "Diagnostics";
+      options.desc = "[D]iagnostics";
     }
     {
       mode = "n";
       key = "<leader>sh";
       action.__raw = ''function() Snacks.picker.help() end'';
-      options.desc = "Help Pages";
+      options.desc = "[H]elp Pages";
     }
     {
       mode = "n";
       key = "<leader>sj";
       action.__raw = ''function() Snacks.picker.jumps() end'';
-      options.desc = "Jumps";
+      options.desc = "[J]umps";
     }
     {
       mode = "n";
       key = "<leader>sl";
       action.__raw = ''function() Snacks.picker.loclist() end'';
-      options.desc = "Location List";
+      options.desc = "[L]ocation List";
     }
     {
       mode = "n";
       key = "<leader>sm";
       action.__raw = ''function() Snacks.picker.marks() end'';
-      options.desc = "Marks";
+      options.desc = "[M]arks";
     }
     {
       mode = "n";
       key = "<leader>sq";
       action.__raw = ''function() Snacks.picker.qflist() end'';
-      options.desc = "Quickfix List";
+      options.desc = "[Q]uickfix List";
     }
     {
       mode = "n";
       key = "<leader>sR";
       action.__raw = ''function() Snacks.picker.resume() end'';
-      options.desc = "Resume";
+      options.desc = "[R]esume";
     }
     {
       mode = "n";
       key = "<leader>su";
       action.__raw = ''function() Snacks.picker.undo() end'';
-      options.desc = "Unod History";
+      options.desc = "[U]ndo History";
     }
     # LSP
     {
       mode = "n";
       key = "<leader>ss";
       action.__raw = ''function() Snacks.picker.lsp_symbols() end'';
-      options.desc = "Lsp Symbols";
+      options.desc = "Lsp [S]ymbols";
     }
     # Others
     {
       mode = "n";
       key = "<leader>z";
       action.__raw = ''function() Snacks.zen() end'';
-      options.desc = "Toggle Zen Mode";
+      options.desc = "Toggle [Z]en Mode";
     }
     {
       mode = "n";
       key = "<leader>Z";
       action.__raw = ''function() Snacks.zen.zoom() end'';
-      options.desc = "Toggle Zoom";
+      options.desc = "Toggle [Z]oom";
     }
     {
       mode = "n";
@@ -300,37 +325,37 @@
       mode = "n";
       key = "<leader>S";
       action.__raw = ''function() Snacks.scratch.select() end'';
-      options.desc = "Select Scratch Buffer";
+      options.desc = "Select [S]cratch Buffer";
     }
     {
       mode = "n";
       key = "<leader>bd";
       action.__raw = ''function() Snacks.bufdelete() end'';
-      options.desc = "Delete Buffer";
+      options.desc = "[D]elete [B]uffer";
     }
     {
       mode = "n";
       key = "<leader>bD";
       action.__raw = ''function() Snacks.bufdelete.other() end'';
-      options.desc = "Delete Other Buffers";
+      options.desc = "[D]elete Other [B]uffers";
     }
     {
       mode = "n";
       key = "<leader>cR";
       action.__raw = ''function() Snacks.rename.rename_file() end'';
-      options.desc = "Rename File";
+      options.desc = "[R]ename File";
     }
     {
       mode = "n";
       key = "<leader>gg";
       action.__raw = ''function() Snacks.lazygit() end'';
-      options.desc = "Lazygit";
+      options.desc = "Lazy [G]it";
     }
     {
       mode = "n";
       key = "<leader>un";
       action.__raw = ''function() Snacks.notifier.hide() end'';
-      options.desc = "Dismiss All Notifications";
+      options.desc = "Dismiss All [N]otifications";
     }
   ];
 }

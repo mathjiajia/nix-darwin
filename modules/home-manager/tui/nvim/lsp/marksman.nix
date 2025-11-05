@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.nixvim.lsp.servers.marksman = {
     enable = true;
     config = {
       cmd = [
-        "${pkgs.marksman}/bin/marksman"
+        "${lib.getExe pkgs.marksman}"
         "server"
       ];
       filetypes = [

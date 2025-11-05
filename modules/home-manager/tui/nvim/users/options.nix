@@ -17,6 +17,9 @@
       loaded_tutor_mode_plugin = 1;
       loaded_zip = 1;
       loaded_zipPlugin = 1;
+
+      mapleader = " ";
+      maplocalleader = "\\";
     };
 
     clipboard.register = "unnamedplus";
@@ -81,6 +84,7 @@
       # 14 folding
       foldmethod = "expr";
       foldlevel = 99;
+      foldexpr = "v:lua.vim.treesitter.foldexpr()";
 
       # 15 diff mode
 
@@ -107,7 +111,8 @@
       virtualedit = "block";
       signcolumn = "yes";
 
-      pumborder = "rounded";
+      # 0.12
+      # pumborder = "rounded";
       winborder = "rounded";
     };
   };

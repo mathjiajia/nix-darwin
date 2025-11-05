@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.nixvim.lsp.servers.matlab_ls = {
     enable = true;
     config = {
       cmd = [
-        "${pkgs.matlab-language-server}/bin/matlab-language-server"
+        "${lib.getExe pkgs.matlab-language-server}"
         "--stdio"
       ];
       filetypes = [ "matlab" ];

@@ -81,10 +81,10 @@
 
   programs.nixvim.extraConfigLua = ''
     local dap, dapui = require("dap"), require("dapui")
-    dap.listeners.before.attach.dapui_config						= function() dapui.open() end
-    dap.listeners.before.launch.dapui_config						= function() dapui.open() end
-    dap.listeners.before.event_terminated.dapui_config	= function() dapui.close() end
-    dap.listeners.before.event_exited.dapui_config			= function() dapui.close() end
+    dap.listeners.before.attach.dapui_config = function() dapui.open() end
+    dap.listeners.before.launch.dapui_config = function() dapui.open() end
+    dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+    dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
   '';
 
   programs.nixvim.keymaps = [
@@ -92,55 +92,55 @@
       mode = "n";
       key = "<leader>db";
       action = "<Cmd>DapToggleBreakpoint<CR>";
-      options.desc = "Toggle Breakpoint";
+      options.desc = "Toggle [D]ebug [B]reakpoint";
     }
     {
       mode = "n";
       key = "<leader>dB";
       action.__raw = ''function() require("dap").set_breakpoint(vim.ui.input("Breakpoint condition: ")) end'';
-      options.desc = "Breakpoint Condition";
+      options.desc = "[B]reakpoint Condition";
     }
     {
       mode = "n";
       key = "<leader>dc";
       action = "<Cmd>DapContinue<CR>";
-      options.desc = "Continue";
+      options.desc = "[C]ontinue";
     }
     {
       mode = "n";
       key = "<leader>dg";
       action.__raw = ''function() require("dap").goto_() end'';
-      options.desc = "Go to Line (No Execute)";
+      options.desc = "[G]Go to Line (No Execute)";
     }
     {
       mode = "n";
       key = "<leader>di";
       action = "<Cmd>DapStepInto<CR>";
-      options.desc = "Step Into";
+      options.desc = "Step [I]nto";
     }
     {
       mode = "n";
       key = "<leader>dl";
       action.__raw = ''function() require("dap").run_last() end'';
-      options.desc = "Run Last";
+      options.desc = "Run [L]ast";
     }
     {
       mode = "n";
       key = "<leader>do";
       action = "<Cmd>DapStepOut<CR>";
-      options.desc = "Step Out";
+      options.desc = "Step [O]ut";
     }
     {
       mode = "n";
       key = "<leader>dO";
       action = "<Cmd>DapStepOver<CR>";
-      options.desc = "Step Over";
+      options.desc = "Step [O]ver";
     }
     {
       mode = "n";
       key = "<leader>dr";
       action = "<Cmd>DapToggleRepl<CR>";
-      options.desc = "Toggle REPL";
+      options.desc = "Toggle [R]EPL";
     }
     {
       mode = [
@@ -149,13 +149,13 @@
       ];
       key = "<leader>dw";
       action.__raw = ''function() require("dap.ui.widgets").hover() end'';
-      options.desc = "Widgets";
+      options.desc = "[W]idgets";
     }
     {
       mode = "n";
       key = "<leader>du";
       action.__raw = ''function() require("dapui").toggle() end'';
-      options.desc = "Dap UI";
+      options.desc = "[D]ap [U]I";
     }
     {
       mode = [
@@ -164,7 +164,7 @@
       ];
       key = "<leader>de";
       action.__raw = ''function() require("dapui").eval() end'';
-      options.desc = "Eval";
+      options.desc = "[E]val";
     }
   ];
 }

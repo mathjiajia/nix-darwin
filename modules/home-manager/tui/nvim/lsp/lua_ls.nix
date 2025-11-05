@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.nixvim.lsp.servers.lua_ls = {
     enable = true;
     config = {
-      cmd = [ "${pkgs.lua-language-server}/bin/lua-language-server" ];
+      cmd = [ "${lib.getExe pkgs.lua-language-server}" ];
       filetypes = [ "lua" ];
       root_markers = [
         ".luarc.json"
@@ -16,8 +16,12 @@
         ".git"
       ];
       setttings.Lua = {
+        # codeLens.enable = true;
+        hint = {
+          enable = true;
+          semicolon = "Disable";
+        };
         completion.callSnippet = "Replace";
-        hint.enable = true;
         runtime = {
           version = "LuaJIT";
           path = [
@@ -28,11 +32,7 @@
         telemetry.enable = false;
         workspace = {
           checkThirdParty = false;
-          library = {
-            __unkeyed-1.__raw = "vim.env.VIMRUNTIME";
-            __unkeyed-2 = "\${3rd}/luv/library";
-            __unkeyed-3 = "\${3rd}/busted/library";
-          };
+          library.__unkeyed-1.__raw = "vim.env.VIMRUNTIME";
         };
       };
     };

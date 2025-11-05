@@ -1,3 +1,4 @@
+{ config, pkgs, ... }:
 {
   home = {
     stateVersion = "25.11";
@@ -6,6 +7,18 @@
       # ALIYUN_API_KEY = "$(security find-generic-password -s 'ALIYUN_API_KEY' -w)";
       GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
     };
+
+    packages = with pkgs; [
+      # CLI
+      container
+      crush
+      elan # lean
+      hugo
+      luajit
+
+      # PYTHON
+      (python3.withPackages (ps: [ ps.jupyterlab ]))
+    ];
   };
 
   programs = {
@@ -18,38 +31,51 @@
     pandoc.enable = true;
     uv.enable = true;
 
-    bat.enable = true;
-    bat.config = {
-      theme = "Visual Studio Dark+";
-      italic-text = "always";
-      style = "numbers,changes,header";
+    bat = {
+      enable = true;
+      config = {
+        theme = "Visual Studio Dark+";
+        italic-text = "always";
+        style = "numbers,changes,header";
+      };
     };
 
-    btop.enable = true;
-    btop.settings = {
-      theme_background = false;
-      vim_keys = true;
+    btop = {
+      enable = true;
+      settings = {
+        theme_background = false;
+        vim_keys = true;
+      };
     };
 
-    nushell.enable = true;
-    nushell.settings.show_banner = false;
-
-    tex-fmt.enable = true;
-    tex-fmt.settings = {
-      tabchar = "tab";
-      tabsize = 1;
-      wraplen = 120;
+    nh = {
+      enable = true;
+      flake = "/etc/nix-darwin";
     };
 
-    zoxide.enable = true;
-    zoxide.options = [
-      "--cmd"
-      "cd"
-    ];
+    tex-fmt = {
+      enable = true;
+      settings = {
+        tabchar = "tab";
+        tabsize = 1;
+        wraplen = 120;
+      };
+    };
 
-    zsh.enable = true;
-    zsh.autosuggestion.enable = true;
-    zsh.syntaxHighlighting.enable = true;
+    zoxide = {
+      enable = true;
+      options = [
+        "--cmd"
+        "cd"
+      ];
+    };
+
+    zsh = {
+      enable = true;
+      autosuggestion.enable = true;
+      dotDir = "${config.xdg.configHome}/zsh";
+      syntaxHighlighting.enable = true;
+    };
   };
 
   xdg.enable = true;
@@ -64,7 +90,7 @@
     ./tui/ripgrep.nix
     ./tui/starship.nix
 
-    ./gui/aerospace.nix
+    # ./gui/aerospace.nix
     ./gui/ghostty.nix
     ./gui/neovide.nix
     ./gui/sage.nix

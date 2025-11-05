@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
-  programs.nixvim.lsp.servers.taple = {
+  programs.nixvim.lsp.servers.taplo = {
     enable = true;
     config = {
       cmd = [
-        "${pkgs.taplo}/bin/taplo"
+        "${lib.getExe pkgs.taplo}"
         "lsp"
         "stdio"
       ];

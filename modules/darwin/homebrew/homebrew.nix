@@ -11,16 +11,16 @@
 
     taps = builtins.attrNames config.nix-homebrew.taps;
 
+    brews = [ "rift" ];
     casks = [
       "adguard"
-      # "aerospace"
       "corretto@11"
       "chatgpt"
       "downie"
       "fcitx5"
+      "filo"
       "ghostty"
       "hazel"
-      "hyprspace"
       "iina"
       "istat-menus"
       "jordanbaird-ice"

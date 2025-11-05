@@ -1,43 +1,56 @@
 {
-  description = "Jia's Darwin system flake";
+  description = "Personal Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
-    nix-darwin.url = "github:nix-darwin/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # homebrew
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    nix-homebrew.url = "github:rick-yao/nix-homebrew";
 
-    # homebrew-tap
-    # aerospace.url = "github:nikitabobko/homebrew-tap";
-    # aerospace.flake = false;
-    hyprspace.url = "github:BarutSRB/homebrew-tap";
-    hyprspace.flake = false;
-    fcitx.url = "github:fcitx-contrib/homebrew-tap";
-    fcitx.flake = false;
-    lihaoyun6.url = "github:lihaoyun6/homebrew-tap"; # quickrecorder
-    lihaoyun6.flake = false;
+    # homebrew-taps
+    rift = {
+      url = "github:acsandmann/homebrew-tap";
+      flake = false;
+    };
+    fcitx = {
+      url = "github:fcitx-contrib/homebrew-tap";
+      flake = false;
+    };
+    quickrecorder = {
+      url = "github:lihaoyun6/homebrew-tap";
+      flake = false;
+    };
 
     # Neovim (nixvim)
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    blink-indent.url = "github:saghen/blink.indent";
-    blink-indent.flake = false;
-    # math-conceal-nvim.url = "github:pxwg/math-conceal.nvim";
-    # math-conceal-nvim.flake = false;
-    nvim-latex-conceal.url = "github:mathjiajia/nvim-latex-conceal";
-    nvim-latex-conceal.flake = false;
-    nvim-math-snippets.url = "github:mathjiajia/nvim-math-snippets";
-    nvim-math-snippets.flake = false;
-    nvim-treesitter.url = "github:nvim-treesitter/nvim-treesitter/main";
-    nvim-treesitter.flake = false;
-    slimline-nvim.url = "github:sschleemilch/slimline.nvim";
-    slimline-nvim.flake = false;
+    # lean-nvim = {
+    #   url = "github:Julian/lean.nvim";
+    #   flake = false;
+    # };
+    # math-conceal-nvim = {
+    #   url = "github:pxwg/math-conceal.nvim";
+    #   flake = false;
+    # };
+    nvim-latex-conceal = {
+      url = "github:mathjiajia/nvim-latex-conceal";
+      flake = false;
+    };
+    nvim-math-snippets = {
+      url = "github:mathjiajia/nvim-math-snippets";
+      flake = false;
+    };
   };
 
   outputs =

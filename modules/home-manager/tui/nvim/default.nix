@@ -1,4 +1,3 @@
-{ inputs, pkgs, ... }:
 {
   home = {
     sessionVariables.MANPAGER = "nvim +Man!";
@@ -7,11 +6,12 @@
 
   programs.nixvim = {
     enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     defaultEditor = true;
     luaLoader.enable = true;
     nixpkgs.config.allowUnfree = true;
     colorscheme = "bamboo";
+    withPython3 = false;
+    withRuby = false;
   };
 
   programs.nixvim.performance = {
@@ -23,11 +23,7 @@
 
     combinePlugins = {
       enable = true;
-      pathsToLink = [
-        "/luasnippets" # luasnip
-        "/runtime/queries" # nvim-treesitter
-        # "/queries_config" # math-conceal.nvim
-      ];
+      pathsToLink = [ "/luasnippets" ];
     };
   };
 
@@ -35,9 +31,8 @@
     ./users
     ./lsp
 
-    # ./colorscheme.nix
+    # ./ai.nix
     ./compiler
-    ./ai.nix
     ./completion.nix
     ./dap.nix
     ./editor.nix

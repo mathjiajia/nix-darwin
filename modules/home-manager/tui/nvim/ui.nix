@@ -1,24 +1,7 @@
-{ inputs, pkgs, ... }:
-let
-  slimline-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "slimline";
-    src = inputs.slimline-nvim;
-    nvimSkipModules = [
-      "slimline.components.diagnostics"
-      "slimline.components.filetype_lsp"
-      "slimline.components.mode"
-      "slimline.components.path"
-      "slimline.components.progress"
-      "slimline.components.recording"
-      "slimline.components.searchcount"
-      "slimline.components.selectioncount"
-    ];
-  };
-in
 {
-  programs.nixvim.extraPlugins = [ slimline-nvim ];
-
   programs.nixvim.plugins = {
+    mini-icons.enable = true;
+    mini-statusline.enable = true;
     mini-diff = {
       enable = true;
       settings.view = {
@@ -30,7 +13,6 @@ in
         };
       };
     };
-    mini-icons.enable = true;
     mini-hipatterns = {
       enable = true;
       settings.highlighters = {
@@ -70,6 +52,7 @@ in
     };
     dropbar = {
       enable = true;
+      # luaConfig = lib.mkForce "";
       settings = {
         symbol.on_click = false;
         menu = {
@@ -109,17 +92,9 @@ in
   programs.nixvim.keymaps = [
     {
       mode = "n";
-      key = "<leader>hp";
+      key = "<leader>go";
       action.__raw = ''function() MiniDiff.toggle_overlay() end'';
-      options.desc = "Hunk Diff Overlay";
+      options.desc = "Hunk Diff [O]verlay";
     }
   ];
-
-  programs.nixvim.extraConfigLua = ''
-    require("slimline").setup({
-    	style = "fg",
-    	components = { center = { "searchcount" } },
-    	configs = { git = { hl = { primary = "Function" } } },
-    })
-  '';
 }

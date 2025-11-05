@@ -1,7 +1,7 @@
 {
   imports = [
     ./clangd.nix
-    ./copilot.nix
+    # ./copilot.nix
     ./leanls.nix
     ./lua_ls.nix
     ./marksman.nix
@@ -41,22 +41,31 @@
         end
 
         if client:supports_method("textDocument/documentHighlight") then
-        	local highlight_augroup = vim.api.nvim_create_augroup("lsp_document_highlight", {})
         	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         		buffer = bufnr,
-        		group = highlight_augroup,
         		callback = vim.lsp.buf.document_highlight,
         	})
 
         	vim.api.nvim_create_autocmd({ "CursorMoved" }, {
         		buffer = bufnr,
-        		group = highlight_augroup,
         		callback = vim.lsp.buf.clear_references,
         	})
         end
 
+        -- if client:supports_method("textDocument/codeLens", bufnr) then
+        -- 	vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.refresh, { desc = "codelens.refresh", buffer = bufnr })
+        -- 	vim.keymap.set("n", "<leader>cr", vim.lsp.codelens.run, { desc = "lsp.codelens.run", buffer = bufnr })
+        --
+        -- 	vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        -- 		buffer = bufnr,
+        -- 		callback = function()
+        -- 			vim.lsp.codelens.refresh({ bufnr = bufnr })
+        -- 		end,
+        -- 	})
+        -- end
+
         if client:supports_method("textDocument/inlayHint", bufnr) then
-        	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        	-- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
         	vim.keymap.set("n", "<M-i>", function()
         		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
         	end, { buffer = bufnr, desc = "Inlay Hint Toggle" })

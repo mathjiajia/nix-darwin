@@ -17,6 +17,15 @@
         vim.keymap.set("n", "q", function() vim.api.nvim_win_close(0, false) end, { buffer = 0, silent = true })
       '';
 
+    "after/ftplugin/lean.lua".text =
+      # lua
+      ''
+        vim.diagnostic.config({
+        	virtual_lines = false,
+        	virtual_text = true,
+        })
+      '';
+
     "after/ftplugin/markdown.lua".text =
       # lua
       ''
@@ -55,7 +64,6 @@
       ''
         vim.wo[0][0].conceallevel = 2
         vim.wo[0][0].spell = true
-        vim.b.sidekick_nes = false
 
         vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Correct Last Spelling" })
 

@@ -1,6 +1,5 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [ mas ];
+  homebrew.brews = [ "mas" ];
 
   homebrew.masApps = {
     Dictionaries = 1380563956;

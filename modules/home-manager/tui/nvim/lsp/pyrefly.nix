@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs.nixvim.lsp.servers.pyrefly = {
     enable = true;
     config = {
       cmd = [
-        "${pkgs.pyrefly}/bin/pyrefly"
+        "${lib.getExe pkgs.pyrefly}"
         "lsp"
       ];
       filetypes = [ "python" ];

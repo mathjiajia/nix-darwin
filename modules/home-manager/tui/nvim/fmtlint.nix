@@ -42,7 +42,6 @@
             markdown = [ "prettierd" ];
             json = [ "jq" ];
             lua = [ "stylua" ];
-            nix = [ "nixfmt" ];
             python = [
               "ruff_fix"
               "ruff_format"
@@ -72,7 +71,7 @@
         ];
         key = "<leader>cF";
         action.__raw = ''function() require("conform").format({ formatters = { "injected" }, timeout_ms = 2000 }) end'';
-        options.desc = "Format Injected Langs";
+        options.desc = "[F]ormat Injected Langs";
       }
     ];
 

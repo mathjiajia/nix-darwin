@@ -14,6 +14,7 @@
     "hazeover"
     "hookmark"
     "inkscape"
+    "llamabarn"
     "lm-studio"
     "miaoyan"
     "neteasemusic"
