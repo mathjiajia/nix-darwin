@@ -29,7 +29,6 @@ let
   };
 in
 {
-  programs.nixvim.extraPython3Packages = p: [ p.pylatexenc ];
   programs.nixvim.extraPlugins = [
     # math-conceal-nvim
     nvim-latex-conceal
@@ -95,6 +94,7 @@ in
         };
         win_options.concealcursor.rendered = "nvc";
         completions.lsp.enabled = true;
+        latex.enabled = false;
       };
     };
   };

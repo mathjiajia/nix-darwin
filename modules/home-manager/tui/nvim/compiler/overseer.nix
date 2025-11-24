@@ -5,19 +5,10 @@
       enable = true;
       luaConfig.content = lib.mkForce "";
       package = pkgs.vimPlugins.overseer-nvim.overrideAttrs (oldAttrs: {
-        nvimSkipModules = (oldAttrs.nvimSkipModules or [ ]) ++ [
-          "resession.extensions.overseer"
-          "neotest.consumers.overseer"
-          "neotest.client.strategies.overseer"
-          "cmp_overseer"
-        ];
         postInstall =
           (oldAttrs.postInstall or "")
           # sh
-          + ''
-            mv $out/doc/{recipes.md,overseer-nvim_recipes.md}
-            rm -r $out/lua/{cmp_overseer,lualine,neotest,resession}
-          '';
+          + ''mv $out/doc/{recipes.md,overseer-nvim_recipes.md}'';
       });
     };
 
@@ -43,11 +34,10 @@
     ];
 
     extraFiles = {
-      "lua/overseer/template/user/gcc_debug.lua".text =
+      "lua/overseer/template/user/clang_debug.lua".text =
         # lua
         ''
-          return {
-          	name = "clang: debug build",
+          return { name = "clang: compile for debug",
           	condition = { filetype = { "c", "cpp" } },
           	builder = function()
           		local file = vim.fn.expand("%:p")
@@ -57,11 +47,7 @@
           			cmd = { compiler },
           			args = { "-fcolor-diagnostics", "-fansi-escape-codes", "-g", file, "-o", outfile },
           			components = {
-          				{
-          					"on_output_quickfix",
-          					open_on_exit = "failure",
-          				},
-          				"on_complete_notify",
+          				{ "on_output_quickfix", open_on_exit = "failure" },
           				"default",
           			},
           		}
@@ -74,6 +60,7 @@
         ''
           return {
           	name = "clang: build",
+          	condition = { filetype = { "c", "cpp" } },
           	builder = function()
           		local file = vim.fn.expand("%:p")
           		local outfile = vim.fn.expand("%:p:r") .. ".out"
@@ -82,21 +69,14 @@
           			cmd = { compiler },
           			args = { file, "-o", outfile },
           			components = {
-          				{
-          					"on_output_quickfix",
-          					open_on_exit = "failure",
-          				},
-          				"on_complete_notify",
+          				{ "on_output_quickfix", open_on_exit = "failure" },
           				"default",
           			},
           		}
           	end,
-          	condition = {
-          		filetype = { "c", "cpp" },
-          	},
           }
         '';
-      "lua/overseer/template/user/clang_build_run.lua".text =
+      "lua/overseer/template/user/clang_run.lua".text =
         # lua
         ''
           return {
@@ -124,17 +104,21 @@
         # lua
         ''
           return {
-          	name = "swiftc: debug build",
+          	name = "swiftc: compile for debug",
           	condition = { filetype = { "swift" } },
           	builder = function()
           		local file = vim.fn.expand("%:p")
           		return {
           			cmd = { "swiftc" },
           			args = { "-g", file },
+          			components = {
+          				{ "on_output_quickfix", open_on_exit = "failure" },
+          				"default",
+          			},
           		}
           	end,
           }
-        '';
+          						'';
 
       "lua/overseer/template/user/run_script.lua".text =
         # lua

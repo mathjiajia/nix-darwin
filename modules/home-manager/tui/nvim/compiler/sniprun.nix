@@ -4,8 +4,7 @@
       enable = true;
       settings = {
         display = [
-          "VirtualTextOk"
-          "VirtualTextErr"
+          "VirtualText"
           "Terminal"
         ];
         selected_interpreters = [ "Python3_fifo" ];

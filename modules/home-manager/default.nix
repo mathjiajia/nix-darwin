@@ -10,6 +10,7 @@
 
     packages = with pkgs; [
       # CLI
+      cargo
       container
       crush
       elan # lean

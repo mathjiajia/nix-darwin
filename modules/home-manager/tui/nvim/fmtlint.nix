@@ -23,7 +23,7 @@
           postInstall =
             oldAttrs.postInstall or ""
             # sh
-            + ''mv $out/doc/recipes.md $out/doc/conform-nvim_recipes.md'';
+            + ''mv $out/doc/{recipes.md,conform-nvim_recipes.md}'';
         });
         autoInstall.enable = true;
         settings = {

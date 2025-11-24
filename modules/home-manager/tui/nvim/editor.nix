@@ -20,14 +20,12 @@
     snacks = {
       enable = true;
       package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
-        nvimSkipModules = (oldAttrs.nvimSkipModules or [ ]) ++ [ "trouble.sources.profiler" ];
         postInstall =
           (oldAttrs.postInstall or "")
           # sh
           + ''
             mkdir $out/after
             mv $out/{queries,after/queries}
-            rm -r $out/lua/trouble
           '';
       });
       settings = {
