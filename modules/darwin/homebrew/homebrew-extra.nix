@@ -1,4 +1,6 @@
 {
+  homebrew.brews = [ "mole" ];
+
   homebrew.casks = [
     "adobe-acrobat-pro"
     "adobe-creative-cloud"
@@ -10,7 +12,7 @@
     "codeedit"
     "dash"
     "discord"
-    "flashspace"
+    # "flashspace"
     "hazeover"
     "hookmark"
     "inkscape"

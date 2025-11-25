@@ -1,3 +1,4 @@
+{ lib, pkgs, ... }:
 {
   programs.neovide = {
     enable = true;
@@ -5,12 +6,13 @@
     settings = {
       frame = "transparent";
       icon = "/Users/jia/bin/neovide.icns";
+      neovim-bin = "${lib.getExe pkgs.neovim-unwrapped}";
       font = {
         normal = [
           "Sarasa Term SC"
           "Symbols Nerd Font"
         ];
-        size = 20;
+        size = 24;
       };
     };
   };

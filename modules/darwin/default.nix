@@ -1,6 +1,18 @@
 { pkgs, ... }:
 {
   environment.pathsToLink = [ "/share/zsh" ];
+  environment.systemPackages = with pkgs; [
+    # CLI
+    container
+    crush
+    elan # lean
+    hugo
+    luajit
+    # numr
+
+    # PYTHON
+    (python3.withPackages (ps: [ ps.jupyterlab ]))
+  ];
 
   fonts.packages = with pkgs; [
     lxgw-wenkai

@@ -12,6 +12,7 @@
     taps = builtins.attrNames config.nix-homebrew.taps;
 
     brews = [ "rift" ];
+
     casks = [
       "adguard"
       "corretto@11"

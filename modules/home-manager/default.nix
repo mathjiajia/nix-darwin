@@ -1,25 +1,14 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   home = {
-    stateVersion = "25.11";
+    stateVersion = "26.05";
     sessionPath = [ "/Library/TeX/texbin" ];
     sessionVariables = {
       # ALIYUN_API_KEY = "$(security find-generic-password -s 'ALIYUN_API_KEY' -w)";
       GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
+      MANPAGER = "nvim +Man!";
     };
-
-    packages = with pkgs; [
-      # CLI
-      cargo
-      container
-      crush
-      elan # lean
-      hugo
-      luajit
-
-      # PYTHON
-      (python3.withPackages (ps: [ ps.jupyterlab ]))
-    ];
+    shellAliases.nv = "nvim";
   };
 
   programs = {
@@ -54,6 +43,11 @@
       flake = "/etc/nix-darwin";
     };
 
+    nixvim = {
+      enable = true;
+      imports = [ ./nvim ];
+    };
+
     tex-fmt = {
       enable = true;
       settings = {
@@ -83,7 +77,6 @@
 
   imports = [
     ./tui/git
-    ./tui/nvim
     ./tui/yazi
 
     ./tui/fd.nix

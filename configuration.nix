@@ -4,7 +4,10 @@ let
   system = "aarch64-darwin";
 in
 {
-  nix.enable = false;
+  nix = {
+    enable = false;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+  };
 
   nixpkgs = {
     hostPlatform = system;
@@ -26,9 +29,10 @@ in
     enable = true;
     user = user;
     taps = {
-      "acsandmann/homebrew-tap" = inputs.rift;
       "fcitx-contrib/homebrew-tap" = inputs.fcitx;
+      "tw93/homebrew-tap" = inputs.mole;
       "lihaoyun6/homebrew-tap" = inputs.quickrecorder;
+      "acsandmann/homebrew-tap" = inputs.rift;
     };
     mutableTaps = false;
     extraEnv.HOMEBREW_NO_ANALYTICS = "1";
@@ -38,7 +42,6 @@ in
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
-    extraSpecialArgs = { inherit inputs; };
     users.${user}.imports = [
       inputs.nixvim.homeModules.nixvim
       ./modules/home-manager
