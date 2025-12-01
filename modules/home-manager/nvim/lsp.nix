@@ -1,7 +1,18 @@
 {
   extraFiles."after/lsp".source = ./after_lsp;
 
-  lsp.servers.copilot.enable = true;
+  lsp.servers = {
+    clangd.enable = true;
+    copilot.enable = true;
+    lua_ls.enable = true;
+    marksman.enable = true;
+    mathlab_ls.enable = true;
+    nixd.enable = true;
+    pyrefly.enable = true;
+    sourcekit.enable = true;
+    taplo.enable = true;
+    texlab.enable = true;
+  };
 
   diagnostic.settings = {
     severity_sort = true;

@@ -3,8 +3,6 @@ vim.wo[0][0].spell = true
 
 vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Correct Last Spelling" })
 
-vim.lsp.enable("texlab")
-
 local config = require("nvim-surround.config")
 require("nvim-surround").buffer_setup({
 	surrounds = {

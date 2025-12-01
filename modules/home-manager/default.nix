@@ -17,7 +17,7 @@
 
     packages = with pkgs; [
       # CLI
-      container
+      container # Apple
       crush
       hugo
       luajit
@@ -34,7 +34,7 @@
       taplo
       texlab
 
-      # PYTHON
+      # Python
       (python3.withPackages (ps: [ ps.jupyterlab ]))
 
       # Fonts
