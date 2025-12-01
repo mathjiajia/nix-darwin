@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   home = {
     stateVersion = "26.05";
@@ -9,6 +14,38 @@
       MANPAGER = "nvim +Man!";
     };
     shellAliases.nv = "nvim";
+
+    packages = with pkgs; [
+      # CLI
+      container
+      crush
+      hugo
+      luajit
+      nodejs
+      numr
+
+      # language-servers
+      elan # lean
+      lua-language-server
+      marksman
+      matlab-language-server
+      nixd
+      pyrefly
+      taplo
+      texlab
+
+      # PYTHON
+      (python3.withPackages (ps: [ ps.jupyterlab ]))
+
+      # Fonts
+      julia-mono
+      lxgw-wenkai
+      maple-mono.NF-CN
+      sarasa-gothic
+      smiley-sans
+      nerd-fonts.iosevka-term
+      nerd-fonts.symbols-only
+    ];
   };
 
   programs = {
@@ -20,15 +57,6 @@
     fastfetch.enable = true;
     pandoc.enable = true;
     uv.enable = true;
-
-    bat = {
-      enable = true;
-      config = {
-        theme = "Visual Studio Dark+";
-        italic-text = "always";
-        style = "numbers,changes,header";
-      };
-    };
 
     btop = {
       enable = true;
@@ -45,6 +73,9 @@
 
     nixvim = {
       enable = true;
+      defaultEditor = true;
+      nixpkgs.config.allowUnfree = true;
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
       imports = [ ./nvim ];
     };
 
@@ -65,12 +96,12 @@
       ];
     };
 
-    zsh = {
-      enable = true;
-      autosuggestion.enable = true;
-      dotDir = "${config.xdg.configHome}/zsh";
-      syntaxHighlighting.enable = true;
-    };
+    # zsh = {
+    #   enable = true;
+    #   autosuggestion.enable = true;
+    #   dotDir = "${config.xdg.configHome}/zsh";
+    #   syntaxHighlighting.enable = true;
+    # };
   };
 
   xdg.enable = true;
@@ -79,10 +110,12 @@
     ./tui/git
     ./tui/yazi
 
+    ./tui/bat.nix
     ./tui/fd.nix
+    ./tui/fish.nix
     ./tui/fzf.nix
     ./tui/ripgrep.nix
-    ./tui/starship.nix
+    # ./tui/starship.nix
 
     # ./gui/aerospace.nix
     ./gui/ghostty.nix

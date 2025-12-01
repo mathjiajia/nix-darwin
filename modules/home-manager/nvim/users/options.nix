@@ -1,9 +1,5 @@
 {
   globals = {
-    loaded_perl_provider = 0;
-    loaded_python3_provider = 0;
-    loaded_ruby_provider = 0;
-
     loaded_gzip = 1;
     loaded_matchit = 1;
     loaded_matchparen = 1;
@@ -20,13 +16,11 @@
     mapleader = " ";
   };
 
-  extraConfigLua = "vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)";
+  clipboard.register = "unnamedplus";
 
   opts = {
-    # 0.12
-    # pumborder = "rounded";
-
     linebreak = true;
+    pumborder = "rounded";
     winborder = "rounded";
     tabstop = 2;
     shiftwidth = 2;
@@ -68,7 +62,7 @@
     # Sets how neovim will display certain whitespace characters in the editor.
     list = true;
     listchars = {
-      tab = "» ";
+      tab = "▸ ";
       trail = "·";
       nbsp = "␣";
     };
@@ -80,7 +74,7 @@
     cursorline = true;
 
     # Minimal number of screen lines to keep above and below the cursor.
-    scrolloff = 5; # number of screen lines to show around the cursor
+    scrolloff = 999;
 
     # folding
     foldlevel = 99;

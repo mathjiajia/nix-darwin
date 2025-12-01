@@ -3,6 +3,7 @@
     enable = true;
     ignores = [
       "Library/"
+      "MLXModels/"
       "Movies/"
       "Music/"
       "Pictures/"
@@ -14,15 +15,18 @@
       ".cache/"
       ".cargo/"
       ".cpan/"
-      ".diffusionbee/"
+      ".elan/"
       ".gemini/"
       ".git/"
+      ".jupyter/"
+      ".llamabarn/"
       ".lmstudio/"
       ".local/"
       ".npm/"
-      ".nvm"
       ".ollama/"
       ".orbstack/"
+      ".sage/"
+      ".swiftpm/"
       ".vscode/"
       ".DS_Store"
 

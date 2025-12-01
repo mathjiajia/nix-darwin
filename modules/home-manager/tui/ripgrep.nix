@@ -3,9 +3,10 @@
     enable = true;
     arguments = [
       # Exclude directories.
-      "--glob=!{.cache,.cpan,.git,.local,.Trash}"
-      "--glob=!{.docker,.npm,.ollama,.orbstack,.swiftpm,.vscode}"
-      "--glob=!{Applications,Library,Movies,Music,Pictures,public,Public,Zotero}"
+      "--glob=!{.cache,.docker,.git,.local,.swiftpm,.Trash}"
+      "--glob=!{.bun,.cargo,.cpan,.elan,.gemini,.jupyter,.npm,.ollama,.orbstack}"
+      "--glob=!{.config/raycast/extensions,.vscode/extensions}"
+      "--glob=!{Applications,Library,MLXModels,Movies,Music,Pictures,public,Public,Volumes,Zotero}"
       "--glob=!{MySite/public,MySite/resources,MySite/themes}"
 
       # Exclude file types.

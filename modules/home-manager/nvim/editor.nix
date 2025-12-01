@@ -2,6 +2,7 @@
 {
   plugins = {
     flash.enable = true;
+    # fugitive.enable = true;
     nvim-surround.enable = true;
 
     grug-far = {
@@ -31,12 +32,12 @@
       settings = {
         explorer.enabled = true;
         input.enabled = true;
-        notifier.enabled = true;
         picker.enabled = true;
         styles.lazygit = {
           width = 0;
           height = 0;
         };
+        words.enabled = true;
       };
     };
   };
@@ -129,12 +130,6 @@
       key = "<leader><space>";
       action.__raw = "function() Snacks.picker.smart() end";
       options.desc = "Smart Open";
-    }
-    {
-      mode = "n";
-      key = "<leader>n";
-      action.__raw = "function() Snacks.picker.notifications() end";
-      options.desc = "[N]otification History";
     }
     {
       mode = "n";
@@ -348,12 +343,6 @@
       key = "<leader>gg";
       action.__raw = "function() Snacks.lazygit() end";
       options.desc = "Lazy [G]it";
-    }
-    {
-      mode = "n";
-      key = "<leader>un";
-      action.__raw = "function() Snacks.notifier.hide() end";
-      options.desc = "Dismiss All [N]otifications";
     }
   ];
 }

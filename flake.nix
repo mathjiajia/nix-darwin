@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin";
+      url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -34,22 +34,20 @@
     };
 
     # Neovim (nixvim)
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
-    {
+    inputs@{
       nix-darwin,
       home-manager,
       nix-homebrew,
       ...
-    }@inputs:
+    }:
     let
-      special_args = { inherit inputs; };
-      shared-modules = [
+      specialArgs = { inherit inputs; };
+      modules = [
         ./configuration.nix
         ./modules/darwin
         nix-homebrew.darwinModules.nix-homebrew
@@ -59,12 +57,12 @@
     {
       darwinConfigurations = {
         "Jias-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-          modules = shared-modules ++ [ ./modules/darwin/extra.nix ];
-          specialArgs = special_args;
+          modules = modules;
+          specialArgs = specialArgs;
         };
         "Jias-MacBook-Pro-M1" = nix-darwin.lib.darwinSystem {
-          modules = shared-modules;
-          specialArgs = special_args;
+          modules = modules;
+          specialArgs = specialArgs;
         };
       };
     };

@@ -1,13 +1,10 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 let
   user = "jia";
   system = "aarch64-darwin";
 in
 {
-  nix = {
-    enable = false;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-  };
+  nix.enable = false;
 
   nixpkgs = {
     hostPlatform = system;
@@ -21,9 +18,14 @@ in
   };
 
   users.users."${user}" = {
-    name = user;
     home = "/Users/${user}";
+    name = user;
+    shell = pkgs.fish;
+    uid = 501;
   };
+
+  environment.shells = [ pkgs.fish ];
+  programs.fish.enable = true;
 
   nix-homebrew = {
     enable = true;
@@ -42,9 +44,10 @@ in
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
+    extraSpecialArgs = { inherit inputs; };
     users.${user}.imports = [
-      inputs.nixvim.homeModules.nixvim
       ./modules/home-manager
+      inputs.nixvim.homeModules.nixvim
     ];
   };
 }

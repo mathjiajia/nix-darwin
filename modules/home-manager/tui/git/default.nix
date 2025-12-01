@@ -8,33 +8,66 @@
 
   programs.git = {
     enable = true;
+    package = null;
     settings = {
       user = {
         email = "mathjiajia@outlook.com";
         name = "Jia Jia";
       };
+      core = {
+        commitGraph = true;
+        editor = "nvim";
+      };
+      fetch.prune = true;
       github.user = "mathjiajia";
       log.date = "iso";
       merge.conflictstyle = "zdiff3";
       pager.difftool = true;
+      pull.rebase = true;
       push.autoSetupRemote = true;
       rebase.autoSquash = true;
     };
     ignores = lib.splitString "\n" (builtins.readFile ./global_ignore);
   };
 
-  programs.difftastic = {
+  programs.delta = {
     enable = true;
-    git = {
-      enable = true;
-      diffToolMode = true;
+    enableGitIntegration = true;
+    options = {
+      features = "decorations";
+      line-numbers = true;
+      navigate = true;
+      side-by-side = false;
+      syntax-theme = "bamboo";
+      decorations = {
+        file-decoration-style = "bold yellow ul";
+        file-style = "purple bold";
+        hunk-header-decoration-style = "yellow box ul";
+        hunk-header-file-style = "yellow";
+        hunk-header-line-number-style = "grey bold italic";
+        hunk-header-style = "line-number syntax italic";
+        line-numbers-minus-style = "red bold italic";
+        line-numbers-plus-style = "green bold italic";
+        line-numbers-zero-style = "grey italic";
+        minus-emph-style = "syntax auto";
+        minus-style = "syntax auto";
+        zero-style = "syntax";
+      };
     };
   };
+  # programs.difftastic = {
+  #   enable = true;
+  #   git = {
+  #     enable = true;
+  #     diffToolMode = true;
+  #   };
+  # };
 
   programs.lazygit = {
     enable = true;
     settings = {
-      git.pagers = [ { externalDiffCommand = "${pkgs.difftastic}/bin/difft --color=always"; } ];
+      # git.pagers = [ { externalDiffCommand = "${pkgs.difftastic}/bin/difft --color=always"; } ];
+      git.pagers = [ { pager = "${lib.getExe pkgs.delta} --dark --paging=never"; } ];
       gui = {
         nerdFontsVersion = "3";
         sidePanelWidth = 0.25;

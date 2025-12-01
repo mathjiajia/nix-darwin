@@ -1,4 +1,3 @@
-{ lib, pkgs, ... }:
 {
   programs.neovide = {
     enable = true;
@@ -6,7 +5,7 @@
     settings = {
       frame = "transparent";
       icon = "/Users/jia/bin/neovide.icns";
-      neovim-bin = "${lib.getExe pkgs.neovim-unwrapped}";
+      neovim-bin = "/etc/profiles/per-user/jia/bin/nvim";
       font = {
         normal = [
           "Sarasa Term SC"

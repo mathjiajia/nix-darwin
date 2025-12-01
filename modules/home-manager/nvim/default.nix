@@ -1,7 +1,5 @@
 {
-  defaultEditor = true;
   luaLoader.enable = true;
-  nixpkgs.config.allowUnfree = true;
   colorscheme = "bamboo";
   withPython3 = false;
   withRuby = false;
@@ -21,7 +19,6 @@
 
   imports = [
     ./users
-    ./lsp
 
     ./ai.nix
     ./compiler
@@ -30,9 +27,12 @@
     ./editor.nix
     ./fmtlint.nix
     ./lang.nix
+    ./lsp.nix
     ./treesitter.nix
     ./ui.nix
 
     ./extras.nix
   ];
+
+  extraFiles."after/ftplugin".source = ./after_ftplugin;
 }

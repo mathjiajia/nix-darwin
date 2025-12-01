@@ -1,9 +1,7 @@
 {
   autoGroups = {
     checkTime = { };
-    highlightYank = { };
     lastPlace = { };
-    # lspStatusBar = { };
     openFile = { };
   };
 
@@ -20,8 +18,6 @@
     }
     {
       event = "TextYankPost";
-      group = "highlightYank";
-      desc = "Highlight the Yanked Text";
       callback.__raw = "function() vim.hl.on_yank() end";
     }
     {
@@ -51,28 +47,26 @@
       '';
     }
 
-    # 0.12
-    # {
-    #   event = "LspProgress";
-    #   desc = "Show LSP progress in TUI";
-    #   group = "lspStatusBar";
-    #   callback.__raw = ''
-    #     function(ev)
-    #     	local value = ev.data.params.value
-    #     	if value.kind == "begin" then
-    #     		vim.api.nvim_ui_send("\027]9;4;1;0\027\\")
-    #     	elseif value.kind == "end" then
-    #     		vim.api.nvim_ui_send("\027]9;4;0\027\\")
-    #     	elseif value.kind == "report" then
-    #     		vim.api.nvim_ui_send(string.format("\027]9;4;1;%d\027\\", value.percentage or 0))
-    #     	end
-    #     end
-    #   '';
-    # }
+    {
+      event = "LspProgress";
+      callback.__raw = ''
+        function(ev)
+        	local value = ev.data.params.value
+        	if value.kind == "begin" then
+        		vim.api.nvim_ui_send("\027]9;4;1;0\027\\")
+        	elseif value.kind == "end" then
+        		vim.api.nvim_ui_send("\027]9;4;0\027\\")
+        	elseif value.kind == "report" then
+        		vim.api.nvim_ui_send(string.format("\027]9;4;1;%d\027\\", value.percentage or 0))
+        	end
+        end
+      '';
+    }
 
     {
       event = "BufReadPost";
       group = "openFile";
+      desc = "Opens non-text files in the default program instead of in Neovim";
       pattern = [
         "*.jpeg"
         "*.jpg"

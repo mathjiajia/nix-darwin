@@ -12,7 +12,7 @@
       lintersByFt = {
         bash = [ "shellcheck" ];
         gitcommit = [ "commitlint" ];
-        zsh = [ "zsh" ];
+        # zsh = [ "zsh" ];
       };
     };
 
@@ -35,10 +35,11 @@
         ];
         formatters_by_ft = {
           bib = [ "bibtex-tidy" ];
-          css = [ "prettierd" ];
-          html = [ "prettierd" ];
-          javascript = [ "prettierd" ];
-          markdown = [ "prettierd" ];
+          css = [ "prettier" ];
+          html = [ "prettier" ];
+          javascript = [ "prettier" ];
+          markdown = [ "prettier" ];
+          yaml = [ "prettier" ];
           json = [ "jq" ];
           jsonnet = [ "jsonnetfmt" ];
           lua = [ "stylua" ];
@@ -50,7 +51,6 @@
           ];
           sh = [ "shfmt" ];
           tex = [ "tex-fmt" ];
-          yaml = [ "yamlfmt" ];
         };
         format_on_save.__raw = ''
           function(bufnr)
