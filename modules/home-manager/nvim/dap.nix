@@ -20,14 +20,14 @@
             type = "lldb-dap";
             request = "launch";
             name = "Dap Debug";
-            cwd = "\${workspaceFolder}";
-            program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
+            cwd = ''''${workspaceFolder}'';
+            program = ''''${workspaceFolder}/''${fileBasenameNoExtension}'';
           };
           lldb-attach = {
             type = "lldb-dap";
             request = "attach";
             name = "Dap Attach";
-            program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
+            program = ''''${workspaceFolder}/''${fileBasenameNoExtension}'';
             waitFor = true;
           };
           cpp-launch = lldb-launch // {

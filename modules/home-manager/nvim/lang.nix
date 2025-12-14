@@ -25,7 +25,7 @@ let
       owner = "mathjiajia";
       repo = "nvim-math-snippets";
       rev = "master";
-      sha256 = "cqxQhfhN9TG2zOahURQyqH/Aco07chA/m1GT1MHMR2Q=";
+      sha256 = "XRRv0UzAbGCfjK1bzGqgNRhAXU5Vg4JbEzQZ2Q+kcZ0=";
     };
     nvimSkipModules = [
       "math-snippets.position"

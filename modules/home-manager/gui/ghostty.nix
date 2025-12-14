@@ -4,15 +4,14 @@
     package = null;
     settings = {
       auto-update = "off";
-      background-opacity = 0.95;
-      background-blur = true;
-      # cursor-style = "block";
+      background-blur = "macos-glass-regular";
+      background-opacity = 0.5;
       custom-shader = "shaders/cursor_smear_gradient.glsl";
       font-family = "Sarasa Term SC";
-      font-size = 21;
-      # font-thicken = true;
+      font-size = 19;
       keybind = "global:cmd+grave_accent=toggle_quick_terminal";
       mouse-hide-while-typing = true;
+      macos-titlebar-style = "tabs";
       shell-integration-features = "no-cursor";
       theme = "bamboo";
       window-colorspace = "display-p3";

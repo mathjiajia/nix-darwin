@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     ffmpeg
@@ -8,39 +8,72 @@
   ];
 
   programs.yazi.settings = {
+    log.enabled = false;
     mgr = {
+      linemode = "size_and_mtime";
       ratio = [
         1
-        2
         3
+        2
       ];
       sort_by = "natural";
       sort_sensitive = true;
-      sort_reverse = false;
-      sort_dir_first = true;
-      linemode = "none";
-      show_hidden = false;
-      show_symlink = true;
     };
 
     preview = {
-      tab_size = 2;
-      max_width = 1200;
-      max_height = 1500;
-      cache_dir = "${config.xdg.cacheHome}/yazi";
+      max_height = 5000;
+      max_width = 5000;
     };
 
-    plugin.prepend_fetchers = [
+    opener.sioyek = [
       {
-        id = "git";
-        name = "*";
-        run = "git";
-      }
-      {
-        id = "git";
-        name = "*/";
-        run = "git";
+        run = ''sioyek "$1"'';
+        orphan = true;
+        for = "unix";
       }
     ];
+
+    open.prepend_rules = [
+      {
+        mime = "application/pdf";
+        use = [
+          "sioyek"
+          "reveal"
+        ];
+      }
+    ];
+
+    plugin = {
+      prepend_fetchers = [
+        {
+          id = "git";
+          name = "*";
+          run = "git";
+        }
+        {
+          id = "git";
+          name = "*/";
+          run = "git";
+        }
+      ];
+
+      prepend_previewers = [
+        {
+          mime = "application/pdf";
+          run = "pdf";
+        }
+      ];
+      prepend_preloaders = [
+        {
+          name = "/Volumes/**";
+          run = "noop";
+        }
+        {
+          mime = "application/pdf";
+          run = "noop";
+        }
+      ];
+
+    };
   };
 }

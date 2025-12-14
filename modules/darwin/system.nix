@@ -31,6 +31,7 @@
         "/Applications/ChatWise.app"
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"
+        "/Applications/sing-box VT.app"
         "/System/Applications/App Store.app"
         "/System/Applications/System Settings.app"
         "/System/Applications/iPhone Mirroring.app"

@@ -1,41 +1,26 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 {
   home = {
     stateVersion = "26.05";
     sessionPath = [ "/Library/TeX/texbin" ];
     sessionVariables = {
-      # ALIYUN_API_KEY = "$(security find-generic-password -s 'ALIYUN_API_KEY' -w)";
       GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
       MANPAGER = "nvim +Man!";
     };
     shellAliases.nv = "nvim";
 
     packages = with pkgs; [
+      # AI
+      crush
+      github-copilot-cli
+
       # CLI
       container # Apple
-      crush
+      elan # lean
       hugo
       luajit
       nodejs
       numr
-
-      # language-servers
-      elan # lean
-      lua-language-server
-      marksman
-      matlab-language-server
-      nixd
-      pyrefly
-      taplo
-      texlab
-
-      # Python
-      (python3.withPackages (ps: [ ps.jupyterlab ]))
 
       # Fonts
       julia-mono
@@ -84,7 +69,6 @@
       settings = {
         tabchar = "tab";
         tabsize = 1;
-        wraplen = 120;
       };
     };
 
@@ -95,13 +79,6 @@
         "cd"
       ];
     };
-
-    # zsh = {
-    #   enable = true;
-    #   autosuggestion.enable = true;
-    #   dotDir = "${config.xdg.configHome}/zsh";
-    #   syntaxHighlighting.enable = true;
-    # };
   };
 
   xdg.enable = true;
@@ -115,9 +92,7 @@
     ./tui/fish.nix
     ./tui/fzf.nix
     ./tui/ripgrep.nix
-    # ./tui/starship.nix
 
-    # ./gui/aerospace.nix
     ./gui/ghostty.nix
     ./gui/neovide.nix
     ./gui/sage.nix

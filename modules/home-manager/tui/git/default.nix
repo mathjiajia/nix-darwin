@@ -35,38 +35,33 @@
     enableGitIntegration = true;
     options = {
       features = "decorations";
-      line-numbers = true;
       navigate = true;
       side-by-side = false;
-      syntax-theme = "bamboo";
       decorations = {
-        file-decoration-style = "bold yellow ul";
-        file-style = "purple bold";
-        hunk-header-decoration-style = "yellow box ul";
-        hunk-header-file-style = "yellow";
-        hunk-header-line-number-style = "grey bold italic";
-        hunk-header-style = "line-number syntax italic";
-        line-numbers-minus-style = "red bold italic";
-        line-numbers-plus-style = "green bold italic";
-        line-numbers-zero-style = "grey italic";
-        minus-emph-style = "syntax auto";
-        minus-style = "syntax auto";
-        zero-style = "syntax";
+        syntax-theme = "bamboo";
+        hunk-header-decoration-style = "'#5E81AC' ul";
+        hunk-header-file-style = "blue ul bold";
+        hunk-header-line-number-style = "yellow box bold";
+        hunk-header-style = "file line-number syntax bold italic";
+        plus-style = "brightgreen";
+        plus-emph-style = "black green";
+        minus-style = "brightred";
+        minus-emph-style = "black red";
+        line-numbers = true;
+        line-numbers-minus-style = "brightred";
+        line-numbers-plus-style = "brightgreen";
+        whitespace-error-style = "black bold";
+        merge-conflict-ours-diff-header-style = "yellow bold";
+        merge-conflict-ours-diff-header-decoration-style = "'#5E81AC' box";
+        merge-conflict-theirs-diff-header-style = "yellow bold";
+        merge-conflict-theirs-diff-header-decoration-style = "'#5E81AC' box";
       };
     };
   };
-  # programs.difftastic = {
-  #   enable = true;
-  #   git = {
-  #     enable = true;
-  #     diffToolMode = true;
-  #   };
-  # };
 
   programs.lazygit = {
     enable = true;
     settings = {
-      # git.pagers = [ { externalDiffCommand = "${pkgs.difftastic}/bin/difft --color=always"; } ];
       git.pagers = [ { pager = "${lib.getExe pkgs.delta} --dark --paging=never"; } ];
       gui = {
         nerdFontsVersion = "3";
@@ -74,42 +69,5 @@
         tabWidth = 2;
       };
     };
-  };
-
-  programs.gitui = {
-    # enable = true;
-    keyConfig = ''
-      (
-        open_help: Some(( code: F(1), modifiers: "")),
-
-        move_left: Some(( code: Char('h'), modifiers: "")),
-        move_right: Some(( code: Char('l'), modifiers: "")),
-        move_up: Some(( code: Char('k'), modifiers: "")),
-        move_down: Some(( code: Char('j'), modifiers: "")),
-
-        popup_up: Some(( code: Char('p'), modifiers: "CONTROL")),
-        popup_down: Some(( code: Char('n'), modifiers: "CONTROL")),
-        page_up: Some(( code: Char('b'), modifiers: "CONTROL")),
-        page_down: Some(( code: Char('f'), modifiers: "CONTROL")),
-        home: Some(( code: Char('g'), modifiers: "")),
-        end: Some(( code: Char('G'), modifiers: "SHIFT")),
-        shift_up: Some(( code: Char('K'), modifiers: "SHIFT")),
-        shift_down: Some(( code: Char('J'), modifiers: "SHIFT")),
-
-        edit_file: Some(( code: Char('I'), modifiers: "SHIFT")),
-
-        status_reset_item: Some(( code: Char('U'), modifiers: "SHIFT")),
-
-        diff_reset_lines: Some(( code: Char('u'), modifiers: "")),
-        diff_stage_lines: Some(( code: Char('s'), modifiers: "")),
-
-        stashing_save: Some(( code: Char('w'), modifiers: "")),
-        stashing_toggle_index: Some(( code: Char('m'), modifiers: "")),
-
-        stash_open: Some(( code: Char('l'), modifiers: "")),
-
-        abort_merge: Some(( code: Char('M'), modifiers: "SHIFT")),
-      )
-    '';
   };
 }

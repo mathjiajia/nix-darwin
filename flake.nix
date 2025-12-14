@@ -1,6 +1,5 @@
 {
   description = "Personal Darwin system flake";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
@@ -11,10 +10,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-
     # homebrew-taps
     fcitx = {
       url = "github:fcitx-contrib/homebrew-tap";
@@ -32,9 +29,11 @@
       url = "github:tw93/homebrew-tap";
       flake = false;
     };
-
     # Neovim (nixvim)
-    nixvim.url = "github:nix-community/nixvim";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 

@@ -78,7 +78,7 @@
       "quickrecorder"
       "sage"
       "sf-symbols"
-      "sfm"
+      # "sfm"
       "soulver"
       "warp"
       "zed"

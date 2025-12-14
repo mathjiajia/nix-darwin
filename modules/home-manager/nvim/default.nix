@@ -19,6 +19,7 @@
 
   imports = [
     ./users
+    ./lsp
 
     ./ai.nix
     ./compiler
@@ -27,7 +28,6 @@
     ./editor.nix
     ./fmtlint.nix
     ./lang.nix
-    ./lsp.nix
     ./treesitter.nix
     ./ui.nix
 

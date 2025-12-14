@@ -71,7 +71,8 @@
     inccommand = "split";
 
     # Show which line your cursor is on
-    cursorline = true;
+    # cursorline = true;
+    # cursorlineopt = "number";
 
     # Minimal number of screen lines to keep above and below the cursor.
     scrolloff = 999;

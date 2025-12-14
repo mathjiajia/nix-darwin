@@ -50,7 +50,6 @@
             "ruff_organize_imports"
           ];
           sh = [ "shfmt" ];
-          tex = [ "tex-fmt" ];
         };
         format_on_save.__raw = ''
           function(bufnr)
