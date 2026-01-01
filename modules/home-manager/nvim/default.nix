@@ -21,7 +21,7 @@
     ./users
     ./lsp
 
-    ./ai.nix
+    # ./ai.nix
     ./compiler
     ./completion.nix
     ./dap.nix

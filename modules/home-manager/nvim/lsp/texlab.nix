@@ -27,7 +27,6 @@
           forwardSearchAfter = false;
           onSave = true;
         };
-        diagnosticsDelay = 300;
         diagnostics.ignoredPatterns = [
           "Overfull"
           "Underfull"
@@ -35,6 +34,7 @@
           "Float too large for page"
           "contains only floats"
         ];
+        diagnosticsDelay = 300;
         formatterLineLength = 120;
         forwardSearch = {
           # executable = "/Applications/Skim.app/Contents/SharedSupport/displayline";

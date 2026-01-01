@@ -9,7 +9,7 @@
       persistent-apps = [
         "/System/Applications/Apps.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"
-        "/System/Applications/Mail.app"
+        "/Applications/Spark Desktop.app"
         "/System/Applications/Calendar.app"
         "/System/Applications/Reminders.app"
         "/Applications/Things3.app"
@@ -25,12 +25,13 @@
         "/Applications/Neovide.app"
         "/Applications/Zotero.app"
         "/Applications/WeChat.app"
-        "/Applications/Dictionaries.app"
+        "/Applications/WhatsApp.app"
         "/Applications/ChatGPT.app"
-        "/Applications/FlowDown.app"
+        "/Applications/LobeHub-Beta.app"
         "/Applications/ChatWise.app"
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"
+        "/Applications/Surge.app"
         "/Applications/sing-box VT.app"
         "/System/Applications/App Store.app"
         "/System/Applications/System Settings.app"
@@ -113,12 +114,12 @@
 
       "com.jordanbaird.Ice" = {
         AutoRehide = true;
-        CanToggleAlwaysHiddenSection = true;
-        EnableAlwaysHiddenSection = true;
+        CanToggleAlwaysHiddenSection = false;
+        EnableAlwaysHiddenSection = false;
         HideApplicationMenus = true;
         RehideInterval = 15;
         RehideStrategy = 0;
-        ShowIceIcon = true;
+        ShowIceIcon = false;
         ShowOnClick = true;
         ShowOnHover = false;
         ShowOnHoverDelay = "0.2";
@@ -128,7 +129,7 @@
       };
     };
 
-    SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+    # SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
   };
 
   system.keyboard = {

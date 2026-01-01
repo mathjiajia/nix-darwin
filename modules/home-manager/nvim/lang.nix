@@ -8,7 +8,6 @@ let
   #     rev = "master";
   #     sha256 = "";
   #   };
-  #   patches = [ ./fix-math-conceal.patch ];
   # };
   nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
     name = "latex-conceal";
@@ -104,16 +103,4 @@ in
     sign.enabled = false;
     win_options.concealcursor.rendered = "nvc";
   };
-
-  # extraConfigLua = ''
-  #   require("math-conceal").setup({
-  #   	conceal = {
-  #   		"greek",
-  #   		"script",
-  #   		"math",
-  #   		"font",
-  #   		"delim",
-  #   	},
-  #   })
-  # '';
 }

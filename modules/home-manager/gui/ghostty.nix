@@ -4,11 +4,11 @@
     package = null;
     settings = {
       auto-update = "off";
-      background-blur = "macos-glass-regular";
-      background-opacity = 0.5;
+      # background-blur = "macos-glass-regular";
+      # background-opacity = 0.5;
       custom-shader = "shaders/cursor_smear_gradient.glsl";
       font-family = "Sarasa Term SC";
-      font-size = 19;
+      font-size = 24;
       keybind = "global:cmd+grave_accent=toggle_quick_terminal";
       mouse-hide-while-typing = true;
       macos-titlebar-style = "tabs";

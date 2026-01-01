@@ -11,16 +11,18 @@
 
     packages = with pkgs; [
       # AI
-      crush
+      # crush
       github-copilot-cli
+      opencode
 
       # CLI
       container # Apple
       elan # lean
       hugo
       luajit
-      nodejs
+      msedit
       numr
+      typst
 
       # Fonts
       julia-mono
@@ -40,6 +42,7 @@
     bun.enable = true;
     eza.enable = true;
     fastfetch.enable = true;
+    npm.enable = true;
     pandoc.enable = true;
     uv.enable = true;
 
@@ -88,6 +91,7 @@
     ./tui/yazi
 
     ./tui/bat.nix
+    ./tui/crush.nix
     ./tui/fd.nix
     ./tui/fish.nix
     ./tui/fzf.nix
