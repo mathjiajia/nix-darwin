@@ -1,8 +1,7 @@
 {
   imports = [
     ./clangd.nix
-    ./copilot.nix
-    # ./leanls.nix
+    # ./copilot.nix
     ./lua_ls.nix
     ./marksman.nix
     ./matlab_ls.nix

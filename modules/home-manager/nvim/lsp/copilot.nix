@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 {
   lsp.servers.copilot = {
-    enable = false;
+    enable = true;
     config = {
       cmd = [
         "${lib.getExe pkgs.copilot-language-server}"

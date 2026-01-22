@@ -14,7 +14,7 @@
     quickrecorder.url = "github:lihaoyun6/homebrew-tap";
     quickrecorder.flake = false;
     # Neovim (nixvim)
-    nixvim.url = "github:nix-community/nixvim/update/main";
+    nixvim.url = "github:nix-community/nixvim";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nur = {
       url = "github:charmbracelet/nur";

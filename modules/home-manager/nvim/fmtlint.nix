@@ -12,7 +12,6 @@
       lintersByFt = {
         bash = [ "shellcheck" ];
         gitcommit = [ "commitlint" ];
-        # zsh = [ "zsh" ];
       };
     };
 

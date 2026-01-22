@@ -28,7 +28,6 @@
         "/Applications/WhatsApp.app"
         "/Applications/ChatGPT.app"
         "/Applications/LobeHub-Beta.app"
-        "/Applications/ChatWise.app"
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"
         "/Applications/Surge.app"

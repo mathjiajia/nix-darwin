@@ -6,7 +6,6 @@ in
 {
   nix = {
     enable = true;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       experimental-features = [
         "nix-command"

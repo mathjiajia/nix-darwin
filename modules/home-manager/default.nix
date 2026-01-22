@@ -11,7 +11,6 @@
 
     packages = with pkgs; [
       # AI
-      # crush
       github-copilot-cli
       opencode
 

@@ -78,7 +78,7 @@
       "warp"
       "zed"
       "zoom"
-      "zotero@beta"
+      "zotero"
     ];
   };
 }
