@@ -3,7 +3,6 @@
 
   homebrew.masApps = {
     "Apple Configurator" = 1037126344;
-    BewlyBewly = 6742200021;
     Codye = 1516894961;
     Copilot = 6738511300;
     Craft = 1487937127;
@@ -21,14 +20,8 @@
     Goodnotes = 1444383602;
     iMovie = 408981434;
     Infuse = 1136220934;
-    Keynote = 409183694;
-    "Microsoft Excel" = 462058435;
-    "Microsoft PowerPoint" = 462062816;
-    "Microsoft Word" = 462054704;
     Noto = 1459055246;
-    Numbers = 409203825;
     OpenCat = 6445999201;
-    Pages = 409201541;
     Perplexity = 6714467650;
     "Plain Text Editor" = 1572202501;
     podlite = 1526511053;
@@ -47,17 +40,26 @@
     UPDF = 1619925971;
     VidHub = 1659622164;
     VooV = 1497685373;
-    WeChat = 836500024;
-    WhatsApp = 310633997;
     "Whisper Transcription" = 1668083311;
     Xcode = 497799835;
     xcz = 912139104;
 
-    # Compressor = 424390742;
-    # "Final Cut Pro" = 424389933;
-    # "Logic Pro" = 634148309;
-    # MainStage = 634159523;
-    # Motion = 434290957;
+    WeChat = 836500024;
+    WhatsApp = 310633997;
 
+    Compressor = 6746516157;
+    "Final Cut Pro" = 1631624924;
+    "Logic Pro" = 1615087040;
+    MainStage = 6746637089;
+    Motion = 6746637149;
+    "Pixelmator Pro" = 6746662575;
+
+    Keynote = 361285480;
+    Numbers = 361304891;
+    Pages = 361309726;
+
+    "Microsoft Excel" = 462058435;
+    "Microsoft PowerPoint" = 462062816;
+    "Microsoft Word" = 462054704;
   };
 }

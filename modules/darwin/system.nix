@@ -27,7 +27,7 @@
         "/Applications/WeChat.app"
         "/Applications/WhatsApp.app"
         "/Applications/ChatGPT.app"
-        "/Applications/LobeHub-Beta.app"
+        "/Applications/LobeHub.app"
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"
         "/Applications/Surge.app"

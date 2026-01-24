@@ -10,13 +10,11 @@
     shellAliases.nv = "nvim";
 
     packages = with pkgs; [
-      # AI
-      github-copilot-cli
-      opencode
-
       # CLI
       container # Apple
+      crush
       elan # lean
+      github-copilot-cli
       hugo
       luajit
       msedit
@@ -44,6 +42,11 @@
     npm.enable = true;
     pandoc.enable = true;
     uv.enable = true;
+
+    claude-code.enable = true;
+    codex.enable = true;
+    gemini-cli.enable = true;
+    opencode.enable = true;
 
     btop = {
       enable = true;
@@ -90,7 +93,6 @@
     ./tui/yazi
 
     ./tui/bat.nix
-    ./tui/crush.nix
     ./tui/fd.nix
     ./tui/fish.nix
     ./tui/fzf.nix

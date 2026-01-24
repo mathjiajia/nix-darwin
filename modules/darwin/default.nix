@@ -1,7 +1,7 @@
 {
   imports = [
     ./brew.nix
-    ./mas.nix
+    # ./mas.nix
     ./system.nix
   ];
 }

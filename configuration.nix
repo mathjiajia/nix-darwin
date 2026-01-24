@@ -51,7 +51,6 @@ in
       "lihaoyun6/homebrew-tap" = inputs.quickrecorder;
     };
     mutableTaps = false;
-    extraEnv.HOMEBREW_NO_ANALYTICS = "1";
   };
 
   home-manager = {
@@ -62,7 +61,6 @@ in
     users.${user}.imports = [
       ./modules/home-manager
       inputs.nixvim.homeModules.nixvim
-      inputs.nur.homeModules.crush
     ];
   };
 }

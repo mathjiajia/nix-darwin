@@ -1,21 +1,4 @@
-{ pkgs, ... }:
 {
-  extraPlugins = [ pkgs.vimPlugins.blink-pairs ];
-  extraConfigLua = ''
-    require("blink.pairs").setup({
-    	highlights = {
-    		groups = {
-    			"BlinkPairsOrange",
-    			"BlinkPairsPurple",
-    			"BlinkPairsBlue",
-    			"BlinkPairsCyan",
-    			"BlinkPairsYellow",
-    			"BlinkPairsGreen",
-    		},
-    	},
-    })
-  '';
-
   plugins = {
     luasnip = {
       enable = true;
@@ -43,6 +26,18 @@
           ];
         };
       };
+    };
+
+    blink-pairs = {
+      enable = true;
+      settings.highlights.groups = [
+        "BlinkPairsOrange"
+        "BlinkPairsPurple"
+        "BlinkPairsBlue"
+        "BlinkPairsCyan"
+        "BlinkPairsYellow"
+        "BlinkPairsGreen"
+      ];
     };
 
     # copilot-lua.enable = false;
