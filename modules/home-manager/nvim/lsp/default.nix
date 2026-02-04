@@ -39,19 +39,21 @@
       end
 
       if client:supports_method("textDocument/codeLens", bufnr) then
-        vim.lsp.codelens.refresh()
+      	vim.lsp.codelens.enable(true, { bufnr = bufnr })
       	vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged", "CursorHold" }, {
-          group = vim.api.nvim_create_augroup("CodelensRefresh", {}),
       		buffer = bufnr,
-      		callback = vim.lsp.codelens.refresh,
+      		group = vim.api.nvim_create_augroup("CodelensRefresh", { clear = true }),
+      		callback = function()
+      			vim.lsp.codelens.enable(true, { bufnr = bufnr })
+      		end,
       	})
       end
 
-      if client:supports_method("textDocument/inlayHint", bufnr) then
-      	-- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-      	vim.keymap.set("n", "<M-i>", function()
-      		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
-      	end, { buffer = bufnr, desc = "Inlay Hint Toggle" })
-      end
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      -- if client:supports_method("textDocument/inlayHint", bufnr) then
+      -- 	vim.keymap.set("n", "<M-i>", function()
+      -- 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+      -- 	end, { buffer = bufnr, desc = "Inlay Hint Toggle" })
+      -- end
     '';
 }

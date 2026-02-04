@@ -9,7 +9,7 @@
       persistent-apps = [
         "/System/Applications/Apps.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"
-        "/Applications/Spark Desktop.app"
+        "/System/Applications/Mail.app"
         "/System/Applications/Calendar.app"
         "/System/Applications/Reminders.app"
         "/Applications/Things3.app"
@@ -110,22 +110,6 @@
       };
 
       "com.apple.TimeMachine".DoNotOfferNewDisksForBackup = true;
-
-      "com.jordanbaird.Ice" = {
-        AutoRehide = true;
-        CanToggleAlwaysHiddenSection = false;
-        EnableAlwaysHiddenSection = false;
-        HideApplicationMenus = true;
-        RehideInterval = 15;
-        RehideStrategy = 0;
-        ShowIceIcon = false;
-        ShowOnClick = true;
-        ShowOnHover = false;
-        ShowOnHoverDelay = "0.2";
-        ShowOnScroll = false;
-        ShowSectionDividers = false;
-        UseIceBar = false;
-      };
     };
 
     # SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;

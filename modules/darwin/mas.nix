@@ -29,7 +29,6 @@
     ScanScan = 1249901692;
     Shadowrocket = 932747118;
     SnippetsLab = 1006087419;
-    "Spark Desktop" = 6445813049;
     "Squirrel Designer" = 1530616498;
     "Swift Playground" = 1496833156;
     Taio = 1527036273;
