@@ -3,17 +3,20 @@
   plugins = {
     flash.enable = true;
     # fugitive.enable = true;
-    nvim-surround.enable = true;
 
-    grug-far = {
-      enable = true;
-      luaConfig.content = lib.mkForce "";
-    };
     blink-indent = {
       enable = true;
       luaConfig.content = lib.mkForce "";
     };
     fff = {
+      enable = true;
+      luaConfig.content = lib.mkForce "";
+    };
+    grug-far = {
+      enable = true;
+      luaConfig.content = lib.mkForce "";
+    };
+    nvim-surround = {
       enable = true;
       luaConfig.content = lib.mkForce "";
     };
@@ -77,8 +80,20 @@
     {
       mode = "n";
       key = "<leader>fg";
-      action.__raw = "function() require('fff').find_in_git_root() end";
-      options.desc = "[F]ind [G]it Files";
+      action.__raw = "function() require('fff').live_grep() end";
+      options.desc = "Live [G]rep";
+    }
+    {
+      mode = "n";
+      key = "<leader>fz";
+      action.__raw = "function() require('fff').live_grep({ grep = { mode = { 'fuzzy', 'plain' } } }) end";
+      options.desc = "Live Fuzzy [G]rep";
+    }
+    {
+      mode = "n";
+      key = "<leader>fc";
+      action.__raw = "function() require('fff').live_grep({ query = vim.fn.expand('<cword>') }) end";
+      options.desc = "Search current word";
     }
 
     {
@@ -200,21 +215,21 @@
       action.__raw = "function() Snacks.picker.grep_buffers() end";
       options.desc = "Grep Open [B]uffers";
     }
-    {
-      mode = "n";
-      key = "<leader>sg";
-      action.__raw = "function() Snacks.picker.grep() end";
-      options.desc = "[G]rep";
-    }
-    {
-      mode = [
-        "n"
-        "x"
-      ];
-      key = "<leader>sw";
-      action.__raw = "function() Snacks.picker.grep_word() end";
-      options.desc = "Visual selection or [W]ord";
-    }
+    # {
+    #   mode = "n";
+    #   key = "<leader>sg";
+    #   action.__raw = "function() Snacks.picker.grep() end";
+    #   options.desc = "[G]rep";
+    # }
+    # {
+    #   mode = [
+    #     # "n"
+    #     "x"
+    #   ];
+    #   key = "<leader>sw";
+    #   action.__raw = "function() Snacks.picker.grep_word() end";
+    #   options.desc = "Visual selection or [W]ord";
+    # }
     # Search
     {
       mode = "n";

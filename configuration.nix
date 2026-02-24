@@ -46,11 +46,6 @@ in
   nix-homebrew = {
     enable = true;
     user = user;
-    taps = {
-      "BarutSRB/homebrew-tap" = inputs.omniwm;
-      "lihaoyun6/homebrew-tap" = inputs.quickrecorder;
-    };
-    mutableTaps = false;
   };
 
   home-manager = {

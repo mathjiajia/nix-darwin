@@ -1,8 +1,10 @@
+{ pkgs, ... }:
 {
   luaLoader.enable = true;
   colorscheme = "bamboo";
   withPython3 = false;
   withRuby = false;
+  extraPackages = [ pkgs.tree-sitter ];
 
   performance = {
     byteCompileLua = {

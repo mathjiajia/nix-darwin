@@ -52,13 +52,14 @@
       callback.__raw = ''
         function(ev)
         	local value = ev.data.params.value
-        	if value.kind == "begin" then
-        		vim.api.nvim_ui_send("\027]9;4;1;0\027\\")
-        	elseif value.kind == "end" then
-        		vim.api.nvim_ui_send("\027]9;4;0\027\\")
-        	elseif value.kind == "report" then
-        		vim.api.nvim_ui_send(string.format("\027]9;4;1;%d\027\\", value.percentage or 0))
-        	end
+        	vim.api.nvim_echo({ { value.message or "done" } }, false, {
+        		id = "lsp." .. ev.data.client_id,
+        		kind = "progress",
+        		source = "vim.lsp",
+        		title = value.title,
+        		status = value.kind ~= "end" and "running" or "success",
+        		percent = value.percentage,
+        	})
         end
       '';
     }

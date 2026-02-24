@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   home = {
     stateVersion = "26.05";
@@ -17,8 +17,9 @@
       github-copilot-cli
       hugo
       luajit
-      msedit
+      # mole-cleaner
       numr
+      silver-searcher
       typst
 
       # Fonts
@@ -43,9 +44,9 @@
     pandoc.enable = true;
     uv.enable = true;
 
-    claude-code.enable = true;
-    codex.enable = true;
-    gemini-cli.enable = true;
+    # claude-code.enable = true;
+    # codex.enable = true;
+    # gemini-cli.enable = true;
     opencode.enable = true;
 
     btop = {
@@ -65,7 +66,6 @@
       enable = true;
       defaultEditor = true;
       nixpkgs.config.allowUnfree = true;
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
       imports = [ ./nvim ];
     };
 
@@ -87,6 +87,10 @@
   };
 
   xdg.enable = true;
+
+  # see https://github.com/nix-community/home-manager/pull/8723
+  home.extraOutputsToInstall = [ "man" ];
+  programs.man.enable = false;
 
   imports = [
     ./tui/git

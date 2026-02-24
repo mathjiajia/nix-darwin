@@ -1,23 +1,23 @@
 { lib, pkgs, ... }:
 let
-  math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "math-conceal";
-    src = pkgs.fetchFromGitHub {
-      owner = "pxwg";
-      repo = "math-conceal.nvim";
-      rev = "main";
-      sha256 = "z8xcghJHvJiuA48fVet/Fobdot4iMOjMPZW7cuGd/bI=";
-    };
-  };
-  # nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
-  #   name = "latex-conceal";
+  # math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
+  #   name = "math-conceal";
   #   src = pkgs.fetchFromGitHub {
-  #     owner = "mathjiajia";
-  #     repo = "nvim-latex-conceal";
-  #     rev = "master";
-  #     sha256 = "LoDUCSDyzxiMPgxGjl0RF/xjOQXD/sTodtAL2xRmRzM=";
+  #     owner = "pxwg";
+  #     repo = "math-conceal.nvim";
+  #     rev = "main";
+  #     hash = "sha256-xMqr7rtqxdb3sFI1bMiubrUbAwNYj65pBwYyYMyf75M=";
   #   };
   # };
+  nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
+    name = "latex-conceal";
+    src = pkgs.fetchFromGitHub {
+      owner = "mathjiajia";
+      repo = "nvim-latex-conceal";
+      rev = "master";
+      hash = "sha256-LoDUCSDyzxiMPgxGjl0RF/xjOQXD/sTodtAL2xRmRzM=";
+    };
+  };
   nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {
     name = "math-snippets";
     src = pkgs.fetchFromGitHub {
@@ -35,8 +35,8 @@ let
 in
 {
   extraPlugins = [
-    math-conceal-nvim
-    # nvim-latex-conceal
+    # math-conceal-nvim
+    nvim-latex-conceal
     nvim-math-snippets
   ];
 

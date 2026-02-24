@@ -21,7 +21,7 @@
         postInstall =
           oldAttrs.postInstall or ""
           # sh
-          + ''mv $out/doc/{recipes.md,conform-nvim_recipes.md}'';
+          + "mv $out/doc/{recipes.md,conform-nvim_recipes.md}";
       });
       autoInstall.enable = true;
       settings = {
@@ -41,7 +41,6 @@
           yaml = [ "prettier" ];
           json = [ "jq" ];
           jsonnet = [ "jsonnetfmt" ];
-          lua = [ "stylua" ];
           nix = [ "nixfmt" ];
           python = [
             "ruff_fix"

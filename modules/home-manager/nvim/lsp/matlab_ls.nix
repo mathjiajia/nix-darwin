@@ -16,7 +16,7 @@
       '';
       settings.MATLAB = {
         indexWorkspace = true;
-        installPath = "/Applications/MATLAB_R2025a";
+        installPath = "/Applications/MATLAB_R2026a";
         matlabConnectionTiming = "onStart";
         telemetry = false;
       };

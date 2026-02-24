@@ -8,15 +8,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # homebrew
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
-    # homebrew-taps
-    omniwm.url = "github:BarutSRB/homebrew-tap";
-    omniwm.flake = false;
-    quickrecorder.url = "github:lihaoyun6/homebrew-tap";
-    quickrecorder.flake = false;
     # Neovim (nixvim)
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =

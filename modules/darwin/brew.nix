@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   homebrew = {
     enable = true;
@@ -8,8 +7,6 @@
       upgrade = true;
     };
     greedyCasks = true;
-
-    taps = builtins.attrNames config.nix-homebrew.taps;
 
     brews = [
       "mole"
@@ -23,14 +20,13 @@
       "alma"
       "chatgpt-atlas"
       "chatgpt"
-      "chatwise"
+      # "chatwise"
       "cherry-studio"
       "codeedit"
       "corretto@11"
       "dash"
       "discord"
       "downie"
-      "filo"
       "font-mozilla-text"
       "ghostty"
       "hazel"
@@ -46,25 +42,23 @@
       "launchbar"
       "llamabarn"
       "lm-studio"
-      "lobehub"
+      # "lobehub"
       "loop"
       "markedit"
       "mathpix-snipping-tool"
-      "miaoyan"
+      # "miaoyan"
       # "neovide"
       "neteasemusic"
       "ollama-app"
-      "omniwm"
       "onyx"
       "openra"
       "orbstack"
-      "osaurus"
+      # "osaurus"
       "permute"
       "prettyclean"
       "publish-or-perish"
       "qlmarkdown"
       "quarto"
-      "quickrecorder"
       "raycast"
       "sage"
       "sf-symbols"
