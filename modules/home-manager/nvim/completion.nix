@@ -30,14 +30,17 @@
 
     blink-pairs = {
       enable = true;
-      settings.highlights.groups = [
-        "BlinkPairsOrange"
-        "BlinkPairsPurple"
-        "BlinkPairsBlue"
-        "BlinkPairsCyan"
-        "BlinkPairsYellow"
-        "BlinkPairsGreen"
-      ];
+      settings.highlights = {
+        groups = [
+          "BlinkPairsOrange"
+          "BlinkPairsPurple"
+          "BlinkPairsBlue"
+          "BlinkPairsCyan"
+          "BlinkPairsYellow"
+          "BlinkPairsGreen"
+        ];
+        matchparen.enabled = true; # change to false after v0.13
+      };
     };
 
     # copilot-lua.enable = false;

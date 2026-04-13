@@ -10,7 +10,8 @@ let
   #   };
   # };
   nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
-    name = "latex-conceal";
+    pname = "latex-conceal";
+    version = "2025-12-27";
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "nvim-latex-conceal";
@@ -19,7 +20,8 @@ let
     };
   };
   nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {
-    name = "math-snippets";
+    pname = "math-snippets";
+    version = "2025-12-31";
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "nvim-math-snippets";

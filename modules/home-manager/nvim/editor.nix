@@ -1,17 +1,11 @@
 { lib, pkgs, ... }:
 {
   plugins = {
+    blink-indent.enable = true;
+    fff.enable = true;
     flash.enable = true;
     # fugitive.enable = true;
 
-    blink-indent = {
-      enable = true;
-      luaConfig.content = lib.mkForce "";
-    };
-    fff = {
-      enable = true;
-      luaConfig.content = lib.mkForce "";
-    };
     grug-far = {
       enable = true;
       luaConfig.content = lib.mkForce "";

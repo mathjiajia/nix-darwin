@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home = {
-    stateVersion = "26.05";
+    stateVersion = "26.11";
     sessionPath = [ "/Library/TeX/texbin" ];
     sessionVariables = {
       GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
@@ -16,6 +16,7 @@
       elan # lean
       github-copilot-cli
       hugo
+      # libtexprintf
       luajit
       # mole-cleaner
       numr
@@ -44,9 +45,9 @@
     pandoc.enable = true;
     uv.enable = true;
 
-    # claude-code.enable = true;
-    # codex.enable = true;
-    # gemini-cli.enable = true;
+    claude-code.enable = true;
+    codex.enable = true;
+    gemini-cli.enable = true;
     opencode.enable = true;
 
     btop = {

@@ -5,33 +5,26 @@
       autoUpdate = true;
       cleanup = "zap";
       upgrade = true;
+      extraEnv.HOMEBREW_NO_ANALYTICS = "1";
     };
     greedyCasks = true;
 
-    brews = [
-      "mole"
-      "utftex"
-    ];
-
     casks = [
       "adguard"
-      "adobe-acrobat-pro"
-      "adobe-creative-cloud"
       "alma"
       "chatgpt-atlas"
       "chatgpt"
-      # "chatwise"
-      "cherry-studio"
       "codeedit"
       "corretto@11"
+      "codex-app"
       "dash"
       "discord"
       "downie"
       "font-mozilla-text"
       "ghostty"
+      "google-gemini"
       "hazel"
       "hazeover"
-      "hookmark"
       "iina"
       "inkscape"
       "istat-menus"
@@ -42,11 +35,11 @@
       "launchbar"
       "llamabarn"
       "lm-studio"
-      # "lobehub"
+      "lobehub"
       "loop"
       "markedit"
       "mathpix-snipping-tool"
-      # "miaoyan"
+      "mole-app"
       # "neovide"
       "neteasemusic"
       "ollama-app"
@@ -55,11 +48,10 @@
       "orbstack"
       # "osaurus"
       "permute"
-      "prettyclean"
       "publish-or-perish"
       "qlmarkdown"
       "quarto"
-      "raycast"
+      # "raycast"
       "sage"
       "sf-symbols"
       "skim"

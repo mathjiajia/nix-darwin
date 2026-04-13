@@ -2,14 +2,11 @@
   homebrew.masApps = {
     Dictionaries = 1380563956;
     Dropover = 1355679052;
-    Filo = 6740307388;
     Folo = 6739802604;
     "Friendly Streaming" = 553245401;
     "GeoGebra Classic 6" = 1182481622;
     Goodnotes = 1444383602;
     Infuse = 1136220934;
-    Noto = 1459055246;
-    podlite = 1526511053;
     Readest = 6738622779;
     ScanScan = 1249901692;
     Shadowrocket = 932747118;
@@ -24,7 +21,6 @@
 
     Craft = 1487937127;
     Drafts = 1435957248;
-    "Plain Text Editor" = 1572202501;
 
     Codye = 1516894961;
     DevHub = 6476452351;

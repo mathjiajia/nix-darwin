@@ -10,7 +10,6 @@
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     # Neovim (nixvim)
     nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

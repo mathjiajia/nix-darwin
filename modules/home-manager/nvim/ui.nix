@@ -52,7 +52,6 @@
     };
     dropbar = {
       enable = true;
-      # luaConfig = lib.mkForce "";
       settings = {
         symbol.on_click = false;
         menu = {
