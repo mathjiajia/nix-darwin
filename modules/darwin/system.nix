@@ -21,7 +21,7 @@
         "/Applications/UPDF.app"
         "/Applications/Visual Studio Code.app"
         "/Applications/Ghostty.app"
-        "${pkgs.sioyek}/Applications/sioyek.app"
+        # "${pkgs.sioyek}/Applications/sioyek.app"
         "/Applications/Neovide.app"
         "/Applications/Zotero.app"
         "/Applications/WeChat.app"
@@ -31,7 +31,7 @@
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"
         "/Applications/Surge.app"
-        "/Applications/sing-box VT.app"
+        # "/Applications/sing-box VT.app"
         "/System/Applications/App Store.app"
         "/System/Applications/System Settings.app"
         "/System/Applications/iPhone Mirroring.app"
@@ -104,8 +104,8 @@
       # };
 
       "com.apple.SoftwareUpdate" = {
-        AutomaticCheckEnabled = true;
-        AutomaticDownload = 1;
+        AutomaticCheckEnabled = false;
+        AutomaticDownload = 0;
         CriticalUpdateInstall = 1;
       };
 

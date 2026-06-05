@@ -4,8 +4,8 @@
     package = null;
     settings = {
       auto-update = "off";
-      # background-blur = "macos-glass-regular";
-      # background-opacity = 0.5;
+      background-blur = "macos-glass-regular";
+      background-opacity = 0.9;
       custom-shader = "shaders/cursor_smear_gradient.glsl";
       font-family = "Sarasa Term SC";
       font-size = 24;

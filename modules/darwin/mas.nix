@@ -30,11 +30,6 @@
     Due = 524373870;
     Things = 904280696;
 
-    Copilot = 6738511300;
-    FlowDown = 6740553198;
-    OpenCat = 6445999201;
-    Perplexity = 6714467650;
-
     Telegram = 747648890;
     WeChat = 836500024;
     WhatsApp = 310633997;
@@ -57,6 +52,7 @@
     Numbers = 361304891;
     Pages = 361309726;
 
+    Copilot = 6738511300;
     "Microsoft Excel" = 462058435;
     "Microsoft PowerPoint" = 462062816;
     "Microsoft Word" = 462054704;

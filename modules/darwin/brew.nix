@@ -9,62 +9,93 @@
     };
     greedyCasks = true;
 
+    brews = [ "container" ];
+
     casks = [
-      "adguard"
-      "alma"
-      "chatgpt-atlas"
+      # AI
       "chatgpt"
-      "codeedit"
-      "corretto@11"
-      "codex-app"
-      "dash"
-      "discord"
-      "downie"
-      "font-mozilla-text"
-      "ghostty"
       "google-gemini"
+
+      # Local LLM
+      "antigravity"
+      "llama-app"
+      "lm-studio"
+      "lobehub"
+      "ollama-app"
+      # "osaurus"
+
+      # Development
+      "ghostty"
+      "orbstack"
+      "warp"
+
+      "codeedit"
+      "markedit"
+      # "neovide"
+      "visual-studio-code"
+      "zed"
+
+      "corretto@11" # for Matlab
+      "dash"
+      "sf-symbols"
+
+      # Productivity
+      "keyboard-maestro"
+      "launchbar"
+      "loop"
+      # "raycast"
+
       "hazel"
       "hazeover"
-      "iina"
-      "inkscape"
+      "soulver"
+
+      # System
+      "adguard"
       "istat-menus"
       "keka"
       "kekaexternalhelper"
-      "keyboard-maestro"
       "keyboardcleantool"
-      "launchbar"
-      "llamabarn"
-      "lm-studio"
-      "lobehub"
-      "loop"
-      "markedit"
-      "mathpix-snipping-tool"
       "mole-app"
-      # "neovide"
-      "neteasemusic"
-      "ollama-app"
       "onyx"
-      "openra"
-      "orbstack"
-      # "osaurus"
-      "permute"
-      "publish-or-perish"
-      "qlmarkdown"
-      "quarto"
-      # "raycast"
-      "sage"
-      "sf-symbols"
-      "skim"
-      "soulver"
-      "squirrel-app"
       "surge"
-      "syntax-highlight"
       "thaw"
-      "visual-studio-code"
-      "warp"
-      "zed"
-      "zoom"
+
+      # Quick Look
+      "apparency"
+      "qlmarkdown"
+      "syntax-highlight"
+
+      # Media
+      "downie"
+      "permute"
+      "iina"
+      "neteasemusic"
+
+      # Research
+      # "mathpix-snipping-tool"
+      "publish-or-perish"
+      "quarto"
+      "sage"
+      "skim"
       "zotero"
+
+      # Design
+      "inkscape"
+
+      # Communication
+      "google-chrome"
+      "discord"
+      "zoom"
+
+      # Input
+      "squirrel-app"
+
+      # Fonts
+      "font-mozilla-text"
+
+      # Games
+      "8bitdo-firmware-updater"
+      "openra"
     ];
   };
 }

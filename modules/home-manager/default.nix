@@ -11,16 +11,14 @@
 
     packages = with pkgs; [
       # CLI
-      container # Apple
+      # container # Apple
       crush
       elan # lean
       github-copilot-cli
       hugo
       # libtexprintf
       luajit
-      # mole-cleaner
       numr
-      silver-searcher
       typst
 
       # Fonts
@@ -45,9 +43,9 @@
     pandoc.enable = true;
     uv.enable = true;
 
+    antigravity-cli.enable = true;
     claude-code.enable = true;
     codex.enable = true;
-    gemini-cli.enable = true;
     opencode.enable = true;
 
     btop = {

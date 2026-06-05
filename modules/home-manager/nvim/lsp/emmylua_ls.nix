@@ -6,12 +6,28 @@
       cmd = [ "${lib.getExe pkgs.emmylua-ls}" ];
       filetypes = [ "lua" ];
       root_markers = [
-        ".luarc.json"
-        ".emmyrc.json"
-        ".luacheckrc"
-        ".git"
+        [
+          ".emmyrc.json"
+          ".emmyrc.lua"
+          ".luarc.json"
+          ".luarc.jsonc"
+        ]
+        [
+          ".luacheckrc"
+          ".stylua.toml"
+          "stylua.toml"
+          "selene.toml"
+          "selene.yml"
+        ]
+        [ ".git" ]
       ];
       workspace_required = false;
+      emmylua = {
+        # runtime.version = "LuaJIT";
+        # diagnostics.globals = "vim";
+        codeLens.enable = true;
+        hint.enable = true;
+      };
     };
   };
 }
