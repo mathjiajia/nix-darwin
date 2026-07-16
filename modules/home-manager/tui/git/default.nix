@@ -10,13 +10,13 @@
     enable = true;
     package = null;
     settings = {
-      user = {
-        email = "mathjiajia@outlook.com";
-        name = "Jia Jia";
-      };
       core = {
         commitGraph = true;
         editor = "nvim";
+      };
+      user = {
+        email = "mathjiajia@outlook.com";
+        name = "Jia Jia";
       };
       fetch.prune = true;
       github.user = "mathjiajia";

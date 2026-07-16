@@ -1,28 +1,24 @@
-{ pkgs, ... }:
 {
   security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults = {
     dock = {
       autohide = true;
-      tilesize = 48;
+      tilesize = 36;
+      orientation = "left";
       persistent-apps = [
         "/System/Applications/Apps.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"
         "/System/Applications/Mail.app"
         "/System/Applications/Calendar.app"
         "/System/Applications/Reminders.app"
-        "/Applications/Things3.app"
         "/Applications/Due.app"
+        "/Applications/Things3.app"
         "/System/Applications/Notes.app"
         "/Applications/Drafts.app"
-        "/Applications/MarkEdit.app"
-        "/Applications/Goodnotes.app"
         "/Applications/UPDF.app"
         "/Applications/Visual Studio Code.app"
         "/Applications/Ghostty.app"
-        # "${pkgs.sioyek}/Applications/sioyek.app"
-        "/Applications/Neovide.app"
         "/Applications/Zotero.app"
         "/Applications/WeChat.app"
         "/Applications/WhatsApp.app"
@@ -30,8 +26,6 @@
         "/Applications/ChatGPT.app"
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"
-        "/Applications/Surge.app"
-        # "/Applications/sing-box VT.app"
         "/System/Applications/App Store.app"
         "/System/Applications/System Settings.app"
         "/System/Applications/iPhone Mirroring.app"

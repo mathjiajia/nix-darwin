@@ -4,7 +4,6 @@
     stateVersion = "26.11";
     sessionPath = [ "/Library/TeX/texbin" ];
     sessionVariables = {
-      GEMINI_API_KEY = "$(security find-generic-password -s 'GEMINI_API_KEY' -w)";
       MANPAGER = "nvim +Man!";
     };
     shellAliases.nv = "nvim";
@@ -104,6 +103,6 @@
     ./gui/ghostty.nix
     ./gui/neovide.nix
     ./gui/sage.nix
-    ./gui/sioyek.nix
+    # ./gui/sioyek.nix
   ];
 }
