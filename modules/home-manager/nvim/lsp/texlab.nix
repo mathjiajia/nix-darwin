@@ -37,26 +37,26 @@
         diagnosticsDelay = 300;
         formatterLineLength = 120;
         forwardSearch = {
-          executable = "/Applications/Skim.app/Contents/SharedSupport/displayline";
-          args = [
-            "-r"
-            "%l"
-            "%p"
-            "%f"
-          ];
-          # executable = "${lib.getExe pkgs.sioyek}";
+          # executable = "/Applications/Skim.app/Contents/SharedSupport/displayline";
           # args = [
-          #   "--reuse-window"
-          #   "--execute-command"
-          #   "turn_on_synctex"
-          #   "--inverse-search"
-          #   "${lib.getExe pkgs.texlab} inverse-search --input %%1 --line1 %%2"
-          #   "--forward-search-file"
-          #   "%f"
-          #   "--forward-search-line"
+          #   "-r"
           #   "%l"
           #   "%p"
+          #   "%f"
           # ];
+          executable = "${lib.getExe pkgs.sioyek}";
+          args = [
+            "--reuse-window"
+            "--execute-command"
+            "turn_on_synctex"
+            "--inverse-search"
+            "${lib.getExe pkgs.texlab} inverse-search --input %%1 --line1 %%2"
+            "--forward-search-file"
+            "%f"
+            "--forward-search-line"
+            "%l"
+            "%p"
+          ];
         };
         latexFormatter = "tex-fmt";
       };

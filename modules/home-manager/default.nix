@@ -10,7 +10,7 @@
 
     packages = with pkgs; [
       # CLI
-      # container # Apple
+      container # Apple
       crush
       elan # lean
       github-copilot-cli
@@ -24,8 +24,8 @@
       julia-mono
       lxgw-wenkai
       maple-mono.NF-CN
-      sarasa-gothic
-      smiley-sans
+      # sarasa-gothic
+      # smiley-sans
       nerd-fonts.iosevka-term
       nerd-fonts.symbols-only
     ];
@@ -45,7 +45,7 @@
     antigravity-cli.enable = true;
     claude-code.enable = true;
     codex.enable = true;
-    opencode.enable = true;
+    # opencode.enable = true;
 
     btop = {
       enable = true;
@@ -103,6 +103,6 @@
     ./gui/ghostty.nix
     ./gui/neovide.nix
     ./gui/sage.nix
-    # ./gui/sioyek.nix
+    ./gui/sioyek.nix
   ];
 }

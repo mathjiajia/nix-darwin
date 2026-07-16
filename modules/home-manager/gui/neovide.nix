@@ -5,13 +5,13 @@
     settings = {
       frame = "transparent";
       icon = "/Users/jia/bin/neovide.icns";
-      neovim-bin = "/etc/profiles/per-user/jia/bin/nvim";
+      system-native-tabs = true;
       font = {
         normal = [
           "Sarasa Term SC"
           "Symbols Nerd Font"
         ];
-        size = 24;
+        size = 21;
       };
     };
   };

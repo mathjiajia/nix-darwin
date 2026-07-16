@@ -9,11 +9,10 @@
     };
     greedyCasks = true;
 
-    brews = [ "container" ];
-
     casks = [
       # AI
       "chatgpt"
+      "claude"
       "google-gemini"
 
       # Local LLM
@@ -27,10 +26,11 @@
       # Development
       "ghostty"
       "orbstack"
+      "orchard"
       "warp"
 
-      "codeedit"
       "markedit"
+      "markdown-preview"
       # "neovide"
       "visual-studio-code"
       "zed"
@@ -43,6 +43,7 @@
       "keyboard-maestro"
       "launchbar"
       "loop"
+      "nutstore"
       # "raycast"
 
       "hazel"
@@ -51,18 +52,18 @@
 
       # System
       "adguard"
-      "istat-menus"
+      # "istat-menus"
       "keka"
       "kekaexternalhelper"
       "keyboardcleantool"
       "mole-app"
       "onyx"
+      "stats"
       "surge"
-      "thaw"
+      # "thaw"
 
       # Quick Look
       "apparency"
-      "qlmarkdown"
       "syntax-highlight"
 
       # Media
