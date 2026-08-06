@@ -10,7 +10,7 @@
       filetypes = [ "matlab" ];
       root_dir.__raw = ''
         function(bufnr, on_dir)
-        	local root_dir = vim.fs.root(bufnr, '.git')
+        	local root_dir = vim.fs.root(bufnr, ".git")
         	on_dir(root_dir or vim.fn.getcwd())
         end
       '';

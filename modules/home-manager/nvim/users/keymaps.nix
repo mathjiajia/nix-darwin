@@ -1,15 +1,6 @@
 {
   keymaps = [
-    {
-      mode = [
-        "n"
-        "x"
-      ];
-      key = "k";
-      action = "v:count == 0 ? 'gk' : 'k'";
-      options.expr = true;
-      options.silent = true;
-    }
+    # better up and down
     {
       mode = [
         "n"
@@ -17,20 +8,34 @@
       ];
       key = "j";
       action = "v:count == 0 ? 'gj' : 'j'";
-      options.expr = true;
-      options.silent = true;
+      options = {
+        expr = true;
+        silent = true;
+      };
+    }
+    {
+      mode = [
+        "n"
+        "x"
+      ];
+      key = "k";
+      action = "v:count == 0 ? 'gk' : 'k'";
+      options = {
+        expr = true;
+        silent = true;
+      };
     }
 
     {
       mode = "n";
       key = "gco";
-      action = "o<esc>Vcx<esc>:normal gcc<CR>fxa<bs>";
+      action = "o<Esc>Vcx<Esc>:normal gcc<CR>fxa<BS>";
       options.desc = "Create a commented line below";
     }
     {
       mode = "n";
       key = "gcO";
-      action = "O<esc>Vcx<esc>:normal gcc<CR>fxa<bs>";
+      action = "O<Esc>Vcx<Esc>:normal gcc<CR>fxa<BS>";
       options.desc = "Create a commented line above";
     }
 

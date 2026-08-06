@@ -22,9 +22,10 @@
         [ ".git" ]
       ];
       workspace_required = false;
-      emmylua = {
-        # runtime.version = "LuaJIT";
-        # diagnostics.globals = "vim";
+      settings.emmylua = {
+        runtime.version = "LuaJIT";
+        diagnostics.globals = [ "vim" ];
+        # workspace.library.__raw = "{ vim.env.VIMRUNTIME }";
         codeLens.enable = true;
         hint.enable = true;
       };

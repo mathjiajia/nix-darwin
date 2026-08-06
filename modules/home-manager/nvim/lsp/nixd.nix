@@ -12,7 +12,7 @@
       settings.nixd =
         let
           nix-darwin = ''(builtins.getFlake "/private/etc/nix-darwin").darwinConfigurations.Jias-MacBook-Pro.options'';
-          home-manager = nix-darwin + ''.home-manager.users.type.getSubOptions []'';
+          home-manager = nix-darwin + ".home-manager.users.type.getSubOptions []";
         in
         {
           options = {

@@ -8,7 +8,7 @@
       system-native-tabs = true;
       font = {
         normal = [
-          "Sarasa Term SC"
+          "Maple Mono SL"
           "Symbols Nerd Font"
         ];
         size = 21;

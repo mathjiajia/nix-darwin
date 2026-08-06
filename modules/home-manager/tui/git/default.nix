@@ -18,6 +18,7 @@
         email = "mathjiajia@outlook.com";
         name = "Jia Jia";
       };
+      credential.helper = "osxkeychain";
       fetch.prune = true;
       github.user = "mathjiajia";
       log.date = "iso";
@@ -87,7 +88,7 @@
   programs.lazygit = {
     enable = true;
     settings = {
-      git.pagers = [ { pager = "${lib.getExe pkgs.delta} --dark --paging=never"; } ];
+      git.diffRenderers = [ { command = "${lib.getExe pkgs.delta} --dark --paging=never"; } ];
       gui = {
         nerdFontsVersion = "3";
         sidePanelWidth = 0.25;

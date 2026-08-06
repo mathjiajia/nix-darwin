@@ -17,7 +17,7 @@
         "Pipfile"
         ".git"
       ];
-      on_exit.__ray =
+      on_exit.__raw =
         #lua
         ''
           function(code, _, _)

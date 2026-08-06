@@ -1,4 +1,4 @@
-vim.wo[0][0].conceallevel = 2
+-- vim.wo[0][0].conceallevel = 2
 vim.wo[0][0].spell = true
 
 vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Correct Last Spelling" })
@@ -9,15 +9,15 @@ require("nvim-surround").buffer_setup({
 		["'"] = {
 			add = { "`", "'" },
 			find = "`.-'",
-			delete = "^(`)().-(')()$",
+			delete = "^(`)().-(')()$"
 		},
 		['"'] = {
 			add = { "``", "''" },
 			find = "``.-''",
-			delete = "^(``)().-('')()$",
+			delete = "^(``)().-('')()$"
 		},
 		["c"] = {
-			add = function()
+			add = function ()
 				local cmd = config.get_input("Enter a command: ")
 				return { { "\\" .. cmd .. "{" }, { "}" } }
 			end,
@@ -25,11 +25,11 @@ require("nvim-surround").buffer_setup({
 			delete = "^(\\%a+{)().-(})()$",
 			change = {
 				target = "^\\(%a+)(){.-}()()$",
-				replacement = function()
+				replacement = function ()
 					local cmd = config.get_input("Enter a command: ")
 					return { { cmd }, { "" } }
-				end,
-			},
+				end
+			}
 		},
 		-- ["e"] = {
 		-- add = function()
@@ -54,10 +54,10 @@ require("nvim-surround").buffer_setup({
 			delete = "^(\\%()().-(\\%))()$",
 			change = {
 				target = "^\\(%()().-(\\%))()$",
-				replacement = function()
+				replacement = function ()
 					return { { "[", "\t" }, { "", "\\]" } }
-				end,
-			},
-		},
-	},
+				end
+			}
+		}
+	}
 })

@@ -11,22 +11,22 @@
     packages = with pkgs; [
       # CLI
       container # Apple
-      crush
       elan # lean
       github-copilot-cli
       hugo
       # libtexprintf
       luajit
       numr
+      python3
       typst
 
       # Fonts
       julia-mono
       lxgw-wenkai
-      maple-mono.NF-CN
+      # maple-mono.NF-CN
       # sarasa-gothic
       # smiley-sans
-      nerd-fonts.iosevka-term
+      # nerd-fonts.iosevka-term
       nerd-fonts.symbols-only
     ];
   };
@@ -44,6 +44,7 @@
 
     antigravity-cli.enable = true;
     claude-code.enable = true;
+    # crush.enable = true;
     codex.enable = true;
     # opencode.enable = true;
 

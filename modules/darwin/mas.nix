@@ -13,6 +13,7 @@
       ScanScan = 1249901692;
       Shadowrocket = 932747118;
       "Squirrel Designer" = 1530616498;
+      Tailscale = 1475387142;
       "uBlacklist for Safari" = 1547912640;
       UPDF = 1619925971;
       VidHub = 1659622164;

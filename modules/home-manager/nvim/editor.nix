@@ -84,10 +84,13 @@
       options.desc = "Live Fuzzy [G]rep";
     }
     {
-      mode = "n";
-      key = "<leader>fc";
-      action.__raw = "function() require('fff').live_grep({ query = vim.fn.expand('<cword>') }) end";
-      options.desc = "Search current word";
+      mode = [
+        "n"
+        "x"
+      ];
+      key = "<leader>fw";
+      action.__raw = "function() require('fff').live_grep_under_cursor() end";
+      options.desc = "Search current word / selection";
     }
 
     {
@@ -209,21 +212,6 @@
       action.__raw = "function() Snacks.picker.grep_buffers() end";
       options.desc = "Grep Open [B]uffers";
     }
-    # {
-    #   mode = "n";
-    #   key = "<leader>sg";
-    #   action.__raw = "function() Snacks.picker.grep() end";
-    #   options.desc = "[G]rep";
-    # }
-    # {
-    #   mode = [
-    #     # "n"
-    #     "x"
-    #   ];
-    #   key = "<leader>sw";
-    #   action.__raw = "function() Snacks.picker.grep_word() end";
-    #   options.desc = "Visual selection or [W]ord";
-    # }
     # Search
     {
       mode = "n";

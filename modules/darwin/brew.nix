@@ -44,7 +44,7 @@
       "launchbar"
       "loop"
       "nutstore"
-      # "raycast"
+      "raycast"
 
       "hazel"
       "hazeover"
@@ -52,15 +52,16 @@
 
       # System
       "adguard"
+      "display-pilot"
       # "istat-menus"
       "keka"
       "kekaexternalhelper"
       "keyboardcleantool"
       "mole-app"
-      "onyx"
-      "stats"
+      # "onyx"
       "surge"
       # "thaw"
+      "vorssaint"
 
       # Quick Look
       "apparency"

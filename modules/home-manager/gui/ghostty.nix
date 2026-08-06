@@ -4,17 +4,18 @@
     package = null;
     settings = {
       auto-update = "off";
-      # background-blur = "macos-glass-clear";
-      # background-opacity = 0.95;
+      background-blur = "macos-glass-clear";
+      background-opacity = 0.95;
       custom-shader = "shaders/cursor_smear_gradient.glsl";
-      font-family = "IosevkaTerm NF";
-      font-size = 19;
+      font-family = "Maple Mono";
+      adjust-cell-width = -2;
+      font-size = 18;
       keybind = "global:cmd+grave_accent=toggle_quick_terminal";
       mouse-hide-while-typing = true;
       shell-integration-features = "no-cursor";
       theme = "bamboo";
       window-colorspace = "display-p3";
-      window-title-font-family = "Iosevka Term";
+      window-title-font-family = "Maple Mono SL";
     };
     themes = {
       bamboo = {
