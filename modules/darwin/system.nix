@@ -5,7 +5,7 @@
     dock = {
       autohide = true;
       tilesize = 36;
-      orientation = "left";
+      # orientation = "left";
       persistent-apps = [
         "/System/Applications/Apps.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"

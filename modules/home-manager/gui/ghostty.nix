@@ -9,7 +9,7 @@
       custom-shader = "shaders/cursor_smear_gradient.glsl";
       font-family = "Maple Mono";
       adjust-cell-width = -2;
-      font-size = 18;
+      font-size = 20;
       keybind = "global:cmd+grave_accent=toggle_quick_terminal";
       mouse-hide-while-typing = true;
       shell-integration-features = "no-cursor";
