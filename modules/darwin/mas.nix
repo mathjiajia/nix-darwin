@@ -5,7 +5,6 @@
       Dictionaries = 1380563956;
       Dropover = 1355679052;
       Folo = 6739802604;
-      "Friendly Streaming" = 553245401;
       "GeoGebra Classic 6" = 1182481622;
       Goodnotes = 1444383602;
       Infuse = 1136220934;
@@ -13,7 +12,6 @@
       ScanScan = 1249901692;
       Shadowrocket = 932747118;
       "Squirrel Designer" = 1530616498;
-      Tailscale = 1475387142;
       "uBlacklist for Safari" = 1547912640;
       UPDF = 1619925971;
       VidHub = 1659622164;

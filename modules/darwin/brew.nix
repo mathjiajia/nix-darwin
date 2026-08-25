@@ -60,6 +60,7 @@
       "mole-app"
       # "onyx"
       "surge"
+      "tailscale-app"
       # "thaw"
       "vorssaint"
 
@@ -71,7 +72,7 @@
       "downie"
       "permute"
       "iina"
-      "neteasemusic"
+      # "neteasemusic"
 
       # Research
       # "mathpix-snipping-tool"

@@ -7,7 +7,7 @@ let
       owner = "pxwg";
       repo = "math-conceal.nvim";
       rev = "main";
-      hash = "sha256-Bk2E4X5sTbnhDtpP9DanVFKkZnwG+9RZ8H6opdPUaV0=";
+      hash = "sha256-j0LpwQ+2LwAoBVyd5YrsMrKh7985Ga0DLGIf1d5bSmc=";
     };
   };
   # nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
