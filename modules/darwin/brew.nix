@@ -27,6 +27,7 @@
       "ghostty"
       "orbstack"
       "orchard"
+      "utm@beta"
       "warp"
 
       "markedit"
@@ -52,6 +53,7 @@
 
       # System
       "adguard"
+      "airstats"
       "display-pilot"
       # "istat-menus"
       "keka"

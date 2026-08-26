@@ -4,7 +4,7 @@
   system.defaults = {
     dock = {
       autohide = true;
-      tilesize = 36;
+      tilesize = 42;
       # orientation = "left";
       persistent-apps = [
         "/System/Applications/Apps.app"
@@ -22,8 +22,9 @@
         "/Applications/Zotero.app"
         "/Applications/WeChat.app"
         "/Applications/WhatsApp.app"
-        "/Applications/LobeHub.app"
         "/Applications/ChatGPT.app"
+        "/Applications/Claude.app"
+        "/Applications/LobeHub.app"
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"
         "/System/Applications/App Store.app"

@@ -32,8 +32,8 @@
     in
     {
       darwinConfigurations = {
-        "MBP" = config;
-        "MBO" = config;
+        "mbp" = config;
+        "mbo" = config;
       };
     };
 }
