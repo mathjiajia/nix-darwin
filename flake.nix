@@ -32,8 +32,8 @@
     in
     {
       darwinConfigurations = {
-        "Jias-MacBook-Pro" = config;
-        "MacBook-Office" = config;
+        "MBP" = config;
+        "MBO" = config;
       };
     };
 }

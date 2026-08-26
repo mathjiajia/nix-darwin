@@ -43,7 +43,7 @@
       "keyboard-maestro"
       "launchbar"
       "loop"
-      "nutstore"
+      # "nutstore"
       "raycast"
 
       "hazel"
