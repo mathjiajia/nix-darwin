@@ -39,8 +39,7 @@
       navigate = true;
       side-by-side = false;
       decorations = {
-        dark = true;
-        syntax-theme = "Nord";
+        syntax-theme = "bamboo";
 
         file-added-label = "[+]";
         file-copied-label = "[==]";
@@ -54,9 +53,9 @@
         hunk-header-line-number-style = "yellow box bold";
         hunk-header-style = "file line-number syntax bold italic";
 
-        plus-style = "brightgreen";
+        plus-style = "syntax #40531b";
         plus-emph-style = "black green";
-        minus-style = "brightred";
+        minus-style = "normal #893f45";
         minus-emph-style = "black red";
 
         line-numbers = true;

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   home = {
     stateVersion = "26.11";
@@ -10,15 +10,24 @@
 
     packages = with pkgs; [
       # CLI
-      container # Apple
+      # container # Apple
       elan # lean
-      github-copilot-cli
+      # github-copilot-cli
       hugo
       # libtexprintf
       luajit
       numr
-      python3
+      texlab
       typst
+
+      (python3.withPackages (
+        ps: with ps; [
+          numpy
+          pandas
+          requests
+          pylatexenc
+        ]
+      ))
 
       # Fonts
       julia-mono
@@ -46,6 +55,7 @@
     claude-code.enable = true;
     # crush.enable = true;
     codex.enable = true;
+    # herdr.enable = true;
     # opencode.enable = true;
 
     btop = {
@@ -63,6 +73,8 @@
 
     nixvim = {
       enable = true;
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      nixpkgs.source = inputs.nixpkgs;
       defaultEditor = true;
       nixpkgs.config.allowUnfree = true;
       imports = [ ./nvim ];
@@ -103,6 +115,7 @@
 
     ./gui/ghostty.nix
     ./gui/neovide.nix
+    # ./gui/omniwm.nix
     ./gui/sage.nix
     ./gui/sioyek.nix
   ];

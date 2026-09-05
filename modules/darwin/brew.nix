@@ -30,6 +30,7 @@
       "utm@beta"
       "warp"
 
+      "google-chrome"
       "markedit"
       "markdown-preview"
       # "neovide"
@@ -41,15 +42,13 @@
       "sf-symbols"
 
       # Productivity
+      "hazel"
+      "hazeover"
       "keyboard-maestro"
       "launchbar"
       "loop"
       # "nutstore"
       "raycast"
-
-      "hazel"
-      "hazeover"
-      "soulver"
 
       # System
       "adguard"
@@ -88,8 +87,8 @@
       "inkscape"
 
       # Communication
-      "google-chrome"
       "discord"
+      "qq"
       "zoom"
 
       # Input

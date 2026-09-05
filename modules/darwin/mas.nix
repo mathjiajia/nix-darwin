@@ -11,6 +11,7 @@
       Readest = 6738622779;
       ScanScan = 1249901692;
       Shadowrocket = 932747118;
+      Soulver = 1508732804;
       "Squirrel Designer" = 1530616498;
       "uBlacklist for Safari" = 1547912640;
       UPDF = 1619925971;

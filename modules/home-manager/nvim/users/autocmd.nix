@@ -18,7 +18,7 @@
     }
     {
       event = "TextYankPost";
-      callback.__raw = "function() vim.hl.on_yank() end";
+      callback.__raw = "function() vim.hl.hl_op() end";
     }
     {
       event = "BufReadPost";

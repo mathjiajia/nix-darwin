@@ -10,6 +10,7 @@
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     # Neovim (nixvim)
     nixvim.url = "github:nix-community/nixvim";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
