@@ -8,13 +8,11 @@
       # background-opacity = 0.95;
       custom-shader = "shaders/cursor_smear_gradient.glsl";
       font-family = "Maple Mono";
-      adjust-cell-width = -2;
+      # adjust-cell-width = -2;
       font-size = 20;
-      keybind = "global:cmd+grave_accent=toggle_quick_terminal";
+      keybind = "global:cmd+backquote=toggle_quick_terminal";
       mouse-hide-while-typing = true;
-      shell-integration-features = "no-cursor";
       theme = "bamboo";
-      # window-colorspace = "display-p3";
       window-title-font-family = "Maple Mono SL";
     };
     themes = {

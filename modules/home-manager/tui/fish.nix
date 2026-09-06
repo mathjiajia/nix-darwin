@@ -21,8 +21,9 @@
               set -g _async_git_info (cat /tmp/fish_git_info_$fish_pid)
               rm -f /tmp/fish_git_info_$fish_pid
             else
-               set -e _async_git_info
+              set -e _async_git_info
             end
+
             set -e _async_git_job_pid
             commandline -f repaint 2>/dev/null
             functions -e _async_git_update_watcher

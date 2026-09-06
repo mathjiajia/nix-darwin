@@ -1,10 +1,10 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    ffmpeg
-    imagemagick
-    poppler
-    resvg
+    ffmpeg # for video thumbnails
+    imagemagick # for Font, HEIC, and JPEG XL preview
+    poppler # for PDF preview
+    resvg # for SVG preview
   ];
 
   programs.yazi.settings = {
@@ -17,63 +17,25 @@
         2
       ];
       sort_by = "natural";
-      sort_sensitive = true;
     };
 
     preview = {
-      max_height = 5000;
-      max_width = 5000;
+      max_height = 2700;
+      max_width = 1800;
     };
 
-    opener.sioyek = [
+    plugin.prepend_fetchers = [
       {
-        run = ''sioyek "$1"'';
-        orphan = true;
-        for = "unix";
+        url = "*";
+        run = "git";
+        group = "git";
+      }
+      {
+        url = "*/";
+        run = "git";
+        group = "git";
       }
     ];
 
-    open.prepend_rules = [
-      {
-        mime = "application/pdf";
-        use = [
-          "sioyek"
-          "reveal"
-        ];
-      }
-    ];
-
-    plugin = {
-      prepend_fetchers = [
-        {
-          url = "*";
-          run = "git";
-          group = "git";
-        }
-        {
-          url = "*/";
-          run = "git";
-          group = "git";
-        }
-      ];
-
-      prepend_previewers = [
-        {
-          mime = "application/pdf";
-          run = "pdf";
-        }
-      ];
-      prepend_preloaders = [
-        {
-          url = "/Volumes/**";
-          run = "noop";
-        }
-        {
-          mime = "application/pdf";
-          run = "noop";
-        }
-      ];
-
-    };
   };
 }

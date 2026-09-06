@@ -1,13 +1,23 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "math-conceal";
-    version = "2026-08-19";
+    version = "2026-09-04";
     src = pkgs.fetchFromGitHub {
       owner = "pxwg";
       repo = "math-conceal.nvim";
       rev = "0c8dc9a63fe8f786333402e12c0b4ed3ae2ae5e1";
       hash = "sha256-vMSVb4rgtm9UxkFZkB+r+dudskuyWWsI07p07iDQrug=";
+    };
+  };
+  md-render-nvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "md-render";
+    version = "2026-09-04";
+    src = pkgs.fetchFromGitHub {
+      owner = "delphinus";
+      repo = "md-render.nvim";
+      rev = "957fe64ab8244772d7d61f9b402c6ac0fd085928";
+      hash = "sha256-hh7MrpOUsNZaptjvAqmUx5XlE0O5Zh6jM3i+cpi3t5Q=";
     };
   };
   # nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
@@ -39,6 +49,7 @@ in
 {
   extraPlugins = [
     math-conceal-nvim
+    md-render-nvim
     # nvim-latex-conceal
     nvim-math-snippets
   ];
@@ -48,62 +59,62 @@ in
     #   enable = true;
     #   settings.mappings = true;
     # };
-    render-markdown = {
-      enable = true;
-      luaConfig.content = lib.mkForce "";
-    };
+    # render-markdown = {
+    #   enable = true;
+    #   luaConfig.content = lib.mkForce "";
+    # };
   };
 
-  globals.render_markdown_config = {
-    file_types = [
-      "markdown"
-      "quarto"
-    ];
-    anti_conceal = {
-      disabled_modes = [ "n" ];
-      ignore = {
-        bullet = true;
-        code_border = true;
-        head_background = true;
-        head_border = true;
-      };
-    };
-    completions.lsp.enabled = true;
-    heading = {
-      render_modes = true;
-      icons = [
-        " 󰼏 "
-        " 󰎨 "
-        " 󰼑 "
-        " 󰎲 "
-        " 󰼓 "
-        " 󰎴 "
-      ];
-      border = true;
-    };
-    code = {
-      position = "right";
-      min_width = 80;
-      width = "block";
-      border = "thin";
-    };
-    pipe_table = {
-      alignment_indicator = "─";
-      border = [
-        "╭"
-        "┬"
-        "╮"
-        "├"
-        "┼"
-        "┤"
-        "╰"
-        "┴"
-        "╯"
-        "│"
-        "─"
-      ];
-    };
-    sign.enabled = false;
-    win_options.concealcursor.rendered = "nvc";
-  };
+  # globals.render_markdown_config = {
+  #   file_types = [
+  #     "markdown"
+  #     "quarto"
+  #   ];
+  #   anti_conceal = {
+  #     disabled_modes = [ "n" ];
+  #     ignore = {
+  #       bullet = true;
+  #       code_border = true;
+  #       head_background = true;
+  #       head_border = true;
+  #     };
+  #   };
+  #   completions.lsp.enabled = true;
+  #   heading = {
+  #     render_modes = true;
+  #     icons = [
+  #       " 󰼏 "
+  #       " 󰎨 "
+  #       " 󰼑 "
+  #       " 󰎲 "
+  #       " 󰼓 "
+  #       " 󰎴 "
+  #     ];
+  #     border = true;
+  #   };
+  #   code = {
+  #     position = "right";
+  #     min_width = 80;
+  #     width = "block";
+  #     border = "thin";
+  #   };
+  #   pipe_table = {
+  #     alignment_indicator = "─";
+  #     border = [
+  #       "╭"
+  #       "┬"
+  #       "╮"
+  #       "├"
+  #       "┼"
+  #       "┤"
+  #       "╰"
+  #       "┴"
+  #       "╯"
+  #       "│"
+  #       "─"
+  #     ];
+  #   };
+  #   sign.enabled = false;
+  #   win_options.concealcursor.rendered = "nvc";
+  # };
 }

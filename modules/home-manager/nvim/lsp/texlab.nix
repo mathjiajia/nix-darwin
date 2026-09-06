@@ -1,9 +1,9 @@
-{ lib, pkgs, ... }:
 {
   lsp.servers.texlab = {
     enable = true;
+    package = null;
     config = {
-      cmd = [ "${lib.getExe pkgs.texlab}" ];
+      cmd = [ "texlab" ];
       filetypes = [
         "tex"
         "plaintex"

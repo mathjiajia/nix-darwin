@@ -16,21 +16,23 @@
       hugo
       # libtexprintf
       luajit
+      mermaid-cli
       numr
+      python3
       texlab
       typst
 
-      (python3.withPackages (
-        ps: with ps; [
-          numpy
-          pandas
-          requests
-          pylatexenc
-        ]
-      ))
+      # (python3.withPackages (
+      #   ps: with ps; [
+      #     numpy
+      #     pandas
+      #     requests
+      #     pylatexenc
+      #   ]
+      # ))
 
       # Fonts
-      julia-mono
+      # julia-mono
       lxgw-wenkai
       # maple-mono.NF-CN
       # sarasa-gothic

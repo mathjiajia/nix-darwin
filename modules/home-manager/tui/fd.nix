@@ -36,8 +36,9 @@
       ".orbstack/"
       ".osaurus/"
       ".sage/"
-      ".vscode/extensions/"
+      ".vene/"
 
+      ".vscode/extensions/"
       ".config/raycast/extensions/"
 
       "MySite/public/"

@@ -59,6 +59,7 @@
       "kekaexternalhelper"
       "keyboardcleantool"
       "mole-app"
+      "omniwm"
       # "onyx"
       "surge"
       "tailscale-app"

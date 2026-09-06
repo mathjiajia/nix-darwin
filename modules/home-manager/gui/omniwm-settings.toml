@@ -3,8 +3,7 @@ monitorDwindleOverrides = []
 monitorGapOverrides = []
 monitorNiriOverrides = []
 monitorOrientationOverrides = []
-monitorRoutingOverrides = []
-schemaVersion = 2
+schemaVersion = 3
 
 [appearance]
 mode = "automatic"
@@ -76,7 +75,7 @@ workspaceSwipeEnabled = false
 workspaceSwipeFingerCount = 3
 
 [hiddenBar]
-enabled = true
+enabled = false
 hiddenBundleIDs = []
 rehideIntervalSeconds = 5.0
 
@@ -136,6 +135,7 @@ position = "center"
 widthPercent = 50.0
 
 [routing]
+arrangements = []
 mode = "macOS"
 
 [scratchpads]
