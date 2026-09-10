@@ -1,5 +1,6 @@
-{ lib, pkgs, ... }:
-{
+{ pkgs, ... }: {
+  globals.fff.lazy_sync = true;
+
   plugins = {
     blink-indent.enable = true;
     fff.enable = true;
@@ -8,11 +9,11 @@
 
     grug-far = {
       enable = true;
-      luaConfig.content = lib.mkForce "";
+      callSetup = false;
     };
     nvim-surround = {
       enable = true;
-      luaConfig.content = lib.mkForce "";
+      callSetup = false;
     };
 
     snacks = {
@@ -36,15 +37,6 @@
         };
         words.enabled = true;
       };
-    };
-  };
-
-  globals = {
-    grug-far.icons.fileIconsProvider = "mini.icons";
-    fff = {
-      layout.prompt_position = "top";
-      lazy_sync = true;
-      prompt = "   ";
     };
   };
 

@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   lsp.servers.nixd = {
     enable = true;
     config = {
@@ -11,7 +10,7 @@
       ];
       settings.nixd =
         let
-          nix-darwin = ''(builtins.getFlake "/private/etc/nix-darwin").darwinConfigurations.Jias-MacBook-Pro.options'';
+          nix-darwin = ''(builtins.getFlake "/private/etc/nix-darwin").darwinConfigurations.mbp.options'';
           home-manager = nix-darwin + ".home-manager.users.type.getSubOptions []";
         in
         {

@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   lsp.servers.taplo = {
     enable = true;
     config = {

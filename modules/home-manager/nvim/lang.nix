@@ -12,12 +12,12 @@ let
   };
   md-render-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "md-render";
-    version = "2026-09-04";
+    version = "2026-09-11";
     src = pkgs.fetchFromGitHub {
       owner = "delphinus";
       repo = "md-render.nvim";
-      rev = "957fe64ab8244772d7d61f9b402c6ac0fd085928";
-      hash = "sha256-hh7MrpOUsNZaptjvAqmUx5XlE0O5Zh6jM3i+cpi3t5Q=";
+      rev = "v3.9.0";
+      hash = "sha256-goOv3ePoMv8anl4MZOGVkz285rtk4eB5oIT6Sm7+wh0=";
     };
   };
   # nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
@@ -61,7 +61,7 @@ in
     # };
     # render-markdown = {
     #   enable = true;
-    #   luaConfig.content = lib.mkForce "";
+    #   callSetup = false;
     # };
   };
 

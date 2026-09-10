@@ -1,10 +1,11 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   programs.bat = {
     enable = true;
     config = {
-      theme = "bamboo";
       italic-text = "always";
+      tabs = "2";
+      theme-light = "Catppuccin Latte";
+      theme-dark = "Catppuccin Mocha";
     };
   };
 

@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   lsp.servers.matlab_ls = {
     enable = true;
     config = {

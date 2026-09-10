@@ -31,12 +31,13 @@
     blink-pairs = {
       enable = true;
       settings.highlights.groups = [
-        "BlinkPairsOrange"
-        "BlinkPairsPurple"
-        "BlinkPairsBlue"
-        "BlinkPairsCyan"
+        "BlinkPairsRed"
         "BlinkPairsYellow"
+        "BlinkPairsBlue"
+        "BlinkPairsOrange"
         "BlinkPairsGreen"
+        "BlinkPairsPurple"
+        "BlinkPairsCyan"
       ];
     };
 

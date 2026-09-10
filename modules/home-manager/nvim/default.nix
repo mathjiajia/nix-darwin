@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   luaLoader.enable = true;
-  colorscheme = "bamboo";
+  # colorscheme = "bamboo";
   withPython3 = false;
   withRuby = false;
   extraPackages = [ pkgs.tree-sitter ];
@@ -24,6 +23,7 @@
     ./lsp
 
     # ./ai.nix
+    ./colorscheme.nix
     ./compiler
     ./completion.nix
     ./dap.nix
@@ -32,8 +32,6 @@
     ./lang.nix
     ./treesitter.nix
     ./ui.nix
-
-    ./extras.nix
   ];
 
   extraFiles."after/ftplugin".source = ./after_ftplugin;

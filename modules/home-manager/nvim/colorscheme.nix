@@ -1,7 +1,7 @@
 {
   colorschemes = {
     bamboo = {
-      enable = true;
+      # enable = true;
       settings = {
         transparent = true;
         dim_inactive = true;
@@ -22,43 +22,41 @@
         };
       };
     };
-    tokyonight = {
-      # enable = true;
+
+    catppuccin = {
+      enable = true;
       settings = {
-        style = "moon";
-        dim_inactive = true;
-        transparent = true;
-        terminal_colors = false;
-        plugins = {
-          all = false;
-          auto = false;
-          blink = true;
-          dap = true;
-          flash = true;
-          gitsigns = true;
-          grug-far = true;
-          mini_hipatterns = true;
-          mini_icons = true;
-          render-markdown = true;
-          snacks = true;
-          treesitter_context = true;
+        auto_integrations = false;
+        integrations = {
+          aerial = false;
+          alpha = false;
+          artio = false;
+          barbecue = false;
+          beacon = false;
+          dashboard = false;
+          dropbar = {
+            enabled = true;
+            color_mode = true;
+          };
+          fzf = false;
+          gitsigns = false;
+          grug_far = true;
+          indent_blankline.enabled = false;
+          neo_tree = false;
+          neogit = false;
+          cmp = false;
+          nvim_surround = true;
+          nvimtree = false;
+          nvim_spectre = false;
+          treesitter_context = false;
+          octo = false;
+          overseer = true;
+          rainbow_delimiters = false;
+          render_markdown = false;
+          snacks.enabled = true;
+          telescope.enabled = false;
+          illuminate.enabled = false;
         };
-        on_highlights =
-          # lua
-          ''
-            function(hl, c)
-            	hl["@module.latex"] = { fg = c.yellow }
-            	hl["@label.latex"] = { fg = c.blue }
-            	hl["@function.latex"] = { fg = c.magenta }
-            	hl.BlinkPairsBlue = { fg = c.blue }
-            	hl.BlinkPairsYellow = { fg = c.yellow }
-            	hl.BlinkPairsGreen = { fg = c.green }
-            	hl.BlinkPairsTeal = { fg = c.teal }
-            	hl.BlinkPairsMagenta = { fg = c.magenta }
-            	hl.BlinkPairsPurple = { fg = c.purple }
-            	hl.BlinkPairsOrange = { fg = c.orange }
-            end
-          '';
       };
     };
 
@@ -120,6 +118,46 @@
           which_key = false;
           yanky = false;
         };
+      };
+    };
+
+    tokyonight = {
+      # enable = true;
+      settings = {
+        style = "moon";
+        dim_inactive = true;
+        transparent = true;
+        terminal_colors = false;
+        plugins = {
+          all = false;
+          auto = false;
+          blink = true;
+          dap = true;
+          flash = true;
+          gitsigns = true;
+          grug-far = true;
+          mini_hipatterns = true;
+          mini_icons = true;
+          render-markdown = true;
+          snacks = true;
+          treesitter_context = true;
+        };
+        on_highlights =
+          # lua
+          ''
+            function(hl, c)
+            	hl["@module.latex"] = { fg = c.yellow }
+            	hl["@label.latex"] = { fg = c.blue }
+            	hl["@function.latex"] = { fg = c.magenta }
+            	hl.BlinkPairsBlue = { fg = c.blue }
+            	hl.BlinkPairsYellow = { fg = c.yellow }
+            	hl.BlinkPairsGreen = { fg = c.green }
+            	hl.BlinkPairsTeal = { fg = c.teal }
+            	hl.BlinkPairsMagenta = { fg = c.magenta }
+            	hl.BlinkPairsPurple = { fg = c.purple }
+            	hl.BlinkPairsOrange = { fg = c.orange }
+            end
+          '';
       };
     };
   };

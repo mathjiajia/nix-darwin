@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
   programs.fzf = {
     enable = true;
     changeDirWidget = {

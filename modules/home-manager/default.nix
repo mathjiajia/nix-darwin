@@ -1,5 +1,4 @@
-{ inputs, pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
   home = {
     stateVersion = "26.11";
     sessionPath = [ "/Library/TeX/texbin" ];
@@ -55,14 +54,24 @@
 
     # antigravity-cli.enable = true;
     # claude-code.enable = true;
-    # crush.enable = true;
     # codex.enable = true;
-    # herdr.enable = true;
+    herdr.enable = true;
     # opencode.enable = true;
+
+    bat = {
+      enable = true;
+      config = {
+        italic-text = "always";
+        tabs = "2";
+        theme-light = "Catppuccin Latte";
+        theme-dark = "Catppuccin Mocha";
+      };
+    };
 
     btop = {
       enable = true;
       settings = {
+        color_theme = "TTY";
         theme_background = false;
         vim_keys = true;
       };
@@ -109,7 +118,7 @@
     ./tui/git
     ./tui/yazi
 
-    ./tui/bat.nix
+    # ./tui/bat.nix
     ./tui/fd.nix
     ./tui/fish.nix
     ./tui/fzf.nix

@@ -1,13 +1,12 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   plugins.overseer = {
     enable = true;
-    # w/o calling setup causes dap integration bug
+    callSetup = false;
     package = pkgs.vimPlugins.overseer-nvim.overrideAttrs (oldAttrs: {
       postInstall =
         (oldAttrs.postInstall or "")
         # sh
-        + ''mv $out/doc/{recipes.md,overseer-nvim_recipes.md}'';
+        + "mv $out/doc/{recipes.md,overseer-nvim_recipes.md}";
     });
   };
 

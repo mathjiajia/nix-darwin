@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     ffmpeg # for video thumbnails
     imagemagick # for Font, HEIC, and JPEG XL preview

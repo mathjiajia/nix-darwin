@@ -9,7 +9,6 @@
     };
     greedyCasks = true;
 
-    brews = [ "herdr" ];
     casks = [
       # AI
       "chatgpt"
@@ -17,19 +16,20 @@
       "claude"
       "claude-code"
       "google-gemini"
+      "antigravity"
       "antigravity-cli"
 
       # Local LLM
-      "antigravity"
       "llama-app"
       "lm-studio"
       "lobehub"
       "ollama-app"
-      # "osaurus"
+      "osaurus"
 
       # Development
       "ghostty"
       "homebrew-app"
+      "kitty"
       "orbstack"
       "orchard"
       "utm@beta"
@@ -68,8 +68,6 @@
       # "onyx"
       "surge"
       "tailscale-app"
-      # "thaw"
-      "vorssaint"
 
       # Quick Look
       "apparency"
@@ -82,7 +80,6 @@
       # "neteasemusic"
 
       # Research
-      # "mathpix-snipping-tool"
       "publish-or-perish"
       "quarto"
       "sage"

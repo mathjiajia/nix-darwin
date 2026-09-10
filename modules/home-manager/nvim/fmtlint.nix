@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   extraPackages = with pkgs; [
     # linters
     commitlint

@@ -1,11 +1,26 @@
 {
-  security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.enable = false;
+  # security.pam.services.sudo_local.touchIdAuth = true;
+
+  launchd.daemons.limit-maxfiles = {
+    serviceConfig = {
+      Label = "limit.maxfiles";
+      ProgramArguments = [
+        "/bin/launchctl"
+        "limit"
+        "maxfiles"
+        "8192" # soft limit
+        "524288" # hard limit, unlimited by default
+      ];
+      RunAtLoad = true;
+      LaunchOnlyOnce = true;
+    };
+  };
 
   system.defaults = {
     dock = {
       autohide = true;
-      tilesize = 42;
-      # orientation = "left";
+      tilesize = 48;
       persistent-apps = [
         "/System/Applications/Apps.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"
@@ -48,16 +63,11 @@
 
     trackpad = {
       Clicking = true;
+      TrackpadRightClick = true;
       TrackpadThreeFingerDrag = true;
     };
 
     NSGlobalDomain = {
-      # AppleICUDateFormatStrings = {
-      #   "1" = "yyyy-MM-dd HH:mm";
-      #   "2" = "yyyy-MM-dd HH:mm:ss";
-      #   "3" = "yyyy-MM-dd HH:mm:ss";
-      #   "4" = "yyyy-MM-dd HH:mm:ss";
-      # };
       # AppleICUForce24HourTime = false;
       # AppleInterfaceStyle = "Dark";
       AppleInterfaceStyleSwitchesAutomatically = true;
@@ -69,45 +79,20 @@
     };
 
     CustomUserPreferences = {
-      # "com.apple.controlcenter" = {
-      #   "NSStatusItem Visible Battery" = 0;
-      #   "NSStatusItem Visible BentoBox" = 1;
-      #   "NSStatusItem Visible Clock" = 1;
-      #   "NSStatusItem Visible FocusModes" = 1;
-      #   "NSStatusItem Visible NowPlaying" = 0;
-      #   "NSStatusItem Visible Sound" = 1;
-      #   "NSStatusItem Visible WiFi" = 1;
-      # };
-
       "com.apple.desktopservices" = {
         DSDontWriteNetworkStores = true;
         DSDontWriteUSBStores = true;
       };
-
       "com.apple.finder" = {
         RelativeDates = false;
       };
-
-      # "com.apple.mail" = {
-      #   DisableInlineAttachmentViewing = true;
-      #   AddLinkPreviews = 0;
-      #   SwipeAction = 1; # discard mail to archive
-      #   NewMessagesSoundName = "Funk";
-      #   NSFontSize = 14;
-      #   NSFixedPitchFont = "MapleMono-NF-CN-Regular";
-      #   NSFixedPitchFontSize = 15;
-      # };
-
       "com.apple.SoftwareUpdate" = {
         AutomaticCheckEnabled = false;
         AutomaticDownload = 0;
         CriticalUpdateInstall = 1;
       };
-
       "com.apple.TimeMachine".DoNotOfferNewDisksForBackup = true;
     };
-
-    # SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
   };
 
   system.keyboard = {

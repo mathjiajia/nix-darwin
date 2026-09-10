@@ -30,7 +30,7 @@
           end
         end
 
-        ulimit -n 8192
+        fish_config theme choose catppuccin-mocha --color-theme=dark
       '';
     functions = {
       fish_prompt.body =
@@ -88,19 +88,6 @@
       '';
     shellAbbrs = {
       mkdir = "mkdir -p";
-
-      # Git
-      gd = "git diff";
-      gP = "git push";
-      gp = "git pull";
-      gl = "git log";
-      glp = "git log --patch";
-
-      # LazyGit
-      lg = "lazygit";
-
-      # Nvim
-      nv = "nvim";
     };
   };
 
