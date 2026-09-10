@@ -53,10 +53,10 @@
     pandoc.enable = true;
     uv.enable = true;
 
-    antigravity-cli.enable = true;
-    claude-code.enable = true;
+    # antigravity-cli.enable = true;
+    # claude-code.enable = true;
     # crush.enable = true;
-    codex.enable = true;
+    # codex.enable = true;
     # herdr.enable = true;
     # opencode.enable = true;
 

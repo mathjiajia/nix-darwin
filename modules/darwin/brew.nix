@@ -9,11 +9,15 @@
     };
     greedyCasks = true;
 
+    brews = [ "herdr" ];
     casks = [
       # AI
       "chatgpt"
+      "codex"
       "claude"
+      "claude-code"
       "google-gemini"
+      "antigravity-cli"
 
       # Local LLM
       "antigravity"
@@ -25,6 +29,7 @@
 
       # Development
       "ghostty"
+      "homebrew-app"
       "orbstack"
       "orchard"
       "utm@beta"
