@@ -3,18 +3,18 @@
     enable = true;
     package = null;
     settings = {
-      adjust-cell-width = -2;
+      # adjust-cell-width = -2;
       auto-update = "off";
       # background-blur = "macos-glass-clear";
       # background-opacity = 0.95;
       # custom-shader = "shaders/cursor_smear_gradient.glsl";
       font-family = "Maple Mono";
-      font-size = 20;
+      font-size = 16;
       keybind = "global:cmd+backquote=toggle_quick_terminal";
       mouse-hide-while-typing = true;
       theme = "light:Catppuccin Latte,dark:Catppuccin Mocha";
       window-colorspace = "display-p3";
-      window-title-font-family = "Maple Mono SL";
+      window-title-font-family = "Maple Mono";
     };
     themes = {
       bamboo = {

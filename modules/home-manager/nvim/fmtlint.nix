@@ -26,10 +26,8 @@
       settings = {
         formatters.bibtex-tidy.prepend_args = [
           "--curly"
-          "--tab"
-          "--trailing-commas"
-          "--sort-fields=author,year,month,day,title,shorttitle"
-          "--remove-braces"
+          "--numeric"
+          "--sort-fields=author,year,month,date,title,shorttitle"
         ];
         formatters_by_ft = {
           bib = [ "bibtex-tidy" ];

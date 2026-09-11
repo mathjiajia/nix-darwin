@@ -26,6 +26,7 @@
     catppuccin = {
       enable = true;
       settings = {
+        dim_inactive.enabled = true;
         auto_integrations = false;
         integrations = {
           aerial = false;

@@ -43,7 +43,6 @@
       "zed"
 
       "corretto@11" # for Matlab
-      "dash"
       "sf-symbols"
 
       # Productivity
@@ -53,7 +52,8 @@
       "launchbar"
       "loop"
       # "nutstore"
-      "raycast"
+      # "raycast"
+      # "tinycast"
 
       # System
       "adguard"
@@ -65,7 +65,7 @@
       "keyboardcleantool"
       "mole-app"
       "omniwm"
-      # "onyx"
+      "onyx"
       "surge"
       "tailscale-app"
 
@@ -77,7 +77,6 @@
       "downie"
       "permute"
       "iina"
-      # "neteasemusic"
 
       # Research
       "publish-or-perish"

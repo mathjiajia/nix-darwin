@@ -11,27 +11,15 @@
       # CLI
       # container # Apple
       elan # lean
-      # github-copilot-cli
       hugo
-      # libtexprintf
       luajit
       mermaid-cli
       numr
       python3
-      texlab
+      texlab # use in skim
       typst
 
-      # (python3.withPackages (
-      #   ps: with ps; [
-      #     numpy
-      #     pandas
-      #     requests
-      #     pylatexenc
-      #   ]
-      # ))
-
       # Fonts
-      # julia-mono
       lxgw-wenkai
       # maple-mono.NF-CN
       # sarasa-gothic
@@ -45,6 +33,7 @@
     home-manager.enable = true; # manage itslef
 
     atuin.enable = true;
+    btop.enable = true;
     bun.enable = true;
     eza.enable = true;
     fastfetch.enable = true;
@@ -55,8 +44,6 @@
     # antigravity-cli.enable = true;
     # claude-code.enable = true;
     # codex.enable = true;
-    herdr.enable = true;
-    # opencode.enable = true;
 
     bat = {
       enable = true;
@@ -68,13 +55,14 @@
       };
     };
 
-    btop = {
+    fish = {
       enable = true;
-      settings = {
-        color_theme = "TTY";
-        theme_background = false;
-        vim_keys = true;
-      };
+      interactiveShellInit = # fish
+        ''
+          set fish_greeting
+          fish_config theme choose catppuccin-mocha --color-theme=dark
+        '';
+      shellAbbrs.mkdir = "mkdir -p";
     };
 
     nh = {
@@ -85,10 +73,15 @@
     nixvim = {
       enable = true;
       package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      nixpkgs.source = inputs.nixpkgs;
+      # Reuse Home Manager's package set instead of evaluating Nixpkgs again.
+      nixpkgs.useGlobalPackages = true;
       defaultEditor = true;
-      nixpkgs.config.allowUnfree = true;
       imports = [ ./nvim ];
+    };
+
+    starship = {
+      enable = true;
+      settings.add_newline = false;
     };
 
     tex-fmt = {
@@ -118,13 +111,14 @@
     ./tui/git
     ./tui/yazi
 
-    # ./tui/bat.nix
+    # ./tui/btop.nix
     ./tui/fd.nix
-    ./tui/fish.nix
     ./tui/fzf.nix
+    ./tui/herdr.nix
     ./tui/ripgrep.nix
 
     ./gui/ghostty.nix
+    ./gui/kitty.nix
     ./gui/neovide.nix
     # ./gui/omniwm.nix
     ./gui/sage.nix

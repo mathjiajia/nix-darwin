@@ -1,6 +1,4 @@
 { pkgs, ... }: {
-  globals.fff.lazy_sync = true;
-
   plugins = {
     blink-indent.enable = true;
     fff.enable = true;
@@ -38,6 +36,11 @@
         words.enabled = true;
       };
     };
+  };
+
+  globals.fff = {
+    lazy_sync = true;
+    layout.prompt_position = "top";
   };
 
   keymaps = [

@@ -25,35 +25,42 @@
     virtual_text.current_line = false;
   };
 
-  lsp.onAttach =
-    #lua
-    ''
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go Declaration" })
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go Definition" })
-      vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
-      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Go Type Definition" })
-
-      if client:supports_method("textDocument/foldingRange", bufnr) then
-      	local win = vim.api.nvim_get_current_win()
-      	vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
-      end
-
-      if client:supports_method("textDocument/codeLens", bufnr) then
-      	vim.lsp.codelens.enable(true, { bufnr = bufnr })
-      	vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged", "CursorHold" }, {
-      		buffer = bufnr,
-      		group = vim.api.nvim_create_augroup("CodelensRefresh", { clear = true }),
-      		callback = function()
-      			vim.lsp.codelens.enable(true, { bufnr = bufnr })
-      		end,
-      	})
-      end
-
-      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-      -- if client:supports_method("textDocument/inlayHint", bufnr) then
-      -- 	vim.keymap.set("n", "<M-i>", function()
-      -- 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
-      -- 	end, { buffer = bufnr, desc = "Inlay Hint Toggle" })
-      -- end
-    '';
+  lsp = {
+    codelens.enable = true;
+    inlayHints.enable = true;
+    keymaps = [
+      {
+        mode = "n";
+        key = "gd";
+        lspBufAction = "definition";
+        options.desc = "Go Definition";
+      }
+      {
+        mode = "n";
+        key = "gD";
+        lspBufAction = "declaration";
+        options.desc = "Go Declaration";
+      }
+      {
+        mode = "n";
+        key = "gt";
+        lspBufAction = "type_definition";
+        options.desc = "Go Type Definition";
+      }
+      {
+        mode = "n";
+        key = "<C-k>";
+        lspBufAction = "signature_help";
+        options.desc = "Signature Help";
+      }
+    ];
+    onAttach =
+      #lua
+      ''
+        if client:supports_method("textDocument/foldingRange", bufnr) then
+        	local win = vim.api.nvim_get_current_win()
+        	vim.wo[win][0].foldexpr = vim.lsp.foldexpr
+        end
+      '';
+  };
 }
