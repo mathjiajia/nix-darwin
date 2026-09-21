@@ -14,10 +14,10 @@
       {
         on = [
           "g"
-          "p"
+          "a"
         ];
-        run = "cd ~/Documents/Projects";
-        desc = "Go to the project dir";
+        run = "cd ~/Documents/ChatGPT";
+        desc = "Go to AI dir";
       }
       {
         on = [
@@ -25,7 +25,23 @@
           "n"
         ];
         run = "cd ~/.config/nix-darwin";
-        desc = "Go to the nix-darwin config directory";
+        desc = "Go to nix-darwin dir";
+      }
+      {
+        on = [
+          "g"
+          "p"
+        ];
+        run = "cd ~/Documents/Projects";
+        desc = "Go to projects dir";
+      }
+      {
+        on = [
+          "g"
+          "r"
+        ];
+        run = "cd ~/Documents/Review";
+        desc = "Go to review dir";
       }
       {
         on = [
@@ -33,7 +49,7 @@
           "t"
         ];
         run = "cd ~/Documents/Talks";
-        desc = "Go to the talks directory";
+        desc = "Go to talks dir";
       }
 
       # Operation

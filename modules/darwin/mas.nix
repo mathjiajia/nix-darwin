@@ -20,6 +20,7 @@
       "Whisper Transcription" = 1668083311;
       xcz = 912139104;
 
+      Bear = 1091189122;
       Craft = 1487937127;
       Drafts = 1435957248;
 

@@ -2,13 +2,13 @@
   programs.kitty = {
     enable = true;
     package = null;
-    autoThemeFiles = {
-      light = "Catppuccin-Latte";
-      dark = "Catppuccin-Mocha";
-      noPreference = "Catppuccin-Latte";
-    };
+    # autoThemeFiles = {
+    #   light = "Catppuccin-Latte";
+    #   dark = "Catppuccin-Mocha";
+    #   noPreference = "Catppuccin-Latte";
+    # };
     font = {
-      name = "Maple Mono";
+      name = "Maple Mono NR NF CN";
       size = 17;
     };
     settings = {
@@ -21,7 +21,7 @@
       tab_bar_edge = "top";
       tab_bar_margin_height = "10.0 0.0";
       bell_on_tab = "no";
-      macos_titlebar_color = "background";
+      # macos_titlebar_color = "background";
       macos_custom_beam_cursor = "yes";
       macos_option_as_alt = "yes";
       macos_show_window_title_in = "window";

@@ -9,6 +9,7 @@
         light_name = "catppuccin-latte";
         dark_name = "catppuccin";
       };
+      ui.status_indicators = "symbols";
       update.version_check = false;
       keys.command = [
         {

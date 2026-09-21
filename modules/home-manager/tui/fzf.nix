@@ -2,17 +2,16 @@
   programs.fzf = {
     enable = true;
     changeDirWidget = {
-      command = "${lib.getExe pkgs.fd} --type d --hidden";
+      command = "${lib.getExe pkgs.fd} --type d";
       options = [ "--preview '${lib.getExe pkgs.eza} -T {} | head -200'" ];
     };
-    defaultCommand = "${lib.getExe pkgs.fd} --type f --hidden";
+    defaultCommand = "${lib.getExe pkgs.fd} --type f";
     defaultOptions = [
       "--border"
       "--layout=reverse"
-      "--preview 'bat --color=always --line-range :500 {}'"
-      "--bind 'ctrl-/:change-preview-window(down|hidden|)'"
+      "--color=base16"
     ];
-    fileWidget.command = "${lib.getExe pkgs.fd} --type f --hidden --follow";
+    fileWidget.command = "${lib.getExe pkgs.fd} --type f --follow";
     historyWidget.command = "";
   };
 }

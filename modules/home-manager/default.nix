@@ -16,6 +16,7 @@
       mermaid-cli
       numr
       python3
+      rtk
       texlab # use in skim
       typst
 
@@ -37,19 +38,17 @@
     bun.enable = true;
     eza.enable = true;
     fastfetch.enable = true;
+    fd.enable = true;
     npm.enable = true;
     pandoc.enable = true;
     uv.enable = true;
-
-    # antigravity-cli.enable = true;
-    # claude-code.enable = true;
-    # codex.enable = true;
 
     bat = {
       enable = true;
       config = {
         italic-text = "always";
         tabs = "2";
+        theme = "auto:system";
         theme-light = "Catppuccin Latte";
         theme-dark = "Catppuccin Mocha";
       };
@@ -77,6 +76,14 @@
       nixpkgs.useGlobalPackages = true;
       defaultEditor = true;
       imports = [ ./nvim ];
+    };
+
+    ripgrep = {
+      enable = true;
+      arguments = [
+        "--hidden"
+        "--smart-case"
+      ];
     };
 
     starship = {
@@ -111,11 +118,8 @@
     ./tui/git
     ./tui/yazi
 
-    # ./tui/btop.nix
-    ./tui/fd.nix
     ./tui/fzf.nix
     ./tui/herdr.nix
-    ./tui/ripgrep.nix
 
     ./gui/ghostty.nix
     ./gui/kitty.nix

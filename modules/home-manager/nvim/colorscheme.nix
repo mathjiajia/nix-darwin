@@ -1,164 +1,86 @@
 {
-  colorschemes = {
-    bamboo = {
-      # enable = true;
-      settings = {
-        transparent = true;
-        dim_inactive = true;
-        code_style.comments = {
-          italic = true;
-          fg = "#5b5e5a";
+  colorschemes.catppuccin = {
+    enable = true;
+    settings = {
+      transparent_background = true;
+      float.transparent = true;
+      auto_integrations = false;
+      integrations = {
+        blink_cmp = true;
+        blink_indent = true;
+        blink_pairs = true;
+        dap = true;
+        dap_ui = true;
+        dropbar = {
+          enabled = true;
+          color_mode = true;
         };
-        highlights = {
-          CursorLine.bg = "$bg2";
-          StatusLine.bg = "$none";
-          BlinkPairsBlue.fg = "$blue";
-          BlinkPairsYellow.fg = "$yellow";
-          BlinkPairsGreen.fg = "$green";
-          BlinkPairsTeal.fg = "$cyan";
-          BlinkPairsMagenta.fg = "$coral";
-          BlinkPairsPurple.fg = "$purple";
-          BlinkPairsOrange.fg = "$orange";
-        };
-      };
-    };
+        flash = true;
+        grug_far = true;
+        mini.enabled = true;
+        nvim_surround = true;
+        overseer = true;
+        snacks.enabled = true;
 
-    catppuccin = {
-      enable = true;
-      settings = {
-        dim_inactive.enabled = true;
-        auto_integrations = false;
-        integrations = {
-          aerial = false;
-          alpha = false;
-          artio = false;
-          barbecue = false;
-          beacon = false;
-          dashboard = false;
-          dropbar = {
-            enabled = true;
-            color_mode = true;
-          };
-          fzf = false;
-          gitsigns = false;
-          grug_far = true;
-          indent_blankline.enabled = false;
-          neo_tree = false;
-          neogit = false;
-          cmp = false;
-          nvim_surround = true;
-          nvimtree = false;
-          nvim_spectre = false;
-          treesitter_context = false;
-          octo = false;
-          overseer = true;
-          rainbow_delimiters = false;
-          render_markdown = false;
-          snacks.enabled = true;
-          telescope.enabled = false;
-          illuminate.enabled = false;
-        };
-      };
-    };
-
-    kanagawa-paper = {
-      # enable = true;
-      settings = {
-        dim_inactive = true;
-        terminal_colors = false;
-        cache = true;
-        styles = {
-          functions.italic = true;
-          keywords = {
-            italic = true;
-            bold = true;
-          };
-          statement_style = {
-            italic = true;
-            bold = true;
-          };
-        };
-        auto_plugins = false;
-        all_plugins = false;
-        plugins = {
-          aerial = true;
-          barbar = false;
-          blink = true;
-          bufferline = false;
-          flash = true;
-          floaterm = false;
-          gitgutter = false;
-          gitsigns = true;
-          grug_far = true;
-          headlines = false;
-          incline = false;
-          indent_blankline = false;
-          lazy = false;
-          leap = false;
-          mini = true;
-          neo_tree = false;
-          neogit = false;
-          neotest = false;
-          noice = false;
-          nvim_cmp = false;
-          nvim_dap_ui = true;
-          nvim_navic = false;
-          nvim_notify = false;
-          nvim_spectre = false;
-          nvim_tree = false;
-          nvim_treesitter_context = true;
-          nvim_window_picker = false;
-          octo = false;
-          overseer = true;
-          rainbow_delimiters = true;
-          render_markdown = true;
-          satellite = false;
-          snacks = true;
-          telescope = false;
-          trouble = false;
-          which_key = false;
-          yanky = false;
-        };
-      };
-    };
-
-    tokyonight = {
-      # enable = true;
-      settings = {
-        style = "moon";
-        dim_inactive = true;
-        transparent = true;
-        terminal_colors = false;
-        plugins = {
-          all = false;
-          auto = false;
-          blink = true;
-          dap = true;
-          flash = true;
-          gitsigns = true;
-          grug-far = true;
-          mini_hipatterns = true;
-          mini_icons = true;
-          render-markdown = true;
-          snacks = true;
-          treesitter_context = true;
-        };
-        on_highlights =
-          # lua
-          ''
-            function(hl, c)
-            	hl["@module.latex"] = { fg = c.yellow }
-            	hl["@label.latex"] = { fg = c.blue }
-            	hl["@function.latex"] = { fg = c.magenta }
-            	hl.BlinkPairsBlue = { fg = c.blue }
-            	hl.BlinkPairsYellow = { fg = c.yellow }
-            	hl.BlinkPairsGreen = { fg = c.green }
-            	hl.BlinkPairsTeal = { fg = c.teal }
-            	hl.BlinkPairsMagenta = { fg = c.magenta }
-            	hl.BlinkPairsPurple = { fg = c.purple }
-            	hl.BlinkPairsOrange = { fg = c.orange }
-            end
-          '';
+        aerial = false;
+        alpha = false;
+        artio = false;
+        avante = false;
+        barbar = false;
+        barbecue = false;
+        beacon = false;
+        buffon = false;
+        cmp = false;
+        colorful_winsep = false;
+        coc_nvim = false;
+        copilot_vim = false;
+        dadbod_ui = false;
+        dashboard = false;
+        diffview = false;
+        fern = false;
+        fidget = false;
+        fzf = false;
+        gitgraph = false;
+        gitgutter = false;
+        gitsigns = false;
+        harpoon = false;
+        headlines = false;
+        hop = false;
+        illuminate = false;
+        indent_blankline = false;
+        leap = false;
+        lightspeed = false;
+        lir = false;
+        lsp_saga = false;
+        lsp_trouble = false;
+        markview = false;
+        mason = false;
+        neo_tree = false;
+        navic = false;
+        neogit = false;
+        neotest = false;
+        neotree = false;
+        noice = false;
+        notifier = false;
+        notify = false;
+        nvimtree = false;
+        octo = false;
+        pounce = false;
+        rainbow_delimiters = false;
+        render_markdown = false;
+        sandwich = false;
+        signify = false;
+        symbols_outline = false;
+        telekasten = false;
+        telescope = false;
+        treesitter_context = false;
+        ts_rainbow = false;
+        ts_rainbow2 = false;
+        ufo = false;
+        vim_sneak = false;
+        vimwiki = false;
+        which_key = false;
+        window_picker = false;
       };
     };
   };

@@ -41,8 +41,6 @@
       ];
     };
 
-    # copilot-lua.enable = false;
-    # blink-copilot.enable = true;
     blink-ripgrep.enable = true;
     blink-cmp = {
       enable = true;
@@ -77,15 +75,9 @@
             "snippets"
             "buffer"
             "ripgrep"
-            # "copilot"
           ];
           providers = {
             snippets.opts.show_autosnippets = false;
-            # copilot = {
-            #   async = true;
-            #   module = "blink-copilot";
-            #   name = "Copilot";
-            # };
             ripgrep = {
               module = "blink-ripgrep";
               name = "Ripgrep";

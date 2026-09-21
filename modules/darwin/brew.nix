@@ -15,16 +15,14 @@
       "codex"
       "claude"
       "claude-code"
-      "google-gemini"
       "antigravity"
       "antigravity-cli"
 
       # Local LLM
       "llama-app"
-      "lm-studio"
+      "lm-studio-bionic"
       "lobehub"
       "ollama-app"
-      "osaurus"
 
       # Development
       "ghostty"
@@ -37,7 +35,7 @@
 
       "google-chrome"
       "markedit"
-      "markdown-preview"
+      # "markdown-preview"
       # "neovide"
       "visual-studio-code"
       "zed"
@@ -57,9 +55,9 @@
 
       # System
       "adguard"
-      "airstats"
+      # "airstats"
       "display-pilot"
-      # "istat-menus"
+      "istat-menus"
       "keka"
       "kekaexternalhelper"
       "keyboardcleantool"
@@ -86,6 +84,7 @@
       "zotero"
 
       # Design
+      "hhkb"
       "inkscape"
 
       # Communication

@@ -8,7 +8,7 @@
       system-native-tabs = true;
       font = {
         normal = [
-          "Maple Mono SL"
+          "Maple Mono NR NF CN"
           "Symbols Nerd Font"
         ];
         size = 21;
