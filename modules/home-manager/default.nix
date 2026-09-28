@@ -14,9 +14,8 @@
       hugo
       luajit
       mermaid-cli
-      numr
+      # numr
       python3
-      rtk
       texlab # use in skim
       typst
 

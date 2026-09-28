@@ -4,7 +4,6 @@
     packages = {
       Dictionaries = 1380563956;
       Dropover = 1355679052;
-      Folo = 6739802604;
       "GeoGebra Classic 6" = 1182481622;
       Goodnotes = 1444383602;
       Infuse = 1136220934;

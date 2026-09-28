@@ -30,8 +30,6 @@
       "kitty"
       "orbstack"
       "orchard"
-      "utm@beta"
-      "warp"
 
       "google-chrome"
       "markedit"
@@ -73,8 +71,9 @@
 
       # Media
       "downie"
-      "permute"
       "iina"
+      "permute"
+      "sandisk"
 
       # Research
       "publish-or-perish"
@@ -88,7 +87,6 @@
       "inkscape"
 
       # Communication
-      "discord"
       "qq"
       "zoom"
 

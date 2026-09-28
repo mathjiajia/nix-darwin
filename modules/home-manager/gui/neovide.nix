@@ -7,10 +7,7 @@
       icon = "/Users/jia/bin/neovide.icns";
       system-native-tabs = true;
       font = {
-        normal = [
-          "Maple Mono NR NF CN"
-          "Symbols Nerd Font"
-        ];
+        normal = "Maple Mono NR NF CN";
         size = 21;
       };
     };

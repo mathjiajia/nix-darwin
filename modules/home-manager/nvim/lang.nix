@@ -10,36 +10,36 @@ let
   #     hash = "sha256-/nRjkhqW2q+nNAxEb6V3CfSggvp0Hpj0vDGyuXReVz4=";
   #   };
   # };
-  # math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
-  #   name = "math-conceal";
-  #   version = "2026-09-04";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "pxwg";
-  #     repo = "math-conceal.nvim";
-  #     rev = "0c8dc9a63fe8f786333402e12c0b4ed3ae2ae5e1";
-  #     hash = "sha256-vMSVb4rgtm9UxkFZkB+r+dudskuyWWsI07p07iDQrug=";
-  #   };
-  # };
+  math-conceal-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "math-conceal";
+    version = "2026-09-23";
+    src = pkgs.fetchFromGitHub {
+      owner = "pxwg";
+      repo = "math-conceal.nvim";
+      rev = "173254855f0a98dce7bd7406ca5295366cbbd84a";
+      hash = "sha256-6ihC79CLWYfTKKpFUl88o+MsDLaRAcDCUghlCLtpWAk=";
+    };
+  };
   md-render-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "md-render";
-    version = "2026-09-11";
+    version = "2026-09-28";
     src = pkgs.fetchFromGitHub {
       owner = "delphinus";
       repo = "md-render.nvim";
-      rev = "v3.10.0";
-      hash = "sha256-SSh4iJnLkhZXSIZLP+A8RhRnh2pxskM6u6wGdIIH41I=";
+      rev = "v3.10.3";
+      hash = "sha256-+b/PNIz9sVX1AyLR0BDvL2clfqNSzXpiTfKxo/cTGGE=";
     };
   };
-  nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
-    pname = "latex-conceal";
-    version = "2026-09-18";
-    src = pkgs.fetchFromGitHub {
-      owner = "mathjiajia";
-      repo = "nvim-latex-conceal";
-      rev = "75312d8f4f816d963f5bd68ef50236e18ab1b2f0";
-      hash = "sha256-oloK9fE4GHu91n2pw0BmaFz5N6t9SlT5R0/2qS8QBO0=";
-    };
-  };
+  # nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
+  #   pname = "latex-conceal";
+  #   version = "2026-09-18";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "mathjiajia";
+  #     repo = "nvim-latex-conceal";
+  #     rev = "75312d8f4f816d963f5bd68ef50236e18ab1b2f0";
+  #     hash = "sha256-oloK9fE4GHu91n2pw0BmaFz5N6t9SlT5R0/2qS8QBO0=";
+  #   };
+  # };
   nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {
     pname = "math-snippets";
     version = "2026-09-17";
@@ -60,73 +60,16 @@ in
 {
   extraPlugins = [
     # fk-markdown-nvim
-    # math-conceal-nvim
+    math-conceal-nvim
     md-render-nvim
-    nvim-latex-conceal
+    # nvim-latex-conceal
     nvim-math-snippets
   ];
 
-  plugins = {
-    # lean = {
-    #   enable = true;
-    #   settings.mappings = true;
-    # };
-    # render-markdown = {
-    #   enable = true;
-    #   callSetup = false;
-    # };
-  };
-
-  # globals.render_markdown_config = {
-  #   file_types = [
-  #     "markdown"
-  #     "quarto"
-  #   ];
-  #   anti_conceal = {
-  #     disabled_modes = [ "n" ];
-  #     ignore = {
-  #       bullet = true;
-  #       code_border = true;
-  #       head_background = true;
-  #       head_border = true;
-  #     };
+  # plugins = {
+  #   lean = {
+  #     enable = true;
+  #     settings.mappings = true;
   #   };
-  #   completions.lsp.enabled = true;
-  #   heading = {
-  #     render_modes = true;
-  #     icons = [
-  #       " 󰼏 "
-  #       " 󰎨 "
-  #       " 󰼑 "
-  #       " 󰎲 "
-  #       " 󰼓 "
-  #       " 󰎴 "
-  #     ];
-  #     border = true;
-  #   };
-  #   code = {
-  #     position = "right";
-  #     min_width = 80;
-  #     width = "block";
-  #     border = "thin";
-  #   };
-  #   pipe_table = {
-  #     alignment_indicator = "─";
-  #     border = [
-  #       "╭"
-  #       "┬"
-  #       "╮"
-  #       "├"
-  #       "┼"
-  #       "┤"
-  #       "╰"
-  #       "┴"
-  #       "╯"
-  #       "│"
-  #       "─"
-  #     ];
-  #   };
-  #   sign.enabled = false;
-  #   win_options.concealcursor.rendered = "nvc";
   # };
 }

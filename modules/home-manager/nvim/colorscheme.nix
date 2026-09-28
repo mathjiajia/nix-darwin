@@ -4,6 +4,7 @@
     settings = {
       transparent_background = true;
       float.transparent = true;
+      term_colors = true;
       auto_integrations = false;
       integrations = {
         blink_cmp = true;
