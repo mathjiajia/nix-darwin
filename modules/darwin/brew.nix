@@ -33,8 +33,7 @@
 
       "google-chrome"
       "markedit"
-      # "markdown-preview"
-      # "neovide"
+      # "neovide-app"
       "visual-studio-code"
       "zed"
 
@@ -47,13 +46,10 @@
       "keyboard-maestro"
       "launchbar"
       "loop"
-      # "nutstore"
-      # "raycast"
       # "tinycast"
 
       # System
       "adguard"
-      # "airstats"
       "display-pilot"
       "istat-menus"
       "keka"
@@ -76,7 +72,6 @@
       "sandisk"
 
       # Research
-      "publish-or-perish"
       "quarto"
       "sage"
       "skim"
