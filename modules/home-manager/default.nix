@@ -1,11 +1,13 @@
 { inputs, pkgs, ... }: {
+  # GUI applications are managed by Homebrew (except sioyek).
+  targets.darwin.copyApps.enable = false;
+
   home = {
     stateVersion = "26.11";
     sessionPath = [ "/Library/TeX/texbin" ];
     sessionVariables = {
       MANPAGER = "nvim +Man!";
     };
-    shellAliases.nv = "nvim";
 
     packages = with pkgs; [
       # CLI
@@ -14,7 +16,6 @@
       hugo
       luajit
       mermaid-cli
-      # numr
       python3
       texlab # use in skim
       typst
@@ -23,8 +24,6 @@
       lxgw-wenkai
       # maple-mono.NF-CN
       # sarasa-gothic
-      # smiley-sans
-      # nerd-fonts.iosevka-term
       nerd-fonts.symbols-only
     ];
   };
@@ -34,11 +33,9 @@
 
     atuin.enable = true;
     btop.enable = true;
-    bun.enable = true;
     eza.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
-    npm.enable = true;
     pandoc.enable = true;
     uv.enable = true;
 
@@ -47,9 +44,9 @@
       config = {
         italic-text = "always";
         tabs = "2";
-        theme = "auto:system";
-        theme-light = "Catppuccin Latte";
-        theme-dark = "Catppuccin Mocha";
+        # theme = "auto:system";
+        # theme-light = "Catppuccin Latte";
+        theme = "Catppuccin Mocha";
       };
     };
 
@@ -60,7 +57,10 @@
           set fish_greeting
           fish_config theme choose catppuccin-mocha --color-theme=dark
         '';
-      shellAbbrs.mkdir = "mkdir -p";
+      shellAbbrs = {
+        mkdir = "mkdir -p";
+        nv = "nvim";
+      };
     };
 
     nh = {
@@ -70,9 +70,11 @@
 
     nixvim = {
       enable = true;
+      # Match plugin dependencies to the cached nightly Neovim package.
+      nixpkgs.source = inputs.neovim-nightly-overlay.inputs.nixpkgs;
+      # Reuse the system viewer, including its package overrides.
+      nixpkgs.overlays = [ (_final: _prev: { inherit (pkgs) sioyek; }) ];
       package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      # Reuse Home Manager's package set instead of evaluating Nixpkgs again.
-      nixpkgs.useGlobalPackages = true;
       defaultEditor = true;
       imports = [ ./nvim ];
     };
@@ -81,6 +83,7 @@
       enable = true;
       arguments = [
         "--hidden"
+        "--glob=!.git"
         "--smart-case"
       ];
     };

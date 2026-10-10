@@ -1,7 +1,6 @@
 {
   imports = [
     ./clangd.nix
-    # ./copilot.nix
     ./emmylua_ls.nix
     ./marksman.nix
     ./matlab_ls.nix
@@ -15,11 +14,19 @@
 
   diagnostic.settings = {
     severity_sort = true;
-    signs.text = {
-      "__rawKey__vim.diagnostic.severity.ERROR" = "";
-      "__rawKey__vim.diagnostic.severity.WARN" = "";
-      "__rawKey__vim.diagnostic.severity.HINT" = "";
-      "__rawKey__vim.diagnostic.severity.INFO" = "";
+    signs = {
+      text = {
+        "__rawKey__vim.diagnostic.severity.ERROR" = "";
+        "__rawKey__vim.diagnostic.severity.HINT" = "";
+        "__rawKey__vim.diagnostic.severity.INFO" = "";
+        "__rawKey__vim.diagnostic.severity.WARN" = "";
+      };
+      numhl = {
+        "__rawKey__vim.diagnostic.severity.ERROR" = "DiagnosticSignError";
+        "__rawKey__vim.diagnostic.severity.HINT" = "DiagnosticSignHint";
+        "__rawKey__vim.diagnostic.severity.INFO" = "DiagnosticSignInfo";
+        "__rawKey__vim.diagnostic.severity.WARN" = "DiagnosticSignWarn";
+      };
     };
     virtual_lines.current_line = true;
     virtual_text.current_line = false;
@@ -40,12 +47,6 @@
         key = "gD";
         lspBufAction = "declaration";
         options.desc = "Go Declaration";
-      }
-      {
-        mode = "n";
-        key = "gt";
-        lspBufAction = "type_definition";
-        options.desc = "Go Type Definition";
       }
       {
         mode = "n";

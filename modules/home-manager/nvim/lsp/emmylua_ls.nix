@@ -1,4 +1,10 @@
-{ lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   lsp.servers.emmylua_ls = {
     enable = true;
     config = {
@@ -24,7 +30,7 @@
       settings.emmylua = {
         runtime.version = "LuaJIT";
         diagnostics.globals = [ "vim" ];
-        # workspace.library.__raw = "{ vim.env.VIMRUNTIME }";
+        workspace.library = [ "${config.package}/share/nvim/runtime/lua" ];
         codeLens.enable = true;
         hint.enable = true;
       };

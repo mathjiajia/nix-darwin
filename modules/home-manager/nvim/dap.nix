@@ -16,46 +16,28 @@
       adapters.executables.lldb-dap.command = "/Applications/Xcode.app/Contents/Developer/usr/bin/lldb-dap";
       configurations =
         let
-          lldb-launch = {
-            type = "lldb-dap";
-            request = "launch";
-            name = "Dap Debug";
-            cwd = "\${workspaceFolder}";
-            program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
-          };
-          lldb-attach = {
-            type = "lldb-dap";
-            request = "attach";
-            name = "Dap Attach";
-            program = "\${workspaceFolder}/\${fileBasenameNoExtension}";
-            waitFor = true;
-          };
-          cpp-launch = lldb-launch // {
-            preLaunchTask = "C/C++: clang debug build";
-          };
-          cpp-attach = lldb-attach // {
-            preLaunchTask = "C/C++: clang debug build";
-          };
-          swift-launch = lldb-launch // {
-            preLaunchTask = "swift: swiftc debug build";
-          };
-          swift-attach = lldb-attach // {
-            preLaunchTask = "swift: swiftc debug build";
-          };
+          program = "\${fileDirname}/\${fileBasenameNoExtension}";
+          lldb = preLaunchTask: [
+            {
+              type = "lldb-dap";
+              request = "launch";
+              name = "Dap Debug";
+              cwd = "\${workspaceFolder}";
+              inherit program preLaunchTask;
+            }
+            {
+              type = "lldb-dap";
+              request = "attach";
+              name = "Dap Attach";
+              waitFor = true;
+              inherit program preLaunchTask;
+            }
+          ];
         in
         {
-          cpp = [
-            cpp-launch
-            cpp-attach
-          ];
-          c = [
-            cpp-launch
-            cpp-attach
-          ];
-          swift = [
-            swift-launch
-            swift-attach
-          ];
+          c = lldb "C/C++: clang debug build";
+          cpp = lldb "C/C++: clang debug build";
+          swift = lldb "swift: swiftc debug build";
         };
       signs = {
         dapBreakpoint = {

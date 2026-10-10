@@ -41,13 +41,6 @@
 
     {
       mode = "x";
-      key = "p";
-      action = "p:let @+=@0<CR>";
-      options.desc = "Paste w/o overwriting clipboard (unnamedplus)";
-    }
-
-    {
-      mode = "x";
       key = "/";
       action = "<Esc>/\\%V";
       options.desc = "search within visual selection";

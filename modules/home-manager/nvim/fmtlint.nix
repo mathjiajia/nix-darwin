@@ -9,8 +9,10 @@
     lint = {
       enable = true;
       lintersByFt = {
-        bash = [ "shellcheck" ];
         gitcommit = [ "commitlint" ];
+        sh = [ "shellcheck" ];
+        bash = [ "shellcheck" ];
+        fish = [ "fish" ];
       };
     };
 
@@ -45,6 +47,9 @@
             "ruff_organize_imports"
           ];
           sh = [ "shfmt" ];
+          bash = [ "shfmt" ];
+          zsh = [ "shfmt" ];
+          fish = [ "fish_indent" ];
         };
         format_on_save.__raw = ''
           function(bufnr)

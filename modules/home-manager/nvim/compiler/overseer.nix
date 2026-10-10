@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   plugins.overseer = {
     enable = true;
-    callSetup = false;
     package = pkgs.vimPlugins.overseer-nvim.overrideAttrs (oldAttrs: {
       postInstall =
         (oldAttrs.postInstall or "")

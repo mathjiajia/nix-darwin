@@ -5,9 +5,9 @@
       onboarding = false;
       theme = {
         name = "catppuccin";
-        auto_switch = true;
-        light_name = "catppuccin-latte";
-        dark_name = "catppuccin";
+        # auto_switch = true;
+        # light_name = "catppuccin-latte";
+        # dark_name = "catppuccin";
       };
       ui.status_indicators = "symbols";
       update.version_check = false;

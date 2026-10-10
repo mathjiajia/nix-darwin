@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   luaLoader.enable = true;
-  # colorscheme = "bamboo";
   withPython3 = false;
   withRuby = false;
   extraPackages = [ pkgs.tree-sitter ];
@@ -22,7 +21,6 @@
     ./users
     ./lsp
 
-    # ./ai.nix
     ./colorscheme.nix
     ./compiler
     ./completion.nix

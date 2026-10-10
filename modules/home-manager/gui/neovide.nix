@@ -8,7 +8,7 @@
       system-native-tabs = true;
       font = {
         normal = "Maple Mono NR NF CN";
-        size = 21;
+        size = 18;
       };
     };
   };

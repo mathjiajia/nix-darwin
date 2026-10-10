@@ -14,7 +14,6 @@
         ".git"
       ];
       settings = { };
-      init_options.settings = { };
     };
   };
 }

@@ -25,6 +25,22 @@ in
   nixpkgs = {
     hostPlatform = system;
     config.allowUnfree = true;
+    overlays = [
+      (_final: prev: {
+        sioyek = prev.sioyek.overrideAttrs {
+          # https://github.com/NixOS/nixpkgs/pull/566097
+          postInstall = ''
+            mkdir -p sioyek.app/Contents/Resources
+            cp -r pdf_viewer/shaders sioyek.app/Contents/Resources/shaders
+            cp pdf_viewer/{prefs,prefs_user,keys,keys_user}.config tutorial.pdf sioyek.app/Contents/Resources/
+
+            mkdir -p $out/Applications $out/bin
+            cp -r sioyek.app $out/Applications
+            ln -s $out/Applications/sioyek.app/Contents/MacOS/sioyek $out/bin/sioyek
+          '';
+        };
+      })
+    ];
   };
 
   system = {
@@ -36,10 +52,10 @@ in
   users.users."${user}" = {
     home = "/Users/${user}";
     name = user;
-    shell = pkgs.fish;
     uid = 501;
   };
 
+  # run `chsh -s /run/current-system/sw/bin/fish`
   environment.shells = [ pkgs.fish ];
   programs.fish = {
     enable = true;

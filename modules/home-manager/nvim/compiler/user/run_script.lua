@@ -1,7 +1,7 @@
 return {
 	name = "run script",
 	condition = { filetype = { "lua", "sh", "swift" } },
-	builder = function()
+	builder = function ()
 		local file = vim.fn.expand("%:p")
 		local cmd = { file }
 		if vim.bo.filetype == "lua" then
@@ -10,5 +10,5 @@ return {
 			cmd = { "swift", file }
 		end
 		return { cmd = cmd }
-	end,
+	end
 }

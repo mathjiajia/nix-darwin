@@ -1,4 +1,4 @@
-{
+{ lib, pkgs, ... }: {
   security.pam.services.sudo_local.enable = false;
   # security.pam.services.sudo_local.touchIdAuth = true;
 
@@ -17,6 +17,9 @@
     };
   };
 
+  # GUI applications are managed by Homebrew.
+  system.activationScripts.applications.text = lib.mkForce "";
+
   system.defaults = {
     dock = {
       autohide = true;
@@ -27,19 +30,20 @@
         "/System/Applications/Mail.app"
         "/System/Applications/Calendar.app"
         "/System/Applications/Reminders.app"
-        "/Applications/Due.app"
-        "/Applications/Things3.app"
         "/System/Applications/Notes.app"
         "/Applications/Drafts.app"
-        "/Applications/UPDF.app"
+        "/Applications/Due.app"
+        "/Applications/Things3.app"
         "/Applications/Visual Studio Code.app"
         "/Applications/Ghostty.app"
+        "/Applications/Neovide.app"
+        "${pkgs.sioyek}/Applications/sioyek.app"
         "/Applications/Zotero.app"
-        "/Applications/WeChat.app"
-        "/Applications/WhatsApp.app"
+        "/Applications/PDF Expert.app"
         "/Applications/ChatGPT.app"
         "/Applications/Claude.app"
-        "/Applications/LobeHub.app"
+        "/Applications/WeChat.app"
+        "/Applications/WhatsApp.app"
         "/System/Applications/Music.app"
         "/Applications/LaunchBar.app"
         "/System/Applications/App Store.app"

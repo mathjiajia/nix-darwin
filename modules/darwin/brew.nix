@@ -1,22 +1,17 @@
 {
   homebrew = {
     enable = true;
-    onActivation = {
-      autoUpdate = true;
-      cleanup = "zap";
-      upgrade = true;
-      extraEnv.HOMEBREW_NO_ANALYTICS = "1";
-    };
-    greedyCasks = true;
+    onActivation.cleanup = "zap";
 
     casks = [
       # AI
+      "antigravity"
+      "antigravity-cli"
       "chatgpt"
       "codex"
       "claude"
       "claude-code"
-      "antigravity"
-      "antigravity-cli"
+      "lody"
 
       # Local LLM
       "llama-app"
@@ -46,14 +41,16 @@
       "keyboard-maestro"
       "launchbar"
       "loop"
+      "raycast"
+      "soulver-cli"
       # "tinycast"
 
       # System
       "adguard"
       "display-pilot"
       "istat-menus"
-      "keka"
-      "kekaexternalhelper"
+      # "keka"
+      # "kekaexternalhelper"
       "keyboardcleantool"
       "mole-app"
       "omniwm"
@@ -62,7 +59,6 @@
       "tailscale-app"
 
       # Quick Look
-      "apparency"
       "syntax-highlight"
 
       # Media
@@ -72,6 +68,7 @@
       "sandisk"
 
       # Research
+      "pdf-expert"
       "quarto"
       "sage"
       "skim"
