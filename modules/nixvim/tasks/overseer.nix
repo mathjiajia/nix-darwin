@@ -9,7 +9,7 @@
     });
   };
 
-  extraFiles."lua/overseer/template/user".source = ./user;
+  extraFiles."lua/overseer/template/user".source = ./templates;
 
   keymaps = [
     {

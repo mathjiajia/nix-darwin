@@ -36,8 +36,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "nvim-math-snippets";
-      rev = "034d9ee0f44fc8c6a90cf718219ba6e73bb7dedf";
-      hash = "sha256-KjDv4IK8zdfYFhcoGcIK0lVbw9OqnY+8j7QlZu0ZuvM=";
+      rev = "27ff3dcb30fa67877adb2ca1bdbe9669b5cd57e0";
+      hash = "sha256-7CRvKHhrw1/KG+OurHirK6xBsycxb5sY4AV/DFLYtrA=";
     };
     nvimSkipModules = [
       "math-snippets.conditions"

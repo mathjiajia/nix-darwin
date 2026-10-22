@@ -28,7 +28,7 @@
       push.autoSetupRemote = true;
       rebase.autoSquash = true;
     };
-    ignores = lib.splitString "\n" (builtins.readFile ./global_ignore);
+    ignores = lib.splitString "\n" (builtins.readFile ./global.gitignore);
   };
 
   programs.difftastic = {

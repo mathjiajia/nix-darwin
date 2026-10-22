@@ -22,20 +22,21 @@
       ...
     }:
     let
-      config = nix-darwin.lib.darwinSystem {
+      mkDarwin = hostModule: nix-darwin.lib.darwinSystem {
         modules = [
           ./configuration.nix
           ./modules/darwin
           nix-homebrew.darwinModules.nix-homebrew
           home-manager.darwinModules.home-manager
+          hostModule
         ];
         specialArgs = { inherit inputs; };
       };
     in
     {
       darwinConfigurations = {
-        "mbp" = config;
-        "mbo" = config;
+        "mbp" = mkDarwin ./hosts/mbp.nix;
+        "mbo" = mkDarwin ./hosts/mbo.nix;
       };
     };
 }

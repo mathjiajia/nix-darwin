@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ pkgs, ... }: {
   # GUI applications are managed by Homebrew (except sioyek).
   targets.darwin.copyApps.enable = false;
 
@@ -31,7 +31,6 @@
   programs = {
     home-manager.enable = true; # manage itslef
 
-    atuin.enable = true;
     btop.enable = true;
     eza.enable = true;
     fastfetch.enable = true;
@@ -50,33 +49,9 @@
       };
     };
 
-    fish = {
-      enable = true;
-      interactiveShellInit = # fish
-        ''
-          set fish_greeting
-          fish_config theme choose catppuccin-mocha --color-theme=dark
-        '';
-      shellAbbrs = {
-        mkdir = "mkdir -p";
-        nv = "nvim";
-      };
-    };
-
     nh = {
       enable = true;
       flake = "/etc/nix-darwin";
-    };
-
-    nixvim = {
-      enable = true;
-      # Match plugin dependencies to the cached nightly Neovim package.
-      nixpkgs.source = inputs.neovim-nightly-overlay.inputs.nixpkgs;
-      # Reuse the system viewer, including its package overrides.
-      nixpkgs.overlays = [ (_final: _prev: { inherit (pkgs) sioyek; }) ];
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      defaultEditor = true;
-      imports = [ ./nvim ];
     };
 
     ripgrep = {
@@ -88,25 +63,12 @@
       ];
     };
 
-    starship = {
-      enable = true;
-      settings.add_newline = false;
-    };
-
     tex-fmt = {
       enable = true;
       settings = {
         tabchar = "tab";
         tabsize = 1;
       };
-    };
-
-    zoxide = {
-      enable = true;
-      options = [
-        "--cmd"
-        "cd"
-      ];
     };
   };
 
@@ -117,17 +79,20 @@
   programs.man.enable = false;
 
   imports = [
-    ./tui/git
-    ./tui/yazi
+    ./shell.nix
 
-    ./tui/fzf.nix
-    ./tui/herdr.nix
+    ./programs/nixvim.nix
+    ./programs/git
+    ./programs/yazi
 
-    ./gui/ghostty.nix
-    ./gui/kitty.nix
-    ./gui/neovide.nix
-    # ./gui/omniwm.nix
-    ./gui/sage.nix
-    ./gui/sioyek.nix
+    ./programs/fzf.nix
+    ./programs/herdr.nix
+
+    ./programs/ghostty.nix
+    ./programs/kitty.nix
+    ./programs/neovide.nix
+    # ./programs/omniwm
+    ./programs/sagemath.nix
+    ./programs/sioyek.nix
   ];
 }

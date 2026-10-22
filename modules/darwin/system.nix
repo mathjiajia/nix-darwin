@@ -1,6 +1,8 @@
 { lib, pkgs, ... }: {
-  security.pam.services.sudo_local.enable = false;
-  # security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local = {
+    enable = true;
+    touchIdAuth = true;
+  };
 
   launchd.daemons.limit-maxfiles = {
     serviceConfig = {
@@ -23,6 +25,7 @@
   system.defaults = {
     dock = {
       autohide = true;
+      mru-spaces = false; # Keep desktops in a fixed order.
       tilesize = 48;
       persistent-apps = [
         "/System/Applications/Apps.app"
@@ -53,14 +56,16 @@
     };
 
     finder = {
-      "AppleShowAllExtensions" = true;
-      # "AppleShowAllFiles" = true;
-      "ShowPathbar" = true;
-      "ShowStatusBar" = true;
-      # "_FXShowPosixPathInTitle" = false;
-      "FXDefaultSearchScope" = "SCcf";
-      "FXEnableExtensionChangeWarning" = false;
-      "FXPreferredViewStyle" = "Nlsv";
+      AppleShowAllExtensions = true;
+      # AppleShowAllFiles = true;
+      ShowPathbar = true;
+      ShowStatusBar = true;
+      # _FXShowPosixPathInTitle = false;
+      FXDefaultSearchScope = "SCcf";
+      FXEnableExtensionChangeWarning = false;
+      FXPreferredViewStyle = "Nlsv";
+      _FXSortFoldersFirst = true;
+      NewWindowTarget = "Home";
     };
 
     loginwindow.GuestEnabled = false;

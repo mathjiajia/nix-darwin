@@ -18,16 +18,16 @@
   };
 
   imports = [
-    ./users
+    ./core
     ./lsp
 
     ./colorscheme.nix
-    ./compiler
+    ./tasks
     ./completion.nix
     ./dap.nix
     ./editor.nix
-    ./fmtlint.nix
-    ./lang.nix
+    ./format-and-lint.nix
+    ./extra-plugins.nix
     ./treesitter.nix
     ./ui.nix
   ];
