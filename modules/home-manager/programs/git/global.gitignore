@@ -1,7 +1,7 @@
 # vim:ft=gitignore
 
-# Created by https://www.toptal.com/developers/gitignore/api/c,lua,latex,python,swift,visualstudiocode,vim,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=c,lua,latex,python,swift,visualstudiocode,vim,macos
+# Created by https://www.toptal.com/developers/gitignore/api/c,lua,vim,latex,macos,swift,python,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=c,lua,vim,latex,macos,swift,python,visualstudiocode
 
 ### C ###
 # Prerequisites
@@ -714,4 +714,4 @@ tags
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/c,lua,latex,python,swift,visualstudiocode,vim,macos
+# End of https://www.toptal.com/developers/gitignore/api/c,lua,vim,latex,macos,swift,python,visualstudiocode

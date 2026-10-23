@@ -11,7 +11,6 @@
       "codex"
       "llama-app"
       "lm-studio-bionic"
-      "lobehub"
       "ollama-app"
 
       # Development
@@ -35,9 +34,10 @@
       # "tinycast"
 
       # System and hardware
-      "adguard"
+      # "adguard"
       "istat-menus"
       "keyboardcleantool"
+      # "little-snitch" beta now
       "mole-app"
       "omniwm"
       "onyx"

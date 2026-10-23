@@ -32,7 +32,7 @@ let
   };
   nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {
     pname = "math-snippets";
-    version = "2026-10-22";
+    version = "2026-10-23";
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "nvim-math-snippets";
@@ -42,7 +42,6 @@ let
     nvimSkipModules = [
       "math-snippets.conditions"
       "math-snippets.latex"
-      "math-snippets.util"
     ];
   };
 in

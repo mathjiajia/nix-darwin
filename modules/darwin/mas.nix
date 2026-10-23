@@ -3,7 +3,6 @@
     enable = true;
     packages = {
       # Development
-      Codye = 1516894961;
       DevHub = 6476452351;
       DevTutor = 6471227008;
       SnippetsLab = 1006087419;
@@ -28,11 +27,9 @@
 
       # Reading and reference
       Dictionaries = 1380563956;
-      Readest = 6738622779;
-      xcz = 912139104;
 
       # Productivity
-      Dropover = 1355679052;
+      # Dropover = 1355679052;
       Due = 524373870;
       PCalc = 403504866;
       Soulver = 1508732804;
@@ -40,23 +37,16 @@
 
       # Communication
       Filo = 6740307388;
-      Telegram = 747648890;
-      VooV = 1497685373;
       WeChat = 836500024;
       WhatsApp = 310633997;
 
       # Media
-      Infuse = 1136220934;
-      VidHub = 1659622164;
       "Whisper Transcription" = 1668083311;
 
       # Network
+      # "AdGuard Mini" = 1440147259; TF version
       "Net Magic" = 6757392404;
       Shadowrocket = 932747118;
-
-      # Input
-      CobraTyping = 6784869356;
-      "Squirrel Designer" = 1530616498;
     };
   };
 }
