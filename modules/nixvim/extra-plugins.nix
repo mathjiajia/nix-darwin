@@ -22,12 +22,12 @@ let
   };
   nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
     pname = "latex-conceal";
-    version = "2026-10-22";
+    version = "2026-10-26";
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "nvim-latex-conceal";
-      rev = "ae6dfed865fc2e32b33b2ef30a90c71e5a172677";
-      hash = "sha256-t2YGxhbw+n3JVcqqQ0WWbhzGKT10jiU2TjmxNrTfhJo=";
+      rev = "5a5f6f67bac27fa26e034b7ca7a8c54404925950";
+      hash = "sha256-+zkJxtXFKqYR5C56S65sAGL1SEgPfQR90g9Kw3VMwWY=";
     };
   };
   nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {

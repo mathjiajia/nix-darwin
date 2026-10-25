@@ -40,19 +40,30 @@
         mode = "n";
         key = "gd";
         lspBufAction = "definition";
-        options.desc = "Go Definition";
+        options.desc = "[G]o [D]efinition";
       }
       {
         mode = "n";
-        key = "gD";
+        key = "gl";
         lspBufAction = "declaration";
-        options.desc = "Go Declaration";
+        options.desc = "[G]o Dec[l]aration";
       }
       {
         mode = "n";
         key = "<C-k>";
         lspBufAction = "signature_help";
         options.desc = "Signature Help";
+      }
+      {
+        mode = "n";
+        key = "<leader>ci";
+        action.__raw = ''
+          function()
+            local filter = { bufnr = 0 }
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
+          end
+        '';
+        options.desc = "Toggle [I]nlay Hints";
       }
     ];
     onAttach =

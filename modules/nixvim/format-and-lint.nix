@@ -69,7 +69,7 @@
         "n"
         "v"
       ];
-      key = "<leader>cF";
+      key = "<leader>cf";
       action.__raw = "function() require('conform').format({ formatters = { 'injected' }, timeout_ms = 2000 }) end";
       options.desc = "[F]ormat Injected Langs";
     }

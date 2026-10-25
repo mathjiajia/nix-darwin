@@ -32,12 +32,6 @@
       action = "o<Esc>Vcx<Esc>:normal gcc<CR>fxa<BS>";
       options.desc = "Create a commented line below";
     }
-    {
-      mode = "n";
-      key = "gcO";
-      action = "O<Esc>Vcx<Esc>:normal gcc<CR>fxa<BS>";
-      options.desc = "Create a commented line above";
-    }
 
     {
       mode = "x";

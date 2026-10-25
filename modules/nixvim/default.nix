@@ -4,6 +4,8 @@
   withRuby = false;
   extraPackages = [ pkgs.tree-sitter ];
 
+  colorscheme = "bamboo";
+
   performance = {
     byteCompileLua = {
       enable = true;
@@ -21,7 +23,7 @@
     ./core
     ./lsp
 
-    ./colorscheme.nix
+    # ./colorscheme.nix
     ./tasks
     ./completion.nix
     ./dap.nix

@@ -3,7 +3,7 @@
     ./keymap.nix
     ./plugins.nix
     ./settings.nix
-    # ./theme.nix
+    ./theme.nix
   ];
 
   programs.yazi = {
@@ -32,7 +32,7 @@
         	return string.format("%s %s", size and ya.readable_size(size) or "-", time)
         end
 
-        require("full-border"):setup({ type = ui.Border.ROUNDED })
+        require("full-border"):setup({ set = "rounded" })
         require("git"):setup({ order = 1500 })
       '';
   };

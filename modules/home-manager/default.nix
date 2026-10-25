@@ -10,8 +10,6 @@
     ./programs/sioyek.nix
     ./programs/yazi
 
-    # ./programs/ghostty.nix
-    # ./programs/kitty.nix
     # ./programs/omniwm
   ];
 

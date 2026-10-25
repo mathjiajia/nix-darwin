@@ -187,48 +187,42 @@
     # git
     {
       mode = "n";
-      key = "<leader>gd";
-      action.__raw = "function() Snacks.picker.git_diff() end";
-      options.desc = "[G]it [D]iff (Hunks)";
-    }
-    {
-      mode = "n";
-      key = "<leader>gf";
-      action.__raw = "function() Snacks.picker.git_log_file() end";
-      options.desc = "[G]it Log [F]ile";
+      key = "<leader>gg";
+      action.__raw = "function() Snacks.lazygit() end";
+      options.desc = "Lazy [G]it";
     }
     {
       mode = "n";
       key = "<leader>gl";
-      action.__raw = "function() Snacks.picker.git_log() end";
-      options.desc = "[G]it [L]og";
-    }
-    {
-      mode = "n";
-      key = "<leader>gL";
       action.__raw = "function() Snacks.picker.git_log_line() end";
       options.desc = "[G]it Log [L]ine";
     }
-    # Grep
+    # buffer
     {
       mode = "n";
-      key = "<leader>sb";
+      key = "<leader>bl";
       action.__raw = "function() Snacks.picker.lines() end";
-      options.desc = "[B]uffer Lines";
+      options.desc = "[B]uffer [L]ines";
     }
     {
       mode = "n";
-      key = "<leader>sB";
+      key = "<leader>bg";
       action.__raw = "function() Snacks.picker.grep_buffers() end";
-      options.desc = "Grep Open [B]uffers";
+      options.desc = "[G]rep Open [B]uffers";
+    }
+    {
+      mode = "n";
+      key = "<leader>bd";
+      action.__raw = "function() Snacks.bufdelete() end";
+      options.desc = "[D]elete [B]uffer";
+    }
+    {
+      mode = "n";
+      key = "<leader>bo";
+      action.__raw = "function() Snacks.bufdelete.other() end";
+      options.desc = "[D]elete [O]ther Buffers";
     }
     # Search
-    {
-      mode = "n";
-      key = ''<leader>s"'';
-      action.__raw = "function() Snacks.picker.registers() end";
-      options.desc = "Registers";
-    }
     {
       mode = "n";
       key = "<leader>s/";
@@ -243,12 +237,6 @@
     }
     {
       mode = "n";
-      key = "<leader>sC";
-      action.__raw = "function() Snacks.picker.commands() end";
-      options.desc = "[C]ommands";
-    }
-    {
-      mode = "n";
       key = "<leader>sd";
       action.__raw = "function() Snacks.picker.diagnostics() end";
       options.desc = "[D]iagnostics";
@@ -258,12 +246,6 @@
       key = "<leader>sh";
       action.__raw = "function() Snacks.picker.help() end";
       options.desc = "[H]elp Pages";
-    }
-    {
-      mode = "n";
-      key = "<leader>sj";
-      action.__raw = "function() Snacks.picker.jumps() end";
-      options.desc = "[J]umps";
     }
     {
       mode = "n";
@@ -285,12 +267,6 @@
     }
     {
       mode = "n";
-      key = "<leader>sR";
-      action.__raw = "function() Snacks.picker.resume() end";
-      options.desc = "[R]esume";
-    }
-    {
-      mode = "n";
       key = "<leader>su";
       action.__raw = "function() Snacks.picker.undo() end";
       options.desc = "[U]ndo History";
@@ -305,51 +281,9 @@
     # Others
     {
       mode = "n";
-      key = "<leader>z";
-      action.__raw = "function() Snacks.zen() end";
-      options.desc = "Toggle [Z]en Mode";
-    }
-    {
-      mode = "n";
-      key = "<leader>Z";
-      action.__raw = "function() Snacks.zen.zoom() end";
-      options.desc = "Toggle [Z]oom";
-    }
-    {
-      mode = "n";
-      key = "<leader>.";
-      action.__raw = "function() Snacks.scratch() end";
-      options.desc = "Toggle Scratch Buffer";
-    }
-    {
-      mode = "n";
-      key = "<leader>S";
-      action.__raw = "function() Snacks.scratch.select() end";
-      options.desc = "Select [S]cratch Buffer";
-    }
-    {
-      mode = "n";
-      key = "<leader>bd";
-      action.__raw = "function() Snacks.bufdelete() end";
-      options.desc = "[D]elete [B]uffer";
-    }
-    {
-      mode = "n";
-      key = "<leader>bD";
-      action.__raw = "function() Snacks.bufdelete.other() end";
-      options.desc = "[D]elete Other [B]uffers";
-    }
-    {
-      mode = "n";
       key = "<leader>cr";
       action.__raw = "function() Snacks.rename.rename_file() end";
       options.desc = "[R]ename File";
-    }
-    {
-      mode = "n";
-      key = "<leader>gg";
-      action.__raw = "function() Snacks.lazygit() end";
-      options.desc = "Lazy [G]it";
     }
   ];
 }

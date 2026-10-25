@@ -8,16 +8,17 @@
       use_custom_color_as_dark_system_theme = "1";
 
       status_font = "Maple Mono SL NF CN";
-      status_bar_color = "#313244";
+      status_bar_color = "#2f312c";
 
       ui_font = "Mozilla Text";
-      ui_background_color = "#313244";
+      ui_background_color = "#2f312c";
 
-      custom_background_color = "#1e1e2e";
-      custom_text_color = "#cdd6f4";
+      custom_background_color = "#252623";
+      custom_text_color = "#f1e9d2";
     };
     bindings = {
       prev_state = "<C-o>";
+      next_state = "<C-i>";
       synctex_under_cursor = "<C-j>";
 
       # scrolling

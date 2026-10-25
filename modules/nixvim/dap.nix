@@ -106,7 +106,7 @@
     }
     {
       mode = "n";
-      key = "<leader>dB";
+      key = "<leader>dc";
       action.__raw = ''
         function()
         	vim.ui.input({ prompt = "Breakpoint condition: " }, function(input)
@@ -117,7 +117,7 @@
         	end)
         end
       '';
-      options.desc = "[D]AP Conditional [B]reakpoint";
+      options.desc = "[D]AP [C]onditional Breakpoint";
     }
     {
       mode = "n";
