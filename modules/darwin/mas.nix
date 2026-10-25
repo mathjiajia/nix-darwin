@@ -44,7 +44,7 @@
       "Whisper Transcription" = 1668083311;
 
       # Network
-      # "AdGuard Mini" = 1440147259; TF version
+      # "AdGuard Mini" = 1440147259; # TF version
       "Net Magic" = 6757392404;
       Shadowrocket = 932747118;
     };

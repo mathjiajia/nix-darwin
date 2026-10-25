@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   imports = [
     ./keymap.nix
     ./plugins.nix
@@ -8,6 +8,12 @@
 
   programs.yazi = {
     enable = true;
+    # Give Rex its own identity and the same Kitty renderer as Ghostty.
+    package = pkgs.yazi.override {
+      yazi-unwrapped = pkgs.yazi-unwrapped.overrideAttrs (oldAttrs: {
+        patches = (oldAttrs.patches or [ ]) ++ [ ./rex-kitty-graphics.patch ];
+      });
+    };
     shellWrapperName = "y";
     initLua =
       # lua

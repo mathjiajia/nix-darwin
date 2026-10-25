@@ -19,7 +19,7 @@
       "homebrew-app"
       "kitty"
       "markedit"
-      # "neovide-app"
+      # "neovide-app" # depends on nvim
       "orbstack"
       "orchard"
       "visual-studio-code"
@@ -31,13 +31,13 @@
       "launchbar"
       "loop"
       "soulver-cli"
-      # "tinycast"
+      # "tinycast" # not in homebrew
 
       # System and hardware
-      # "adguard"
+      # "adguard" # use mini
       "istat-menus"
       "keyboardcleantool"
-      # "little-snitch" beta now
+      # "little-snitch" # beta now
       "mole-app"
       "omniwm"
       "onyx"

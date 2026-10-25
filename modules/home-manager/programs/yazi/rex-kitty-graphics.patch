@@ -1,0 +1,37 @@
+--- a/yazi-emulator/src/brand.rs
++++ b/yazi-emulator/src/brand.rs
+@@ -13,6 +13,7 @@
+ 	WezTerm,
+ 	Foot,
+ 	Ghostty,
++	Rex,
+ 	Microsoft,
+ 	Warp,
+ 	Rio,
+@@ -38,6 +39,7 @@
+ 			("WezTerm", Self::WezTerm),
+ 			("foot", Self::Foot),
+ 			("ghostty", Self::Ghostty),
++			("rex", Self::Rex),
+ 			("Warp", Self::Warp),
+ 			("Rio ", Self::Rio),
+ 			("tmux ", Self::Tmux),
+@@ -75,6 +77,7 @@
+ 			"iTerm.app" => return Some(Self::Iterm2),
+ 			"WezTerm" => return Some(Self::WezTerm),
+ 			"ghostty" => return Some(Self::Ghostty),
++			"rex" => return Some(Self::Rex),
+ 			"WarpTerminal" => return Some(Self::Warp),
+ 			"rio" => return Some(Self::Rio),
+ 			"BlackBox" => return Some(Self::BlackBox),
+--- a/yazi-adapter/src/drivers/drivers.rs
++++ b/yazi-adapter/src/drivers/drivers.rs
+@@ -49,7 +49,7 @@
+ 			B::Iterm2 => vec![D::Iip, D::Sixel],
+ 			B::WezTerm => vec![D::Iip, D::Sixel],
+ 			B::Foot => vec![D::Sixel],
+-			B::Ghostty => vec![D::Kgp],
++			B::Ghostty | B::Rex => vec![D::Kgp],
+ 			B::Microsoft => vec![D::Sixel],
+ 			B::Warp => vec![D::Iip, D::KgpOld],
+ 			B::Rio => vec![D::Kgp],

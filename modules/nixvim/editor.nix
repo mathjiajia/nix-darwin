@@ -25,6 +25,21 @@
             mv $out/{queries,after/queries}
           '';
       });
+      luaConfig.pre = ''
+        -- Register a local Rex profile unless Snacks already provides one.
+        local envs = require("snacks.image.terminal").envs()
+        local has_rex = vim.iter(envs):any(function(env)
+          return env.name == "rex"
+        end)
+        if not has_rex then
+          table.insert(envs, 1, {
+            name = "rex",
+            terminal = "rex",
+            supported = true,
+            placeholders = true,
+          })
+        end
+      '';
       settings = {
         explorer.enabled = true;
         input.enabled = true;

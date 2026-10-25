@@ -25,6 +25,7 @@
     tabstop = 2;
     shiftwidth = 2;
     softtabstop = 2;
+    spelllang = "en_gb";
 
     # Make line numbers default
     relativenumber = true;

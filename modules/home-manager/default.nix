@@ -3,15 +3,16 @@
     ./shell.nix
 
     ./programs/fzf.nix
-    # ./programs/ghostty.nix
     ./programs/git
-    ./programs/kitty.nix
     ./programs/neovide.nix
     ./programs/nixvim.nix
-    # ./programs/omniwm
     ./programs/sagemath.nix
     ./programs/sioyek.nix
     ./programs/yazi
+
+    # ./programs/ghostty.nix
+    # ./programs/kitty.nix
+    # ./programs/omniwm
   ];
 
   home = {
@@ -44,30 +45,30 @@
   };
 
   programs = {
-    bat = {
-      enable = true;
-      config = {
-        italic-text = "always";
-        tabs = "2";
-        # theme = "auto:system";
-        # theme-light = "Catppuccin Latte";
-        theme = "Catppuccin Mocha";
-      };
-    };
-
     btop.enable = true;
     eza.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
     home-manager.enable = true; # manage itslef
-    man.enable = false;
+    man.enable = false; # see above
+    pandoc.enable = true;
+    uv.enable = true;
+
+    bat = {
+      enable = true;
+      config = {
+        italic-text = "always";
+        tabs = "2";
+        theme = "auto:system";
+        theme-light = "Catppuccin Latte";
+        theme-dark = "Catppuccin Mocha";
+      };
+    };
 
     nh = {
       enable = true;
       flake = "/etc/nix-darwin";
     };
-
-    pandoc.enable = true;
 
     ripgrep = {
       enable = true;
@@ -85,8 +86,6 @@
         tabsize = 1;
       };
     };
-
-    uv.enable = true;
   };
 
   # GUI applications are managed by Homebrew (except sioyek).
