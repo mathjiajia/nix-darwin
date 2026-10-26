@@ -2,6 +2,8 @@
   # Settings specific to mbp.
   nixpkgs.hostPlatform = "aarch64-darwin";
 
+  home-manager.users.jia.programs.pi-coding-agent.enable = true;
+
   homebrew.casks = [
     # AI
     "antigravity"
