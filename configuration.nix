@@ -23,7 +23,7 @@ in
 
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [ (import ./overlays/sioyek.nix) ];
+    # overlays = [ ];
   };
 
   system = {
@@ -38,8 +38,6 @@ in
     uid = 501;
   };
 
-  # run `chsh -s /run/current-system/sw/bin/fish`
-  environment.shells = [ pkgs.fish ];
   programs.fish = {
     enable = true;
     useBabelfish = true;

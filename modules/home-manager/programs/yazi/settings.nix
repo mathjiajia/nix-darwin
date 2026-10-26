@@ -21,8 +21,8 @@
     };
 
     preview = {
-      max_height = 2700;
-      max_width = 1800;
+      max_height = 1800;
+      max_width = 1200;
     };
 
     plugin.prepend_fetchers = [

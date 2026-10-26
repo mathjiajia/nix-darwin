@@ -3,7 +3,7 @@
     ./clangd.nix
     ./emmylua_ls.nix
     ./marksman.nix
-    ./matlab_ls.nix
+    # ./matlab_ls.nix
     ./nixd.nix
     ./pyrefly.nix
     # ./ruff.nix
@@ -33,8 +33,8 @@
   };
 
   lsp = {
-    codelens.enable = true;
-    inlayHints.enable = true;
+    # codelens.enable = true;
+    # inlayHints.enable = true;
     keymaps = [
       {
         mode = "n";
@@ -64,6 +64,17 @@
           end
         '';
         options.desc = "Toggle [I]nlay Hints";
+      }
+      {
+        mode = "n";
+        key = "<leader>co";
+        action.__raw = ''
+          function()
+            local filter = { bufnr = 0 }
+            vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled(filter), filter)
+          end
+        '';
+        options.desc = "Toggle Code[L]ens";
       }
     ];
     onAttach =

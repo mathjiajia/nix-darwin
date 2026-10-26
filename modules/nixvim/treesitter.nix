@@ -1,7 +1,46 @@
-{ lib, ... }:
+{ lib, config, ... }:
+let
+  inherit (config.plugins.treesitter.package) builtGrammars;
+in
 {
   plugins.treesitter = {
     enable = true;
+    grammarPackages = with builtGrammars; [
+      bash
+      bibtex
+      c
+      comment
+      cpp
+      css
+      diff
+      fish
+      gitcommit
+      gitignore
+      html
+      javascript
+      json
+      latex
+      lua
+      luap
+      make
+      markdown
+      markdown_inline
+      matlab
+      nix
+      python
+      query
+      r
+      regex
+      rust
+      scheme
+      swift
+      toml
+      typst
+      vim
+      vimdoc
+      yaml
+      zsh
+    ];
     luaConfig.content = lib.mkForce ''
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("nixvim_treesitter", { clear = true }),

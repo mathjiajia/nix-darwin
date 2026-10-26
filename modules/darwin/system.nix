@@ -39,7 +39,7 @@
         "/Applications/Things3.app"
         "/Applications/Visual Studio Code.app"
         "/Applications/Rex Beta.app"
-        "${pkgs.sioyek}/Applications/sioyek.app"
+        "/Applications/sioyek.app"
         "/Applications/Zotero.app"
         "/Applications/PDF Expert.app"
         "/Applications/ChatGPT.app"

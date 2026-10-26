@@ -6,6 +6,7 @@
     # AI
     "antigravity"
     "antigravity-cli"
+    "deepseek-harness"
     "lobehub"
 
     # System and hardware
@@ -25,6 +26,7 @@
     "permute"
 
     # Browsers and communication
+    "discord"
     "google-chrome"
     "qq"
     "zoom"

@@ -28,7 +28,7 @@
           forwardSearchAfter = false;
         };
         forwardSearch = {
-          executable = "${lib.getExe pkgs.sioyek}";
+          executable = "/Applications/sioyek.app/Contents/MacOS/sioyek";
           args = [
             "--reuse-window"
             "--execute-command"

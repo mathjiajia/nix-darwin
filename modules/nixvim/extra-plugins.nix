@@ -12,12 +12,12 @@ let
   # };
   md-render-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "md-render";
-    version = "2026-10-08";
+    version = "2026-10-26";
     src = pkgs.fetchFromGitHub {
       owner = "delphinus";
       repo = "md-render.nvim";
-      rev = "v3.11.1";
-      hash = "sha256-TesNbPcOJn0sc/BiCygYa0wT/2VyeVHqx4wuKNIjc44=";
+      rev = "v3.11.2";
+      hash = "sha256-CdGya90aCG3B/EDwskeCCkhTKcx6nJSX/Qae3f/tACM=";
     };
   };
   nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {

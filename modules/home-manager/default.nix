@@ -7,10 +7,10 @@
     ./programs/neovide.nix
     ./programs/nixvim.nix
     ./programs/sagemath.nix
-    ./programs/sioyek.nix
     ./programs/yazi
 
     # ./programs/omniwm
+    # ./programs/sioyek.nix
   ];
 
   home = {
@@ -30,9 +30,9 @@
       elan # lean
       hugo
       luajit
-      mermaid-cli
+      # mermaid-cli
       python3
-      typst
+      # typst
 
       # Fonts
       lxgw-wenkai
@@ -49,7 +49,7 @@
     fd.enable = true;
     home-manager.enable = true; # manage itslef
     man.enable = false; # see above
-    pandoc.enable = true;
+    # pandoc.enable = true;
     uv.enable = true;
 
     bat = {
@@ -86,7 +86,7 @@
     };
   };
 
-  # GUI applications are managed by Homebrew (except sioyek).
+  # GUI applications are managed by Homebrew.
   targets.darwin.copyApps.enable = false;
 
   xdg.enable = true;
