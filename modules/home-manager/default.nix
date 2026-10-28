@@ -26,6 +26,7 @@
 
     packages = with pkgs; [
       # CLI
+      cachix
       # container # Apple
       elan # lean
       hugo

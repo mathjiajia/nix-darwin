@@ -3,23 +3,6 @@
   # Settings specific to mbp.
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  nix = {
-    distributedBuilds = true;
-    settings.builders-use-substitutes = true;
-    buildMachines = [
-      {
-        hostName = "100.109.28.64"; # mbo-surge on Tailscale.
-        system = "aarch64-darwin";
-        protocol = "ssh-ng";
-        sshUser = "jia";
-        # Provision separately and authorise the public key on mbo.
-        sshKey = "/var/root/.ssh/mbo-builder";
-        # Pin mbo's public SSH host key, verified through its Rex connection.
-        publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU04LzlzYWNseDBUT04vZnAzU2lxYXdybndVT2F5TVBDdTg5RE9Va3RUeTEK";
-      }
-    ];
-  };
-
   home-manager.users.jia = {
     home.packages = with pkgs; [
       omp
