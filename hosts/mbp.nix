@@ -1,20 +1,6 @@
-{ pkgs, ... }:
 {
   # Settings specific to mbp.
   nixpkgs.hostPlatform = "aarch64-darwin";
-
-  home-manager.users.jia = {
-    home.packages = with pkgs; [
-      omp
-      opencode
-    ];
-    programs.pi-coding-agent.enable = true;
-    # programs.omp = {
-    #   enable = true;
-    #   settings.startup.quiet = true;
-    # };
-
-  };
 
   homebrew.casks = [
     # AI

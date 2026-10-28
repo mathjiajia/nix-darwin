@@ -25,6 +25,9 @@
     };
 
     packages = with pkgs; [
+      # AI
+      omp
+
       # CLI
       cachix
       # container # Apple
@@ -52,6 +55,9 @@
     man.enable = false; # see above
     # pandoc.enable = true;
     uv.enable = true;
+
+    opencode.enable = true;
+    pi-coding-agent.enable = true;
 
     bat = {
       enable = true;
