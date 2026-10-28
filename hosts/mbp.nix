@@ -8,7 +8,7 @@
     settings.builders-use-substitutes = true;
     buildMachines = [
       {
-        hostName = "100.98.183.21"; # mbo on Tailscale.
+        hostName = "100.109.28.64"; # mbo-surge on Tailscale.
         system = "aarch64-darwin";
         protocol = "ssh-ng";
         sshUser = "jia";
