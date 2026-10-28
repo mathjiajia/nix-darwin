@@ -29,7 +29,6 @@
       omp
 
       # CLI
-      cachix
       # container # Apple
       elan # lean
       hugo
