@@ -119,7 +119,8 @@
         "x"
         "o"
       ];
-      key = "S";
+      # Leave visual S and gS to nvim-surround.
+      key = "gs";
       action.__raw = "function() require('flash').treesitter() end";
       options.desc = "Flash Treesitter";
     }

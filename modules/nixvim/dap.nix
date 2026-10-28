@@ -3,22 +3,12 @@
     dap-python.enable = true;
     dap-ui = {
       enable = true;
-      # nixvim emits `require("dapui").setup({})` at the top of init.lua, which
-      # loads dapui + nvim-nio (~12ms) on every start. Defer to first debug.
       callSetup = false;
       luaConfig.post = ''
-        local dap = require("dap")
-        local dapui
-        local function ui()
-          if not dapui then
-            dapui = require("dapui")
-            dapui.setup({})
-          end
-          return dapui
-        end
-        dap.listeners.after.event_initialized["dapui_config"] = function() ui().open({}) end
-        dap.listeners.before.event_terminated["dapui_config"] = function() ui().close({}) end
-        dap.listeners.before.event_exited["dapui_config"] = function() ui().close({}) end
+        local dap, dapui = require("dap"), require("dapui")
+        dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open({}) end
+        dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close({}) end
+        dap.listeners.before.event_exited["dapui_config"] = function() dapui.close({}) end
       '';
     };
     dap-virtual-text.enable = true;
@@ -155,7 +145,7 @@
     {
       mode = "n";
       key = "<leader>du";
-      action.__raw = "function() require('dapui').toggle({ reset = true }) end";
+      action.__raw = "function() dapui.toggle({ reset = true }) end";
       options.desc = "[D]ap Toggle [U]I";
     }
     {
@@ -164,7 +154,7 @@
         "v"
       ];
       key = "<leader>de";
-      action.__raw = "function() require('dapui').eval() end";
+      action.__raw = "function() dapui.eval() end";
       options.desc = "[D]ap UI [E]val";
     }
   ];

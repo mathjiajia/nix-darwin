@@ -1,61 +1,7 @@
 # vim:ft=gitignore
 
-# Created by https://www.toptal.com/developers/gitignore/api/c,lua,vim,latex,macos,swift,python,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=c,lua,vim,latex,macos,swift,python,visualstudiocode
-
-### C ###
-# Prerequisites
-*.d
-
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Created by https://www.toptal.com/developers/gitignore/api/lua,latex,macos,swift,python,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=lua,latex,macos,swift,python,visualstudiocode
 
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
@@ -64,6 +10,7 @@ dkms.conf
 *.log
 *.lot
 *.fls
+*.out
 *.toc
 *.fmt
 *.fot
@@ -376,16 +323,36 @@ luac.out
 *.tar.gz
 
 # Object files
+*.o
 *.os
+*.ko
+*.obj
+*.elf
 
 # Precompiled Headers
+*.gch
+*.pch
 
 # Libraries
+*.lib
+*.a
+*.la
+*.lo
 *.def
+*.exp
 
 # Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
 
 # Executables
+*.exe
+*.app
+*.i*86
+*.x86_64
+*.hex
 
 
 ### macOS ###
@@ -674,27 +641,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-### Vim ###
-# Swap
-[._]*.s[a-v][a-z]
-!*.svg  # comment out if you don't need vector files
-[._]*.sw[a-p]
-[._]s[a-rt-v][a-z]
-[._]ss[a-gi-z]
-[._]sw[a-p]
-
-# Session
-Session.vim
-Sessionx.vim
-
-# Temporary
-.netrwhist
-*~
-# Auto-generated tag files
-tags
-# Persistent undo
-[._]*.un~
-
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -714,4 +660,4 @@ tags
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/c,lua,vim,latex,macos,swift,python,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/lua,latex,macos,swift,python,visualstudiocode

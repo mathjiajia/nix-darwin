@@ -11,6 +11,7 @@
       "codex"
       "llama-app"
       "lm-studio-bionic"
+      "magpie"
       "ollama-app"
 
       # Development
