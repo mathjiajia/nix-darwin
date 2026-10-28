@@ -1,8 +1,37 @@
+{ pkgs, ... }:
 {
   # Settings specific to mbp.
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  home-manager.users.jia.programs.pi-coding-agent.enable = true;
+  nix = {
+    distributedBuilds = true;
+    settings.builders-use-substitutes = true;
+    buildMachines = [
+      {
+        hostName = "100.98.183.21"; # mbo on Tailscale.
+        system = "aarch64-darwin";
+        protocol = "ssh-ng";
+        sshUser = "jia";
+        # Provision separately and authorise the public key on mbo.
+        sshKey = "/var/root/.ssh/mbo-builder";
+        # Pin mbo's public SSH host key, verified through its Rex connection.
+        publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU04LzlzYWNseDBUT04vZnAzU2lxYXdybndVT2F5TVBDdTg5RE9Va3RUeTEK";
+      }
+    ];
+  };
+
+  home-manager.users.jia = {
+    home.packages = with pkgs; [
+      omp
+      opencode
+    ];
+    programs.pi-coding-agent.enable = true;
+    # programs.omp = {
+    #   enable = true;
+    #   settings.startup.quiet = true;
+    # };
+
+  };
 
   homebrew.casks = [
     # AI
