@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 let
   user = "jia";
 in
@@ -32,6 +32,8 @@ in
     uid = 501;
   };
 
+  # run `chsh -s /run`
+  environment.shells = [ pkgs.fish ];
   programs.fish = {
     enable = true;
     useBabelfish = true;
