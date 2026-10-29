@@ -21,7 +21,6 @@
 
     starship = {
       enable = true;
-      enableFishIntegration = false;
       settings.add_newline = false;
     };
 

@@ -36,6 +36,7 @@
       hugo
       luajit
       # mermaid-cli
+      nodejs
       python3
       # typst
 
