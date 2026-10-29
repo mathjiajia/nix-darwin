@@ -56,6 +56,7 @@
     eza.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
+    gh.enable = true;
     home-manager.enable = true; # manage itslef
     man.enable = false; # see above
     # pandoc.enable = true;
