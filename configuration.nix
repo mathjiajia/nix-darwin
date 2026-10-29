@@ -26,17 +26,16 @@ in
     configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
   };
 
-  users.users."${user}" = {
-    home = "/Users/${user}";
-    name = user;
-    uid = 501;
-  };
-
   # run `chsh -s /run`
   environment.shells = [ pkgs.fish ];
   programs.fish = {
     enable = true;
     useBabelfish = true;
+  };
+
+  users.users."${user}" = {
+    home = "/Users/${user}";
+    shell = pkgs.fish;
   };
 
   nix-homebrew = {

@@ -1,26 +1,5 @@
-{ lib, pkgs, ... }: {
-  security.pam.services.sudo_local = {
-    enable = true;
-    touchIdAuth = true;
-  };
-
-  launchd.daemons.limit-maxfiles = {
-    serviceConfig = {
-      Label = "limit.maxfiles";
-      ProgramArguments = [
-        "/bin/launchctl"
-        "limit"
-        "maxfiles"
-        "8192" # soft limit
-        "524288" # hard limit, unlimited by default
-      ];
-      RunAtLoad = true;
-      LaunchOnlyOnce = true;
-    };
-  };
-
-  # GUI applications are managed by Homebrew.
-  system.activationScripts.applications.text = lib.mkForce "";
+{
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system.defaults = {
     dock = {

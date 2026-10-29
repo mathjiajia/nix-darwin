@@ -13,6 +13,8 @@
     # ./programs/sioyek.nix
   ];
 
+  xdg.enable = true;
+
   home = {
     stateVersion = "26.11";
 
@@ -38,6 +40,9 @@
       # typst
 
       # Fonts
+      (google-fonts.override {
+        fonts = [ "Mozilla Text" ];
+      })
       lxgw-wenkai
       # maple-mono.NF-CN
       nerd-fonts.symbols-only
@@ -91,9 +96,4 @@
       };
     };
   };
-
-  # GUI applications are managed by Homebrew.
-  targets.darwin.copyApps.enable = false;
-
-  xdg.enable = true;
 }

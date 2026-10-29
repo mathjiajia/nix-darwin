@@ -4,8 +4,6 @@
 
   homebrew.casks = [
     # AI
-    "antigravity"
-    "antigravity-cli"
     "deepseek-harness"
     "lobehub"
 
@@ -27,7 +25,6 @@
 
     # Browsers and communication
     "discord"
-    "google-chrome"
     "qq"
     "zoom"
 

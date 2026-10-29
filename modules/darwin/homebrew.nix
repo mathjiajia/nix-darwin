@@ -1,7 +1,7 @@
 {
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";
+    onActivation.cleanup = "uninstall";
 
     casks = [
       # AI
@@ -53,9 +53,6 @@
       "sage"
       "skim"
       "zotero"
-
-      # Fonts
-      "font-mozilla-text"
     ];
   };
 }
