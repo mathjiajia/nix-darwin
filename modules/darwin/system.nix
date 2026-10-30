@@ -4,8 +4,8 @@
   system.defaults = {
     dock = {
       autohide = true;
-      mru-spaces = false; # Keep desktops in a fixed order.
-      tilesize = 48;
+      orientation = "left";
+      tilesize = 36;
       persistent-apps = [
         "/System/Applications/Apps.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"
@@ -56,7 +56,6 @@
 
     NSGlobalDomain = {
       # AppleICUForce24HourTime = false;
-      # AppleInterfaceStyle = "Dark";
       AppleInterfaceStyleSwitchesAutomatically = true;
       AppleMeasurementUnits = "Centimeters";
       AppleMetricUnits = 1;
