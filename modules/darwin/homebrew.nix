@@ -16,9 +16,6 @@
 
       # Development
       "corretto@11" # for MATLAB
-      "ghostty"
-      "homebrew-app"
-      "kitty"
       "markedit"
       # "neovide-app" # depends on nvim
       "orbstack"
@@ -31,7 +28,6 @@
       "keyboard-maestro"
       "launchbar"
       "loop"
-      "soulver-cli"
       # "tinycast" # not in homebrew
 
       # System and hardware

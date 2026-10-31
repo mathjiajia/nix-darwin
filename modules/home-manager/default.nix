@@ -6,6 +6,7 @@
     ./programs/git
     ./programs/neovide.nix
     ./programs/nixvim.nix
+    ./programs/rex.nix
     ./programs/sagemath.nix
     ./programs/yazi
 

@@ -7,6 +7,11 @@
     "deepseek-harness"
     "lobehub"
 
+    # Development
+    "ghostty"
+    "homebrew-app"
+    "kitty"
+
     # System and hardware
     "8bitdo-firmware-updater"
     "display-pilot"
@@ -22,6 +27,7 @@
     "iina"
     "inkscape"
     "permute"
+    "soulver-cli"
 
     # Browsers and communication
     "discord"
