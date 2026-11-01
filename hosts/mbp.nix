@@ -5,7 +5,6 @@
   homebrew.casks = [
     # AI
     "deepseek-harness"
-    "lobehub"
 
     # Development
     "ghostty"

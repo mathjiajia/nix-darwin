@@ -1,6 +1,18 @@
+{ lib, pkgs, ... }:
 {
   programs = {
-    atuin.enable = true;
+    atuin = {
+      enable = true;
+      package = pkgs.atuin.overrideAttrs (oldAttrs: {
+        checkFlags =
+          (oldAttrs.checkFlags or [ ])
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+            # Host Node/Bun processes can look like live Pi sessions to the Darwin build user.
+            "--skip=a_diverged_copy_resumes_only_as_chosen::agent_4_Agent__Pi"
+            "--skip=a_session_gone_on_with_elsewhere_catches_up_where_it_came_from::agent_3_Agent__Pi"
+          ];
+      });
+    };
 
     fish = {
       enable = true;

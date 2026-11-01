@@ -4,5 +4,6 @@
 
   homebrew.casks = [
     "alma"
+    "lobehub"
   ];
 }
