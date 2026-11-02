@@ -44,14 +44,13 @@
         explorer.enabled = true;
         input.enabled = true;
         picker.enabled = true;
-        styles.lazygit = {
-          width = 0;
-          height = 0;
-        };
         words.enabled = true;
       };
     };
   };
+
+  extraFiles."lua/rex-lazygit.lua".source = ./rex-lazygit.lua;
+  extraFiles."rex/lazygit-edit.lua".source = ./rex-lazygit-edit.lua;
 
   globals.fff = {
     lazy_sync = true;
@@ -189,8 +188,8 @@
     {
       mode = "n";
       key = "<leader>gg";
-      action.__raw = "function() Snacks.lazygit() end";
-      options.desc = "Lazy [G]it";
+      action.__raw = "function() require('rex-lazygit').open() end";
+      options.desc = "Lazy [G]it (Rex)";
     }
     {
       mode = "n";

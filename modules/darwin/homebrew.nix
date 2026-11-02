@@ -23,6 +23,13 @@
       "visual-studio-code"
       "zed"
 
+      # Fonts
+      "font-mozilla-text"
+      "font-new-york"
+      "font-sf-compact"
+      "font-sf-mono"
+      "font-sf-pro"
+
       # Productivity
       "hazel"
       "keyboard-maestro"
@@ -44,6 +51,7 @@
       "tailscale-app"
 
       # Research
+      # "mactex"
       "pdf-expert"
       "quarto"
       "sage"

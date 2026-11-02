@@ -42,9 +42,6 @@
       # typst
 
       # Fonts
-      (google-fonts.override {
-        fonts = [ "Mozilla Text" ];
-      })
       lxgw-wenkai
       # maple-mono.NF-CN
       nerd-fonts.symbols-only
@@ -63,7 +60,25 @@
     # pandoc.enable = true;
     uv.enable = true;
 
-    opencode.enable = true;
+    opencode = {
+      enable = true;
+      # Temporary fix for the 2.2.5 dependency hash on Apple Silicon.
+      # Stop overriding once nixpkgs changes the version or expected hash.
+      package =
+        if
+          pkgs.stdenv.hostPlatform.isDarwin
+          && pkgs.stdenv.hostPlatform.isAarch64
+          && pkgs.opencode.version == "2.2.5"
+          && pkgs.opencode.node_modules.outputHash == "sha256-xfOVcw1+waLVNhFDwzOtzxrUSQEogvn88YomydOlhwc="
+        then
+          pkgs.opencode.overrideAttrs (oldAttrs: {
+            node_modules = oldAttrs.node_modules.overrideAttrs {
+              outputHash = "sha256-dIveiaiPFGSItwLyeMuPDxTE9gpvvnlTCB/+nG24qCc=";
+            };
+          })
+        else
+          pkgs.opencode;
+    };
     pi-coding-agent.enable = true;
 
     bat = {
