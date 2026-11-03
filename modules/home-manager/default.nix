@@ -63,6 +63,7 @@ in
     fd.enable = true;
     gh.enable = true;
     man.enable = false; # see above
+    pi-coding-agent.enable = true;
     uv.enable = true;
 
     bat = {
@@ -88,11 +89,6 @@ in
       package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
       defaultEditor = true;
       imports = [ ../nixvim ];
-    };
-
-    pi-coding-agent = {
-      enable = true;
-      package = pkgsSmall.pi-coding-agent;
     };
 
     ripgrep = {

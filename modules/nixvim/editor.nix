@@ -3,7 +3,6 @@
     blink-indent.enable = true;
     fff.enable = true;
     flash.enable = true;
-    # fugitive.enable = true;
 
     grug-far = {
       enable = true;
@@ -17,12 +16,15 @@
     snacks = {
       enable = true;
       package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
-        postPatch = (oldAttrs.postPatch or "") + ''
-          substituteInPlace lua/snacks/image/terminal.lua \
-            --replace-fail 'local environments = {' \
-            'local environments = {
-            { name = "rex", terminal = "rex", supported = true, placeholders = true },'
-        '';
+        postPatch =
+          (oldAttrs.postPatch or "")
+          # sh
+          + ''
+            substituteInPlace lua/snacks/image/terminal.lua \
+              --replace-fail 'local environments = {' \
+              'local environments = {
+              { name = "rex", terminal = "rex", supported = true, placeholders = true },'
+          '';
         postInstall =
           (oldAttrs.postInstall or "")
           # sh
@@ -39,9 +41,6 @@
       };
     };
   };
-
-  extraFiles."lua/rex-lazygit.lua".source = ./rex-lazygit.lua;
-  extraFiles."rex/lazygit-edit.lua".source = ./rex-lazygit-edit.lua;
 
   globals.fff = {
     lazy_sync = true;
@@ -68,7 +67,7 @@
     {
       mode = "n";
       key = "<leader>ff";
-      action = "<Cmd>FFFFind<CR>";
+      action.__raw = "function() require('fff').find_files() end";
       options.desc = "[F]ile [F]inder";
     }
     {
@@ -179,8 +178,23 @@
     {
       mode = "n";
       key = "<leader>gg";
-      action.__raw = "function() require('rex-lazygit').open() end";
-      options.desc = "Lazy [G]it (Rex)";
+      action.__raw = ''
+        function()
+          local cwd = vim.fn.expand("%:p:h")
+          if not vim.env.REX_SESSION or not vim.env.REX_BLOCK then
+            return Snacks.lazygit({ cwd = cwd })
+          end
+          vim.system({
+            "rex", "do", "float",
+            'command=["lazygit"]', "cwd=" .. cwd,
+          }, { text = true, detach = true }, vim.schedule_wrap(function(result)
+            if result.code ~= 0 then
+              vim.notify(vim.trim(result.stderr), vim.log.levels.ERROR, { title = "Rex Lazygit" })
+            end
+          end))
+        end
+      '';
+      options.desc = "Lazy [G]it";
     }
     {
       mode = "n";

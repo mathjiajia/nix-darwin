@@ -6,8 +6,8 @@
           "g"
           "i"
         ];
-        run = ''shell --confirm 'rex do float -s "$REX_SESSION" -b "$REX_BLOCK" command="[\"lazygit\"]" cwd="$PWD"' '';
-        desc = "Open lazygit in Rex";
+        run = "plugin lazygit";
+        desc = "Open lazygit";
       }
 
       # Goto

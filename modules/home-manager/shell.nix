@@ -1,10 +1,6 @@
-{ inputs, pkgs, ... }:
 {
   programs = {
-    atuin = {
-      enable = true;
-      package = inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system}.atuin;
-    };
+    atuin.enable = true;
 
     fish = {
       enable = true;
