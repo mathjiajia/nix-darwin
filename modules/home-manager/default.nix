@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   pkgs,
   ...
 }:
@@ -9,14 +8,13 @@ let
 in
 {
   imports = [
+    inputs.nixvim.homeModules.nixvim
+
     ./shell.nix
 
     ./programs/fzf.nix
     ./programs/git
-    ./programs/neovide.nix
-    ./programs/nixvim.nix
-    ./programs/rex.nix
-    ./programs/sagemath.nix
+    ./programs/rex
     ./programs/yazi
 
     # ./programs/omniwm
@@ -27,14 +25,13 @@ in
 
   home = {
     stateVersion = "26.11";
-
-    # see https://github.com/nix-community/home-manager/pull/8723
-    extraOutputsToInstall = [ "man" ];
-
     sessionPath = [ "/Library/TeX/texbin" ];
     sessionVariables = {
       MANPAGER = "nvim +Man!";
     };
+
+    # see https://github.com/nix-community/home-manager/pull/8723
+    extraOutputsToInstall = [ "man" ];
 
     packages = with pkgs; [
       # AI
@@ -54,25 +51,19 @@ in
       lxgw-wenkai
       # maple-mono.NF-CN
       nerd-fonts.symbols-only
-      # sarasa-gothic
     ];
   };
 
   programs = {
+    home-manager.enable = true; # manage itslef
+
     btop.enable = true;
     eza.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
     gh.enable = true;
-    home-manager.enable = true; # manage itslef
     man.enable = false; # see above
-    # pandoc.enable = true;
     uv.enable = true;
-
-    pi-coding-agent = {
-      enable = true;
-      package = pkgsSmall.pi-coding-agent;
-    };
 
     bat = {
       enable = true;
@@ -90,6 +81,20 @@ in
       flake = "/etc/nix-darwin";
     };
 
+    nixvim = {
+      enable = true;
+      # Match plugin dependencies to the cached nightly Neovim package.
+      nixpkgs.source = inputs.neovim-nightly-overlay.inputs.nixpkgs;
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      defaultEditor = true;
+      imports = [ ../nixvim ];
+    };
+
+    pi-coding-agent = {
+      enable = true;
+      package = pkgsSmall.pi-coding-agent;
+    };
+
     ripgrep = {
       enable = true;
       arguments = [
@@ -97,6 +102,17 @@ in
         "--glob=!.git"
         "--smart-case"
       ];
+    };
+
+    sagemath = {
+      enable = true;
+      package = null;
+      initScript =
+        # py
+        ''
+          %colors linux
+          QUIET = var("alpha beta gamma delta epsilon zeta eta theta iota kappa mu nu xi omicron rho sigma tau upsilon phi chi psi omega");
+        '';
     };
 
     tex-fmt = {

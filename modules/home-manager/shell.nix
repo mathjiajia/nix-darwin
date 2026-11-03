@@ -19,7 +19,12 @@
           end
         '';
       shellAbbrs = {
+        gd = "git diff";
+        gP = "git push";
+        gp = "git pull";
         mkdir = "mkdir -p";
+
+        lg = "lazygit";
         nv = "nvim";
       };
     };
