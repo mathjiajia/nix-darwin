@@ -80,7 +80,7 @@
     {
       mode = "n";
       key = "<leader>fz";
-      action.__raw = "function() require('fff').live_grep({ grep = { mode = { 'fuzzy', 'plain' } } }) end";
+      action.__raw = "function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end";
       options.desc = "Live Fuzzy [G]rep";
     }
     {
