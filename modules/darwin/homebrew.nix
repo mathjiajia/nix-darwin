@@ -10,9 +10,8 @@
       "claude-code"
       "codex"
       "llama-app"
-      "lm-studio-bionic"
       "magpie"
-      "ollama-app"
+      # "mlx-serve"
 
       # Development
       "corretto@11" # for MATLAB
@@ -53,7 +52,6 @@
       # Research
       # "mactex"
       "pdf-expert"
-      "quarto"
       "sage"
       "skim"
       "zotero"

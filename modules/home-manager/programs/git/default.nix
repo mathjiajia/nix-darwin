@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   commitWithPi = pkgs.writeShellScript "lazygit-commit-message" ''
     set -euo pipefail
@@ -22,10 +27,7 @@ in
     enable = true;
     package = null;
     settings = {
-      core = {
-        editor = "nvim";
-        pager = "${lib.getExe pkgs.hunk} pager";
-      };
+      core.editor = "nvim";
       user = {
         email = "mathjiajia@outlook.com";
         name = "Jia Jia";
