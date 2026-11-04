@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 let
   pkgsSmall = inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
@@ -30,9 +26,6 @@ in
       MANPAGER = "nvim +Man!";
     };
 
-    # see https://github.com/nix-community/home-manager/pull/8723
-    extraOutputsToInstall = [ "man" ];
-
     packages = with pkgs; [
       # AI
       pkgsSmall.omp
@@ -50,7 +43,7 @@ in
 
       # Fonts
       lxgw-wenkai
-      # maple-mono.NF-CN
+      # maple-mono.NF-CN # wait for 8.0
       nerd-fonts.symbols-only
     ];
   };
@@ -63,7 +56,7 @@ in
     fastfetch.enable = true;
     fd.enable = true;
     gh.enable = true;
-    man.enable = false; # see above
+    # opencode.enable = true;
     pi-coding-agent.enable = true;
     uv.enable = true;
 

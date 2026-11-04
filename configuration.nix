@@ -48,8 +48,6 @@ in
     useUserPackages = true;
     backupFileExtension = "backup";
     extraSpecialArgs = { inherit inputs; };
-    users.${user}.imports = [
-      ./modules/home-manager
-    ];
+    users.${user}.imports = [ ./modules/home-manager ];
   };
 }
