@@ -1,11 +1,10 @@
 {
-  config,
   lib,
   pkgs,
   ...
 }:
 let
-  commitWithPi = pkgs.writeShellScript "lazygit-commit-message" ''
+  commitWithMlx = pkgs.writeShellScript "lazygit-commit-message" ''
     set -euo pipefail
 
     diff=$(git --no-pager diff --cached --no-color --no-ext-diff)
@@ -14,12 +13,18 @@ let
       exit 1
     fi
 
-    message=$(mktemp)
-    trap 'rm -f "$message"' EXIT
-    printf '%s\n' "$diff" | ${lib.getExe config.programs.pi-coding-agent.package} \
-      -p --no-tools --no-session --provider magpie --model codex/gpt-5.6-luna \
-      'Write a Conventional Commit message for the staged diff: an imperative subject under 72 characters and, if needed, a blank line followed by 1-3 bullets describing the changes. Output only the raw message.' >"$message"
-    git commit --edit --file "$message"
+    commit_dir=$(mktemp -d)
+    trap 'rm -rf "$commit_dir"' EXIT
+    "$HOME/.local/bin/mlx-serve" \
+      --model "$HOME/.mlx-serve/models/LiquidAI/LFM3-Omni-2B-MLX-8bit" \
+      --max-tokens 256 --no-vision \
+      --prompt "Write a concise Conventional Commit message for this diff. Include a body if needed. Output only the message.
+
+    $diff
+
+    Commit message:" >"$commit_dir/raw"
+    awk '/^==========$/ { body = !body; next } body' "$commit_dir/raw" >"$commit_dir/message"
+    git commit --edit --file "$commit_dir/message"
   '';
 in
 {
@@ -49,8 +54,8 @@ in
         {
           key = "C";
           context = "files";
-          description = "Generate commit message with Pi";
-          command = "${commitWithPi}";
+          description = "Generate commit message with MLX-Serve";
+          command = "${commitWithMlx}";
           output = "terminal";
         }
       ];
