@@ -8,17 +8,7 @@
 
   programs.yazi.settings = {
     log.enabled = false;
-    # Keep automatic preview jobs out of the task list and quit confirmation.
-    # tasks.suppress_preload = true;
-    mgr = {
-      linemode = "size_and_mtime";
-      ratio = [
-        1
-        3
-        2
-      ];
-      sort_by = "natural";
-    };
+    mgr.sort_by = "natural";
 
     preview = {
       max_height = 1800;

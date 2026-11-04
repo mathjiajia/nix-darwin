@@ -41,6 +41,7 @@ in
       # container # Apple
       elan # lean
       hugo
+      hunk
       luajit
       # mermaid-cli
       nodejs
@@ -90,6 +91,7 @@ in
       defaultEditor = true;
       imports = [ ../nixvim ];
     };
+    fish.shellAbbrs.nv = "nvim";
 
     ripgrep = {
       enable = true;

@@ -1,4 +1,4 @@
-rex.bind("cmd+`", "client.visibility.toggle")
+-- rex.bind("cmd+`", "client.visibility.toggle")
 
 rex.action {
 	name = "float",
