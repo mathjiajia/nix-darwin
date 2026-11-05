@@ -1,7 +1,9 @@
-{ inputs, pkgs, ... }:
-let
-  pkgsSmall = inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
@@ -27,9 +29,6 @@ in
     };
 
     packages = with pkgs; [
-      # AI
-      pkgsSmall.omp
-
       # CLI
       # container # Apple
       elan # lean
@@ -56,7 +55,6 @@ in
     fastfetch.enable = true;
     fd.enable = true;
     gh.enable = true;
-    # opencode.enable = true;
     pi-coding-agent.enable = true;
     uv.enable = true;
 
@@ -69,6 +67,11 @@ in
         theme-light = "Catppuccin Latte";
         theme-dark = "Catppuccin Mocha";
       };
+    };
+
+    bun = {
+      enable = true;
+      settings.install.globalBinDir = "~/.local/bin";
     };
 
     nh = {
@@ -85,6 +88,11 @@ in
       imports = [ ../nixvim ];
     };
     fish.shellAbbrs.nv = "nvim";
+
+    npm = {
+      enable = true;
+      settings.prefix = "\${HOME}/.local";
+    };
 
     ripgrep = {
       enable = true;
