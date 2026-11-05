@@ -34,10 +34,9 @@
       "keyboard-maestro"
       "launchbar"
       "loop"
-      # "tinycast" # not in homebrew
+      "tinycast"
 
       # System and hardware
-      # "adguard" # use mini
       "istat-menus"
       "keyboardcleantool"
       # "little-snitch" # beta now

@@ -46,7 +46,7 @@
       # Network
       "Net Magic" = 6757392404;
       Shadowrocket = 932747118;
-      "uBlock Origin Lite" = 6745342698;
+      "wBlock" = 6746388723;
     };
   };
 }
