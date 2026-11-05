@@ -10,6 +10,11 @@ in
     package = null;
     settings = {
       core.editor = "nvim";
+      diff.tool = "hunk";
+      difftool = {
+        hunk.cmd = ''${lib.getExe pkgs.hunk} difftool "$LOCAL" "$REMOTE" "$MERGED"'';
+        prompt = false;
+      };
       user = {
         email = "mathjiajia@outlook.com";
         name = "Jia Jia";
@@ -35,7 +40,9 @@ in
           output = "terminal";
         }
       ];
-      git.diffRenderers = [ { command = "${lib.getExe pkgs.hunk} pager"; } ];
+      git.diffRenderers = [
+        { command = "${lib.getExe pkgs.hunk} pager --theme=github-{{colorScheme}}-default"; }
+      ];
       gui = {
         nerdFontsVersion = "3";
         sidePanelWidth = 0.25;
