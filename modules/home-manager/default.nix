@@ -69,11 +69,6 @@
       };
     };
 
-    bun = {
-      enable = true;
-      settings.install.globalBinDir = "~/.local/bin";
-    };
-
     nh = {
       enable = true;
       flake = "/etc/nix-darwin";
