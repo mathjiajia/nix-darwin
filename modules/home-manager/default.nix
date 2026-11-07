@@ -1,10 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}:
-{
+{ inputs, pkgs, ... }: {
   imports = [
     inputs.nixvim.homeModules.nixvim
 
@@ -35,7 +29,6 @@
       hugo
       hunk
       luajit
-      # mermaid-cli
       nodejs
       python3
       # typst
@@ -55,7 +48,6 @@
     fastfetch.enable = true;
     fd.enable = true;
     gh.enable = true;
-    pi-coding-agent.enable = true;
     uv.enable = true;
 
     bat = {
@@ -83,11 +75,6 @@
       imports = [ ../nixvim ];
     };
     fish.shellAbbrs.nv = "nvim";
-
-    npm = {
-      enable = true;
-      settings.prefix = "\${HOME}/.local";
-    };
 
     ripgrep = {
       enable = true;
