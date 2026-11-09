@@ -34,7 +34,7 @@ Output only the message as plain text, without line numbers, hashes, or commenta
 
 # Strip Markdown fences and headings: git would drop "#" lines as comments.
 printf '%s\n\n%s\n' "$summary" "$diff" |
-	pi -p --no-tools --no-session --provider magpie --model codex/gpt-5.6-luna "$prompt" |
+	"$HOME/.pi/agent/bin/pi" -p --no-tools --no-session --provider magpie --model codex/gpt-5.6-luna "$prompt" |
 	sed -e '/^```/d' -e 's/^#\{1,6\} //' >"$message"
 
 if ! grep -q '[^[:space:]]' "$message"; then
