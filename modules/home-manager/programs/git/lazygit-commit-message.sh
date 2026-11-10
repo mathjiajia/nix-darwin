@@ -12,7 +12,7 @@ fi
 summary=$(git --no-pager diff --cached --no-color --no-ext-diff --no-textconv --stat=120)
 diff=$(
 	git --no-pager diff --cached --no-color --no-ext-diff --no-textconv -U1 -- . \
-		':(exclude)*.lock' ':(exclude)*.lockb' ':(exclude)*-lock.json' ':(exclude)*-lock.yaml' ':(exclude)*.pdf'
+		':(exclude)*.lock' ':(exclude)*-lock.json' ':(exclude)*.pdf'
 )
 
 # Cap only the patch so every staged file stays visible in the summary.
