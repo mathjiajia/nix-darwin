@@ -8,6 +8,7 @@
 
     # Development
     "ghostty"
+    "google-chrome"
     "homebrew-app"
     "kitty"
 
@@ -29,8 +30,9 @@
     "soulver-cli"
 
     # Browsers and communication
-    "discord"
+    # "discord"
     "qq"
+    "swiftcord"
     "zoom"
 
     # Input
