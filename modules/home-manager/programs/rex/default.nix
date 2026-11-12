@@ -11,7 +11,6 @@
     rex completion fish | source
   '';
 
-  xdg.configFile."rex/.emmyrc.json".text = builtins.toJSON {
-    diagnostics.globals = [ "rex" ];
-  };
+  xdg.configFile."rex/types.lua".source = ./types.lua;
+  xdg.configFile."rex/.emmyrc.json".source = ./.emmyrc.json;
 }

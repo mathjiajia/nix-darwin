@@ -32,22 +32,22 @@ let
   # };
   nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
     pname = "latex-conceal";
-    version = "2026-10-26";
+    version = "2026-11-11";
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "nvim-latex-conceal";
-      rev = "5a5f6f67bac27fa26e034b7ca7a8c54404925950";
-      hash = "sha256-+zkJxtXFKqYR5C56S65sAGL1SEgPfQR90g9Kw3VMwWY=";
+      rev = "4c36206c17b56dbd29ea5bd7dee89590740fae07";
+      hash = "sha256-WrjpYDKKeXHyUDuhC3ua+rDa+PNMfcIdz9VASxw1AcM=";
     };
   };
   nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {
     pname = "math-snippets";
-    version = "2026-10-23";
+    version = "2026-11-11";
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "nvim-math-snippets";
-      rev = "27ff3dcb30fa67877adb2ca1bdbe9669b5cd57e0";
-      hash = "sha256-7CRvKHhrw1/KG+OurHirK6xBsycxb5sY4AV/DFLYtrA=";
+      rev = "c5885baee63d8fe70ae643b7704a12fb20f2af1d";
+      hash = "sha256-p5M4IRtv+TJDCQOMpjD+GqlTGVhWenLADf4PqR0NEsQ=";
     };
     nvimSkipModules = [
       "math-snippets.conditions"

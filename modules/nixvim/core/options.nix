@@ -14,6 +14,7 @@
     loaded_zipPlugin = 1;
 
     mapleader = " ";
+    tex_flavor = "latex";
   };
 
   clipboard.register = "unnamedplus";
