@@ -36,7 +36,7 @@
       Things = 904280696;
 
       # Communication
-      Filo = 6740307388;
+      # Filo = 6740307388;
       WeChat = 836500024;
       WhatsApp = 310633997;
 

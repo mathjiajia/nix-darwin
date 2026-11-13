@@ -22,6 +22,7 @@
   # Rex mirrors yanks to the client and host clipboards; paste reads the host.
   extraConfigLuaPre = ''
     if vim.env.REX_BLOCK then
+      -- vim.g.clipboard = "osc52" -- once Rex fully supports OSC 52
     	local osc52 = require("vim.ui.clipboard.osc52")
     	local function copy(reg)
     		local send = osc52.copy(reg)
