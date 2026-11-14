@@ -5,6 +5,7 @@
   homebrew.casks = [
     # AI
     "deepseek-harness"
+    "llama-app"
 
     # Development
     "ghostty"

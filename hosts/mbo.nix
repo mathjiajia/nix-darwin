@@ -3,6 +3,13 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   home-manager.users.jia.programs.fish = {
+    shellInit =
+      # fish
+      ''
+        if set -q SSH_CONNECTION
+          fish_add_path --global --path "$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS"
+        end
+      '';
     interactiveShellInit =
       # fish
       ''
@@ -24,7 +31,6 @@
   };
 
   homebrew.casks = [
-    "alma"
     "lobehub"
   ];
 }

@@ -16,7 +16,7 @@
           "g"
           "a"
         ];
-        run = "cd ~/Documents/ChatGPT";
+        run = "cd ~/Documents/AIGC";
         desc = "Go to AI dir";
       }
       {

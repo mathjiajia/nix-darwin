@@ -5,11 +5,11 @@
 
     casks = [
       # AI
+      "alma"
       "chatgpt"
       "claude"
       "claude-code"
       "codex"
-      "llama-app"
       "magpie"
       # "mlx-serve"
 
