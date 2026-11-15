@@ -5,7 +5,6 @@
 
     casks = [
       # AI
-      "alma"
       "chatgpt"
       "claude"
       "claude-code"
@@ -20,7 +19,6 @@
       "orbstack"
       "orchard"
       "visual-studio-code"
-      "zed"
 
       # Fonts
       "font-mozilla-text"

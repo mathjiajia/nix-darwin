@@ -1,6 +1,21 @@
 {
   programs = {
-    atuin.enable = true;
+    atuin = {
+      enable = true;
+      daemon.enable = true;
+      # flags = [ "--bind-ai-resume" ]; seems auto?
+      settings = {
+        auto_sync = true;
+        enter_accept = true;
+        daemon = {
+          # Home Manager manages the launchd service.
+          autostart = false;
+          sync_frequency = 300;
+        };
+        ai.enabled = true;
+        threads.capture = true;
+      };
+    };
 
     fish = {
       enable = true;

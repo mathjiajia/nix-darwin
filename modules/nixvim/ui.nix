@@ -1,4 +1,23 @@
 { pkgs, ... }: {
+  extraPlugins = [ pkgs.vimPlugins.slimline-nvim ];
+
+  extraConfigLua = ''
+    require("slimline").setup({
+    	style = "fg",
+    	bold = true,
+    	components = {
+    		left = { 'mode', 'path', 'git' },
+    		center = { "selectioncount", "searchcount" },
+    		right = { 'diagnostics', 'filetype_lsp', 'progress' }
+    	},
+    	configs = {
+    		path = { hl = { primary = "Label" } },
+    		git = { hl = { primary = "Function" } },
+    		filetype_lsp = { hl = { primary = "String" } }
+    	}
+    })
+  '';
+
   plugins = {
     dropbar = {
       enable = true;
@@ -26,21 +45,6 @@
     };
 
     mini-icons.enable = true;
-    mini-statusline = {
-      enable = true;
-      package = pkgs.vimPlugins.mini-statusline.overrideAttrs (oldAttrs: {
-        postPatch =
-          (oldAttrs.postPatch or "")
-          # sh
-          + ''
-            substituteInPlace lua/mini/statusline.lua \
-              --replace-fail "name = 'ERROR', sign = 'E'" "name = 'ERROR', sign = ' '" \
-              --replace-fail "name = 'HINT', sign = 'H'" "name = 'HINT', sign = ' '" \
-              --replace-fail "name = 'INFO', sign = 'I'" "name = 'INFO', sign = ' '" \
-              --replace-fail "name = 'WARN', sign = 'W'" "name = 'WARN', sign = ' '"
-          '';
-      });
-    };
     mini-diff = {
       enable = true;
       settings.view = {

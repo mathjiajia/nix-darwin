@@ -6,6 +6,7 @@
     # AI
     "deepseek-harness"
     "llama-app"
+    "t3-code"
 
     # Development
     "ghostty"

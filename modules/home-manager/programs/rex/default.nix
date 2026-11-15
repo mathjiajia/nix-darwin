@@ -4,7 +4,7 @@
   programs.rex = {
     enable = true;
     package = null;
-    config = ./init.lua;
+    # config = ./init.lua;
   };
 
   xdg.configFile."fish/completions/rex.fish".text = ''
