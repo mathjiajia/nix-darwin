@@ -56,8 +56,10 @@ in
             return
           end
 
+          -- Look for query files without compiling them; compiling the latex
+          -- highlights query alone takes over 100 ms.
           local function has_query(query_name)
-            return vim.treesitter.query.get(lang, query_name) ~= nil
+            return #vim.treesitter.query.get_files(lang, query_name) > 0
           end
 
           local function add_undo_ftplugin(command)
@@ -65,8 +67,31 @@ in
           end
 
           if has_query("highlights") then
-            vim.treesitter.start(buf, lang)
-            add_undo_ftplugin(("call v:lua.vim.treesitter.stop(%d)"):format(buf))
+            -- Start highlighting after the first screen update, so compiling the
+            -- query doesn't hold up opening the file. Setting b:ts_highlight now
+            -- stops the syntaxset autocmd from loading regex syntax meanwhile,
+            -- and noplainbuffer stops spell from checking every word until
+            -- treesitter marks the @spell regions.
+            vim.b[buf].ts_highlight = true
+            local spelloptions = vim.bo[buf].spelloptions
+            local add_noplainbuffer = not vim.tbl_contains(vim.split(spelloptions, ",", { plain = true }), "noplainbuffer")
+            if add_noplainbuffer then
+              vim.bo[buf].spelloptions = spelloptions == "" and "noplainbuffer" or spelloptions .. ",noplainbuffer"
+            end
+            vim.schedule(function()
+              if
+                vim.api.nvim_buf_is_valid(buf)
+                and vim.bo[buf].filetype == filetype
+                and not vim.treesitter.highlighter.active[buf]
+              then
+                vim.treesitter.start(buf, lang)
+              end
+            end)
+            add_undo_ftplugin(("call v:lua.vim.treesitter.stop(%d) | unlet! b:ts_highlight"):format(buf))
+            -- After stop, which restores the spelloptions saved when highlighting started.
+            if add_noplainbuffer then
+              add_undo_ftplugin("setlocal spelloptions-=noplainbuffer")
+            end
           end
 
           if has_query("indents") then

@@ -7,8 +7,6 @@
       # AI
       "chatgpt"
       "claude"
-      "claude-code"
-      "codex"
       "magpie"
       # "mlx-serve"
 

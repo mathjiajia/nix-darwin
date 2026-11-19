@@ -2,7 +2,8 @@
 
 -- Editor definitions only; do not require this file from init.lua.
 -- Lua API: https://www.superlogical.com/rex/docs/reference/lua
--- Session and terminal shapes checked against Rex 0.1.0-preview.15, API revision 13.
+-- Custom UI: https://www.superlogical.com/rex/docs/customize/custom-ui
+-- Session and terminal shapes checked against Rex 0.1.0-preview.21, API revision 18.
 
 ---@class rex: rex.Server
 ---@field bind        fun(key: string, action: string | rex.KeyHandler, args?: table)                              Config only; named actions are bound at load time.
@@ -13,6 +14,7 @@
 ---@field action      fun(action: rex.Action)                                                                      Define an action while loading a config or script.
 ---@field invoke      fun(name: string, args?: table): any, string?                                                Run an action; the second result is an error message.
 ---@field client      rex.Client
+---@field ui          rex.Ui                                                                                       Prompts in the command palette; needs API revision 17.
 ---@field layout      rex.LayoutBuilder
 ---@field host        fun(host: rex.Host)                                                                          Config at load time.
 ---@field servers     fun(): string[]
@@ -37,6 +39,66 @@
 
 ---@class rex.Client
 ---@field queue fun(name: string, args?: table) In a config action, runs after the action succeeds; immediate in scripts.
+
+-- Prompts work only inside an action's run function and functions it calls directly.
+-- In key-bound functions, rex.on handlers, top-level config, pcall or xpcall,
+-- rex.invoke, and library callbacks, both return nil and "failed" without asking.
+-- Every connected Rex app that can show prompts is asked; the first answer wins.
+---@class rex.Ui
+---@field input fun(prompt: rex.ui.InputPrompt): string?, rex.ui.Reason?, string? Returns the submitted text exactly as typed, possibly empty.
+---@field pick  rex.ui.Pick
+
+-- Returns the chosen item's id. A malformed call, such as a missing title or
+-- a duplicate id, raises an error instead of returning nil.
+---@class rex.ui.Pick
+---@overload fun(prompt: rex.ui.PickManyPrompt): string[]?, rex.ui.Reason?, string?
+---@overload fun(prompt: rex.ui.PickOtherPrompt): (string | rex.ui.OtherAnswer)?, rex.ui.Reason?, string?
+---@overload fun(prompt: rex.ui.PickPrompt): string?, rex.ui.Reason?, string?
+
+-- The third result, detail, is set only for "failed"; its wording can change between versions.
+---@alias rex.ui.Reason
+--- | "cancelled"   The person closed the prompt without answering.
+--- | "timeout"     Nobody answered within the timeout.
+--- | "no_client"   No Rex app was connected, or every app showing the prompt lost its connection.
+--- | "unsupported" No connected app can show prompts.
+--- | "busy"        Every app that could show the prompt is already showing another one.
+--- | "failed"      Anything else, including a call from where prompts don't work.
+
+---@class rex.ui.InputPrompt
+---@field title        string Required; names the question.
+---@field placeholder? string The hint shown while the field is empty.
+---@field value?       string The text the field starts with.
+---@field confirm?     string The submit row's label; defaults to Use "…" with the typed text.
+---@field timeout?     number Seconds to wait for an answer; defaults to 300, at most 3600.
+
+-- placeholder and value apply to the field that filters the list.
+---@class rex.ui.PickPrompt: rex.ui.InputPrompt
+---@field items        (rex.ui.Item | string)[] At most 2,000, in display order; may be empty. A string is an item whose id and title are that string.
+---@field multiple?    false
+---@field allow_other? false
+
+-- Returns ids in the order of items; an empty list when nothing is ticked.
+-- Cmd+Return confirms.
+---@class rex.ui.PickManyPrompt: rex.ui.InputPrompt
+---@field items    (rex.ui.Item | string)[]
+---@field multiple true
+
+-- Typed text comes back as { text = "..." }, so it can't be mistaken for an id.
+---@class rex.ui.PickOtherPrompt: rex.ui.PickPrompt
+---@field allow_other true Can't be combined with multiple.
+
+---@class rex.ui.Item
+---@field id        string      What rex.ui.pick returns; required and unique within items.
+---@field title?    string      The main text; defaults to id.
+---@field subtitle? string      A second, quieter line.
+---@field icon?     rex.ui.Icon Other names are ignored with a warning.
+---@field detail?   string      Short text at the far end of the row, such as a file's status.
+---@field selected? boolean     Starts the item ticked; only with multiple.
+
+---@class rex.ui.OtherAnswer
+---@field text string
+
+---@alias rex.ui.Icon "document" | "folder" | "branch" | "terminal" | "code" | "server" | "database" | "package" | "globe" | "link" | "person" | "tag" | "clock" | "star" | "gear" | "plus"
 
 ---@class rex.Context
 ---@field session_id? string
@@ -233,6 +295,9 @@
 ---@field resize_layer          fun(args: rex.session.ResizeLayerArgs): rex.Revision?, string?
 ---@field raise_layer           fun(args: rex.session.LayerOrderArgs): rex.Revision?, string?
 ---@field lower_layer           fun(args: rex.session.LayerOrderArgs): rex.Revision?, string?
+---@field set_layer_state       fun(args: rex.session.SetLayerStateArgs): rex.Revision?, string?
+---@field own_block             fun(args: rex.session.OwnBlockArgs): rex.session.BlockOwnersResult?, string?
+---@field disown_block          fun(args: rex.session.DisownBlockArgs): rex.session.BlockOwnersResult?, string?
 ---@field move_window           fun(args: rex.session.MoveWindowArgs): rex.Revision?, string?
 ---@field focus_block           fun(args: rex.session.BlockArgs): rex.Revision?, string?
 ---@field focus_window          fun(args: rex.session.WindowArgs): rex.Revision?, string?
@@ -249,22 +314,29 @@
 ---@field help                  fun(args: rex.session.Args): table?, string?
 
 -- Block calls fill session_id and block_id from the current context.
--- Method parameters go inside args: { block_id = id, args = { data = "hello" } }.
+-- Method parameters go beside the IDs, { block_id = id, data = "hello" },
+-- or inside args, { block_id = id, args = { data = "hello" } }.
 ---@class rex.Block
 ---@field call rex.BlockCall
 
 ---@class rex.BlockCall
----@overload fun(creator: "com.superlogical.terminal", method: "format", args?: rex.terminal.FormatCall): rex.terminal.FormatResult?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "format", args?: rex.terminal.FormatCallArgs | rex.terminal.FormatCall): rex.terminal.FormatResult?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "process", args?: rex.terminal.CallArgs): rex.terminal.ProcessResult?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "pwd", args?: rex.terminal.CallArgs): rex.terminal.PwdResult?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "title", args?: rex.terminal.CallArgs): rex.terminal.TitleResult?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "size", args?: rex.terminal.CallArgs): rex.terminal.SizeResult?, string?
----@overload fun(creator: "com.superlogical.terminal", method: "write", args: rex.terminal.WriteCall): rex.terminal.WriteResult?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "write", args: rex.terminal.WriteCallArgs | rex.terminal.WriteCall): rex.terminal.WriteResult?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "reset", args?: rex.terminal.CallArgs): table?, string?
----@overload fun(creator: "com.superlogical.terminal", method: "resize", args: rex.terminal.ResizeCall): table?, string?
----@overload fun(creator: "com.superlogical.terminal", method: "set_theme", args?: rex.terminal.SetThemeCall): table?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "clear", args?: rex.terminal.CallArgs): table?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "resize", args: rex.terminal.ResizeCallArgs | rex.terminal.ResizeCall): table?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "set_theme", args?: rex.terminal.SetThemeCallArgs | rex.terminal.SetThemeCall): table?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "program_status", args?: rex.terminal.CallArgs): rex.terminal.ProgramStatusResult?, string?
----@overload fun(creator: "com.superlogical.terminal", method: "list_dir", args?: rex.terminal.ListDirCall): rex.terminal.ListDirResult?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "list_dir", args?: rex.terminal.ListDirCallArgs | rex.terminal.ListDirCall): rex.terminal.ListDirResult?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "input_mode", args?: rex.terminal.CallArgs): rex.terminal.InputModeResult?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "modes", args?: rex.terminal.CallArgs): rex.terminal.ModesResult?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "ports", args?: rex.terminal.CallArgs): rex.terminal.PortsResult?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "blob_read", args?: rex.terminal.ReadCallArgs | rex.terminal.ReadCall): rex.terminal.ReadResult?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "clipboard_read", args?: rex.terminal.ReadCallArgs | rex.terminal.ReadCall): rex.terminal.ReadResult?, string?
 ---@overload fun(creator: string, method: string, args?: table): table?, string?
 
 ---@class rex.On
@@ -272,6 +344,7 @@
 ---@overload fun(event: "terminal.child_exited" | "com.superlogical.terminal.child_exited", handler: fun(ctx: rex.Context, ev: rex.terminal.ChildExitedEvent))
 ---@overload fun(event: "terminal.clipboard_written" | "com.superlogical.terminal.clipboard_written", handler: fun(ctx: rex.Context, ev: rex.terminal.ClipboardWrittenEvent))
 ---@overload fun(event: "terminal.desktop_notification" | "com.superlogical.terminal.desktop_notification", handler: fun(ctx: rex.Context, ev: rex.terminal.DesktopNotificationEvent))
+---@overload fun(event: "terminal.ports_changed" | "com.superlogical.terminal.ports_changed", handler: fun(ctx: rex.Context, ev: rex.terminal.PortsChangedEvent))
 ---@overload fun(event: "terminal.process_changed" | "com.superlogical.terminal.process_changed", handler: fun(ctx: rex.Context, ev: rex.terminal.ProcessChangedEvent))
 ---@overload fun(event: "terminal.program_status_changed" | "com.superlogical.terminal.program_status_changed", handler: fun(ctx: rex.Context, ev: rex.terminal.ProgramStatusChangedEvent))
 ---@overload fun(event: "terminal.program_status_removed" | "com.superlogical.terminal.program_status_removed", handler: fun(ctx: rex.Context, ev: rex.terminal.ProgramStatusRemovedEvent))
@@ -288,6 +361,7 @@
 ---@overload fun(event: "terminal.child_exited" | "com.superlogical.terminal.child_exited", filter?: table | (fun(ev: rex.terminal.ChildExitedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ChildExitedEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.clipboard_written" | "com.superlogical.terminal.clipboard_written", filter?: table | (fun(ev: rex.terminal.ClipboardWrittenEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ClipboardWrittenEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.desktop_notification" | "com.superlogical.terminal.desktop_notification", filter?: table | (fun(ev: rex.terminal.DesktopNotificationEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.DesktopNotificationEvent?, rex.Context | "timeout"
+---@overload fun(event: "terminal.ports_changed" | "com.superlogical.terminal.ports_changed", filter?: table | (fun(ev: rex.terminal.PortsChangedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.PortsChangedEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.process_changed" | "com.superlogical.terminal.process_changed", filter?: table | (fun(ev: rex.terminal.ProcessChangedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ProcessChangedEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.program_status_changed" | "com.superlogical.terminal.program_status_changed", filter?: table | (fun(ev: rex.terminal.ProgramStatusChangedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ProgramStatusChangedEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.program_status_removed" | "com.superlogical.terminal.program_status_removed", filter?: table | (fun(ev: rex.terminal.ProgramStatusRemovedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ProgramStatusRemovedEvent?, rex.Context | "timeout"
@@ -313,6 +387,9 @@
 ---@class rex.terminal.DesktopNotificationEvent: rex.Event
 ---@field title string
 ---@field body  string
+
+-- Carries the whole list, the same reply the ports method gives; at most one a second per terminal.
+---@class rex.terminal.PortsChangedEvent: rex.Event, rex.terminal.PortsResult
 
 ---@class rex.terminal.ProcessChangedEvent: rex.Event
 ---@field generation  integer
@@ -387,7 +464,7 @@
 ---@field layer_id? string
 ---@field kind      string
 ---@field bounds    rex.Bounds
----@field state?    string
+---@field state?    string        "minimized", or absent for a normal layer; draw unknown states as normal.
 ---@field layout?   rex.ViewNode
 ---@field blocks?   rex.LayerBlock[]
 
@@ -555,6 +632,28 @@
 ---@field session_id?        string
 ---@field layer_id?          string
 ---@field relative_layer_id? string
+
+---@class rex.session.SetLayerStateArgs
+---@field session_id? string
+---@field layer_id?   string
+---@field state       "normal" | "minimized" Only a floating layer can be minimized.
+---@field focus?      boolean                Also raise and focus the layer; needs state "normal".
+
+---@class rex.session.OwnBlockArgs
+---@field session_id? string
+---@field block_ids?  string[]            Omit or leave empty for every block in the session.
+---@field mode?       "take" | "request"  take, the default, claims at once; request claims only blocks without an owner.
+
+---@class rex.session.DisownBlockArgs
+---@field session_id? string
+---@field block_ids?  string[] Omit or leave empty for every block in the session.
+
+---@class rex.session.BlockOwnersResult
+---@field blocks? rex.BlockOwner[]
+
+---@class rex.BlockOwner
+---@field block_id? string
+---@field owner?    string
 
 ---@class rex.session.ListBlocksResult
 ---@field blocks? rex.BlockInfo[]
@@ -748,10 +847,14 @@
 ---@field block_id?   string
 ---@field args        rex.TerminalSize
 
+---@class rex.terminal.ResizeCallArgs: rex.terminal.CallArgs, rex.TerminalSize
+
 ---@class rex.terminal.SetThemeCall
 ---@field session_id? string
 ---@field block_id?   string
 ---@field args?       rex.TerminalTheme
+
+---@class rex.terminal.SetThemeCallArgs: rex.terminal.CallArgs, rex.TerminalTheme
 
 ---@class rex.terminal.ProgramStatusResult
 ---@field records rex.ProgramStatus[]
@@ -768,7 +871,54 @@
 ---@field entries?  rex.DirectoryEntry[]
 ---@field truncated boolean
 
----@class rex.terminal.FormatCallArgs
+---@class rex.terminal.ReadCall
+---@field session_id? string
+---@field block_id?   string
+---@field args?       rex.terminal.ReadCallArgs
+
+-- The server keeps a blob for about five minutes and a clipboard copy for about a minute.
+---@class rex.terminal.ReadResult
+---@field id    integer Send it in later requests so every part comes from the same result.
+---@field data  string  Starts at offset and never ends partway through a character.
+---@field total integer Length of the whole result in bytes.
+---@field eof   boolean
+
+---@class rex.terminal.InputModeResult
+---@field echo      boolean Usually off while a program reads a password.
+---@field canonical boolean Input arrives a line at a time.
+---@field signals   boolean Keys such as Ctrl+C send signals.
+
+---@class rex.terminal.ModesResult
+---@field screen string               "primary" or "alternate"; treat other values as primary.
+---@field modes? rex.TerminalMode[]   ANSI modes first, then DEC private modes, each by number.
+
+---@class rex.TerminalMode
+---@field name     string  Ghostty's name, such as bracketed_paste.
+---@field number   integer
+---@field ansi?    boolean Absent for a DEC private mode.
+---@field set      boolean
+---@field default? boolean Absent when the mode starts off.
+
+---@class rex.terminal.PortsResult
+---@field status     string              "ok", "partial", or "unsupported"; treat other values as partial.
+---@field ports      rex.ListeningPort[] Sorted by port, then address.
+---@field processes  rex.ProcessInfo[]   The processes that hold the ports, sorted by pid.
+---@field truncated? boolean
+---@field id?        integer             With truncated; read the whole reply with blob_read.
+
+---@class rex.ListeningPort
+---@field port          integer
+---@field address       string  An IP literal without brackets, such as 127.0.0.1 or ::.
+---@field protocol      string  "tcp" today; skip unknown protocols.
+---@field first_seen_at string  RFC 3339 timestamp.
+---@field pid?          integer Absent when the holder is unknown, such as a server started with sudo.
+
+---@class rex.terminal.ReadCallArgs: rex.terminal.CallArgs
+---@field id?        integer Zero or absent reads the newest result.
+---@field offset?    integer Bytes from the start of the result.
+---@field max_bytes? integer Defaults to 49152 and is capped at 983040.
+
+---@class rex.terminal.FormatCallArgs: rex.terminal.CallArgs
 ---@field format?                 string
 ---@field trim?                   boolean
 ---@field unwrap?                 boolean
@@ -786,10 +936,10 @@
 ---@field extra_tabstops?         boolean
 ---@field max_bytes?              integer
 
----@class rex.terminal.WriteCallArgs
+---@class rex.terminal.WriteCallArgs: rex.terminal.CallArgs
 ---@field data string
 
----@class rex.terminal.ListDirCallArgs
+---@class rex.terminal.ListDirCallArgs: rex.terminal.CallArgs
 ---@field path?   string
 ---@field prefix? string
 ---@field limit?  integer

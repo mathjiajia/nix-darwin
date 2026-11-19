@@ -1,5 +1,6 @@
 {
   programs = {
+    # nushell.enable = true;
     atuin = {
       enable = true;
       daemon.enable = true;

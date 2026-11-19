@@ -1,5 +1,11 @@
 -- vim.wo[0][0].conceallevel = 2
-vim.wo[0][0].spell = true
+-- Turn spell on after the first screen update; loading the spell file takes ~11 ms.
+local win, buf = vim.api.nvim_get_current_win(), vim.api.nvim_get_current_buf()
+vim.schedule(function ()
+	if vim.api.nvim_win_is_valid(win) and vim.api.nvim_win_get_buf(win) == buf then
+		vim.wo[win][0].spell = true
+	end
+end)
 
 vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Correct Last Spelling" })
 

@@ -22,6 +22,14 @@
       {
         on = [
           "g"
+          "b"
+        ];
+        run = "cd '~/Library/Mobile Documents/com~apple~CloudDocs/Books'";
+        desc = "Go to Books dir";
+      }
+      {
+        on = [
+          "g"
           "n"
         ];
         run = "cd ~/.config/nix-darwin";

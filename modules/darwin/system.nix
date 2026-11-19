@@ -9,7 +9,7 @@
       persistent-apps = [
         "/System/Applications/Apps.app"
         "/System/Cryptexes/App/System/Applications/Safari.app"
-        "/System/Applications/Mail.app"
+        "/Applications/Fog.app"
         "/System/Applications/Calendar.app"
         "/System/Applications/Reminders.app"
         "/System/Applications/Notes.app"

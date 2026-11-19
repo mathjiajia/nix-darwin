@@ -4,7 +4,6 @@
 
   homebrew.casks = [
     # AI
-    "deepseek-harness"
     "llama-app"
     "t3-code"
 
@@ -23,13 +22,14 @@
     # Productivity
     "hazeover"
     "raycast"
+    "soulver-cli"
 
     # Media and design
     "downie"
     "iina"
     "inkscape"
+    "paper-design"
     "permute"
-    "soulver-cli"
 
     # Browsers and communication
     # "discord"

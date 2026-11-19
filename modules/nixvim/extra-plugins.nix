@@ -32,22 +32,22 @@ let
   # };
   nvim-latex-conceal = pkgs.vimUtils.buildVimPlugin {
     pname = "latex-conceal";
-    version = "2026-11-11";
+    version = "2026-11-18";
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "nvim-latex-conceal";
-      rev = "4c36206c17b56dbd29ea5bd7dee89590740fae07";
-      hash = "sha256-WrjpYDKKeXHyUDuhC3ua+rDa+PNMfcIdz9VASxw1AcM=";
+      rev = "3d034b08d0fe651d371659141543301630a0b82e";
+      hash = "sha256-HwviSqNbM33mZbZwFEBH/ae8+CslZSUjlk1RrBGXpZo=";
     };
   };
   nvim-math-snippets = pkgs.vimUtils.buildVimPlugin {
     pname = "math-snippets";
-    version = "2026-11-11";
+    version = "2026-11-18";
     src = pkgs.fetchFromGitHub {
       owner = "mathjiajia";
       repo = "nvim-math-snippets";
-      rev = "c5885baee63d8fe70ae643b7704a12fb20f2af1d";
-      hash = "sha256-p5M4IRtv+TJDCQOMpjD+GqlTGVhWenLADf4PqR0NEsQ=";
+      rev = "600243a3245d93c186b1bed7a4debb47e71d5936";
+      hash = "sha256-pY0YGkNlCMRHqxJdfRtD/pPELRmlYlvP6PRMrCPkJDM=";
     };
     nvimSkipModules = [
       "math-snippets.conditions"
@@ -63,6 +63,14 @@ in
     nvim-latex-conceal
     nvim-math-snippets
   ];
+
+  # Local scry.nvim checkout for testing; edits apply on the next Neovim start.
+  # extraConfigLuaPre = ''
+  #   local scry = vim.fn.expand("~/Projects/scry.nvim")
+  #   if vim.uv.fs_stat(scry) then
+  #   	vim.opt.runtimepath:prepend(scry)
+  #   end
+  # '';
 
   # plugins = {
   #   lean = {
