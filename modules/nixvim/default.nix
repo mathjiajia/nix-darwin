@@ -25,12 +25,14 @@
 
     # ./colorscheme.nix
     ./tasks
+    ./agent.nix
     ./completion.nix
     ./dap.nix
     ./editor.nix
     ./format-and-lint.nix
     ./extra-plugins.nix
     ./treesitter.nix
+    ./rex-ui
     ./ui.nix
   ];
 

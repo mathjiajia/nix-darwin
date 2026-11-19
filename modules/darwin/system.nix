@@ -17,7 +17,7 @@
         "/Applications/Due.app"
         "/Applications/Things3.app"
         "/Applications/Visual Studio Code.app"
-        "/Applications/Rex Beta.app"
+        "/Applications/Rex.app"
         "/Applications/sioyek.app"
         "/Applications/Zotero.app"
         "/Applications/PDF Expert.app"

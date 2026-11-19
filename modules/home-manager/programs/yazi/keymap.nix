@@ -1,15 +1,6 @@
 {
   programs.yazi.keymap = {
     mgr.prepend_keymap = [
-      {
-        on = [
-          "g"
-          "i"
-        ];
-        run = "plugin lazygit";
-        desc = "Open lazygit";
-      }
-
       # Goto
       {
         on = [
