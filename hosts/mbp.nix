@@ -58,6 +58,8 @@
     # Communication
     Telegram = 747648890;
     VooV = 1497685373;
+    WeChat = 836500024;
+    WhatsApp = 310633997;
 
     # Media
     Infuse = 1136220934;

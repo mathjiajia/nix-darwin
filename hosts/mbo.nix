@@ -23,7 +23,5 @@
     };
   };
 
-  homebrew.casks = [
-    "lobehub"
-  ];
+  homebrew.casks = [ "lobehub" ];
 }

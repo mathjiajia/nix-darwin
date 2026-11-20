@@ -35,11 +35,6 @@
       Soulver = 1508732804;
       Things = 904280696;
 
-      # Communication
-      # Filo = 6740307388;
-      WeChat = 836500024;
-      WhatsApp = 310633997;
-
       # Media
       "Whisper Transcription" = 1668083311;
 
