@@ -6,7 +6,6 @@
   ...
 }:
 let
-  # Linked into ~/.config/rex next to init.lua, which programs.rex.config links.
   files = [
     "floats.lua"
     "agents.lua"
@@ -14,7 +13,6 @@ let
     "types.lua"
     ".emmyrc.json"
   ];
-
   rexProjects = pkgs.fetchFromGitHub {
     owner = "almonk";
     repo = "rex-projects";
@@ -34,48 +32,38 @@ in
     config = ./init.lua;
   };
 
-  # force replaces files that something else wrote there, such as leaf
-  # updating the comment at the end of init.lua.
   xdg.configFile = {
-    "fish/completions/rex.fish".text = ''
-      rex completion fish | source
-    '';
-    "rex/init.lua".force = true;
-    "rex/projects.lua" = {
-      source = "${rexProjects}/projects.lua";
-      force = true;
-    };
+    "rex/projects.lua".source = "${rexProjects}/projects.lua";
+    "fish/completions/rex.fish".text = # fish
+      "rex completion fish | source";
   }
-  // lib.listToAttrs (
-    map (
-      f:
-      lib.nameValuePair "rex/${f}" {
-        source = ./. + "/${f}";
-        force = true;
-      }
-    ) files
-  );
+  // lib.listToAttrs (map (f: lib.nameValuePair "rex/${f}" { source = ./. + "/${f}"; }) files);
 
   # When a yazi float closes, float_cd in floats.lua leaves the directory in a
   # file and sends this shell SIGWINCH. The handler changes directory and
   # redraws the prompt, keeping whatever is half-typed there. An event handler
   # can't be an autoloaded function, so it's defined at startup.
-  programs.fish.interactiveShellInit = ''
-    function __rex_float_cd --on-signal SIGWINCH
+  programs.fish.interactiveShellInit =
+    # fish
+    ''
+      function __rex_float_cd --on-signal SIGWINCH
         set -l file $HOME/.cache/rex/float-cd.$fish_pid
         test -r $file; or return
         read --null --local dir <$file
         rm -f $file
         test -n "$dir"; and builtin cd -- $dir; and commandline -f repaint
-    end
-  '';
+      end
+    '';
 
   # Rex doesn't notice when a file that init.lua requires changes, so tell a
   # running server to read its config again.
-  home.activation.rexReload = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-    rex=${lib.escapeShellArg rex}
-    if [[ -x $rex ]] && "$rex" --autostart=false server status >/dev/null 2>&1; then
-      run "$rex" --autostart=false config reload
-    fi
-  '';
+  home.activation.rexReload =
+    lib.hm.dag.entryAfter [ "linkGeneration" ]
+      # sh
+      ''
+        rex=${lib.escapeShellArg rex}
+        if [[ -x $rex ]] && "$rex" --autostart=false server status >/dev/null 2>&1; then
+          run "$rex" --autostart=false config reload
+        fi
+      '';
 }

@@ -18,18 +18,18 @@ end
 --- has exited, or sits behind a shell or another program, doesn't count.
 local function agent_in(block_id)
 	local status = rex.block.call(TERMINAL, "program_status", { block_id = block_id })
-	local foreground
-	for _, record in ipairs(status and status.records or {}) do
+	local records = status and status.records or {}
+	if #records == 0 then return nil end
+	local process = rex.block.call(TERMINAL, "process", { block_id = block_id })
+	local foreground = process and process.foreground
+	if not foreground then return nil end
+
+	for _, record in ipairs(records) do
 		local owner = record.owner
-		if owner and AGENT_APPS[record.effective_app or record.app] then
-			if not foreground then
-				local process = rex.block.call(TERMINAL, "process", { block_id = block_id })
-				foreground = process and process.foreground
-				if not foreground then return nil end
-			end
-			if owner.pid == foreground.pid and owner.name == foreground.name then
-				return record, foreground
-			end
+		local is_agent = AGENT_APPS[record.effective_app or record.app]
+		-- Matching the name as well as the pid rules out a reused pid.
+		if is_agent and owner and owner.pid == foreground.pid and owner.name == foreground.name then
+			return record, foreground
 		end
 	end
 end

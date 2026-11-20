@@ -1,9 +1,12 @@
 -- Toggle one float per tool in a tab, or one Lazygit float per repository.
 local TERMINAL = "com.superlogical.terminal"
 local HOME = os.getenv("HOME")
+-- float_cd leaves float-cd.<pid> here; the fish handler in default.nix reads it.
 local CD_DIR = HOME .. "/.cache/rex"
 
--- Q leaves the cwd file empty, so the underlying shell stays where it is.
+-- Runs yazi the way the `y` fish wrapper does: quitting with q moves the fish
+-- shell under the float to yazi's directory, through float_cd. Quitting with Q
+-- leaves the cwd file empty, so that shell stays where it is.
 local YAZI = [[
 tmp=$(mktemp -t yazi-cwd.XXXXXX) || exit
 trap 'rm -f "$tmp"' EXIT
@@ -49,7 +52,8 @@ local function contains(layer, block_id)
 	return false
 end
 
--- Look up the source and its layer in the same snapshot used to find floats.
+-- The tab holding block_id and the layer it sits in, from one snapshot of the
+-- session. Without block_id, or when that block isn't placed, the active tab.
 local function current_window(block_id)
 	local view = assert(rex.session.view {})
 	local active
@@ -61,7 +65,7 @@ local function current_window(block_id)
 			end
 		end
 	end
-	assert(active, "there is no tab to float in")
+	if not active then error("there is no tab to float in", 0) end
 	return active
 end
 
@@ -85,17 +89,15 @@ local function toggle(ctx, tool, cwd)
 		end
 	end
 
+	cwd = cwd or pane_cwd(ctx.block_id)
 	local label = name
-	if tool.per_repo then
-		cwd = cwd or pane_cwd(ctx.block_id)
-		if cwd then
-			cwd = repo_root(cwd) or cwd
-			local shown = cwd
-			if cwd == HOME or cwd:sub(1, #HOME + 1) == HOME .. "/" then
-				shown = "~" .. cwd:sub(#HOME + 1)
-			end
-			label = name .. " " .. shown
+	if tool.per_repo and cwd then
+		cwd = repo_root(cwd) or cwd
+		local shown = cwd
+		if cwd == HOME or cwd:sub(1, #HOME + 1) == HOME .. "/" then
+			shown = "~" .. cwd:sub(#HOME + 1)
 		end
+		label = name .. " " .. shown
 	end
 	for _, layer in ipairs(window.layers or {}) do
 		if layer.kind == "floating" then
@@ -105,7 +107,6 @@ local function toggle(ctx, tool, cwd)
 		end
 	end
 
-	if not tool.per_repo then cwd = cwd or pane_cwd(ctx.block_id) end
 	return assert(rex.session.new_layer {
 		window_id = window.window_id,
 		bounds = { 0.05, 0.05, 0.9, 0.9 },
@@ -147,30 +148,23 @@ rex.action {
 		local shell = process and process.foreground
 		if not shell or shell.name ~= "fish" or shell.cwd == args.dir then return { changed = false } end
 
-		local mkdir, err = rex.exec({ "mkdir", "-p", CD_DIR })
-		if not mkdir or not mkdir.ok then error(err or mkdir.stderr, 0) end
+		local mkdir, mkdir_err = rex.exec({ "mkdir", "-p", CD_DIR })
+		if not mkdir then error(mkdir_err, 0) end
+		if not mkdir.ok then error(mkdir.stderr, 0) end
 
-		-- Publish the whole path before the fish signal handler can read it.
+		-- Write under a temporary name, then rename, so the handler can't read a
+		-- half-written path if a window resize sends SIGWINCH meanwhile.
 		local path = CD_DIR .. "/float-cd." .. shell.pid
-		local pending = path .. ".tmp"
-		local file = assert(io.open(pending, "w"))
-		local written, write_err = file:write(args.dir)
-		local closed, close_err = file:close()
-		if not written or not closed then
-			os.remove(pending)
-			error(write_err or close_err, 0)
-		end
-		local published
-		published, err = os.rename(pending, path)
-		if not published then
-			os.remove(pending)
-			error(err, 0)
-		end
-		local signal
-		signal, err = rex.exec({ "kill", "-WINCH", tostring(shell.pid) })
-		if not signal or not signal.ok then
+		local file = assert(io.open(path .. ".tmp", "w"))
+		assert(file:write(args.dir))
+		assert(file:close())
+		assert(os.rename(path .. ".tmp", path))
+
+		local kill, kill_err = rex.exec({ "kill", "-WINCH", tostring(shell.pid) })
+		if not kill or not kill.ok then
+			-- Don't leave the path for a later shell that gets the same pid.
 			os.remove(path)
-			error(err or signal.stderr, 0)
+			error(kill and kill.stderr or kill_err, 0)
 		end
 		return { changed = true, block_id = under }
 	end,
