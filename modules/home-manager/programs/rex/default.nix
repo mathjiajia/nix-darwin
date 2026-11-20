@@ -22,6 +22,14 @@ let
 
   # Rex.app installs the CLI here and keeps it up to date.
   rex = "${config.home.homeDirectory}/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS/rex";
+
+  edit = lib.getExe (
+    pkgs.writeShellApplication {
+      name = "rex-edit";
+      runtimeInputs = [ pkgs.jq ];
+      text = builtins.readFile ./edit.sh;
+    }
+  );
 in
 {
   imports = [ inputs.rex.homeManagerModules.default ];
@@ -35,7 +43,9 @@ in
   xdg.configFile = {
     "rex/projects.lua".source = "${rexProjects}/projects.lua";
     "fish/completions/rex.fish".text = # fish
-      "rex completion fish | source";
+      ''
+        rex completion fish | source
+      '';
   }
   // lib.listToAttrs (map (f: lib.nameValuePair "rex/${f}" { source = ./. + "/${f}"; }) files);
 
@@ -54,6 +64,25 @@ in
         test -n "$dir"; and builtin cd -- $dir; and commandline -f repaint
       end
     '';
+
+  # Files that lazygit and Yazi open go to the Neovim in the same Rex tab,
+  # through edit.sh and float_edit in floats.lua. Without one, or outside Rex,
+  # Neovim starts in their terminal as before. Commit messages still open
+  # there, since Git waits for its editor to exit.
+  programs.lazygit.settings.os = {
+    edit = "${edit} -- {{filename}}";
+    editAtLine = "${edit} +{{line}} -- {{filename}}";
+    openDirInEditor = "${edit} -- {{dir}}";
+    editInTerminal = true;
+  };
+  programs.yazi.settings.opener.edit = [
+    {
+      run = "${edit} %s";
+      desc = "Neovim";
+      block = true;
+      for = "unix";
+    }
+  ];
 
   # Rex doesn't notice when a file that init.lua requires changes, so tell a
   # running server to read its config again.

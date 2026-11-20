@@ -57,12 +57,12 @@
 
 -- The third result, detail, is set only for "failed"; its wording can change between versions.
 ---@alias rex.ui.Reason
---- | "cancelled"   The person closed the prompt without answering.
---- | "timeout"     Nobody answered within the timeout.
---- | "no_client"   No Rex app was connected, or every app showing the prompt lost its connection.
+--- | "cancelled" The person closed the prompt without answering.
+--- | "timeout" Nobody answered within the timeout.
+--- | "no_client" No Rex app was connected, or every app showing the prompt lost its connection.
 --- | "unsupported" No connected app can show prompts.
---- | "busy"        Every app that could show the prompt is already showing another one.
---- | "failed"      Anything else, including a call from where prompts don't work.
+--- | "busy" Every app that could show the prompt is already showing another one.
+--- | "failed" Anything else, including a call from where prompts don't work.
 
 ---@class rex.ui.InputPrompt
 ---@field title        string Required; names the question.
@@ -233,37 +233,37 @@
 
 -- Event names remain open to plugins and future Rex versions.
 ---@alias rex.EventName string
---- |     "window_created"
---- |     "window_closed"
---- |     "window_label_changed"
---- |     "active_window_changed"
---- |     "block_created"
---- |     "block_closed"
---- |     "session_label_changed"
---- |     "session_view_changed"
---- |     "client_connected"
---- |     "client_disconnected"
---- |     "client_connection_changed"
---- |     "creator_changed"
---- |     "block_event"
---- |     "terminal.child_exited"
---- |     "terminal.pwd_changed"
---- |     "terminal.title_changed"
---- |     "terminal.bell"
---- |     "terminal.process_changed"
---- |     "terminal.desktop_notification"
---- |     "terminal.progress_report"
---- |     "terminal.clipboard_written"
---- |     "terminal.program_status_changed"
---- |     "terminal.program_status_removed"
---- |     "session_created"
---- |     "session_destroyed"
---- |     "client_joined"
---- |     "client_left"
---- |     "client_changed"
---- |     "keymap_changed"
---- |     "hosts_changed"
---- |     "tailscale_status_changed"
+--- |      "window_created"
+--- |      "window_closed"
+--- |      "window_label_changed"
+--- |      "active_window_changed"
+--- |      "block_created"
+--- |      "block_closed"
+--- |      "session_label_changed"
+--- |      "session_view_changed"
+--- |      "client_connected"
+--- |      "client_disconnected"
+--- |      "client_connection_changed"
+--- |      "creator_changed"
+--- |      "block_event"
+--- |      "terminal.child_exited"
+--- |      "terminal.pwd_changed"
+--- |      "terminal.title_changed"
+--- |      "terminal.bell"
+--- |      "terminal.process_changed"
+--- |      "terminal.desktop_notification"
+--- |      "terminal.progress_report"
+--- |      "terminal.clipboard_written"
+--- |      "terminal.program_status_changed"
+--- |      "terminal.program_status_removed"
+--- |      "session_created"
+--- |      "session_destroyed"
+--- |      "client_joined"
+--- |      "client_left"
+--- |      "client_changed"
+--- |      "keymap_changed"
+--- |      "hosts_changed"
+--- |      "tailscale_status_changed"
 
 ---@class rex.Event: { [string]: any }
 ---@field type          string Terminal events have type block_event.
@@ -464,7 +464,7 @@
 ---@field layer_id? string
 ---@field kind      string
 ---@field bounds    rex.Bounds
----@field state?    string        "minimized", or absent for a normal layer; draw unknown states as normal.
+---@field state?    string           "minimized", or absent for a normal layer; draw unknown states as normal.
 ---@field layout?   rex.ViewNode
 ---@field blocks?   rex.LayerBlock[]
 
@@ -641,8 +641,8 @@
 
 ---@class rex.session.OwnBlockArgs
 ---@field session_id? string
----@field block_ids?  string[]            Omit or leave empty for every block in the session.
----@field mode?       "take" | "request"  take, the default, claims at once; request claims only blocks without an owner.
+---@field block_ids?  string[]           Omit or leave empty for every block in the session.
+---@field mode?       "take" | "request" take, the default, claims at once; request claims only blocks without an owner.
 
 ---@class rex.session.DisownBlockArgs
 ---@field session_id? string
@@ -889,8 +889,8 @@
 ---@field signals   boolean Keys such as Ctrl+C send signals.
 
 ---@class rex.terminal.ModesResult
----@field screen string               "primary" or "alternate"; treat other values as primary.
----@field modes? rex.TerminalMode[]   ANSI modes first, then DEC private modes, each by number.
+---@field screen string             "primary" or "alternate"; treat other values as primary.
+---@field modes? rex.TerminalMode[] ANSI modes first, then DEC private modes, each by number.
 
 ---@class rex.TerminalMode
 ---@field name     string  Ghostty's name, such as bracketed_paste.

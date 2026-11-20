@@ -2,8 +2,11 @@
 local max_items = 2000
 local notice = { title = "Rex UI" }
 
+-- The CLI of the Rex that started this terminal, as floats.lua runs it.
+local REX = (vim.env.REX_BIN_DIR or "") ~= "" and vim.env.REX_BIN_DIR .. "/rex" or "rex"
+
 local function available()
-	return vim.env.REX_SERVER ~= nil and vim.fn.executable("rex") == 1
+	return vim.env.REX_SERVER ~= nil and vim.fn.executable(REX) == 1
 end
 
 local function title(prompt, default)
@@ -17,7 +20,7 @@ local function ask(action, prompt, on_answer, fallback)
 		return fallback()
 	end
 
-	local ok, err = pcall(vim.system, { "rex", "do", action, "--args", "-", "--json" }, {
+	local ok, err = pcall(vim.system, { REX, "do", action, "--args", "-", "--json" }, {
 		stdin = vim.json.encode(prompt),
 		text = true,
 	}, vim.schedule_wrap(function (result)

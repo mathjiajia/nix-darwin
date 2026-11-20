@@ -4,7 +4,7 @@ local TERMINAL = "com.superlogical.terminal"
 local HOME = os.getenv("HOME")
 
 -- The app names agents report in their status records.
-local AGENT_APPS = { ["claude-code"] = true, codex = true }
+local AGENT_APPS = { ["claude-code"] = true, codex = true, omp = true, opencode = true, pi = true }
 
 local function tilde(path)
 	if HOME and (path == HOME or path:sub(1, #HOME + 1) == HOME .. "/") then
@@ -94,9 +94,9 @@ local function mention(dir, file, first, last)
 	return "@" .. path
 end
 
---- The only agent, or the one the person picks. Returns nil and the reason
---- when they don't pick.
-local function choose(found)
+--- The preferred agent while it's among them, the only agent, or the one the
+--- person picks. Returns nil and the reason when they don't pick.
+local function choose(found, preferred)
 	if #found == 1 then return found[1] end
 	local items, by_id = {}, {}
 	for _, agent in ipairs(found) do
@@ -109,6 +109,7 @@ local function choose(found)
 		}
 		by_id[agent.block_id] = agent
 	end
+	if preferred and by_id[preferred] then return by_id[preferred] end
 	local id, why = rex.ui.pick { title = "Send to agent", placeholder = "Filter agents", items = items }
 	return by_id[id], why
 end
@@ -116,9 +117,10 @@ end
 rex.action {
 	name = "agent_send",
 	title = "Send to Agent…",
-	description = "Pastes text, or an @-mention of a file's lines, into an agent's prompt. Asks for the text when given neither.",
+	description = "Pastes text or a file @-mention into an agent's prompt and focuses its pane by default. Sends to pane `to` without asking while it runs one of the agents to choose from. Asks for text when given neither.",
 	category = "Agents",
 	args = {
+		to = "string?",
 		text = "string?",
 		file = "string?",
 		line_start = "integer?",
@@ -129,7 +131,7 @@ rex.action {
 	run = function (ctx, args)
 		local found = agents(ctx)
 		if #found == 0 then error("there is no agent in this session", 0) end
-		local agent, why = choose(found)
+		local agent, why = choose(found, args.to)
 		if not agent then return { sent = false, reason = why } end
 
 		local text, submit = args.text, args.submit
@@ -153,14 +155,14 @@ rex.action {
 		if text == "" then return { sent = false, reason = "empty" } end
 
 		assert(rex.call("block.event", {
-			session_id = ctx.session_id,
-			block_id = agent.block_id,
-			event = { type = "paste", payload = { text = text } },
-		}))
+				session_id = ctx.session_id,
+				block_id = agent.block_id,
+				event = { type = "paste", payload = { text = text } }
+			}))
 		if submit then
 			assert(rex.block.call(TERMINAL, "write", { block_id = agent.block_id, data = "\r" }))
 		end
-		if args.focus then
+		if args.focus ~= false then
 			assert(rex.session.focus_block { block_id = agent.block_id })
 		end
 		return { sent = true, block_id = agent.block_id }

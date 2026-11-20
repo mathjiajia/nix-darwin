@@ -18,13 +18,5 @@ require("projects")
 require("ui_bridge")
 
 -- >>> leaf >>>
-local home = os.getenv("HOME")
-local config = os.getenv("XDG_CONFIG_HOME")
-if not config or config == "" then config = home .. "/.config" end
-local leaf = config .. "/rex/plugins/leaf/init.lua"
-local plugin = io.open(leaf, "r")
-if plugin then
-	plugin:close()
-	dofile(leaf).setup({ bin = { home .. "/.local/bin/leaf" } })
-end
+dofile("/Users/jia/.config/rex/plugins/leaf/init.lua").setup({ bin = { "/Users/jia/.local/bin/leaf" } })
 -- <<< leaf <<<
