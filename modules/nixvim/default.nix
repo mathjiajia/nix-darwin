@@ -32,7 +32,7 @@
     ./format-and-lint.nix
     ./extra-plugins.nix
     ./treesitter.nix
-    ./rex-ui
+    # ./rex-ui
     ./ui.nix
   ];
 

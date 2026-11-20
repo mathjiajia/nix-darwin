@@ -153,13 +153,13 @@
     {
       mode = "n";
       key = "<leader>fb";
-      action.__raw = "function() require('rex-ui').buffers() end";
+      action.__raw = "function() Snacks.picker.buffers({ layout = 'select' }) end";
       options.desc = "[F]ind [B]uffers";
     }
     {
       mode = "n";
       key = "<leader>fm";
-      action.__raw = "function() require('rex-ui').pickers() end";
+      action.__raw = "function() Snacks.picker({ layout = 'select' }) end";
       options.desc = "[F]ind [M]eta";
     }
     {
@@ -210,13 +210,13 @@
     {
       mode = "n";
       key = "<leader>s/";
-      action.__raw = "function() require('rex-ui').search_history() end";
+      action.__raw = "function() Snacks.picker.search_history() end";
       options.desc = "Search History";
     }
     {
       mode = "n";
       key = "<leader>sc";
-      action.__raw = "function() require('rex-ui').command_history() end";
+      action.__raw = "function() Snacks.picker.command_history() end";
       options.desc = "[C]ommand History";
     }
     {

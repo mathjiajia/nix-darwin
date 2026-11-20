@@ -1,12 +1,18 @@
 -- Route Neovim prompts and previewless pickers through Rex's command palette.
-local max_items = 2000
+local max_items = 2000 -- the most Rex lists
 local notice = { title = "Rex UI" }
 
--- The CLI of the Rex that started this terminal, as floats.lua runs it.
-local REX = (vim.env.REX_BIN_DIR or "") ~= "" and vim.env.REX_BIN_DIR .. "/rex" or "rex"
+-- The pickers outside Rex, and what they fall back to when Rex can't ask.
+local snacks = {
+	buffers = function () return Snacks.picker.buffers({ layout = "select" }) end,
+	pickers = function () return Snacks.picker({ layout = "select" }) end,
+	command_history = function () return Snacks.picker.command_history() end,
+	search_history = function () return Snacks.picker.search_history() end
+}
 
-local function available()
-	return vim.env.REX_SERVER ~= nil and vim.fn.executable(REX) == 1
+-- Outside Rex, vim.ui.select and vim.ui.input stay as they are.
+if vim.env.REX_SERVER == nil or vim.fn.executable("rex") ~= 1 then
+	return snacks
 end
 
 local function title(prompt, default)
@@ -20,95 +26,89 @@ local function ask(action, prompt, on_answer, fallback)
 		return fallback()
 	end
 
-	local ok, err = pcall(vim.system, { REX, "do", action, "--args", "-", "--json" }, {
-		stdin = vim.json.encode(prompt),
-		text = true,
-	}, vim.schedule_wrap(function (result)
-		if result.code ~= 0 then
-			return failed(result.stderr ~= "" and result.stderr or result.stdout)
-		end
+	local function unanswered()
+		return on_answer(nil)
+	end
+	-- What follows each reason Rex gives for returning no value, called with
+	-- Rex's detail. Any other reason, such as no_client, falls back quietly.
+	local on_reason = {
+		cancelled = unanswered,
+		timeout = unanswered,
+		busy = function ()
+			vim.notify("Rex is already showing a prompt", vim.log.levels.WARN, notice)
+			return on_answer(nil)
+		end,
+		failed = failed
+	}
+
+	local function on_exit(result)
 		local decoded, response = pcall(vim.json.decode, result.stdout)
-		if not decoded or type(response) ~= "table" then
-			return failed(result.stdout)
+		if result.code ~= 0 or not decoded or type(response) ~= "table" then
+			return failed(result.stderr ~= "" and result.stderr or result.stdout)
 		end
 		if type(response.value) == "string" then
 			return on_answer(response.value)
 		end
-		local reason = response.reason
-		if reason == "cancelled" or reason == "timeout" then
-			return on_answer(nil)
-		end
-		if reason == "busy" then
-			vim.notify("Rex is already showing a prompt", vim.log.levels.WARN, notice)
-			return on_answer(nil)
-		end
-		if reason == "failed" then
-			return failed(tostring(response.detail))
-		end
-		return fallback()
-	end))
+		return (on_reason[response.reason] or fallback)(response.detail)
+	end
+
+	local ok, err = pcall(vim.system, { "rex", "do", action, "--args", "-", "--json" }, {
+		stdin = vim.json.encode(prompt),
+		text = true
+	}, vim.schedule_wrap(on_exit)
+	)
 	if not ok then
 		return failed(err)
 	end
 end
 
-local function install()
-	local select, input = vim.ui.select, vim.ui.input
+-- Snacks is configured in default.nix to set neither vim.ui handler, so these
+-- two stay in place, and Neovim's own are what they fall back to.
+local select, input = vim.ui.select, vim.ui.input
 
-	vim.ui.select = function (items, opts, on_choice)
-		opts = opts or {}
-		if #items == 0 or #items > max_items or opts.preview_item or not available() then
-			return select(items, opts, on_choice)
-		end
-		local format = opts.format_item or tostring
-		local list = {}
-		for i, item in ipairs(items) do
-			local text = format(item)
-			if type(text) == "string" then
-				text = text:match("^[^\n]*")
-			else
-				text = tostring(item)
-			end
-			list[i] = { id = tostring(i), title = text ~= "" and text or nil }
-		end
-		ask("ui_pick", { title = title(opts.prompt, "Select"), items = list }, function (id)
-			local index = tonumber(id)
-			on_choice(index and items[index], index)
-		end, function ()
-			select(items, opts, on_choice)
-		end)
+vim.ui.select = function (items, opts, on_choice)
+	opts = opts or {}
+	local function fallback()
+		return select(items, opts, on_choice)
 	end
-
-	vim.ui.input = function (opts, on_confirm)
-		opts = opts or {}
-		if opts.completion or opts.highlight or not available() then
-			return input(opts, on_confirm)
-		end
-		ask("ui_input", { title = title(opts.prompt, "Input"), value = opts.default }, on_confirm, function ()
-			input(opts, on_confirm)
-		end)
+	if #items > max_items then
+		return fallback()
 	end
+	local format = opts.format_item or tostring
+	local list = {}
+	for i, item in ipairs(items) do
+		local text = format(item)
+		if type(text) == "string" then
+			text = text:match("^[^\n]*")
+		else
+			text = tostring(item)
+		end
+		list[i] = { id = tostring(i), title = text ~= "" and text or nil }
+	end
+	ask("ui_pick", { title = title(opts.prompt, "Select"), items = list }, function (id)
+		local index = tonumber(id)
+		on_choice(index and items[index], index)
+	end, fallback
+	)
 end
 
--- Snacks installs vim.ui handlers at UIEnter. Wrap them after it runs.
-if vim.v.vim_did_enter == 1 then
-	install()
-else
-	vim.api.nvim_create_autocmd("UIEnter", { once = true, callback = function () vim.schedule(install) end })
+vim.ui.input = function (opts, on_confirm)
+	opts = opts or {}
+	local function fallback()
+		return input(opts, on_confirm)
+	end
+	-- Rex's field has no completion.
+	if opts.completion then
+		return fallback()
+	end
+	ask("ui_input", { title = title(opts.prompt, "Input"), value = opts.default }, on_confirm, fallback)
 end
 
 local function buffers()
 	local window = vim.api.nvim_get_current_win()
-	local function fallback()
-		if not vim.api.nvim_win_is_valid(window) then return end
-		vim.api.nvim_set_current_win(window)
-		return Snacks.picker.buffers({ layout = "select" })
-	end
-	if not available() then return fallback() end
 	local infos = vim.tbl_filter(function (info)
 		return vim.bo[info.bufnr].buftype ~= "nofile"
 	end, vim.fn.getbufinfo({ buflisted = 1 }))
-	if #infos > max_items then return fallback() end
 	table.sort(infos, function (a, b) return a.lastused > b.lastused end)
 
 	local current, alternate = vim.api.nvim_get_current_buf(), vim.fn.bufnr("#")
@@ -127,7 +127,7 @@ local function buffers()
 			id = tostring(buf),
 			title = info.name ~= "" and vim.fn.fnamemodify(info.name, ":~:.") or "[Scratch]",
 			icon = vim.bo[buf].buftype == "terminal" and "terminal" or "document",
-			detail = flags ~= "" and flags or nil,
+			detail = flags ~= "" and flags or nil
 		}
 	end
 	ask("ui_pick", { title = "Buffers", placeholder = "Filter buffers", items = items }, function (id)
@@ -135,30 +135,21 @@ local function buffers()
 		if buf and vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_win_is_valid(window) then
 			vim.api.nvim_win_set_buf(window, buf)
 		end
-	end, fallback)
+	end, snacks.buffers
+	)
 end
 
 local function pickers()
-	local function fallback()
-		return Snacks.picker({ layout = "select" })
-	end
-	if not available() then return fallback() end
-	local ok, config = pcall(require, "snacks.picker.config")
-	if not ok then return fallback() end
-	local names = vim.tbl_keys(config.get().sources)
-	if #names > max_items then return fallback() end
+	local names = vim.tbl_keys(require("snacks.picker.config").get().sources)
 	table.sort(names)
 	ask("ui_pick", { title = "Snacks Pickers", placeholder = "Filter pickers", items = names }, function (name)
 		if name then Snacks.picker(name) end
-	end, fallback)
+	end, snacks.pickers
+	)
 end
 
 local function history(name, kind, key, label)
-	local function fallback()
-		return Snacks.picker[name]()
-	end
 	return function ()
-		if not available() then return fallback() end
 		local items = {}
 		-- Relative indices stop at the oldest retained entry even after the
 		-- history numbers have grown beyond the ring size.
@@ -176,7 +167,8 @@ local function history(name, kind, key, label)
 				vim.api.nvim_input(key)
 				vim.schedule(function () vim.fn.setcmdline(item.title) end)
 			end
-		end, fallback)
+		end, snacks[name]
+		)
 	end
 end
 
@@ -184,5 +176,5 @@ return {
 	buffers = buffers,
 	pickers = pickers,
 	command_history = history("command_history", "cmd", ":", "Command History"),
-	search_history = history("search_history", "search", "/", "Search History"),
+	search_history = history("search_history", "search", "/", "Search History")
 }

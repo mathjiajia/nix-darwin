@@ -1,3 +1,5 @@
+-- Stored, not loaded, with its Neovim side in modules/nixvim/rex-ui.
+--
 -- Server actions let rex do show Neovim's prompts. Call rex.ui directly
 -- from run so Rex can suspend the action while the palette is open.
 local has_ui, ui = pcall(function () return rex.ui end)

@@ -1,10 +1,63 @@
--- Paste text or a file reference into the foreground coding agent.
+-- agent_send: Neovim pastes text or a file reference into a coding agent's prompt.
 
 local TERMINAL = "com.superlogical.terminal"
 local HOME = os.getenv("HOME")
-
--- The app names agents report in their status records.
 local AGENT_APPS = { ["claude-code"] = true, codex = true, omp = true, opencode = true, pi = true }
+
+local function terminal(block_id, method)
+	return rex.block.call(TERMINAL, method, { block_id = block_id }) or {}
+end
+
+local function same_process(a, b)
+	return a and b and a.pid == b.pid and a.name == b.name
+end
+
+local function foreground_agent(block_id)
+	local records = terminal(block_id, "program_status").records or {}
+	if #records == 0 then return end
+	local foreground = terminal(block_id, "process").foreground
+	for _, record in ipairs(records) do
+		if AGENT_APPS[record.effective_app or record.app] and same_process(record.owner, foreground) then
+			return record, foreground
+		end
+	end
+end
+
+local function agents_among(blocks)
+	local agents = {}
+	for _, block in ipairs(blocks) do
+		local record, process = foreground_agent(block.block_id)
+		if record then
+			agents[#agents + 1] = { block_id = block.block_id, label = block.label, record = record, process = process }
+		end
+	end
+	return agents
+end
+
+local function agents_near(block_id)
+	local blocks = assert(rex.session.list_blocks {}).blocks or {}
+	local tab
+	for _, block in ipairs(blocks) do
+		if block.block_id == block_id then tab = block.window_id end
+	end
+	local same_tab, other_tabs = {}, {}
+	for _, block in ipairs(blocks) do
+		if block.creator_name == TERMINAL and block.window_id and block.block_id ~= block_id then
+			table.insert(block.window_id == tab and same_tab or other_tabs, block)
+		end
+	end
+	local agents = agents_among(same_tab)
+	return #agents > 0 and agents or agents_among(other_tabs)
+end
+
+local function still_running(agent)
+	local _, process = foreground_agent(agent.block_id)
+	return same_process(process, agent.process) and process
+end
+
+local function name(agent)
+	return agent.record.title or agent.record.effective_app or agent.record.app or agent.label or "agent"
+end
 
 local function tilde(path)
 	if HOME and (path == HOME or path:sub(1, #HOME + 1) == HOME .. "/") then
@@ -13,93 +66,10 @@ local function tilde(path)
 	return path
 end
 
---- The status record of the agent in a pane's foreground, and that process, or
---- nil when the foreground program isn't a known agent. A record whose owner
---- has exited, or sits behind a shell or another program, doesn't count.
-local function agent_in(block_id)
-	local status = rex.block.call(TERMINAL, "program_status", { block_id = block_id })
-	local records = status and status.records or {}
-	if #records == 0 then return nil end
-	local process = rex.block.call(TERMINAL, "process", { block_id = block_id })
-	local foreground = process and process.foreground
-	if not foreground then return nil end
-
-	for _, record in ipairs(records) do
-		local owner = record.owner
-		local is_agent = AGENT_APPS[record.effective_app or record.app]
-		-- Matching the name as well as the pid rules out a reused pid.
-		if is_agent and owner and owner.pid == foreground.pid and owner.name == foreground.name then
-			return record, foreground
-		end
-	end
-end
-
---- The agent panes to choose from: those in the tab of the pane the action
---- ran on, or else those in the whole session when that tab has none. The
---- pane itself counts, listed first, when a person pressed a key or used the
---- palette; a program running `rex do agent_send` never sends to its own pane.
-local function agents(ctx)
-	local skip_self = ctx.origin == "cli" or ctx.origin == "api"
-	local tab
-	local blocks = assert(rex.session.list_blocks {}).blocks or {}
-	for _, block in ipairs(blocks) do
-		if block.block_id == ctx.block_id then
-			tab = block.window_id
-			break
-		end
-	end
-	local here, elsewhere = {}, {}
-	for _, block in ipairs(blocks) do
-		local is_self = block.block_id == ctx.block_id
-		if block.creator_name == TERMINAL and block.window_id then
-			if is_self then
-				if not skip_self then table.insert(here, 1, block) end
-			elseif block.window_id == tab then
-				here[#here + 1] = block
-			else
-				elsewhere[#elsewhere + 1] = block
-			end
-		end
-	end
-	local found = {}
-	for _, group in ipairs({ here, elsewhere }) do
-		for _, block in ipairs(group) do
-			local record, process = agent_in(block.block_id)
-			if record then
-				found[#found + 1] = { block_id = block.block_id, label = block.label, record = record, process = process }
-			end
-		end
-		if #found > 0 then break end
-	end
-	return found
-end
-
-local function name(agent)
-	return agent.record.title or agent.record.effective_app or agent.record.app or agent.label or "agent"
-end
-
---- An @-mention of file and its lines, such as @update.py#L25-27, quoted when
---- the path has spaces, as Claude Code parses it.
-local function mention(dir, file, first, last)
-	local path = file
-	if dir and dir ~= "" then
-		local prefix = dir:gsub("/+$", "") .. "/"
-		if file:sub(1, #prefix) == prefix then path = file:sub(#prefix + 1) end
-	end
-	if first then
-		last = last or first
-		path = path .. "#L" .. first .. (last ~= first and "-" .. last or "")
-	end
-	if path:find("%s") then path = '"' .. path .. '"' end
-	return "@" .. path
-end
-
---- The preferred agent while it's among them, the only agent, or the one the
---- person picks. Returns nil and the reason when they don't pick.
-local function choose(found, preferred)
-	if #found == 1 then return found[1] end
+local function pick(agents)
 	local items, by_id = {}, {}
-	for _, agent in ipairs(found) do
+	for _, agent in ipairs(agents) do
+		by_id[agent.block_id] = agent
 		items[#items + 1] = {
 			id = agent.block_id,
 			title = name(agent),
@@ -107,64 +77,73 @@ local function choose(found, preferred)
 			detail = agent.record.state,
 			icon = "terminal"
 		}
-		by_id[agent.block_id] = agent
 	end
-	if preferred and by_id[preferred] then return by_id[preferred] end
 	local id, why = rex.ui.pick { title = "Send to agent", placeholder = "Filter agents", items = items }
 	return by_id[id], why
+end
+
+local function choose(agents, preferred)
+	if #agents == 1 then return agents[1] end
+	for _, agent in ipairs(agents) do
+		if agent.block_id == preferred then return agent end
+	end
+	local agent, why = pick(agents)
+	return agent, why, true
+end
+
+local function relative(file, dir)
+	if not dir or dir == "" then return file end
+	local prefix = dir:gsub("/+$", "") .. "/"
+	return file:sub(1, #prefix) == prefix and file:sub(#prefix + 1) or file
+end
+
+local function line_range(first, last)
+	if not first then return "" end
+	return "#L" .. first .. (last and last ~= first and "-" .. last or "")
+end
+
+local function mention(file, dir, first, last)
+	local reference = relative(file, dir) .. line_range(first, last)
+	return "@" .. (reference:find("%s") and '"' .. reference .. '"' or reference)
+end
+
+local function paste(session_id, block_id, text)
+	assert(rex.call("block.event", {
+			session_id = session_id,
+			block_id = block_id,
+			event = { type = "paste", payload = { text = text } }
+		}))
 end
 
 rex.action {
 	name = "agent_send",
 	title = "Send to Agent…",
-	description = "Pastes text or a file @-mention into an agent's prompt and focuses its pane by default. Sends to pane `to` without asking while it runs one of the agents to choose from. Asks for text when given neither.",
+	description = "Pastes text or a file @-mention into an agent's prompt and focuses its pane",
 	category = "Agents",
 	args = {
 		to = "string?",
 		text = "string?",
 		file = "string?",
 		line_start = "integer?",
-		line_end = "integer?",
-		submit = "boolean?",
-		focus = "boolean?"
+		line_end = "integer?"
 	},
 	run = function (ctx, args)
-		local found = agents(ctx)
-		if #found == 0 then error("there is no agent in this session", 0) end
-		local agent, why = choose(found, args.to)
+		local text = args.text or ""
+		if text == "" and not args.file then return { sent = false, reason = "empty" } end
+
+		local agents = agents_near(ctx.block_id)
+		if #agents == 0 then error("there is no agent in this session", 0) end
+		local agent, why, picked = choose(agents, args.to)
 		if not agent then return { sent = false, reason = why } end
 
-		local text, submit = args.text, args.submit
-		if text == nil and not args.file then
-			text, why = rex.ui.input { title = "Send to " .. name(agent), confirm = "Send" }
-			if text == nil then return { sent = false, reason = why } end
-			if submit == nil then submit = true end
-		end
-
-		-- Answering the palette can take a while; check that the agent is still
-		-- what the pane runs, so the paste can't land in a shell instead.
-		local _, process = agent_in(agent.block_id)
-		if not process or process.pid ~= agent.process.pid or process.name ~= agent.process.name then
-			error(name(agent) .. " is no longer running in that pane", 0)
-		end
+		local process = still_running(agent) or error(name(agent) .. " is no longer running in that pane", 0)
 		if args.file then
-			-- Spaces around it, so it isn't joined to text already in the prompt.
-			local ref = mention(process.cwd, args.file, args.line_start, args.line_end)
-			text = " " .. ref .. " " .. (text or "")
+			text = mention(args.file, process.cwd, args.line_start, args.line_end) .. " " .. text
 		end
-		if text == "" then return { sent = false, reason = "empty" } end
+		paste(ctx.session_id, agent.block_id, text)
 
-		assert(rex.call("block.event", {
-				session_id = ctx.session_id,
-				block_id = agent.block_id,
-				event = { type = "paste", payload = { text = text } }
-			}))
-		if submit then
-			assert(rex.block.call(TERMINAL, "write", { block_id = agent.block_id, data = "\r" }))
-		end
-		if args.focus ~= false then
-			assert(rex.session.focus_block { block_id = agent.block_id })
-		end
-		return { sent = true, block_id = agent.block_id }
+		-- The closing picker returns focus to the caller, who then focuses the agent.
+		if not picked then assert(rex.session.focus_block { block_id = agent.block_id }) end
+		return { sent = true, block_id = agent.block_id, focus_deferred = picked }
 	end
 }

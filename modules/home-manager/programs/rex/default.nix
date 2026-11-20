@@ -9,7 +9,7 @@ let
   files = [
     "floats.lua"
     "agents.lua"
-    "ui_bridge.lua"
+    # "ui_bridge.lua"
     "types.lua"
     ".emmyrc.json"
   ];

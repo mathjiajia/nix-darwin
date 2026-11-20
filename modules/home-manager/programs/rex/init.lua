@@ -4,18 +4,16 @@ rex.bind("cmd+`", "client.visibility.toggle")
 
 -- Floating terminals: a toggle for lazygit, yazi and btop.
 require("floats")
-rex.bind("alt+cmd+g", "toggle_lazygit")
-rex.bind("alt+cmd+y", "toggle_yazi")
-rex.bind("alt+cmd+b", "toggle_btop")
+rex.bind("ctrl+cmd+g", "toggle_lazygit")
+rex.bind("ctrl+cmd+y", "toggle_yazi")
+rex.bind("ctrl+cmd+b", "toggle_btop")
 
--- agent_send: paste text into the agent in another pane.
+-- agent_send: Neovim pastes text into the agent in another pane.
 require("agents")
-rex.bind("alt+cmd+a", "agent_send")
 
 require("projects")
 
--- ui_pick and ui_input: let Neovim ask questions in the palette.
-require("ui_bridge")
+-- require("ui_bridge") -- stored with Neovim's rex-ui
 
 -- >>> leaf >>>
 dofile("/Users/jia/.config/rex/plugins/leaf/init.lua").setup({ bin = { "/Users/jia/.local/bin/leaf" } })

@@ -239,10 +239,10 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1795116584,
-        "narHash": "sha256-9dchpzOQUrTNiEPBnLzPq0DW2JJrF0ZXKghVgpeYUa4=",
+        "lastModified": 1795185608,
+        "narHash": "sha256-OFLLkgLobxm6EOnOdtn3eADsPT+KnYlis1WbeNCMvU0=",
         "type": "tarball",
-        "url": "https://pkgs.superlogical.com/rex/nix/snapshot/0.0.1795116584-ga086db.tar.gz"
+        "url": "https://pkgs.superlogical.com/rex/nix/snapshot/0.0.1795185608-gb04a65.tar.gz"
       },
       "original": {
         "type": "tarball",
