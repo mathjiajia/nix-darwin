@@ -36,7 +36,7 @@ in
           key = "C";
           context = "files";
           description = "Generate commit message with Pi";
-          command = "${commitWithPi}";
+          command = toString commitWithPi;
           output = "terminal";
         }
       ];

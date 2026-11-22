@@ -2,7 +2,7 @@
   lsp.servers.texlab = {
     enable = true;
     config = {
-      cmd = [ "${lib.getExe pkgs.texlab}" ];
+      cmd = [ (lib.getExe pkgs.texlab) ];
       filetypes = [
         "tex"
         "plaintex"
@@ -198,16 +198,16 @@
         		vim.api.nvim_buf_create_user_command(bufnr, "Lsp" .. cmd.name, cmd.fn, { desc = cmd.desc })
         	end
 
-        	for _, map in ipairs({
-        		{ lhs = "<localleader>ll", fn = buf_build, desc = "Build the current buffer" },
-        		{ lhs = "<localleader>lf", fn = buf_search, desc = "Forward search from current position" },
-        		{ lhs = "<localleader>lc", fn = buf_cancel_build, desc = "Cancel the current build" },
-        		{ lhs = "cse", fn = buf_change_env, desc = "Change the current environment" },
-        		{ lhs = ";]", fn = close_env, desc = "Close the current environment", mode = "i" },
-        		{ lhs = "tss", fn = toggle_star, desc = "Toggle starred environment" }
-        	}) do
-        		vim.keymap.set(map.mode or "n", map.lhs, map.fn, { buffer = bufnr, desc = map.desc })
-        	end
+          for _, map in ipairs({
+            { lhs = "<leader>tb", fn = buf_build, desc = "[B]uild [T]eX document" },
+            { lhs = "<leader>tt", fn = buf_search, desc = "Show current [T]eX line in PDF" },
+            { lhs = "<leader>tc", fn = buf_cancel_build, desc = "[C]ancel [T]eX build" },
+            { lhs = "cse", fn = buf_change_env, desc = "[C]hange [s]urrounding [e]nvironment" },
+            { lhs = ";]", fn = close_env, desc = "Close current TeX environment", mode = "i" },
+            { lhs = "tss", fn = toggle_star, desc = "[T]oggle [s]tar on [s]urrounding environment" }
+          }) do
+            vim.keymap.set(map.mode or "n", map.lhs, map.fn, { buffer = bufnr, desc = map.desc })
+          end
         end
       '';
     };

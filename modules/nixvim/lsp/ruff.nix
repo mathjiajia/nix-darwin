@@ -3,7 +3,7 @@
     enable = true;
     config = {
       cmd = [
-        "${lib.getExe pkgs.ruff}"
+        (lib.getExe pkgs.ruff)
         "server"
       ];
       filetypes = [ "python" ];

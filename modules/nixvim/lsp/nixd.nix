@@ -2,7 +2,7 @@
   lsp.servers.nixd = {
     enable = true;
     config = {
-      cmd = [ "${lib.getExe pkgs.nixd}" ];
+      cmd = [ (lib.getExe pkgs.nixd) ];
       filetypes = [ "nix" ];
       root_markers = [
         "flake.nix"

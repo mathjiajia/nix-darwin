@@ -3,7 +3,7 @@
     enable = true;
     config = {
       cmd = [
-        "${lib.getExe pkgs.matlab-language-server}"
+        (lib.getExe pkgs.matlab-language-server)
         "--stdio"
       ];
       filetypes = [ "matlab" ];

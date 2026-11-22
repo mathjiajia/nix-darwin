@@ -125,8 +125,8 @@ function M.send_diagnostics()
 	M.send({ file = path, line_start = row, text = text })
 end
 
-vim.keymap.set({ "n", "x" }, "<leader>aa", M.send_lines, { desc = "[A]gent: Send Line or Selection" })
-vim.keymap.set({ "n", "x" }, "<leader>as", M.pick_agent_and_send_lines, { desc = "[A]gent: [S]elect Agent and Send" })
-vim.keymap.set("n", "<leader>ad", M.send_diagnostics, { desc = "[A]gent: Send Line [D]iagnostics" })
+vim.keymap.set({ "n", "x" }, "<leader>aa", M.send_lines, { desc = "Send line or selection to [a]gent" })
+vim.keymap.set({ "n", "x" }, "<leader>as", M.pick_agent_and_send_lines, { desc = "[S]elect [a]gent and send line or selection" })
+vim.keymap.set("n", "<leader>ad", M.send_diagnostics, { desc = "Send line [d]iagnostics to [a]gent" })
 
 return M

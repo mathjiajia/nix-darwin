@@ -14,21 +14,21 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>or";
+      key = "<leader>rt";
       action = "<Cmd>OverseerRun<CR>";
-      options.desc = "[O]verseer [R]un";
+      options.desc = "[R]un a [t]ask";
     }
     {
       mode = "n";
-      key = "<leader>os";
+      key = "<leader>rs";
       action = "<Cmd>OverseerShell<CR>";
-      options.desc = "[O]verseer [S]hell";
+      options.desc = "[R]un a [s]hell command";
     }
     {
       mode = "n";
-      key = "<leader>oo";
+      key = "<leader>rl";
       action = "<Cmd>OverseerToggle!<CR>";
-      options.desc = "[O]verseer [O]pen";
+      options.desc = "Toggle task [l]ist";
     }
   ];
 }

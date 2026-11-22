@@ -3,7 +3,7 @@
     enable = true;
     config = {
       cmd = [
-        "${lib.getExe pkgs.pyrefly}"
+        (lib.getExe pkgs.pyrefly)
         "lsp"
       ];
       filetypes = [ "python" ];

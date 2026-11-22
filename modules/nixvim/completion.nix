@@ -80,7 +80,7 @@
       key = "<C-;>";
       action.__raw = "function() if require('luasnip').choice_active() then require('luasnip').change_choice(1) end end";
       options.silent = true;
-      options.desc = "Change Choice";
+      options.desc = "Next snippet choice";
     }
   ];
 }

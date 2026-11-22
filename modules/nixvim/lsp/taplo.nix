@@ -3,7 +3,7 @@
     enable = true;
     config = {
       cmd = [
-        "${lib.getExe pkgs.taplo}"
+        (lib.getExe pkgs.taplo)
         "lsp"
         "stdio"
       ];

@@ -100,7 +100,7 @@
       mode = "n";
       key = "<leader>go";
       action.__raw = "function() MiniDiff.toggle_overlay() end";
-      options.desc = "Hunk Diff [O]verlay";
+      options.desc = "Toggle [G]it diff [o]verlay";
     }
   ];
 }

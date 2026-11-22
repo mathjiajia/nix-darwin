@@ -40,19 +40,19 @@
         mode = "n";
         key = "gd";
         lspBufAction = "definition";
-        options.desc = "[G]o [D]efinition";
+        options.desc = "[G]o to [d]efinition";
       }
       {
         mode = "n";
         key = "gl";
         lspBufAction = "declaration";
-        options.desc = "[G]o Dec[l]aration";
+        options.desc = "[G]o to dec[l]aration";
       }
       {
         mode = "n";
         key = "<C-k>";
         lspBufAction = "signature_help";
-        options.desc = "Signature Help";
+        options.desc = "Show signature help";
       }
       {
         mode = "n";
@@ -63,18 +63,18 @@
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
           end
         '';
-        options.desc = "Toggle [I]nlay Hints";
+        options.desc = "Toggle [i]nlay hints";
       }
       {
         mode = "n";
-        key = "<leader>co";
+        key = "<leader>cl";
         action.__raw = ''
           function()
             local filter = { bufnr = 0 }
             vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled(filter), filter)
           end
         '';
-        options.desc = "Toggle Code[L]ens";
+        options.desc = "Toggle [c]ode [l]enses";
       }
     ];
     onAttach =

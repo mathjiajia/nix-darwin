@@ -76,38 +76,44 @@
   keymaps = [
     {
       mode = "n";
-      key = "<F5>";
+      key = "<leader>dc";
       action.__raw = "function() dap.continue() end";
-      options.desc = " Start/Continue";
+      options.desc = "Start or [c]ontinue [d]ebugging";
     }
     {
       mode = "n";
-      key = "<F10>";
+      key = "<leader>dn";
       action.__raw = "function() dap.step_over() end";
-      options.desc = " Step over";
+      options.desc = "Step over to the [n]ext line";
     }
     {
       mode = "n";
-      key = "<F11>";
+      key = "<leader>di";
       action.__raw = "function() dap.step_into() end";
-      options.desc = " Step into";
+      options.desc = "Step [i]nto";
     }
     {
       mode = "n";
-      key = "<F12>";
+      key = "<leader>do";
       action.__raw = "function() dap.step_out() end";
-      options.desc = " Step out";
+      options.desc = "Step [o]ut";
+    }
+    {
+      mode = "n";
+      key = "<leader>dt";
+      action.__raw = "function() dap.terminate() end";
+      options.desc = "[T]erminate [d]ebug session";
     }
 
     {
       mode = "n";
       key = "<leader>db";
       action.__raw = "function() dap.toggle_breakpoint() end";
-      options.desc = "[D]ap Toggle [B]reakpoint";
+      options.desc = "Toggle [b]reakpoint";
     }
     {
       mode = "n";
-      key = "<leader>dc";
+      key = "<leader>dB";
       action.__raw = ''
         function()
         	vim.ui.input({ prompt = "Breakpoint condition: " }, function(input)
@@ -118,44 +124,44 @@
         	end)
         end
       '';
-      options.desc = "[D]AP [C]onditional Breakpoint";
+      options.desc = "Set conditional [B]reakpoint";
     }
     {
       mode = "n";
       key = "<leader>dl";
       action.__raw = "function() dap.run_last() end";
-      options.desc = "[D]ap Run [L]ast";
+      options.desc = "Run [l]ast [d]ebug configuration";
     }
     {
       mode = "n";
       key = "<leader>dr";
       action.__raw = "function() dap.repl.toggle() end";
-      options.desc = "[D]ap Toggle [R]EPL";
+      options.desc = "Toggle [d]ebug [R]EPL";
     }
     {
       mode = [
         "n"
-        "v"
+        "x"
       ];
       key = "<leader>dh";
       action.__raw = "function() require('dap.ui.widgets').hover() end";
-      options.desc = "[D]ap Widgets [H]over";
+      options.desc = "Inspect value in a [h]over window";
     }
 
     {
       mode = "n";
       key = "<leader>du";
       action.__raw = "function() dapui.toggle({ reset = true }) end";
-      options.desc = "[D]ap Toggle [U]I";
+      options.desc = "Toggle [d]ebugger [U]I";
     }
     {
       mode = [
         "n"
-        "v"
+        "x"
       ];
       key = "<leader>de";
       action.__raw = "function() dapui.eval() end";
-      options.desc = "[D]ap UI [E]val";
+      options.desc = "[E]valuate expression";
     }
   ];
 }

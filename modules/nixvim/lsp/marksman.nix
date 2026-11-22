@@ -3,7 +3,7 @@
     enable = true;
     config = {
       cmd = [
-        "${lib.getExe pkgs.marksman}"
+        (lib.getExe pkgs.marksman)
         "server"
       ];
       filetypes = [ "markdown" ];

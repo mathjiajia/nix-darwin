@@ -18,12 +18,12 @@
     {
       mode = [
         "n"
-        "v"
+        "x"
       ];
       key = "<leader>rr";
       action = "<Plug>SnipRun";
       options.silent = true;
-      options.desc = "[R]un Snip";
+      options.desc = "[R]un line or selection";
     }
     {
       mode = "n";
@@ -36,13 +36,13 @@
         end
       '';
       options.silent = true;
-      options.desc = "[R]un [F]ile";
+      options.desc = "[R]un current [f]ile";
     }
     {
       mode = "n";
       key = "<leader>rm";
       action = "<Plug>SnipReplMemoryClean";
-      options.desc = "[R]EPL [M]emory Clean";
+      options.desc = "Clear snippet REPL [m]emory";
     }
   ];
 }

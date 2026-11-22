@@ -17,6 +17,7 @@
     "8bitdo-firmware-updater"
     "display-pilot"
     "hhkb"
+    "open-screnn-sharing"
     "sf-symbols"
 
     # Productivity

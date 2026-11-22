@@ -8,7 +8,7 @@
   lsp.servers.emmylua_ls = {
     enable = true;
     config = {
-      cmd = [ "${lib.getExe pkgs.emmylua-ls}" ];
+      cmd = [ (lib.getExe pkgs.emmylua-ls) ];
       filetypes = [ "lua" ];
       root_markers = [
         [

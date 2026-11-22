@@ -76,7 +76,7 @@
 
     # Decrease mapped sequence wait time
     # timeout = false;
-    timeoutlen = 300;
+    # timeoutlen = 300;
 
     # Configure how new splits should be opened
     splitbelow = true;

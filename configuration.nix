@@ -33,7 +33,7 @@ in
     useBabelfish = true;
   };
 
-  users.users."${user}" = {
+  users.users.${user} = {
     home = "/Users/${user}";
     shell = pkgs.fish;
   };

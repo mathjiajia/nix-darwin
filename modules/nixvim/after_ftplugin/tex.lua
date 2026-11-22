@@ -7,7 +7,7 @@ vim.schedule(function ()
 	end
 end)
 
-vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Correct Last Spelling" })
+vim.keymap.set("i", "<C-l>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { buffer = 0, desc = "Correct previous misspelling" })
 
 local config = require("nvim-surround.config")
 require("nvim-surround").buffer_setup({
