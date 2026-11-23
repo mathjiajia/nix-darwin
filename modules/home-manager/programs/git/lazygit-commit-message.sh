@@ -1,6 +1,7 @@
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 
+provider=${1:-anthropic}
 max_diff_chars=12000
 
 if git diff --cached --quiet; then
@@ -32,13 +33,58 @@ prompt='Write a Git commit message for the staged changes.
 
 Output only the message as plain text, without line numbers, hashes, or commentary.'
 
+input="$summary"$'\n\n'"$diff"
+
+case $provider in
+anthropic)
+	key=$(security find-generic-password -s ANTHROPIC_API_KEY -a ANTHROPIC_API_KEY -w)
+	url=https://api.anthropic.com/v1/messages
+	headers="x-api-key: $key"$'\n''anthropic-version: 2026-10-21'
+	body=$(jq -n --arg prompt "$prompt" --arg input "$input" '{
+		model: "claude-haiku-5-5",
+		max_tokens: 1024,
+		output_config: {effort: "low"},
+		system: $prompt,
+		messages: [{role: "user", content: $input}]
+	}')
+	text='.content[] | select(.type == "text") | .text'
+	;;
+openai)
+	key=$(security find-generic-password -s OPENAI_API_KEY -a OPENAI_API_KEY -w)
+	url=https://api.openai.com/v1/responses
+	headers="authorization: Bearer $key"
+	body=$(jq -n --arg prompt "$prompt" --arg input "$input" '{
+		model: "gpt-5.6-luna",
+		reasoning: {effort: "low"},
+		instructions: $prompt,
+		input: $input
+	}')
+	text='.output[] | select(.type == "message") | .content[] | select(.type == "output_text") | .text'
+	;;
+*)
+	echo "Unknown provider: $provider (expected anthropic or openai)." >&2
+	exit 1
+	;;
+esac
+
+# Headers go through a file descriptor so the key stays out of the process list.
+if ! response=$(
+	curl -sS --fail-with-body --max-time 30 "$url" \
+		-H @<(printf '%s\n' "$headers") \
+		-H 'content-type: application/json' \
+		--data-binary @- <<<"$body"
+); then
+	echo "$response" >&2
+	exit 1
+fi
+
 # Strip Markdown fences and headings: git would drop "#" lines as comments.
-printf '%s\n\n%s\n' "$summary" "$diff" |
-	"$HOME/.pi/agent/bin/pi" -p --no-tools --no-session --provider magpie --model codex/gpt-5.6-luna "$prompt" |
+jq -r "$text" <<<"$response" |
 	sed -e '/^```/d' -e 's/^#\{1,6\} //' >"$message"
 
 if ! grep -q '[^[:space:]]' "$message"; then
-	echo 'The model returned an empty message.' >&2
+	echo 'The model returned an empty message:' >&2
+	echo "$response" >&2
 	exit 1
 fi
 

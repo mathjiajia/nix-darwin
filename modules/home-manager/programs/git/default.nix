@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  commitWithPi = pkgs.writeShellScript "lazygit-commit-message" (
+  commitMessage = pkgs.writeShellScript "lazygit-commit-message" (
     builtins.readFile ./lazygit-commit-message.sh
   );
 in
@@ -35,13 +35,14 @@ in
         {
           key = "C";
           context = "files";
-          description = "Generate commit message with Pi";
-          command = toString commitWithPi;
+          description = "Generate commit message with Claude";
+          command = toString commitMessage;
+          # command = "${commitMessage} openai";
           output = "terminal";
         }
       ];
       git.diffRenderers = [
-        { command = "${lib.getExe pkgs.hunk} pager --theme=github-{{colorScheme}}-default"; }
+        { command = "${lib.getExe pkgs.hunk} pager --theme=github-{{colorScheme}}"; }
       ];
       gui = {
         nerdFontsVersion = "3";
