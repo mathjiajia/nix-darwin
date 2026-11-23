@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, hostName, ... }: {
   imports = [
     inputs.nixvim.homeModules.nixvim
 
@@ -68,6 +68,7 @@
 
     nixvim = {
       enable = true;
+      _module.args = { inherit hostName; };
       # Match plugin dependencies to the cached nightly Neovim package.
       nixpkgs.source = inputs.neovim-nightly-overlay.inputs.nixpkgs;
       package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;

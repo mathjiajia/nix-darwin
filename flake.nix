@@ -22,24 +22,19 @@
       home-manager,
       ...
     }:
-    let
-      mkDarwin =
-        hostModule:
+    {
+      darwinConfigurations = inputs.nixpkgs.lib.genAttrs [ "mbo" "mbp" ] (
+        hostName:
         nix-darwin.lib.darwinSystem {
           modules = [
             ./configuration.nix
             ./modules/darwin
             nix-homebrew.darwinModules.nix-homebrew
             home-manager.darwinModules.home-manager
-            hostModule
+            ./hosts/${hostName}.nix
           ];
-          specialArgs = { inherit inputs; };
-        };
-    in
-    {
-      darwinConfigurations = {
-        "mbp" = mkDarwin ./hosts/mbp.nix;
-        "mbo" = mkDarwin ./hosts/mbo.nix;
-      };
+          specialArgs = { inherit inputs hostName; };
+        }
+      );
     };
 }

@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, hostName, ... }:
 let
   user = "jia";
 in
@@ -16,6 +16,7 @@ in
   };
 
   nixpkgs = {
+    hostPlatform = "aarch64-darwin";
     config.allowUnfree = true;
     # overlays = [ ];
   };
@@ -47,7 +48,7 @@ in
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "backup";
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs hostName; };
     users.${user}.imports = [ ./modules/home-manager ];
   };
 }

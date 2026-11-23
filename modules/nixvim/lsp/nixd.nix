@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, hostName, ... }: {
   lsp.servers.nixd = {
     enable = true;
     config = {
@@ -10,7 +10,7 @@
       ];
       settings.nixd =
         let
-          nix-darwin = ''(builtins.getFlake "/private/etc/nix-darwin").darwinConfigurations.mbp.options'';
+          nix-darwin = ''(builtins.getFlake "/private/etc/nix-darwin").darwinConfigurations.${hostName}.options'';
           home-manager = nix-darwin + ".home-manager.users.type.getSubOptions []";
           nixvim = "(${nix-darwin}).home-manager.users.valueMeta.attrs.jia.configuration.options.programs.nixvim.valueMeta.configuration.options";
         in

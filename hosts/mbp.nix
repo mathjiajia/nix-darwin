@@ -1,7 +1,5 @@
 {
   # Settings specific to mbp.
-  nixpkgs.hostPlatform = "aarch64-darwin";
-
   homebrew.casks = [
     # AI
     "llama-app"
@@ -17,7 +15,6 @@
     "8bitdo-firmware-updater"
     "display-pilot"
     "hhkb"
-    "open-screnn-sharing"
     "sf-symbols"
 
     # Productivity
