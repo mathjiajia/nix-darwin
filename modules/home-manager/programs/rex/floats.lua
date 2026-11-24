@@ -107,8 +107,7 @@ register_float("Yazi", {
 		yazi --cwd-file="$tmp"
 		IFS= read -r -d '' dir < "$tmp"
 		if [ -n "$dir" ]; then
-			"${REX_BIN_DIR:+$REX_BIN_DIR/}rex" do float_cd \
-				-s "$REX_SESSION" -b "$REX_BLOCK" "dir=$dir"
+			"${REX_BIN_DIR:+$REX_BIN_DIR/}rex" do float_cd -b "$REX_BLOCK" "dir=$dir"
 		fi
 	]]
 })

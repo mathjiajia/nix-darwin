@@ -10,7 +10,7 @@ case ${1-} in
 esac
 if [ "${1-}" = -- ]; then shift; fi
 
-if [ -n "${REX_SESSION-}" ] && [ -n "${REX_BLOCK-}" ] && [ $# -gt 0 ]; then
+if [ -n "${REX_BLOCK-}" ] && [ $# -gt 0 ]; then
 	# That Neovim has its own working directory.
 	files=()
 	for file in "$@"; do
@@ -23,7 +23,7 @@ if [ -n "${REX_SESSION-}" ] && [ -n "${REX_BLOCK-}" ] && [ $# -gt 0 ]; then
 	rex=${REX_BIN_DIR:+$REX_BIN_DIR/}rex
 	# "do" is quoted so ShellCheck doesn't take it for a loop.
 	if jq -n '{ files: $ARGS.positional, line: $line }' --argjson line "${line:-null}" --args "${files[@]}" |
-		"$rex" "do" float_edit -s "$REX_SESSION" -b "$REX_BLOCK" --args - >/dev/null 2>&1; then
+		"$rex" "do" float_edit -b "$REX_BLOCK" --args - >/dev/null 2>&1; then
 		exit 0
 	fi
 fi

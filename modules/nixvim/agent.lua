@@ -1,6 +1,6 @@
 -- Send lines and diagnostics to a coding agent in another Rex pane, through agent_send in the Rex config.
-local block, session = vim.env.REX_BLOCK, vim.env.REX_SESSION
-if not block or not session then return end
+local block = vim.env.REX_BLOCK
+if not block then return end
 
 local M = {}
 
@@ -31,14 +31,14 @@ end
 local function focus_after_palette_closes(reply)
 	vim.defer_fn(function ()
 		if last_send == reply then
-			run_rex({ "rex", "focus", "-s", session, reply.block_id })
+			run_rex({ "rex", "focus", reply.block_id })
 		end
 	end, PALETTE_CLOSE_MS)
 end
 
 function M.send(args)
 	local payload = vim.tbl_extend("force", args, { to = last_send and last_send.block_id })
-	local cmd = { "rex", "do", "agent_send", "-s", session, "-b", block, "--args", "-", "--json" }
+	local cmd = { "rex", "do", "agent_send", "-b", block, "--args", "-", "--json" }
 	run_rex(cmd, vim.json.encode(payload), function (stdout)
 		local ok, reply = pcall(vim.json.decode, stdout)
 		if not ok or not well_formed(reply) then
@@ -80,10 +80,13 @@ end
 
 local function line_numbers(range)
 	local from, to = range.from, range.to
-	if from[2] > to[2] then from, to = to, from end
+	if from[2] > to[2] then
+		from, to = to, from
+	end
 	local first, last = from[2], to[2]
 	local stops_before_last_line = range.type == "v" and vim.o.selection == "exclusive"
-		and first < last and to[3] == 1 and to[4] == 0
+		and first < last and to[3] == 1
+		and to[4] == 0
 	return first, stops_before_last_line and last - 1 or last
 end
 
@@ -126,7 +129,9 @@ function M.send_diagnostics()
 end
 
 vim.keymap.set({ "n", "x" }, "<leader>aa", M.send_lines, { desc = "Send line or selection to [a]gent" })
-vim.keymap.set({ "n", "x" }, "<leader>as", M.pick_agent_and_send_lines, { desc = "[S]elect [a]gent and send line or selection" })
+vim.keymap.set({ "n", "x" }, "<leader>as", M.pick_agent_and_send_lines, {
+	desc = "[S]elect [a]gent and send line or selection"
+})
 vim.keymap.set("n", "<leader>ad", M.send_diagnostics, { desc = "Send line [d]iagnostics to [a]gent" })
 
 return M
