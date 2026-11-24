@@ -42,7 +42,7 @@ in
         }
       ];
       git.diffRenderers = [
-        { command = "${lib.getExe pkgs.hunk} pager --theme=github-{{colorScheme}}"; }
+        { command = "${lib.getExe pkgs.hunk} pager --theme=github-{{colorScheme}}-default"; }
       ];
       gui = {
         nerdFontsVersion = "3";

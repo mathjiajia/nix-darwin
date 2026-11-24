@@ -8,6 +8,10 @@
   plugins = {
     lint = {
       enable = true;
+      linters.commitlint.args = [
+        "--extends"
+        "@commitlint/config-conventional"
+      ];
       lintersByFt = {
         gitcommit = [ "commitlint" ];
         sh = [ "shellcheck" ];

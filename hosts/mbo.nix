@@ -10,14 +10,15 @@
       '';
     functions.codex = {
       wraps = "codex";
-      body = ''
-        # Forward clipboard copies to the Rex client.
-        if set -q REX_BLOCK; and not set -q SSH_TTY
-          env SSH_TTY=rex codex $argv
-        else
-          command codex $argv
-        end
-      '';
+      body = # fish
+        ''
+          # Forward clipboard copies to the Rex client.
+          if set -q REX_BLOCK; and not set -q SSH_TTY
+            env SSH_TTY=rex codex $argv
+          else
+            command codex $argv
+          end
+        '';
     };
   };
 
