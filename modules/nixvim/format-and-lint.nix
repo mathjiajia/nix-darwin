@@ -45,6 +45,7 @@
           json = [ "jq" ];
           jsonnet = [ "jsonnetfmt" ];
           nix = [ "nixfmt" ];
+          nu = [ "nufmt" ];
           python = [
             "ruff_fix"
             "ruff_format"

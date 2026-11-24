@@ -5,6 +5,7 @@
     ./marksman.nix
     # ./matlab_ls.nix
     ./nixd.nix
+    ./nushell.nix
     ./pyrefly.nix
     # ./ruff.nix
     ./sourcekit.nix

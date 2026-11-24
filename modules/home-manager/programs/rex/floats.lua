@@ -117,7 +117,7 @@ rex.action {
 	name = "float_cd",
 	title = "Change Directory under Float",
 	category = "Floats",
-	description = "Hides an exiting float and passes the directory to the Fish shell below it.",
+	description = "Hides an exiting float and passes the directory to the Fish or Nushell prompt below it.",
 	args = { dir = "string" },
 	run = function (ctx, args)
 		local window, layer = location(ctx.block_id)
@@ -130,9 +130,9 @@ rex.action {
 		if not under or under == ctx.block_id then return { changed = false } end
 		local pane = rex.block.call(TERMINAL, "process", { block_id = under })
 		local shell = pane and pane.foreground
-		if not shell or shell.name ~= "fish" or shell.cwd == args.dir then return { changed = false } end
+		if not shell or (shell.name ~= "fish" and shell.name ~= "nu") or shell.cwd == args.dir then return { changed = false } end
 
-		-- Publish the whole path before waking the Fish handler in default.nix.
+		-- Publish the whole path before waking the shell handler in default.nix.
 		local sent = assert(rex.exec({
 				"sh",
 				"-ec",
@@ -144,17 +144,26 @@ rex.action {
 
 					printf %s "$3" > "$tmp"
 					mv -f "$tmp" "$file"
-					kill -WINCH "$2" || {
+					if [ "$4" = fish ] && ! kill -WINCH "$2"; then
 						rm -f "$file"
 						exit 1
-					}
+					fi
 				]],
 				"float_cd",
 				HOME .. "/.cache/rex",
 				tostring(shell.pid),
-				args.dir
+				args.dir,
+				shell.name
 			}))
 		assert(sent.ok, sent.stderr)
+		if shell.name == "nu" then
+			-- Alt-F12 runs the directory handler without submitting the current line.
+			local written, err = rex.block.call(TERMINAL, "write", { block_id = under, data = "\27[24;3~" })
+			if not written then
+				os.remove(HOME .. "/.cache/rex/float-cd." .. shell.pid)
+				error(err, 0)
+			end
+		end
 		return { changed = true, block_id = under }
 	end
 }

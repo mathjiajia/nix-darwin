@@ -22,5 +22,21 @@
     };
   };
 
+  home-manager.users.jia.programs.nushell.extraConfig = # nu
+    ''
+      if "REX_BLOCK" in $env {
+        $env.PI_CLIPBOARD_OSC52 = "1"
+      }
+
+      @complete external
+      def --wrapped codex [...args: string] {
+        if "REX_BLOCK" in $env and "SSH_TTY" not-in $env {
+          SSH_TTY=rex ^codex ...$args
+        } else {
+          ^codex ...$args
+        }
+      }
+    '';
+
   homebrew.casks = [ "lobehub" ];
 }

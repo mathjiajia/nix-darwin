@@ -27,6 +27,7 @@ in
       markdown_inline
       matlab
       nix
+      nu
       python
       query
       r

@@ -65,6 +65,37 @@ in
       end
     '';
 
+  programs.nushell.extraConfig = # nu
+    ''
+      def "nu-complete rex" [place: record] {
+        let result = (^rex __complete ...($place.command | skip 1) | complete)
+        let lines = ($result.stdout | lines)
+        if $result.exit_code != 0 or ($lines | is-empty) { return [] }
+        # Cobra's last line is a directive. Its low bit reports an error.
+        let directive = ($lines | last | str replace ":" "" | into int)
+        if ($directive bit-and 1) != 0 { return [] }
+        $lines | drop 1 | split column "\t" value description
+      }
+      @complete "nu-complete rex"
+      extern rex [...args]
+
+      def --env __rex_float_cd [] {
+        let file = ($env.HOME | path join ".cache/rex" $"float-cd.($nu.pid)")
+        if ($file | path exists) {
+          let dir = (open --raw $file)
+          rm $file
+          cd $dir
+        }
+      }
+      if "REX_BLOCK" in $env {
+        $env.config.keybindings ++= [{
+          name: rex_float_cd, modifier: alt, keycode: f12
+          mode: (keybindings list --modes | get name)
+          event: { send: executehostcommand, cmd: "__rex_float_cd" }
+        }]
+      }
+    '';
+
   # Files that lazygit and Yazi open go to the Neovim in the same Rex tab,
   # through edit.sh and float_edit in floats.lua. Without one, or outside Rex,
   # Neovim starts in their terminal as before. Commit messages still open

@@ -1,6 +1,28 @@
+{ config, ... }:
 {
   programs = {
-    nushell.enable = true;
+    nushell = {
+      enable = true;
+      settings = {
+        show_banner = false;
+        abbreviations = config.programs.fish.shellAbbrs // {
+          mkdir = "^mkdir -p";
+        };
+      };
+      extraConfig = # nu
+        ''
+          let local_bin = ($env.HOME | path join ".local/bin")
+          if $local_bin not-in $env.PATH and ($local_bin | path expand | path type) == dir {
+            $env.PATH = ($env.PATH | prepend $local_bin)
+          }
+          if ($env.REX_BIN_DIR? | is-not-empty) {
+            let rex_bin = ($env.REX_BIN_DIR | path expand --no-symlink)
+            if ($rex_bin | path expand | path type) == dir {
+              $env.PATH = ($env.PATH | where {|dir| $dir != $rex_bin } | prepend $rex_bin)
+            }
+          }
+        '';
+    };
 
     atuin = {
       enable = true;
