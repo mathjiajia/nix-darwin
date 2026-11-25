@@ -3,7 +3,6 @@
   homebrew.casks = [
     # AI
     "llama-app"
-    "t3-code"
 
     # Development
     "ghostty"

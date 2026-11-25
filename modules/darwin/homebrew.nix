@@ -16,6 +16,7 @@
       # "neovide-app" # depends on nvim
       "orbstack"
       "orchard"
+      "terminal-browser"
       "visual-studio-code"
 
       # Fonts
