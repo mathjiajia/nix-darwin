@@ -2,7 +2,7 @@
   imports = [
     ./clangd.nix
     ./emmylua_ls.nix
-    ./marksman.nix
+    # ./marksman.nix
     # ./matlab_ls.nix
     ./nixd.nix
     ./pyrefly.nix

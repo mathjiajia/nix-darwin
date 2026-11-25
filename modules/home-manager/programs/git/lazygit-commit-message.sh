@@ -53,7 +53,9 @@ anthropic)
 	text='.content[] | select(.type == "text") | .text'
 	;;
 openai)
-	key=$(security find-generic-password -s OPENAI_API_KEY -a OPENAI_API_KEY -w)
+	# New item: security add-generic-password -D "secure note" -s "OPENAI_API_KEY" -a "OPENAI_API_KEY" -w
+	# For keys over 128 bytes, supply the full value to security -i on stdin.
+	key=$(security find-generic-password -s "OPENAI_API_KEY" -w)
 	url=https://api.openai.com/v1/responses
 	headers="authorization: Bearer $key"
 	body=$(jq -n --arg prompt "$prompt" --arg input "$input" '{
@@ -77,7 +79,11 @@ if ! response=$(
 		-H 'content-type: application/json' \
 		--data-binary @- <<<"$body"
 ); then
-	echo "$response" >&2
+	if jq -e '.error.code == "invalid_api_key" or .error.type == "authentication_error"' >/dev/null 2>&1 <<<"$response"; then
+		printf '%s rejected the API key from Keychain.\n' "$provider" >&2
+	else
+		printf '%s\n' "$response" >&2
+	fi
 	exit 1
 fi
 

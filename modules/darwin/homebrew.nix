@@ -13,6 +13,7 @@
       # Development
       "corretto@11" # for MATLAB
       "markedit"
+      "markdown-preview"
       # "neovide-app" # depends on nvim
       "orbstack"
       "orchard"

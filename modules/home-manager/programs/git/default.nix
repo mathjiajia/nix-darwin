@@ -35,9 +35,9 @@ in
         {
           key = "C";
           context = "files";
-          description = "Generate commit message with Claude";
-          command = toString commitMessage;
-          # command = "${commitMessage} openai";
+          description = "Generate commit message";
+          # command = toString commitMessage;
+          command = "${commitMessage} openai";
           output = "terminal";
         }
       ];
