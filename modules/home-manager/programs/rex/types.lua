@@ -3,7 +3,8 @@
 -- Editor definitions only; do not require this file from init.lua.
 -- Lua API: https://www.superlogical.com/rex/docs/reference/lua
 -- Custom UI: https://www.superlogical.com/rex/docs/customize/custom-ui
--- Session and terminal shapes checked against Rex 0.1.0-preview.21, API revision 18.
+-- Resume rules: https://www.superlogical.com/rex/docs/customize/resume-rules
+-- Session and terminal shapes checked against Rex 0.1.0-preview.25, API revision 24.
 
 ---@class rex: rex.Server
 ---@field bind        fun(key: string, action: string | rex.KeyHandler, args?: table)                              Config only; named actions are bound at load time.
@@ -17,12 +18,14 @@
 ---@field ui          rex.Ui                                                                                       Prompts in the command palette; needs API revision 17.
 ---@field layout      rex.LayoutBuilder
 ---@field host        fun(host: rex.Host)                                                                          Config at load time.
+---@field set         fun(key: string, value: rex.SettingValue)                                                    Config at load time; an unknown key is a warning. Checked but ignored in scripts.
+---@field match       rex.Match                                                                                    Argument matchers for resume rules.
 ---@field servers     fun(): string[]
 ---@field server      fun(label: string): rex.Server                                                               Remote calls need explicit session and block IDs.
 ---@field exec        rex.Exec
 ---@field json        rex.Json
 ---@field log         fun(level_or_message: rex.LogLevel | string, message?: string)                               With one argument, the level is info.
----@field on          rex.On                                                                                       Script only.
+---@field on          rex.On                                                                                       Script only, at load time; not from inside a handler.
 ---@field wait        rex.Wait                                                                                     Script only; timeout is in seconds.
 ---@field sleep       fun(seconds: number)                                                                         Script only.
 ---@field stop        fun(code?: integer)                                                                          Script only; exits immediately, defaulting to status 0.
@@ -35,7 +38,7 @@
 ---@class rex.Server
 ---@field session rex.Session
 ---@field block   rex.Block
----@field call    fun(method: string, args?: table): table?, string? API failures return nil and an error message.
+---@field call    fun(method: string, args?: table): table?, string? Any server method, such as session.transfer_window, which rex.session lacks. API failures return nil and an error message.
 
 ---@class rex.Client
 ---@field queue fun(name: string, args?: table) In a config action, runs after the action succeeds; immediate in scripts.
@@ -104,14 +107,17 @@
 ---@field session_id? string
 ---@field block_id?   string
 ---@field client_id?  string
----@field origin?     string For example, script or timer.
----@field server?     any    Server context, when supplied by Rex.
+---@field origin?     rex.Origin
+---@field server?     any        Server context, when supplied by Rex.
+
+-- How an action was run; timer is for rex.after and rex.every callbacks.
+---@alias rex.Origin "key" | "palette" | "cli" | "api" | "script" | "timer" | string
 
 ---@alias rex.KeyHandler fun(ctx: rex.Context, ev: rex.KeyEvent): boolean?
 
 ---@class rex.KeyEvent
----@field keybinding string
----@field prefix?    string
+---@field keybinding string   The last key of a sequence.
+---@field prefix?    string[] The keys before it; absent for a single key.
 
 ---@class rex.Binding
 ---@field key     string
@@ -150,6 +156,31 @@
 ---@field endpoint string
 
 ---@alias rex.Host rex.HostEndpoints|rex.HostEndpoint
+
+-- Settings are only used for resume rules today, under resume.trust.<program>
+-- and resume.defaults. false removes a named item, such as a rule or a flag.
+---@alias rex.SettingValue boolean | number | string | rex.resume.Rule | rex.resume.Flag | string[] | table
+
+---@class rex.Match
+---@field uuid  rex.Matcher                   A UUID.
+---@field id    rex.Matcher                   1 to 128 letters, digits, and underscores.
+---@field under fun(dir: string): rex.Matcher An absolute path inside dir, but not dir itself; dir is absolute or starts with ~.
+
+---@class rex.Matcher
+
+---@class rex.resume.Rule
+---@field command (string | string[] | rex.Matcher)[] The program's name or absolute path, then each argument: a string, a list of alternatives, or a matcher.
+---@field flags?  table<string, rex.resume.Flag>       Every flag the program may be started with; without flags, nothing may follow command.
+---@field dir?    string | string[]                   Directories the program may be resumed in, including those below them.
+
+-- "keep" or "drop" says whether the flag comes back when the program is resumed.
+---@alias rex.resume.Flag "keep" | "drop" | rex.resume.FlagWithValues
+
+-- For example { "keep", values = 1 }.
+---@class rex.resume.FlagWithValues
+---@field [1]    "keep" | "drop"
+---@field values 1 | "optional" | "many" 1 takes the next argument; optional, the next unless it starts with -; many, every one up to the next flag.
+
 ---@alias rex.LogLevel "debug"|"info"|"warn"|"error"
 ---@alias rex.Direction "horizontal"|"vertical"
 ---@alias rex.Side "before"|"after"
@@ -229,7 +260,7 @@
 
 ---@class rex.Json
 ---@field encode fun(value: any, opts?: { indent?: boolean }): string?, string?
----@field decode fun(text: string): any, string?                                JSON null becomes nil.
+---@field decode fun(text: string): any, string?                                JSON null becomes nil, and a null in an array is dropped.
 
 -- Event names remain open to plugins and future Rex versions.
 ---@alias rex.EventName string
@@ -256,6 +287,7 @@
 --- |      "terminal.clipboard_written"
 --- |      "terminal.program_status_changed"
 --- |      "terminal.program_status_removed"
+--- |      "terminal.program_resume_changed"
 --- |      "session_created"
 --- |      "session_destroyed"
 --- |      "client_joined"
@@ -331,6 +363,7 @@
 ---@overload fun(creator: "com.superlogical.terminal", method: "resize", args: rex.terminal.ResizeCallArgs | rex.terminal.ResizeCall): table?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "set_theme", args?: rex.terminal.SetThemeCallArgs | rex.terminal.SetThemeCall): table?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "program_status", args?: rex.terminal.CallArgs): rex.terminal.ProgramStatusResult?, string?
+---@overload fun(creator: "com.superlogical.terminal", method: "program_resume_records", args?: rex.terminal.CallArgs): rex.terminal.ProgramResumeRecordsResult?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "list_dir", args?: rex.terminal.ListDirCallArgs | rex.terminal.ListDirCall): rex.terminal.ListDirResult?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "input_mode", args?: rex.terminal.CallArgs): rex.terminal.InputModeResult?, string?
 ---@overload fun(creator: "com.superlogical.terminal", method: "modes", args?: rex.terminal.CallArgs): rex.terminal.ModesResult?, string?
@@ -348,6 +381,7 @@
 ---@overload fun(event: "terminal.process_changed" | "com.superlogical.terminal.process_changed", handler: fun(ctx: rex.Context, ev: rex.terminal.ProcessChangedEvent))
 ---@overload fun(event: "terminal.program_status_changed" | "com.superlogical.terminal.program_status_changed", handler: fun(ctx: rex.Context, ev: rex.terminal.ProgramStatusChangedEvent))
 ---@overload fun(event: "terminal.program_status_removed" | "com.superlogical.terminal.program_status_removed", handler: fun(ctx: rex.Context, ev: rex.terminal.ProgramStatusRemovedEvent))
+---@overload fun(event: "terminal.program_resume_changed" | "com.superlogical.terminal.program_resume_changed", handler: fun(ctx: rex.Context, ev: rex.terminal.ProgramResumeChangedEvent))
 ---@overload fun(event: "terminal.progress_report" | "com.superlogical.terminal.progress_report", handler: fun(ctx: rex.Context, ev: rex.terminal.ProgressReportEvent))
 ---@overload fun(event: "terminal.pwd_changed" | "com.superlogical.terminal.pwd_changed", handler: fun(ctx: rex.Context, ev: rex.terminal.PwdChangedEvent))
 ---@overload fun(event: "terminal.selection_copied" | "com.superlogical.terminal.selection_copied", handler: fun(ctx: rex.Context, ev: rex.terminal.SelectionCopiedEvent))
@@ -365,6 +399,7 @@
 ---@overload fun(event: "terminal.process_changed" | "com.superlogical.terminal.process_changed", filter?: table | (fun(ev: rex.terminal.ProcessChangedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ProcessChangedEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.program_status_changed" | "com.superlogical.terminal.program_status_changed", filter?: table | (fun(ev: rex.terminal.ProgramStatusChangedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ProgramStatusChangedEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.program_status_removed" | "com.superlogical.terminal.program_status_removed", filter?: table | (fun(ev: rex.terminal.ProgramStatusRemovedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ProgramStatusRemovedEvent?, rex.Context | "timeout"
+---@overload fun(event: "terminal.program_resume_changed" | "com.superlogical.terminal.program_resume_changed", filter?: table | (fun(ev: rex.terminal.ProgramResumeChangedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ProgramResumeChangedEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.progress_report" | "com.superlogical.terminal.progress_report", filter?: table | (fun(ev: rex.terminal.ProgressReportEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.ProgressReportEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.pwd_changed" | "com.superlogical.terminal.pwd_changed", filter?: table | (fun(ev: rex.terminal.PwdChangedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.PwdChangedEvent?, rex.Context | "timeout"
 ---@overload fun(event: "terminal.selection_copied" | "com.superlogical.terminal.selection_copied", filter?: table | (fun(ev: rex.terminal.SelectionCopiedEvent, ctx: rex.Context): boolean), timeout?: number): rex.terminal.SelectionCopiedEvent?, rex.Context | "timeout"
@@ -404,6 +439,11 @@
 ---@class rex.terminal.ProgramStatusRemovedEvent: rex.Event
 ---@field ids    string[]
 ---@field reason string
+
+-- Carries the whole new list, so replace the one you hold whatever the reason.
+---@class rex.terminal.ProgramResumeChangedEvent: rex.Event
+---@field records rex.ProgramResumeRecord[] Without command; call program_resume_records for it.
+---@field reason  string                    report, clear, rejected, owner_exited, or rules_changed; newer servers may add more.
 
 ---@class rex.terminal.ProgressReportEvent: rex.Event
 ---@field state     string
@@ -453,12 +493,14 @@
 ---@field active_window_id? string
 ---@field windows?          rex.Window[]
 
+-- A window has one zoom for its tiled layout and one for its floating layers.
 ---@class rex.Window
----@field window_id?        string
----@field label?            string
----@field focused_block_id? string
----@field zoomed_block_id?  string
----@field layers?           rex.Layer[]
+---@field window_id?             string
+---@field label?                 string
+---@field focused_block_id?      string
+---@field zoomed_block_id?       string      The focused block, when zoomed. Unless it is tiled_zoomed_block_id, it is in a floating layer and drawn in front of every layer.
+---@field tiled_zoomed_block_id? string      The zoomed block of the tiled layout, drawn behind the floating layers.
+---@field layers?                rex.Layer[]
 
 ---@class rex.Layer
 ---@field layer_id? string
@@ -598,6 +640,18 @@
 ---@field updated_at     string
 ---@field owner?         rex.ProcessOwner
 
+-- A command a program reported with OSC 7577 for Rex to start it again after a restart.
+---@class rex.ProgramResumeRecord
+---@field owner             rex.ProcessOwner The name is empty if the process exited before Rex read it.
+---@field program           string           The command's program, such as claude.
+---@field command?          string[]         Can hold a secret, so don't log it. Absent from program_resume_changed.
+---@field cwd?              string           Absent when unknown; the program then starts where a new shell would.
+---@field reported_at       string           RFC 3339 timestamp.
+---@field chosen?           true             The record a restart of the terminal would resume.
+---@field trusted?          true             A resume rule names the command, so Rex runs it without asking.
+---@field rule?             string           The rule that trusts the record, such as claude.
+---@field untrusted_reason? string           Such as no_rule or dir_not_allowed; treat a reason you don't know as untrusted.
+
 ---@class rex.DirectoryEntry
 ---@field name     string
 ---@field symlink? boolean
@@ -717,6 +771,7 @@
 ---@class rex.session.CloseWindowArgs
 ---@field session_id? string
 ---@field window_id?  string
+---@field undoable?   boolean Keep the blocks running for about a minute, so client.undo_close can bring the window back; only for a client attached to the session.
 
 ---@class rex.session.MoveBlockArgs
 ---@field session_id?      string
@@ -858,6 +913,9 @@
 
 ---@class rex.terminal.ProgramStatusResult
 ---@field records rex.ProgramStatus[]
+
+---@class rex.terminal.ProgramResumeRecordsResult
+---@field records rex.ProgramResumeRecord[] Newest report first; empty when the terminal has none.
 
 ---@class rex.terminal.ListDirCall
 ---@field session_id? string

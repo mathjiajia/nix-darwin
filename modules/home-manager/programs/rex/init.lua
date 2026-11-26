@@ -13,6 +13,10 @@ require("agents")
 
 require("projects")
 
+rex.set("resume.trust.nvim", {
+	command = { "nvim", "-S", rex.match.under("~/.local/state/nvim/sessions") },
+})
+
 -- require("ui_bridge") -- stored with Neovim's rex-ui
 
 -- >>> leaf >>>

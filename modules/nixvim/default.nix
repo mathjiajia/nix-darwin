@@ -31,6 +31,7 @@
     ./editor.nix
     ./format-and-lint.nix
     ./extra-plugins.nix
+    ./resume.nix
     ./treesitter.nix
     # ./rex-ui
     ./ui.nix

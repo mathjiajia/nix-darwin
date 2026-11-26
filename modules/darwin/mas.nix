@@ -10,8 +10,8 @@
 
       # Notes and writing
       Bear = 1091189122;
-      Craft = 1487937127;
-      "Craft Web Clipper" = 6748613311;
+      # Craft = 1487937127;
+      # "Craft Web Clipper" = 6748613311;
       Drafts = 1435957248;
       Goodnotes = 1444383602;
 

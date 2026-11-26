@@ -56,8 +56,28 @@ local function toggle_layer(window, layer)
 	return result
 end
 
+-- After a restart, Rex restores a float's label but not its command.
+---@return boolean
+local function close_restored(window, name, program)
+	local closed = false
+	for _, layer in ipairs(window.layers or {}) do
+		for _, block in ipairs(layer.kind == "floating" and layer.blocks or {}) do
+			if (block.label or ""):match("^[^ ]+") == name then
+				local pane = rex.block.call(TERMINAL, "process", { block_id = block.block_id })
+				if pane and pane.child and pane.child.name ~= program then
+					assert(rex.session.close_layer { layer_id = layer.layer_id })
+					closed = true
+					break
+				end
+			end
+		end
+	end
+	return closed
+end
+
 local function register_float(title, command)
 	local name = title:lower()
+	command = command or { name }
 	rex.action {
 		name = "toggle_" .. name,
 		title = "Toggle " .. title,
@@ -65,13 +85,16 @@ local function register_float(title, command)
 		args = { cwd = "string?" },
 		run = function (ctx, args)
 			local window, origin = location(ctx.block_id)
+			if close_restored(window, name, command[1]) then
+				window, origin = location(ctx.block_id)
+			end
 			-- The shortcut inside a tool belongs to that float, even if its cwd changed.
 			if origin and origin.kind == "floating" then
 				for _, block in ipairs(origin.blocks) do
 					if (block.label or ""):match("^[^ ]+") == name then return toggle_layer(window, origin) end
 				end
 			end
-			local source = ctx.block_id or window.focused_block_id
+			local source = origin and ctx.block_id or window.focused_block_id
 			local cwd, label = args.cwd, name
 			if name == "lazygit" then
 				cwd, label = lazygit_location(cwd or pane_cwd(source))
@@ -88,7 +111,7 @@ local function register_float(title, command)
 					layout = rex.layout.block {
 						flavor = TERMINAL .. ".shell",
 						label = label,
-						options = { command = command or { name }, cwd = cwd or pane_cwd(source) }
+						options = { command = command, cwd = cwd or pane_cwd(source) }
 					}
 				})
 			return result
