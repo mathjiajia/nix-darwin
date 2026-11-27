@@ -1,7 +1,7 @@
 -- Managed by home-manager: modules/home-manager/programs/rex in /etc/nix-darwin.
 
 rex.bind("cmd+`", "client.visibility.toggle")
-rex.bind("cmd+`", "client.quick_terminal.toggle")
+rex.bind("ctrl+`", "client.quick_terminal.toggle")
 
 -- Floating terminals: a toggle for lazygit, yazi and btop.
 require("floats")
