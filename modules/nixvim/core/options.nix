@@ -20,25 +20,7 @@
   clipboard.register = "unnamedplus";
 
   # Rex mirrors yanks to the client and host clipboards; paste reads the host.
-  extraConfigLuaPre = ''
-    if vim.env.REX_BLOCK then
-      -- vim.g.clipboard = "osc52" -- once Rex fully supports OSC 52
-    	local osc52 = require("vim.ui.clipboard.osc52")
-    	local function copy(reg)
-    		local send = osc52.copy(reg)
-    		return function(lines)
-    			send(lines)
-    			vim.system({ "pbcopy" }, { stdin = table.concat(lines, "\n") }):wait()
-    		end
-    	end
-
-    	vim.g.clipboard = {
-    		name = "osc52+pbcopy",
-    		copy = { ["+"] = copy("+"), ["*"] = copy("*") },
-    		paste = { ["+"] = { "pbpaste" }, ["*"] = { "pbpaste" } }
-    	}
-    end
-  '';
+  extraConfigLuaPre = ''if vim.env.REX_BLOCK then vim.g.clipboard = "osc52" end'';
 
   opts = {
     linebreak = true;
