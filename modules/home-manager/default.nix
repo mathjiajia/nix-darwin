@@ -1,4 +1,9 @@
-{ inputs, pkgs, hostName, ... }: {
+{ inputs, lib, pkgs, hostName, ... }:
+let
+  # MacTeX until nixpkgs ships TeX Live 2026: NixOS/nixpkgs#582441.
+  nixTeX = lib.versionAtLeast pkgs.texliveFull.version "2026";
+in
+{
   imports = [
     inputs.nixvim.homeModules.nixvim
 
@@ -17,7 +22,7 @@
 
   home = {
     stateVersion = "26.11";
-    sessionPath = [ "/Library/TeX/texbin" ];
+    sessionPath = lib.optional (!nixTeX) "/Library/TeX/texbin";
     sessionVariables = {
       MANPAGER = "nvim +Man!";
     };
@@ -37,7 +42,8 @@
       lxgw-wenkai
       # maple-mono.NF-CN # wait for 8.0
       nerd-fonts.symbols-only
-    ];
+    ]
+    ++ lib.optional nixTeX texliveFull;
   };
 
   programs = {
