@@ -32,6 +32,7 @@
       "keyboard-maestro"
       "launchbar"
       "loop"
+      "thingsmacsandboxhelper"
       "tinycast"
 
       # System and hardware

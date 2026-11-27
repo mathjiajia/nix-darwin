@@ -1,14 +1,7 @@
 {
-  # Settings specific to mbp.
   homebrew.casks = [
-    # AI
-    "llama-app"
-
     # Development
-    "ghostty"
     "google-chrome"
-    "homebrew-app"
-    "kitty"
 
     # System and hardware
     "8bitdo-firmware-updater"
@@ -18,24 +11,16 @@
 
     # Productivity
     "hazeover"
-    "raycast"
     "soulver-cli"
 
     # Media and design
-    "downie"
     "iina"
     "inkscape"
-    "paper-design"
-    "permute"
 
     # Browsers and communication
-    # "discord"
+    "discord"
     "qq"
-    "swiftcord"
     "zoom"
-
-    # Input
-    "squirrel-app"
 
     # Games
     "openra"
@@ -44,13 +29,31 @@
   programs.mas.packages = {
     # Development
     "Apple Configurator" = 1037126344;
-    Codye = 1516894961;
+    DevHub = 6476452351;
+    DevTutor = 6471227008;
+    SnippetsLab = 1006087419;
     "Swift Playground" = 1496833156;
     TestFlight = 899247664;
 
-    # Reading and reference
-    Readest = 6738622779;
-    xcz = 912139104;
+    # Notes and writing
+    Bear = 1091189122;
+    # Craft = 1487937127;
+    # "Craft Web Clipper" = 6748613311;
+    Goodnotes = 1444383602;
+
+    # Documents and office
+    Keynote = 361285480;
+    "Microsoft Excel" = 462058435;
+    "Microsoft PowerPoint" = 462062816;
+    "Microsoft Word" = 462054704;
+    Numbers = 361304891;
+    Pages = 361309726;
+    ScanScan = 1249901692;
+    UPDF = 1619925971;
+
+    # Productivity
+    # Dropover = 1355679052;
+    Soulver = 1508732804;
 
     # Communication
     Telegram = 747648890;
@@ -59,11 +62,14 @@
     WhatsApp = 310633997;
 
     # Media
-    Infuse = 1136220934;
     VidHub = 1659622164;
+    "Whisper Transcription" = 1668083311;
+
+    # Network
+    "Net Magic" = 6757392404;
+    Shadowrocket = 932747118;
 
     # Input
     CobraTyping = 6784869356;
-    "Squirrel Designer" = 1530616498;
   };
 }

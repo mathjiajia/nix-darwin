@@ -1,5 +1,5 @@
 {
-  # Settings specific to mbo.
+  # The Mac mini is used through Rex from the MacBooks.
   home-manager.users.jia.programs.fish = {
     interactiveShellInit =
       # fish
@@ -21,6 +21,4 @@
         '';
     };
   };
-
-  homebrew.casks = [ "lobehub" ];
 }

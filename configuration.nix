@@ -27,6 +27,9 @@ in
     configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
   };
 
+  # darwin-rebuild and nh pick the configuration with this name.
+  networking.localHostName = hostName;
+
   # run `chsh -s /run`
   environment.shells = [ pkgs.fish ];
   programs.fish = {

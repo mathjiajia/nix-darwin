@@ -7,36 +7,35 @@
       autohide = true;
       orientation = "left";
       tilesize = 36;
-      persistent-apps =
-        [
-          "/System/Applications/Apps.app"
-          "/System/Cryptexes/App/System/Applications/Safari.app"
-          "/Applications/Fog.app"
-          "/System/Applications/Calendar.app"
-          "/System/Applications/Reminders.app"
-          "/System/Applications/Notes.app"
-          "/Applications/Drafts.app"
-          "/Applications/Due.app"
-          "/Applications/Things3.app"
-          "/Applications/Visual Studio Code.app"
-          "/Applications/Rex.app"
-          "/Applications/sioyek.app"
-          "/Applications/Zotero.app"
-          "/Applications/PDF Expert.app"
-          "/Applications/ChatGPT.app"
-          "/Applications/Claude.app"
-        ]
-        ++ lib.optionals (hostName == "mbp") [
-          "/Applications/WeChat.app"
-          "/Applications/WhatsApp.app"
-        ]
-        ++ [
-          "/System/Applications/Music.app"
-          "/Applications/LaunchBar.app"
-          "/System/Applications/App Store.app"
-          "/System/Applications/System Settings.app"
-          "/System/Applications/iPhone Mirroring.app"
-        ];
+      persistent-apps = [
+        "/System/Applications/Apps.app"
+        "/System/Cryptexes/App/System/Applications/Safari.app"
+        "/System/Applications/Mail.app"
+        "/System/Applications/Calendar.app"
+        "/System/Applications/Reminders.app"
+        "/System/Applications/Notes.app"
+        "/Applications/Drafts.app"
+        "/Applications/Due.app"
+        "/Applications/Things3.app"
+        "/Applications/Visual Studio Code.app"
+        "/Applications/Rex.app"
+        "/Applications/sioyek.app"
+        "/Applications/Zotero.app"
+        "/Applications/PDF Expert.app"
+        "/Applications/ChatGPT.app"
+        "/Applications/Claude.app"
+      ]
+      ++ lib.optionals (hostName == "macbook-pro-m6") [
+        "/Applications/WeChat.app"
+        "/Applications/WhatsApp.app"
+      ]
+      ++ [
+        "/System/Applications/Music.app"
+        "/Applications/LaunchBar.app"
+        "/System/Applications/App Store.app"
+        "/System/Applications/System Settings.app"
+        "/System/Applications/iPhone Mirroring.app"
+      ];
     };
 
     finder = {

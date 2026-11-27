@@ -1,7 +1,7 @@
 {
   imports = [
     ./homebrew.nix
-    # ./mas.nix # use only needed
+    ./mas.nix
     ./system.nix
   ];
 }

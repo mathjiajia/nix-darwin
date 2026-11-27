@@ -23,7 +23,7 @@
       ...
     }:
     {
-      darwinConfigurations = inputs.nixpkgs.lib.genAttrs [ "mbo" "mbp" ] (
+      darwinConfigurations = inputs.nixpkgs.lib.genAttrs [ "macbook-pro-m3" "macbook-pro-m6" "mac-mini" ] (
         hostName:
         nix-darwin.lib.darwinSystem {
           modules = [
